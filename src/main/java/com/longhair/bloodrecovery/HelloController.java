@@ -10,6 +10,6 @@ public class HelloController {
     @GetMapping("/api/hello")
     public String hello(){
         return "안녕하세요. 현재 서버시간은 " + new Date() + "입니다.\n" +
-                "여긴 DirectDevelop Branch입니다~";
+                "여긴 DirectDevelop Branch입니다~ 포트변경했습니다~";
     }
 }

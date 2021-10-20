@@ -18,6 +18,12 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter', version: '3.0.4'
+	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-server
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-server', version: '3.0.4'
+	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-client
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client', version: '3.0.4'
 }
 
 test {
