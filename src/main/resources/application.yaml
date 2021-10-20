@@ -4,6 +4,9 @@ spring:
     username: sa
     password:
     driver-class-name: org.h2.Driver
+  profiles:
+    active: prod
+
   jpa:
     hibernate:
       ddl-auto: create #나중에 none으로 바꿔

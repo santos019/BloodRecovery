@@ -1,38 +1,32 @@
 package com.longhair.bloodrecovery.api;
 
-import com.longhair.bloodrecovery.domain.Rank;
 import com.longhair.bloodrecovery.dto.RankDto;
+import com.longhair.bloodrecovery.repository.RankRepository;
 import com.longhair.bloodrecovery.service.RankService;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
+import javax.persistence.Entity;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
 public class RankApiController {
 
     private final RankService rankService;
+    private final RankRepository rankRepository;
 
     @GetMapping("/ranking")
-    //==========resttemplate로 바꾸기============//
-    public Result rankApi(){
-        List<Rank> findRank = rankService.findAll();
-        List<RankDto> collect = findRank.stream()  //자바8...
-                .map(r -> new RankDto(r.getNickname(),r.getProfile(),r.getPoint(),r.getRank(),r.getRenewDate()))
-                .collect(Collectors.toList());
-
-        return new Result(collect); //이렇게 감싸주는게 좋음! 안하면 그냥 배열로 나오는거임
+    //==========RestTemplate===========//
+    //User에서 포인트로 정렬된 데이터 받아옴
+    public List<RankDto> getRankApi() {
+        RestTemplate rt = new RestTemplate();
+        List<RankDto> list = rt.getForObject("민정이 컴퓨터 아이피", List.class);
+        return list; //rankRepository 바로 불러오자!
     }
 
-    @Data
-    @AllArgsConstructor
-    static class Result<T>{
-        private T data;
-    }
-
+//    @GetMapping 랭킹 조회하는 api 따로 작성해야함!
 }
