@@ -12,6 +12,7 @@ import java.util.List;
 public class DirectDonation {
     @Id
     @GeneratedValue
+    @Column(name="DIRECTDONATION_ID")
     private Long id;
 
     private String requesterId;
@@ -39,6 +40,7 @@ public class DirectDonation {
     private String hospitalName;
     private String roomNumber;
 
-    @OneToMany(mappedBy = "direct_donation")
-    private List<Applicant> applicantList = new ArrayList<>();
+    @OneToMany
+    @JoinColumn(name="DIRECTDONATION_ID")
+    private List<Applicant> applicants = new ArrayList<>();
 }

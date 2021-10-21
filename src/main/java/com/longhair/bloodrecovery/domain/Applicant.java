@@ -8,9 +8,12 @@ import javax.persistence.*;
 public class Applicant {
     @Id
     @GeneratedValue
-    private Long applicantId;
+    @Column(name="APPLICANT_ID")
+    private Long id;
 
     private String applicantNickname;
 
     private Boolean applyStatus;
+
+    private Long directDonationId;
 }
