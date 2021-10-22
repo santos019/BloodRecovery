@@ -40,7 +40,6 @@ public class DirectDonation {
     private String hospitalName;
     private String roomNumber;
 
-    @OneToMany
-    @JoinColumn(name="DIRECTDONATION_ID")
+    @OneToMany(mappedBy="directDonation")
     private List<Applicant> applicants = new ArrayList<>();
 }

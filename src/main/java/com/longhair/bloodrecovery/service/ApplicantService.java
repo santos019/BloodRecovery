@@ -24,4 +24,10 @@ public class ApplicantService {
         applicantRepository.save(applicant);
         return applicant;
     }
+
+    //TODO
+    // 지정헌혈 인증기능
+    public void apply(Applicant applicant, Long id){
+
+    }
 }

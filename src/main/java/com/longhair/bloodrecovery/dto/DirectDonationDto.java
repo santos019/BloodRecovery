@@ -1,5 +1,6 @@
 package com.longhair.bloodrecovery.dto;
 
+import com.longhair.bloodrecovery.domain.Applicant;
 import com.longhair.bloodrecovery.domain.DirectDonation;
 import lombok.Data;
 
@@ -26,7 +27,7 @@ public class DirectDonationDto {
     private Integer bloodMaxCount;
     private Integer bloodCurrentCount;
     private Boolean completeStatus;
-    private List<ApplicantDto> applicants;
+    private List<Applicant> applicants;
 
     public DirectDonationDto(DirectDonation directDonation){
         id = directDonation.getId();
@@ -45,8 +46,6 @@ public class DirectDonationDto {
         bloodMaxCount = directDonation.getBloodMaxCount();
         bloodCurrentCount = directDonation.getBloodCurrentCount();
         completeStatus = directDonation.getCompleteStatus();
-        applicants = directDonation.getApplicants().stream()
-                .map(applicant -> new ApplicantDto(applicant))
-                .collect(toList());
+        applicants = directDonation.getApplicants();
     }
 }

@@ -1,6 +1,7 @@
 package com.longhair.bloodrecovery.domain;
 
-import lombok.Data;
+import lombok.*;
+
 import javax.persistence.*;
 
 @Data
@@ -15,5 +16,8 @@ public class Applicant {
 
     private Boolean applyStatus;
 
-    private Long directDonationId;
+    @ManyToOne
+    @JoinColumn(name="DIRECTDONATION_ID")
+    private DirectDonation directDonation;
+
 }
