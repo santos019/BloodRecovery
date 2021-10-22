@@ -1,5 +1,6 @@
 package com.longhair.bloodrecovery.api;
 
+import com.longhair.bloodrecovery.domain.RankRenew;
 import com.longhair.bloodrecovery.dto.RankDto;
 import com.longhair.bloodrecovery.repository.RankRepository;
 import com.longhair.bloodrecovery.service.RankService;
@@ -22,10 +23,10 @@ public class RankApiController {
     @GetMapping("/ranking")
     //==========RestTemplate===========//
     //User에서 포인트로 정렬된 데이터 받아옴
-    public List<RankDto> getRankApi() {
+    public List<RankRenew> RankRenewApi() {
         RestTemplate rt = new RestTemplate();
-        List<RankDto> list = rt.getForObject("민정이 컴퓨터 아이피", List.class);
-        return list; //rankRepository 바로 불러오자!
+        List<RankRenew> list = rt.getForObject("민정이 컴퓨터 아이피", List.class);
+        return rankRepository.save(); //rankRepository 바로 불러오자! 어떻게..?ㅎ
     }
 
 //    @GetMapping 랭킹 조회하는 api 따로 작성해야함!

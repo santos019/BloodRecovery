@@ -14,9 +14,8 @@ public class RankDto {
     private String profile;
     private int point;
 
-    private int rank; //정렬된 데이터를 받아와야함
+    private Date renewDate; //1시간마다 갱신 날짜와 시간 => LocalDataTime? 얘를 여기서 해야하나? 디비에 저장할때 뿅 되게 못하는가..?
 
-    private Date renewDate; //1시간마다 갱신 날짜와 시간 => LocalDataTime?
 }
 
 
