@@ -1,6 +1,7 @@
 package com.longhair.bloodrecovery.repository;
 
 import com.longhair.bloodrecovery.domain.Rank;
+import com.longhair.bloodrecovery.domain.RankRenew;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -19,8 +20,10 @@ public class RankRepository {
     }
 
     //갱신된 Rank api 디비에 저장
-    public void save()
-        //엔티티가 없는데.. 어케 저장하죠..?ㅠ
+    public void save(RankRenew rankRenew) {
+        em.persist(rankRenew);
+    } //흑흑 리스트 저장 하는법 다시..
+
 
 
     //나의 랭킹 조회
@@ -33,5 +36,6 @@ public class RankRepository {
         return em.createQuery("select r from Rank r", Rank.class)
                 .getResultList();
     }
+
 
 }
