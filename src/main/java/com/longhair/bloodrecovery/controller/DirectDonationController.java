@@ -3,9 +3,6 @@ package com.longhair.bloodrecovery.controller;
 import com.longhair.bloodrecovery.domain.Applicant;
 import com.longhair.bloodrecovery.domain.DirectDonation;
 import com.longhair.bloodrecovery.dto.*;
-import com.longhair.bloodrecovery.repository.ApplicantRepository;
-import com.longhair.bloodrecovery.repository.DirectDonationRepository;
-import com.longhair.bloodrecovery.service.ApplicantService;
 import com.longhair.bloodrecovery.service.DirectDonationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,9 +15,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/")
 public class DirectDonationController {
-    @Autowired
-    ApplicantService applicantService;
-
     @Autowired
     DirectDonationService directDonationService;
 

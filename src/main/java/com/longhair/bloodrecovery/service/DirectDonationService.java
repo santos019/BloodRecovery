@@ -53,14 +53,22 @@ public class DirectDonationService {
     }
 
     public Optional<DirectDonationDto> findDirectDonationById(Long id){
-        return Optional.of(new DirectDonationDto(directDonationRepository.findById(id).get()));
+        DirectDonation result = directDonationRepository.findById(id).orElseGet(DirectDonation::new);
+        return Optional.of(new DirectDonationDto(result));
     }
 
     public Optional<PatientDto> findPatientById(Long id){
-        return Optional.of(new PatientDto(directDonationRepository.findById(id).get()));
+        DirectDonation result = directDonationRepository.findById(id).orElseGet(DirectDonation::new);
+        return Optional.of(new PatientDto(result));
     }
 
     public void deleteDirectDonationById(Long id){
+        Optional<DirectDonation> item = directDonationRepository.findById(id);
+        List<Long> idList = new ArrayList<>();
+        if(item.isPresent()){
+            item.get().getApplicants().forEach(e -> idList.add(e.getId()));
+            applicantRepository.deleteAllById(idList);
+        }
         directDonationRepository.deleteById(id);
     }
 
