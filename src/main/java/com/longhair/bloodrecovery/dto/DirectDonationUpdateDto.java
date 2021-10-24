@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 public class DirectDonationUpdateDto {
     private Long id;
-    private String requesterId;
+    private Long requesterId;
     private String title;
     private String contents;
     private String image;

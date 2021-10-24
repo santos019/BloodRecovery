@@ -15,7 +15,7 @@ public class DirectDonation {
     @Column(name="DIRECTDONATION_ID")
     private Long id;
 
-    private String requesterId;
+    private Long requesterId;
     private String requesterNickname;
     private Integer requesterLevel;
 

@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 public class DirectDonationSimpleDto {
     private Long id;
-    private String requesterId;
+    private Long requesterId;
     private String requesterNickname;
     private Integer requesterLevel;
     private String title;

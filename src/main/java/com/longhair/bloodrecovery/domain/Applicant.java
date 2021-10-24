@@ -19,5 +19,4 @@ public class Applicant {
     @ManyToOne
     @JoinColumn(name="DIRECTDONATION_ID")
     private DirectDonation directDonation;
-
 }
