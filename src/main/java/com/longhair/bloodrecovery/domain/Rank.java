@@ -18,9 +18,11 @@ public class Rank {
     private int rank;
     private Date renewDate;
 
-    private String nickname;
-    private String profile;
-    private int point;
+    //User
+    private Long userId;
+    private String userNickname;
+    private String userProfile;
+    private int userPoint;
 
 
 }

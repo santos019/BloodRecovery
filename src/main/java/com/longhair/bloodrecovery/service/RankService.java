@@ -24,6 +24,7 @@ public class RankService {
     public List<Rank> findAll() {
         return rankRepository.findAll();
     }
+
     //랭킹 순위 정렬하는것도 여기에...?
 
     //알람 1등에게만....이건 api로 ....?

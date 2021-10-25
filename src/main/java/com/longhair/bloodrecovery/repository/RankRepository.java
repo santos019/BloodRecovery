@@ -38,4 +38,7 @@ public class RankRepository {
     }
 
 
+    public List<RankRenew> save() {
+        em.persist;
+    }
 }
