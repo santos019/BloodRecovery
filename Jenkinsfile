@@ -1,7 +1,7 @@
 pipeline {
     environment {
         registry = "chungil987/blood_recovery"
-        registryCredential = 'dockerhub'
+        registryCredential = 'docker'
     }
     agent any
     stages {
