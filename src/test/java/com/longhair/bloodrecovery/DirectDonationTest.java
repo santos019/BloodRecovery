@@ -4,6 +4,7 @@ import com.longhair.bloodrecovery.domain.Applicant;
 import com.longhair.bloodrecovery.domain.DirectDonation;
 import com.longhair.bloodrecovery.repository.ApplicantRepository;
 import com.longhair.bloodrecovery.repository.DirectDonationRepository;
+import com.longhair.bloodrecovery.service.DirectDonationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,10 +14,7 @@ import java.util.Date;
 @SpringBootTest
 public class DirectDonationTest {
     @Autowired
-    ApplicantRepository applicantRepository;
-
-    @Autowired
-    DirectDonationRepository directDonationRepository;
+    DirectDonationService directDonationService;
 
     @Test
     public void testInsertDummy(){
@@ -44,12 +42,17 @@ public class DirectDonationTest {
         applicant.setApplicantNickname("pray");
         applicant.setApplyStatus(false);
 
-        directDonationRepository.save(directDonation);
-        applicantRepository.save(applicant);
-//
-//        System.out.println("============ directDonations ============");
-//        System.out.println(directDonationRepository.findById(1L));
-//        System.out.println("============ applicants ============");
-//        System.out.println(applicantRepository.findById(1L));
+        directDonationService.saveDirectDonation(directDonation);
+        directDonationService.saveApplicant(applicant, directDonation.getId());
+
+        System.out.println("============ directDonations ============");
+        System.out.println(directDonationService.findDirectDonationAll());
+        System.out.println("============ applicants ============");
+        System.out.println(directDonationService.findApplicantAll(1L));
+    }
+
+    @Test
+    public void testViewData(){
+
     }
 }

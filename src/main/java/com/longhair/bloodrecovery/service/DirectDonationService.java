@@ -7,6 +7,7 @@ import com.longhair.bloodrecovery.repository.ApplicantRepository;
 import com.longhair.bloodrecovery.repository.DirectDonationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,15 +21,7 @@ public class DirectDonationService {
     @Autowired
     private ApplicantRepository applicantRepository;
 
-    public List<Applicant> findApplicantAll(Long id){
-        Optional<DirectDonation> item = directDonationRepository.findById(id);
-        List<Applicant> applicants = null;
-        if(item.isPresent()){
-            applicants = item.get().getApplicants();
-        }
-        return applicants;
-    }
-
+    @Transactional
     public Applicant saveApplicant(Applicant applicant, Long id){
         Optional<DirectDonation> item = directDonationRepository.findById(id);
         if(item.isPresent()){
@@ -40,28 +33,35 @@ public class DirectDonationService {
         return applicant;
     }
 
+    @Transactional(readOnly=true)
+    public List<Applicant> findApplicantAll(Long directId){
+        return applicantRepository.findByDirectDonation_Id(directId);
+    }
+
     //TODO
     // 지정헌혈 인증기능
     public void applyApplicant(Applicant applicant, Long id){
 
     }
 
+    @Transactional(readOnly=true)
     public List<DirectDonationSimpleDto> findDirectDonationAll(){
         List<DirectDonationSimpleDto> directDonationSimpleDtos = new ArrayList<>();
         directDonationRepository.findAll().forEach(e -> directDonationSimpleDtos.add(new DirectDonationSimpleDto(e)));
         return directDonationSimpleDtos;
     }
 
-    public Optional<DirectDonationDto> findDirectDonationById(Long id){
-        DirectDonation result = directDonationRepository.findById(id).orElseGet(DirectDonation::new);
-        return Optional.of(new DirectDonationDto(result));
+    @Transactional(readOnly=true)
+    public DirectDonationDto findDirectDonationById(Long id){
+        return new DirectDonationDto(directDonationRepository.findById(id).orElseGet(DirectDonation::new));
     }
 
-    public Optional<PatientDto> findPatientById(Long id){
-        DirectDonation result = directDonationRepository.findById(id).orElseGet(DirectDonation::new);
-        return Optional.of(new PatientDto(result));
+    @Transactional(readOnly=true)
+    public PatientDto findPatientById(Long id){
+        return new PatientDto(directDonationRepository.findById(id).orElseGet(DirectDonation::new));
     }
 
+    @Transactional
     public void deleteDirectDonationById(Long id){
         Optional<DirectDonation> item = directDonationRepository.findById(id);
         List<Long> idList = new ArrayList<>();
@@ -72,35 +72,16 @@ public class DirectDonationService {
         directDonationRepository.deleteById(id);
     }
 
+    @Transactional
     public DirectDonation saveDirectDonation(DirectDonation directDonation){
+        //Todo
+        // 요청자 정보 가져오기
+
         directDonationRepository.save(directDonation);
         return directDonation;
-//        DirectDonation directDonation = new DirectDonation(
-//                directDonationFullDto.getId(),
-//                directDonationFullDto.getRequesterId(),
-//                directDonationFullDto.getRequesterNickname(),
-//                directDonationFullDto.getRequesterLevel(),
-//                directDonationFullDto.getTitle(),
-//                directDonationFullDto.getContents(),
-//                directDonationFullDto.getImage(),
-//                directDonationFullDto.getDate(),
-//                directDonationFullDto.getLocationSido(),
-//                directDonationFullDto.getLocationSigungu(),
-//                directDonationFullDto.getPeriodFrom(),
-//                directDonationFullDto.getPeriodTo(),
-//                directDonationFullDto.getBloodType(),
-//                directDonationFullDto.getBloodMaxCount(),
-//                directDonationFullDto.getBloodCurrentCount(),
-//                directDonationFullDto.getCompleteStatus(),
-//                directDonationFullDto.getPatientName(),
-//                directDonationFullDto.getHospitalName(),
-//                directDonationFullDto.getRoomNumber(),
-//                directDonationFullDto.getApplicants().stream()
-//                        .map(m -> new Applicant(m.getId(), m.getApplicantNickname(), m.getApplyStatus(), m.getDirectDonationId()))
-//                        .collect(Collectors.toList())
-//        );
     }
 
+    @Transactional
     public void updateDirectDonationById(Long id, DirectDonationUpdateDto directDonationUpdateDto){
         Optional<DirectDonation> e = directDonationRepository.findById(id);
 

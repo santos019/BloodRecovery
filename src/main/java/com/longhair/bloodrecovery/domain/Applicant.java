@@ -17,6 +17,6 @@ public class Applicant {
     private Boolean applyStatus;
 
     @ManyToOne
-    @JoinColumn(name="DIRECTDONATION_ID")
+    @JoinColumn(name="DIRECTDONATION_ID", updatable = false)
     private DirectDonation directDonation;
 }

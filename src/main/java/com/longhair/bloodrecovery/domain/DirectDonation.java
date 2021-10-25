@@ -41,5 +41,5 @@ public class DirectDonation {
     private String roomNumber;
 
     @OneToMany(mappedBy="directDonation")
-    private List<Applicant> applicants = new ArrayList<>();
+    private List<Applicant> applicants;
 }

@@ -25,7 +25,7 @@ public class DirectDonationController {
     }
 
     @GetMapping("/directeds/directedItem/{id}")
-    public ResponseEntity<Optional<DirectDonationDto>> getDirectedItem(@PathVariable("id") Long id){
+    public ResponseEntity<DirectDonationDto> getDirectedItem(@PathVariable("id") Long id){
         return new ResponseEntity<>(directDonationService.findDirectDonationById(id), HttpStatus.OK);
     }
 
@@ -45,7 +45,7 @@ public class DirectDonationController {
     }
 
     @GetMapping("/directeds/directedItem/{id}/patient")
-    public ResponseEntity<Optional<PatientDto>> getPatient(@PathVariable("id") Long id){
+    public ResponseEntity<PatientDto> getPatient(@PathVariable("id") Long id){
         return new ResponseEntity<>(directDonationService.findPatientById(id), HttpStatus.OK);
     }
 
