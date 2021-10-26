@@ -1,0 +1,30 @@
+input[type= text]{
+    margin-left: 1%;
+    border:solid 2px rgb(236, 138, 138);
+    vertical-align: middle;
+}
+input[type= text]:hover{
+    border:solid 2px rgb(236, 138, 138);
+}
+/* 클릭시버튼없애기 */
+input:focus {outline:none;}
+.Textbox{
+
+    display: flex;
+    padding: 5px 10px 10px 10px;
+    background-color: blue;
+    width: 70%;
+}
+.Textbox-name-class{
+    width: 50%;
+    height: 10%;
+    background-color: rgb(138, 25, 59);
+    font-size: 1em;
+    text-align: right;
+    padding-right: 5%;
+    
+}
+.Textbox-class{
+    width: 50%;
+    
+}

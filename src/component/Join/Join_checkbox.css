@@ -1,0 +1,36 @@
+.Join-checkbox-class input[type="checkbox"]{
+   
+    display: none;
+}
+.Join-checkbox-class input[type="checkbox"].Join-checkbox-input-class + label:before{
+    display: inline-block;
+    content: '';
+    width: 0.8em; 
+    height: 0.8em;
+    border: 2px solid rgb(0, 0, 0);
+    background-color: rgb(252, 250, 250);    
+    margin: 5px -100px -3px 0;
+    }
+.Join-checkbox-class input[type="checkbox"].Join-checkbox-input-class + label:after{
+    position: absolute;
+    left: 4px;
+    content: '✔'; /* 체크 마크 ASCii 문자 */
+    font-size: 1.5em;
+    line-height: 0.8;
+    color: rgb(201, 71, 71);
+    transition: all .3s;
+
+}
+[type="checkbox"].Join-checkbox-input-class + label:after { /* 기본 상태 - 투명에 크기 0 */
+    opacity: 0;
+    transform: scale(0);
+}
+[type="checkbox"]:checked.Join-checkbox-input-class + label:after { /* 체크 상태 - 불투명에 크기 1 */
+    opacity: 1;
+    transform: scale(1);
+}
+.Join-checkbox-input-class + label{
+    position: relative;
+}
+
+

@@ -1,0 +1,39 @@
+.Join-main-container-class{
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: aqua;
+}
+
+
+.Join-main-title-class{
+    position: absolute;
+    left: 50%;
+    background-color: blue;
+    transform: translate(-50%,-50%);
+}
+.Join-main-low-info-class{
+
+    font-size: 10px;
+    margin-top: 5%;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: blueviolet;
+}
+.Join-main-low-data-class{
+    /* background-color: brown; */
+    border: 3px solid red;
+    border-radius: 30px 30px 30px 30px;
+    margin-top: 1%;
+    margin-left: 20%;
+    margin-right: 20%;
+    height: 30%;
+}
+.Join-main-low-radiobox-class{
+
+    background-color: blanchedalmond;
+    width: 10%;
+    margin: auto;
+    margin-top: 1%;
+}
