@@ -16,13 +16,13 @@ import java.util.Optional;
 @Service
 public class DirectDonationService {
     @Autowired
-    DirectDonationRepository directDonationRepository;
+    private DirectDonationRepository directDonationRepository;
 
     @Autowired
     private ApplicantRepository applicantRepository;
 
     @Transactional
-    public Applicant saveApplicant(Applicant applicant, Long id){
+    public ApplicantDto saveApplicant(Applicant applicant, Long id){
         Optional<DirectDonation> item = directDonationRepository.findById(id);
         if(item.isPresent()){
             applicant.setDirectDonation(item.get());
@@ -30,12 +30,14 @@ public class DirectDonationService {
             directDonationRepository.save(item.get());
             applicantRepository.save(applicant);
         }
-        return applicant;
+        return new ApplicantDto(applicant);
     }
 
     @Transactional(readOnly=true)
-    public List<Applicant> findApplicantAll(Long directId){
-        return applicantRepository.findByDirectDonation_Id(directId);
+    public List<ApplicantDto> findApplicantAll(Long directId){
+        List<ApplicantDto> list = new ArrayList<>();
+        applicantRepository.findByDirectDonation_Id(directId).forEach(e -> list.add(new ApplicantDto(e)));
+        return list;
     }
 
     //TODO
@@ -76,26 +78,32 @@ public class DirectDonationService {
     public DirectDonation saveDirectDonation(DirectDonation directDonation){
         //Todo
         // 요청자 정보 가져오기
+        directDonation.setRequesterNickname("이힛이핏");
+        directDonation.setRequesterLevel(4);
+        // 요청자 정보 가져오기===
 
+        directDonation.setCompleteStatus(false);
         directDonationRepository.save(directDonation);
         return directDonation;
     }
 
     @Transactional
-    public void updateDirectDonationById(Long id, DirectDonationUpdateDto directDonationUpdateDto){
-        Optional<DirectDonation> e = directDonationRepository.findById(id);
-
+    public void updateDirectDonationById(DirectDonationUpdateDto directDonationUpdateDto){
+        System.out.println(directDonationUpdateDto.getId());
+        Optional<DirectDonation> e = directDonationRepository.findById(directDonationUpdateDto.getId());
         if(e.isPresent()){
-            e.get().setId(directDonationUpdateDto.getId());
-            e.get().setRequesterId(directDonationUpdateDto.getRequesterId());
-            e.get().setTitle(directDonationUpdateDto.getTitle());
-            e.get().setContents(directDonationUpdateDto.getContents());
-            e.get().setImage(directDonationUpdateDto.getImage());
-            e.get().setDate(directDonationUpdateDto.getDate());
-            e.get().setPeriodFrom(directDonationUpdateDto.getPeriodFrom());
-            e.get().setPeriodTo(directDonationUpdateDto.getPeriodTo());
-            e.get().setCompleteStatus(directDonationUpdateDto.getCompleteStatus());
-            directDonationRepository.save(e.get());
+            DirectDonation item = e.get();
+            System.out.println("============================");
+            item.setId(directDonationUpdateDto.getId());
+            item.setRequesterId(directDonationUpdateDto.getRequesterId());
+            item.setTitle(directDonationUpdateDto.getTitle());
+            item.setContents(directDonationUpdateDto.getContents());
+            item.setImage(directDonationUpdateDto.getImage());
+            item.setDate(directDonationUpdateDto.getDate());
+            item.setPeriodFrom(directDonationUpdateDto.getPeriodFrom());
+            item.setPeriodTo(directDonationUpdateDto.getPeriodTo());
+            item.setCompleteStatus(directDonationUpdateDto.getCompleteStatus());
+            directDonationRepository.save(item);
         }
     }
 }

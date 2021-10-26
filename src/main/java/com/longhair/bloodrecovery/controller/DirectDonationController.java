@@ -20,8 +20,7 @@ public class DirectDonationController {
 
     @GetMapping("/directeds")
     public ResponseEntity<List<DirectDonationSimpleDto>> getDirecteds(){
-        List<DirectDonationSimpleDto> directDonationSimpleDtos = directDonationService.findDirectDonationAll();
-        return new ResponseEntity<>(directDonationSimpleDtos, HttpStatus.OK);
+        return new ResponseEntity<>(directDonationService.findDirectDonationAll(), HttpStatus.OK);
     }
 
     @GetMapping("/directeds/directedItem/{id}")
@@ -30,8 +29,9 @@ public class DirectDonationController {
     }
 
     @PutMapping("/directeds/directedItem/{id}")
-    public void putDirectedItem(DirectDonationUpdateDto directDonationUpdateDto, @PathVariable("id") Long id){
-        directDonationService.updateDirectDonationById(id, directDonationUpdateDto);
+    public void putDirectedItem(@RequestBody DirectDonationUpdateDto directDonationUpdateDto, @PathVariable("id") Long id){
+        directDonationUpdateDto.setId(id);
+        directDonationService.updateDirectDonationById(directDonationUpdateDto);
     }
 
     @DeleteMapping("/directeds/directedItem/{id}")
@@ -40,7 +40,7 @@ public class DirectDonationController {
     }
 
     @PostMapping("/directeds/directedItem")
-    public ResponseEntity<DirectDonation> postDirectedItem(DirectDonation directDonation){
+    public ResponseEntity<DirectDonation> postDirectedItem(@RequestBody DirectDonation directDonation){
         return new ResponseEntity<>(directDonationService.saveDirectDonation(directDonation), HttpStatus.OK);
     }
 
@@ -50,14 +50,12 @@ public class DirectDonationController {
     }
 
     @GetMapping("/directeds/directedItem/{id}/applicants")
-    public ResponseEntity<List<Applicant>> getApplicants(@PathVariable("id") Long id){
-        List<Applicant> applicants = directDonationService.findApplicantAll(id);
-
-        return new ResponseEntity<>(applicants, HttpStatus.OK);
+    public ResponseEntity<List<ApplicantDto>> getApplicants(@PathVariable("id") Long id){
+        return new ResponseEntity<>(directDonationService.findApplicantAll(id), HttpStatus.OK);
     }
 
     @PostMapping("/directeds/directedItem/{id}/applicant")
-    public ResponseEntity<Applicant> postApplicant(Applicant applicant, @PathVariable("id") Long id){
+    public ResponseEntity<ApplicantDto> postApplicant(@RequestBody Applicant applicant, @PathVariable("id") Long id){
         return new ResponseEntity<>(directDonationService.saveApplicant(applicant, id), HttpStatus.OK);
     }
 

@@ -1,7 +1,8 @@
 pipeline {
     environment {
         registry = "chungil987/blood_recovery"
-        registryCredential = 'dockerhub'
+        registryCredential = 'docker'
+        version = "directdevelop"
     }
     agent any
     stages {
@@ -26,19 +27,19 @@ pipeline {
         }
         stage('Build docker image') {
             steps {
-                sh 'docker build -t $registry:directdevelop .'
+                sh 'docker build -t $registry:$version .'
             }
         }
         stage('Deploy docker image') {
             steps {
                 withDockerRegistry([ credentialsId: registryCredential, url: "" ]) {
-                    sh 'docker push $registry:directdevelop'
+                    sh 'docker push $registry:$version'
                 }
             }
         }
         stage('Clean docker image') {
             steps{
-                sh "docker rmi $registry"
+                sh "docker rmi $registry:$version"
             }
         }
      }

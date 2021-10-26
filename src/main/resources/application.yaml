@@ -4,24 +4,20 @@ server:
 # datasource
 spring:
   datasource:
-    # url: jdbc:h2:tcp://localhost/~/test
-    # username: sa
-    # password:
-    # driver-class-name: org.h2.Driver
-    url: jdbc:mysql://localhost:3306/mainDB
-    username: root
-    password: 1234
-    driver-class-name: com.mysql.cj.jdbc.Driver
+     url: jdbc:h2:tcp://localhost/~/test
+     username: sa
+     password:
+     driver-class-name: org.h2.Driver
+#    url: jdbc:mysql://localhost:3306/mainDB
+#    username: root
+#    password: 1234
+#    driver-class-name: com.mysql.cj.jdbc.Driver
 
   # jpa
   jpa:
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+#    database: mysql
+#    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
     hibernate:
       ddl-auto: create
-    properties:
-      hibernate:
-        format_sql: true
-
-logging.level:
-  org.hibernate.SQL: debug
