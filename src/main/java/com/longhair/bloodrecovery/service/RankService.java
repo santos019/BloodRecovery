@@ -4,6 +4,7 @@ import com.longhair.bloodrecovery.domain.Rank;
 import com.longhair.bloodrecovery.domain.RankRenew;
 import com.longhair.bloodrecovery.repository.RankRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,11 +19,13 @@ public class RankService {
 
     //나의 랭킹 조회
     public Rank findOne(Long rankId){
+
         return rankRepository.findOne(rankId);
+
     }
 
     //랭킹 전체 조회
-    public List<Rank> findAll() {
+    public List<Rank> findAll(Sort rank) {
         return rankRepository.findAll();
     }
 
