@@ -16,4 +16,9 @@ public class RankRenew {
     @GeneratedValue
     private Long id;
 
+    private Long userId;
+    private String userNickname;
+    private String userProfile;
+    private int userPoint;
+
 }

@@ -21,7 +21,7 @@ public class RankRepository {
 
     //갱신된 Rank api 디비에 저장
     public void save(RankRenew rankRenew) {
-        em.persist(rankRenew);
+         em.persist(rankRenew);
     } //흑흑 리스트 저장 하는법 다시..
 
 
@@ -38,7 +38,4 @@ public class RankRepository {
     }
 
 
-    public List<RankRenew> save() {
-        em.persist;
-    }
 }
