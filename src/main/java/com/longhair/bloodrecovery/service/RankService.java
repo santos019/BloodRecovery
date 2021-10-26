@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -25,13 +26,19 @@ public class RankService {
     }
 
     //랭킹 전체 조회
-    public List<Rank> findAll(Sort rank) {
+    public List<Rank> findAll() {
         return rankRepository.findAll();
     }
 
-    //User에서 받아온 데이터 저장
+    //User에서 받아온 데이터 RankRenew 저장
     public void save(RankRenew rankRenew) {
         rankRepository.save(rankRenew);
+    }
+
+    //Rank로 저장
+    public void save(Rank rank){
+        rank.setRenewDate(LocalDateTime.now());
+        rankRepository.save(rank);
     }
 
 }

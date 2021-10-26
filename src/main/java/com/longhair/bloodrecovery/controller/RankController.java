@@ -20,7 +20,7 @@ public class RankController {
     //전체 랭킹 조회
     @GetMapping("/rankings")
     public  List<Rank> ranks() {
-      return rankService.findAll(Sort.by(Sort.Direction.DESC,"rank"));
+      return rankService.findAll();
     }
 
     //나의 랭킹 조회
