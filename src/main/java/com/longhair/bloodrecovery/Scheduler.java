@@ -21,27 +21,25 @@ public class Scheduler {
     @Autowired
     private final RankService rankService;
 
-    //User에서 포인트로 1시간마다 정렬된 데이터 받아옴 통째로
+    //User에서 포인트로 1시간마다 정렬된 데이터 받아옴 통째로!
 //    @Scheduled(cron = "0 0 0/1 * * *")//1시간마다 갱신
-    @Scheduled(cron = "0/10 * * * * *")//10초마다 갱신
-    //==========RestTemplate===========//
+    @Scheduled(cron = "0 0/10 * * * *")//10분마다 갱신
+    //==========RestTemplate===========//\
     public void RankRenewApi() {
-        log.error("run!!");
         RestTemplate rt = new RestTemplate();
-        List<RankRenew> list = rt.getForObject("청일이 컴퓨터 아이피", List.class);
+        RankRenew[] list = rt.getForObject("http://15.164.153.191:8000/data/", RankRenew[].class);
+        //나중에 User url로 바꿔야함~_~
 
-        //갱신된 데이터 저장
-        for (int i = 0; i < list.size(); i++) {
-            RankRenew rr = list.get(i);
+        //Rank 데이터 전체 삭제
+        rankService.deleteAll();
+
+        for (int i = 0; i < list.length; i++)  {
+            RankRenew rr = list[i]; //배열로
             Rank r = new Rank(rr);
-            rankService.save(rr);
-            rankService.save(r);
+            rankService.save(rr); //RankRenew로 저장
+            rankService.save(r); //Rank로 저장
         }
-
-
     }
-
-
 }
 
 

@@ -2,6 +2,7 @@ package com.longhair.bloodrecovery.repository;
 
 import com.longhair.bloodrecovery.domain.Rank;
 import com.longhair.bloodrecovery.domain.RankRenew;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -32,7 +33,7 @@ public class RankRepository {
 
     //전체 랭킹 조회
     public List<Rank> findAll() {
-        return em.createQuery("select r from Rank r order by r.id desc", Rank.class)
+        return em.createQuery("select r from Rank r order by r.userPoint desc ", Rank.class)
                 .getResultList();
     }
 
