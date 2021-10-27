@@ -2,7 +2,7 @@ pipeline {
     environment {
         registry = "chungil987/blood_recovery"
         registryCredential = 'docker'
-        version = "directdevelop"
+        version = "direct"
     }
     agent any
     stages {
