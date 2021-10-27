@@ -55,9 +55,9 @@ function Main_base() {
     const getsetValue = (text) => {
         setValue(text);
     }
-    const onChageClick=(menu)=>{
+    const onChageClick=(menu,e)=>{
         setModalIsOpen(true);
-        setmodal("헌혈증_기부");
+        setmodal(menu);
 
     }
 
@@ -68,27 +68,31 @@ function Main_base() {
                     <Header_nav></Header_nav>
                 </div>
             </div>
+            <div className="Main-base-title-container-class">
             <div className="Main-base-title-class">
                 <Main_title></Main_title>
+                </div>
             </div>
             <div className="Main-base-rank-container-class">
                 {/* <Main_rank value={text} getsetValue={getsetValue}>000000000</Main_rank> */}
+                <div className="Main-base-rank-class" onClick={(e)=>{onChageClick("랭킹",e)}}>
                 <Main_rank></Main_rank>
+            </div>
             </div>
             <div className="Main-base-list-container-class">
                 <div className="Main-base-list-class" >
                     {/*<Main_list></Main_list>*/}
-                    <div onClick={onChageClick}>                  
+                    <div onClick={(e)=>{onChageClick("헌혈증_기부",e)}}>                  
                         <Main_Button name={"헌혈증 기부"} ></Main_Button>
                     </div>
-                    <div onClick={onChageClick}>
+                    <div onClick={(e)=>{onChageClick("지정헌혈",e)}}>
                         <Main_Button name={"지정헌혈"} ></Main_Button>
                     </div>
-                    <div onClick={onChageClick}>
+                    <div onClick={(e)=>{onChageClick("헌혈의_집_예약",e)}}>
                         <Main_Button name={"헌혈의 집 예약"} ></Main_Button>
                     </div>
 
-                    <div onClick={onChageClick}>
+                    <div onClick={(e)=>{onChageClick("공지사항",e)}}>
                         <Main_Button name={"공지사항"} ></Main_Button>
                     </div>
                 </div>
@@ -102,7 +106,7 @@ function Main_base() {
                 {{
                        헌혈증_기부: <Board_main></Board_main>,
                        지정헌혈: <Directed_main></Directed_main>,
-                       지헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
+                       헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
                        공지사항: <Notice_main></Notice_main>,
                        로그인: <Login_main></Login_main>,
                        회원가입: <Join_main></Join_main>,
