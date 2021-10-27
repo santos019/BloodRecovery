@@ -1,53 +1,47 @@
-import './App.css';
-import ReactModal from 'react-modal';
+import "./App.css";
+import ReactModal from "react-modal";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
-import Main_title_text from './component/Main/Main_title_text.js';
-import Main_rank from './component/Main/Main_rank.js';
-import React, { useState, useEffect } from 'react';
-import Test1 from './component/Main/Test1';
-import UseLocalHook from './component/Common/UseLocalHook';
-import Main_Button from './component/Common/Button/Main_Button';
-import Board_main from './component/Board/Board_main';
-import Directed_main from './component/Directed/Directed_main';
-import Notice_main from './component/Notice/Notice_main';
-import Bloodhouse_main from './component/Bloodhouse/Bloodhouse_main';
-import Login_main from './component/Login/Login_main';
-import Join_main from './component/Join/Join_main';
-import Rank_main from './component/Rank/Rank_main';
-import Main_base from './component/Main/Main_base';
+import Main_title_text from "./component/Main/Main_title_text.js";
+import Main_rank from "./component/Main/Main_rank.js";
+import React, { useState, useEffect } from "react";
+import Test1 from "./component/Main/Test1";
+import UseLocalHook from "./component/Common/UseLocalHook";
+import Main_Button from "./component/Common/Button/Main_Button";
+import Board_main from "./component/Board/Board_main";
+import Directed_main from "./component/Directed/Directed_main";
+import Notice_main from "./component/Notice/Notice_main";
+import Bloodhouse_main from "./component/Bloodhouse/Bloodhouse_main";
+import Login_main from "./component/Login/Login_main";
+import Join_main from "./component/Join/Join_main";
+import Rank_main from "./component/Rank/Rank_main";
+import Main_base from "./component/Main/Main_base";
 var modal = "";
 var text = "";
 function App() {
   const modal_style = {
-
-
     overlay: {
-
       position: "fixed",
       top: 0,
       bottom: 0,
       left: 0,
       right: 0,
       backgroundColor: "rgba(0, 0, 0,0 )",
-
     },
     content: {
-
       left: 200,
       right: 200,
       top: 100,
       bottom: 100,
       zIndex: 0,
     },
-
   };
   //랭킹으로 이동하게 만드는 함수
   const [getValue, setValue] = useState("랭킹");
   const getsetValue = (text) => {
     setValue(text);
-  }
+  };
   //새로고침해도 모달창이 안꺼지도록 하는 함수
-  const [modalIsOpen, setModalIsOpen] = UseLocalHook("true", false)
+  const [modalIsOpen, setModalIsOpen] = UseLocalHook("true", false);
   //새로고침해도 모달창에서 불러온 컴포넌트가 안꺼지게 하는 함수
   const [modal, setmodal] = useState(
     () => JSON.parse(window.localStorage.getItem("modal")) || 0
@@ -56,10 +50,8 @@ function App() {
   useEffect(() => {
     window.localStorage.setItem("modal", JSON.stringify(modal));
   }, [modal]);
- 
 
   return (
-
     <div className="App">
       <Main_base></Main_base>
       {/* <div className="Main_nav_class" onClick={() => setModalIsOpen(true)}>
@@ -77,7 +69,6 @@ function App() {
       <Main_title_text></Main_title_text> */}
 
       {/* <Main_list></Main_list> */}
-     
 
       <BrowserRouter>
         {/* <div className="Main_list_class" onClick={() => setModalIsOpen(true)}>
@@ -102,16 +93,19 @@ function App() {
 
         </div> */}
 
-
         <Switch>
           <Route exact path="/test1" component={Test1} />
           <Route exact path="/board" component={Board_main} />
           <Route exact path="/directed" component={Directed_main} />
           <Route exact path="/notice" component={Notice_main} />
+<<<<<<< HEAD
+          <Route exact path="/ranking" component={Rank_main} />
+=======
           <Route exact path="/rank" component={Rank_main} />
           <Route exact path="/join" component={Join_main}/>
 
 
+>>>>>>> 6ee6653ee3cf20610bed5b3b5176a318b48c9ff0
 
           {/* <ReactModal style={modal_style} isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
             <Link to="/">
@@ -134,12 +128,8 @@ function App() {
 
 
           </ReactModal> */}
-
-
         </Switch>
-
       </BrowserRouter>
-
     </div>
   );
 }
