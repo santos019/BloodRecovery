@@ -1,4 +1,4 @@
-FROM arm32v7/adoptopenjdk:11-jre-hotspot
+FROM openjdk:11
 EXPOSE 8080
 VOLUME /tmp
 ARG JAR_FILE=build/libs/*SNAPSHOT.jar
