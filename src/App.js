@@ -98,14 +98,14 @@ function App() {
           <Route exact path="/board" component={Board_main} />
           <Route exact path="/directed" component={Directed_main} />
           <Route exact path="/notice" component={Notice_main} />
-<<<<<<< HEAD
+
           <Route exact path="/ranking" component={Rank_main} />
-=======
-          <Route exact path="/rank" component={Rank_main} />
+
+      
           <Route exact path="/join" component={Join_main}/>
 
 
->>>>>>> 6ee6653ee3cf20610bed5b3b5176a318b48c9ff0
+
 
           {/* <ReactModal style={modal_style} isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
             <Link to="/">
