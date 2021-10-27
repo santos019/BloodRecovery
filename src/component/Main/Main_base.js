@@ -14,7 +14,7 @@ import Rank_main from "../Rank/Rank_main";
 import Bloodhouse_main from "../Bloodhouse/Bloodhouse_main";
 import Main_list from "./Main_list";
 import "./Main_base.css";
-var text = "";
+var text="";
 function Main_base() {
     const modal_style = {
 
@@ -51,21 +51,27 @@ function Main_base() {
         window.localStorage.setItem("modal", JSON.stringify(modal));
     }, [modal]);
 
-    const [getValue, setValue] = useState("랭킹");
+    const [getValue, setValue] = useState("");
     const getsetValue = (text) => {
         setValue(text);
+        setModalIsOpen(true);
+        setmodal(text);
     }
     const onChageClick=(menu,e)=>{
         setModalIsOpen(true);
         setmodal(menu);
 
     }
-
+  
     return (
         <div className="Main-base-class">
             <div className="Main-base-Header-container-class">
-                <div className="Main-base-Header-class" onClick={() => setModalIsOpen(true)}>
-                    <Header_nav></Header_nav>
+          
+            <div className="Main-base-Header-class"  >
+                {/*</div><div className="Main-base-Header-class" onClick={() => setModalIsOpen(true)}>*/}
+                <Header_nav value={text} getsetValue={getsetValue}></Header_nav>
+                    {/*<div className="test1" onClick={() => onChageClick2(getValue)}> emry</div>
+                    {console.log("test:"+text+"get:"+getValue)}*/}
                 </div>
             </div>
             <div className="Main-base-title-container-class">
@@ -82,17 +88,17 @@ function Main_base() {
             <div className="Main-base-list-container-class">
                 <div className="Main-base-list-class" >
                     {/*<Main_list></Main_list>*/}
-                    <div onClick={(e)=>{onChageClick("헌혈증_기부",e)}}>                  
+                    <div className="Main-base-list-button" onClick={(e)=>{onChageClick("헌혈증_기부",e)}}>                  
                         <Main_Button name={"헌혈증 기부"} ></Main_Button>
                     </div>
-                    <div onClick={(e)=>{onChageClick("지정헌혈",e)}}>
+                    <div className="Main-base-list-button" onClick={(e)=>{onChageClick("지정헌혈",e)}}>
                         <Main_Button name={"지정헌혈"} ></Main_Button>
                     </div>
-                    <div onClick={(e)=>{onChageClick("헌혈의_집_예약",e)}}>
+                    <div className="Main-base-list-button" onClick={(e)=>{onChageClick("헌혈의_집_예약",e)}}>
                         <Main_Button name={"헌혈의 집 예약"} ></Main_Button>
                     </div>
 
-                    <div onClick={(e)=>{onChageClick("공지사항",e)}}>
+                    <div className="Main-base-list-button" onClick={(e)=>{onChageClick("공지사항",e)}}>
                         <Main_Button name={"공지사항"} ></Main_Button>
                     </div>
                 </div>
