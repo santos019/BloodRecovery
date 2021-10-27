@@ -18,8 +18,8 @@ public class Rank {
     @Column(name = "ranking_id")
     private Long id;
 
-//    private int rank;
-    private LocalDateTime renewDate;
+    @Transient //컬럼으로 안 만듦
+    private int rank;
 
     //User
     private Long userId;
@@ -32,6 +32,9 @@ public class Rank {
         this.userNickname = rankRenew.getUserNickname();
         this.userPoint = rankRenew.getUserPoint();
         this.userProfile = rankRenew.getUserProfile();
+    }
+    public Rank(){
+        //생성자를 하나라도 프로그래머가 만들었다면 기본생성자는 자동으로 만들어지지 않는다.
     }
 
 }
