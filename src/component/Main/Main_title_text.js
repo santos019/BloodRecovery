@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import './Main_title_text.css';
+import site_title from '../../Img/site_title.png';
 function Main_title(){
 
     return(
-        <div >
-        <p className="main-title">피로회복</p></div>
+        <div className="main-title">
+        
+        <img className="main-title-img" src={site_title}></img>
+        </div>
     );
 }
 export default Main_title;

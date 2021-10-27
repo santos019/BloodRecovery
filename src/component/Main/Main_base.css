@@ -46,11 +46,12 @@ width: 500px;
     background-color: blueviolet;
 }
 .Main-base-rank-class{
-    
-    width: auto;
+    float: left;
+    width: 100%;
     justify-content: center;
     align-items: center; 
     display: flex;
+    margin: auto;
     
 }
 

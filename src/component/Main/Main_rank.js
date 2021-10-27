@@ -4,13 +4,24 @@ import './Main_rank.css'
 import Main_rank_text from './Main_rank_text';
 
 
-function Main_rank()
+const Main_rank=(props)=>
 {
-    
+    const sendValue=(text)=>{
+        props.getsetValue(text);
+    }
     return(
-        <div className="Main_rank_img_class">
-            <img src={Test_img1}></img>
+        
+        <div className="Main-rank-class">
+            <div className="Main-rank-img-container">
+            <img className="Main-rank-img-imgclass" src={Test_img1}>
+                
+            </img>
+            </div>
+            <div className="Main-rank-text-container-class">
+                <div className="Main-rank-text-class" onClick={()=>sendValue("랭킹")}>
             <Main_rank_text></Main_rank_text>
+            </div>
+            </div>
         </div>
     )
 

@@ -81,8 +81,9 @@ function Main_base() {
             </div>
             <div className="Main-base-rank-container-class">
                 {/* <Main_rank value={text} getsetValue={getsetValue}>000000000</Main_rank> */}
-                <div className="Main-base-rank-class" onClick={(e)=>{onChageClick("랭킹",e)}}>
-                <Main_rank></Main_rank>
+                {/* <div className="Main-base-rank-class" onClick={(e)=>{onChageClick("랭킹",e)}}> */}
+                <div className="Main-base-rank-class" >
+                <Main_rank getsetValue={getsetValue}></Main_rank>
             </div>
             </div>
             <div className="Main-base-list-container-class">
