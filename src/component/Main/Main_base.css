@@ -1,0 +1,50 @@
+.Main-base-Header-container-class{
+
+    float: left;
+    width: 100%;
+    height: 100%;
+    background-color: brown;
+}
+
+.Main-base-Header-class{
+    width: 100%;
+    height: 100%;
+    float: left;
+    margin-left: 85%;
+    margin-top: 1%;
+    
+    background-color: rgb(0, 255, 21);
+}
+
+
+.Main-base-list-class{
+
+    background-color: blue;
+    width: 10%;
+    height: 10%;
+    float: left;
+    margin-left: auto;
+
+}
+.Main-base-title-class{
+
+    float: left;
+    width: 100%;
+    background-color: blanchedalmond;
+}
+.Main-base-rank-container-class{
+
+    float: left;
+    width:100%;
+    background-color: blueviolet;
+}
+.Main-base-list-container-class{
+
+    float: left;
+    width: 100%;
+    background-color: aqua;
+}
+.Main-base-list-class{
+
+    float: left;
+}

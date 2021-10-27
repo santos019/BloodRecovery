@@ -44,7 +44,7 @@ body{
     transform: rotate(360deg);
   }
 }
-.Main_list_class{
+/* .Main_list_class{
 float: left;
   width: 20%;
   height: 20%;
@@ -52,8 +52,8 @@ float: left;
   margin-top: 30%;
   
   background-color: #61dafb;
-}
-.Main_nav_class{
+} */
+/* .Main_nav_class{
   margin-top: 10px !important;
   float: left;
   margin-left: 80%;
@@ -78,8 +78,8 @@ float: left;
  
   float: left;
 
-} 
-.Main_list_class{
+}  */
+/* .Main_list_class{
 margin-top: 500px;
 
-}
+} */

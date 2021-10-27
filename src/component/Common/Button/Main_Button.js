@@ -3,7 +3,7 @@ import './Main_Button.css'
 const Main_Button=({name})=>{
 
     return (
-        <div className="testbutton">{name}</div>
+        <div className="Main-Button-class">{name}</div>
     );
 }
 

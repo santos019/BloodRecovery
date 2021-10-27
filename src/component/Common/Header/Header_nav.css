@@ -1,0 +1,26 @@
+.Header-nav-class{
+    float: left;
+    
+    font-size: 1.5em;
+    
+    color: white;
+    
+   
+    
+
+    
+}
+.Header-nav-list-class{
+    float: right;
+    background-color: aqua;
+    width: 100%;
+}
+.Header-nav-Login-class{
+    float: left;
+    padding-right: 1.8em;
+    
+   
+}
+.Header-nav-Join-class{
+    float: left;
+}
