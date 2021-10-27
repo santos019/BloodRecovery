@@ -1,5 +1,5 @@
 FROM openjdk:11
-EXPOSE 8080
+EXPOSE 8000
 VOLUME /tmp
 ARG JAR_FILE=build/libs/*SNAPSHOT.jar
 COPY ${JAR_FILE} app.jar
