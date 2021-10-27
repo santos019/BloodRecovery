@@ -1,5 +1,5 @@
 .Header-nav-class{
-    float: left;
+    float: right;
     
     font-size: 1.5em;
     
@@ -11,9 +11,12 @@
     
 }
 .Header-nav-list-class{
-    float: right;
+    float: left;
     background-color: aqua;
     width: 100%;
+    padding-right: 1.8em;
+    cursor: pointer;
+    
 }
 .Header-nav-Login-class{
     float: left;
