@@ -2,7 +2,7 @@ pipeline {
     environment {
         registry = "chungil987/blood_recovery"
         registryCredential = 'docker'
-        version = "태그이름"
+        version = "rank"
     }
     agent any
     stages {
