@@ -1,7 +1,7 @@
 .Header-nav-class{
     float: right;
     
-    font-size: 1.5em;
+    font-size: 1.2em;
     
     color: white;
     
@@ -10,9 +10,17 @@
 
     
 }
+.Header-nav-Login-class:hover{
+    opacity: 0.8;
+
+}
+.Header-nav-Join-class:hover{
+    opacity: 0.8;
+
+}
 .Header-nav-list-class{
     float: left;
-    background-color: aqua;
+    /* background-color: aqua; */
     width: 100%;
     padding-right: 1.8em;
     cursor: pointer;
