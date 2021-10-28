@@ -2,7 +2,7 @@
     float: left;
     margin-top: 0%;
     margin-left: 0px;
-    background-color: rgb(157, 255, 0);
+    /* background-color: rgb(157, 255, 0); */
     width: 100%;
 
     
@@ -13,7 +13,7 @@ float: left;
     height: 8%;
     /*overflow: hidden;*/ 
     
-    background-color: gray;
+    /* background-color: gray; */
 }
 .Main-rank-img-imgclass{
    
@@ -30,7 +30,7 @@ border: 2px solid rgb(243, 81, 81);
 .Main-rank-text-class{
     width: 20%;
     height: auto;
-    background-color: goldenrod;
+    /* background-color: goldenrod; */
     margin: auto;
     cursor: pointer;
 }
