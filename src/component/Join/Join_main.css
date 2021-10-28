@@ -38,8 +38,8 @@
     color: rgb(177, 177, 177);
     margin-top: 2%;
     margin-bottom: 1%;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 30%;
+    margin-right: 30%;
     
     background-color: blueviolet;
 }
@@ -52,8 +52,8 @@ background-color: cadetblue;
 }
 .Join-main-low-data-class{
 
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 30%;
+    margin-right: 30%;
     background-color: darkgoldenrod;
 }
 /*.Join-main-low-data-class{
@@ -74,7 +74,7 @@ float: left;
 .Join-main-low-radiobox-class{
 
     background-color: blanchedalmond;
-    width: 0%;
+    width: 20%;
     margin: auto;
     margin-top: 1%;
 }
@@ -83,9 +83,22 @@ float: left;
     width: 100%;
     background-color: rgb(189, 107, 127);
 }
+.Join-main-userdata-class{
+    margin-left: 30%;
+    margin-right: 30%;
+    background-color: blanchedalmond;
+}
 .Join-main-btn-container-class{
 
     float: left;
     width: 100%;
+    margin-top: 2%;
     background-color: rgb(14, 87, 42);
+}
+.Join-main-btn-class{
+    /*common버튼 크기가 7em이라 맞춰줌*/
+    width: 7em;
+    text-align: center;
+    margin: auto;
+    background-color: #fb4d4e;
 }

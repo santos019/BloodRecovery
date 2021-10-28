@@ -4,22 +4,23 @@
 }
 .Join-checkbox-class input[type="checkbox"].Join-checkbox-input-class + label:before{
     display: inline-block;
+    
     content: '';
     width: 0.8em; 
     height: 0.8em;
     border: 2px solid rgb(0, 0, 0);
     background-color: rgb(252, 250, 250);    
-    margin: 5px -100px -3px 0;
+    margin: 0em -8em -0.1em 0em;
     }
 .Join-checkbox-class input[type="checkbox"].Join-checkbox-input-class + label:after{
     position: absolute;
-    left: 4px;
+    left: 1px;
     content: '✔'; /* 체크 마크 ASCii 문자 */
-    font-size: 1.5em;
-    line-height: 0.8;
+    font-size: 2.0em;
+    line-height: 0;
     color: rgb(201, 71, 71);
     transition: all .3s;
-
+   
 }
 [type="checkbox"].Join-checkbox-input-class + label:after { /* 기본 상태 - 투명에 크기 0 */
     opacity: 0;
@@ -33,8 +34,19 @@
     position: relative;
 }
 
-
+.Join-checkbox-input-class{
+    width: 50%;
+    background-color: darkred;
+}
 .Join-checkbox-class{
     background-color: chocolate;
-    width: 10%;
+    width: auto;
+}
+
+.Join-checkbox-text-class{
+    width: 50%;
+    background-color: aqua;
+    margin-left: 65%;
+    font-size: 0.5em;
+    float: left;
 }

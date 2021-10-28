@@ -10,37 +10,37 @@ function Join_userdata() {
         <div className="Join-userdata-class">
             <div className="Join-usesrdata-nickname">
                 <div className="Join-userdata-nickname-text-class">
-                <Textbox name={"닉네임"}></Textbox>
+                    <Textbox name={"닉네임"}></Textbox>
                 </div>
                 <div className="Join-userdata-button-class">
                     <Common_Button name={"중복확인"}></Common_Button>
                 </div>
 
             </div>
-            
+
             <div className="Join-usesrdata-id-class">
-            <div className="Join-userdata-nickname-text-class">
-                <Textbox name={"아이디"}></Textbox>
+                <div className="Join-userdata-nickname-text-class">
+                    <Textbox name={"아이디"}></Textbox>
                 </div>
                 <div className="Join-userdata-button-class">
                     <Common_Button name={"중복확인"}></Common_Button>
                 </div>
             </div>
-            <div className="Join-usesrdata-password">
+            <div className="Join-userdata-nickname-text-class">
                 <Textbox name={"비밀번호"}></Textbox>
             </div>
-            <div className="Join-usesrdata-passwordconfirm">
+            <div className="Join-userdata-nickname-text-class">
                 <Textbox name={"비밀번호 확인"}></Textbox>
             </div>
-            <div className="Join-usesrdata-name">
+            <div className="Join-userdata-nickname-text-class">
                 <Textbox name={"성명"}></Textbox>
             </div>
-            <div className="Join-usesrdata-resisternumber">
+            <div className="Join-userdata-nickname-text-class">
                 <Textbox name={"주민등록번호"}></Textbox>
             </div>
             <div className="Join-userdata-button-class">
-                    <Common_Button name={"인증"}></Common_Button>
-                </div>
+                <Common_Button name={"인증"}></Common_Button>
+            </div>
 
         </div>
     )
