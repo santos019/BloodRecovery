@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public interface RankDao extends JpaRepository<Rank, Long> {
     //전체 랭킹!
-    public List<>
+//    public List<>
 
     //나의 랭킹 하나만!
 
