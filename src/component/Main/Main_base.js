@@ -31,11 +31,12 @@ function Main_base() {
         },
         content: {
 
-            left: 200,
-            right: 200,
+            left: 250,
+            right: 250,
             top: 100,
             bottom: 100,
             zIndex: 0,
+            padding: 10
         },
 
     };
