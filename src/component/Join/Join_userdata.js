@@ -2,6 +2,18 @@ import react from "react";
 import './Join_userdata.css';
 import Textbox from "../Common/Textbox/Textbox";
 import Common_Button from "../Common/Button/Common_Button";
+import * as ValueCheck_Null from "../Common/Function/ValueCheck_Null";
+var idvalue;
+function check1(text,textname){
+
+    if(ValueCheck_Null(text,textname)===true)
+    alert("완료");
+
+    return true;
+
+}
+
+
 function Join_userdata() {
 
 
@@ -25,8 +37,8 @@ function Join_userdata() {
                 <div className="Join-userdata-nickname-text-class">
                     <Textbox name={"아이디"}></Textbox>
                 </div>
-                <div className="Join-userdata-button-class">
-                    <Common_Button name={"중복확인"}></Common_Button>
+                <div className="Join-userdata-button-class" onClick={check1(idvalue,"id")}>
+                    <Common_Button value={idvalue} name={"중복확인"} ></Common_Button>
                 </div>
             </div>
             <div className="Join-userdata-nickname-text-class">
