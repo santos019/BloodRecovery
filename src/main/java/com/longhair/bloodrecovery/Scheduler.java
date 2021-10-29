@@ -23,8 +23,10 @@ public class Scheduler {
 
     //User에서 포인트로 1시간마다 정렬된 데이터 받아옴 통째로!
 //    @Scheduled(cron = "0 0 0/1 * * *")//1시간마다 갱신
-    @Scheduled(cron = "0 0/10 * * * *")//10분마다 갱신
-    //==========RestTemplate===========//\
+//    @Scheduled(cron = "0 0/10 * * * *")//10분마다 갱신
+    @Scheduled(cron = "0/20 * * * * *")//10초마다 갱신
+
+    //==========RestTemplate===========//
     public void RankRenewApi() {
         RestTemplate rt = new RestTemplate();
         RankRenew[] list = rt.getForObject("http://15.164.153.191:8000/data/", RankRenew[].class);
@@ -39,6 +41,9 @@ public class Scheduler {
             rankService.save(rr); //RankRenew로 저장
             rankService.save(r); //Rank로 저장
         }
+
+        //rank컬럼 추가
+//        rankService.addRank();
     }
 }
 
