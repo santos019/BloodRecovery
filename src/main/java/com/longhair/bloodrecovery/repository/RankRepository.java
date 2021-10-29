@@ -25,7 +25,6 @@ public class RankRepository {
          em.persist(rankRenew);
     }
 
-
     //나의 랭킹 조회
     public Rank findOne(Long id){
         return em.find(Rank.class, id);
@@ -36,6 +35,18 @@ public class RankRepository {
         return em.createQuery("select r from Rank r order by r.userPoint desc ", Rank.class)
                 .getResultList();
     }
+
+//    String jpql = "select user_id,user_nickname,user_profile,user_point, dense_rank() over(order by user_point desc) as rank from ranking r";
+//    List<Rank> addbyRank = em.createQuery(jpql, Rank.class).getResultList();
+
+//    private Long userId;
+//    private String userNickname;
+//    private String userProfile;
+//    private int userPoint;
+
+//    String jpql = "select m from Member m where m.age > 18";
+//    List<Member> result = em.createQuery(jpql, Member.class)
+//            .getResultList();
 
 
 }

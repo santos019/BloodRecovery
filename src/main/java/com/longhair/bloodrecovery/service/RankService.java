@@ -40,8 +40,13 @@ public class RankService {
         rankRepository.save(rank);
     }
 
+    //Rank 전체 삭제 => 갱신될때마다 삭제되고 다시 생성됨
     public void deleteAll() {
         rankDao.deleteAll();
     }
 
+    //Rank 갱신될 때마다 순위 정렬해서 컬럼 추가
+//    public void addRank() {
+//        rankDao.addbyRank();
+//    }
 }
