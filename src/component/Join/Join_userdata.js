@@ -15,6 +15,9 @@ function Join_userdata() {
                 <div className="Join-userdata-button-class">
                     <Common_Button name={"중복확인"}></Common_Button>
                 </div>
+                <div className="Join-userdata-notice-class">
+                    <p>영문, 한글, 숫자 '-' 포함 5~20자 이내</p>
+                </div>
 
             </div>
 

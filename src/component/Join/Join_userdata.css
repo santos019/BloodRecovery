@@ -1,7 +1,7 @@
 .Join-userdata-class{
 
     width: 100%;
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     /* margin-left: 30%; */
     margin-top: 5%;
 
@@ -10,14 +10,14 @@
 }
 .Join-usesrdata-nickname {
     float: left;
-    background-color: rgb(136, 27, 112);
+     /*background-color: rgb(136, 27, 112);*/ 
    width: 100%;
    height: 80%;
    margin: auto;
 }
 .Join-userdata-nickname-text-class{
     float: left;
-    background-color: blanchedalmond;
+/*     background-color: blanchedalmond; */
     /*버튼과의간격...*/
  margin-right: 0%;
  width: 70%;
@@ -25,16 +25,26 @@
 }
 .Join-userdata-button-class{
    
-     width: 10%; 
+     width: 2em; 
     height: 1.5em;
     float: left;
 
     margin-top: 1%;
     font-size: 0.7em;
     text-align: center;
-    background-color: aquamarine;
+/*     background-color: aquamarine; */
 }
 /* .Join-usesrdata-nickname .Join-usesrdata-id-class .Join-usesrdata-password .Join-usesrdata-passwordconfirm .Join-usesrdata-name .Join-usesrdata-resisternumber{
     width: 100%;
     background-color: brown;
 } */
+.Join-userdata-notice-class{
+
+    font-size: 1px;
+    /*background-color: blue;*/
+    color: rgb(133, 134, 134);
+    width: 200px; 
+    margin-top: 6px;
+    margin-left: 95%;
+
+}

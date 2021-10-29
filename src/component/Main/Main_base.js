@@ -31,8 +31,8 @@ function Main_base() {
         },
         content: {
 
-            left: 250,
-            right: 250,
+            left: 350,
+            right: 350,
             top: 100,
             bottom: 100,
             zIndex: 0,

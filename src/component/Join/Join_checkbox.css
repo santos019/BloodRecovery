@@ -45,7 +45,7 @@
 
 .Join-checkbox-text-class{
     width: 50%;
-    background-color: aqua;
+    /* background-color: aqua; */
     margin-left: 65%;
     font-size: 0.5em;
     float: left;

@@ -5,7 +5,7 @@
     margin: auto;
     border: 2px solid pink;
     
-    border-radius: 40px 40px 40px 40px;
+    /* border-radius: 40px 40px 40px 40px; */
 }
 /*스크롤바 설정하는거*/
 .Join-low-data{
@@ -15,11 +15,11 @@
     height: 20vh;
     margin: 3%;
     font-size: 0.5em;
-    background-color: burlywood;
+    /* background-color: burlywood; */
 }
 .Join-low-container-class{
 
-   background-color: chartreuse;
+   /* background-color: chartreuse; */
    
 }
 .Join-low-data::-webkit-scrollbar {
@@ -30,18 +30,18 @@
   
     border-radius: 6px;
   
-    background: rgba(255,255,255,0.4);
+    /* background: rgba(255,255,255,0.4); */
   
   }
   /*스크롤바 막대*/
   .Join-low-data::-webkit-scrollbar-thumb{
   
-    background-color: #8d8d8dc5;
+    /* background-color: #8d8d8dc5; */
   
     border-radius: 6px;
   
   }
   /*스크롤바 뒷 배경*/
   .Join-low-data::-webkit-scrollbar-track{
-    background-color: #f2f2f2;
+    /* background-color: #f2f2f2; */
   }

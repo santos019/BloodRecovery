@@ -3,22 +3,22 @@
    
     width: 100%;
     height: 100%;
-    background-color: aqua;
+    /* background-color: aqua; */
 
 }
 
 .Join-main-title-container-class{
 
     width: 100%;
-    background-color: burlywood;
+    /* background-color: burlywood; */
     float: left;
 }
 
 .Join-main-title-class{
     
     left: 50%;
-    background-color: blue;
-   width: 15%;
+    /* background-color: blue; */
+   width: 180px;
    margin: auto;
    /*밑줄이랑 핏방울과의 간격*/
    padding-bottom: 0.5%;
@@ -29,7 +29,7 @@
     float: left;
     width: 100%;
     height: 60%;
-    background-color: brown;
+    /* background-color: brown; */
 
 }
 .Join-main-low-info-class{
@@ -41,12 +41,12 @@
     margin-left: 30%;
     margin-right: 30%;
     
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
 }
 .Join-main-low-data-container-class{
 float: left;
 width: 100%;
-background-color: cadetblue;
+/* background-color: cadetblue; */
 
 
 }
@@ -54,7 +54,7 @@ background-color: cadetblue;
 
     margin-left: 30%;
     margin-right: 30%;
-    background-color: darkgoldenrod;
+    /* background-color: darkgoldenrod; */
 }
 /*.Join-main-low-data-class{
      background-color: brown; 
@@ -69,11 +69,11 @@ background-color: cadetblue;
 .Join-main-low-radiobox-container-class{
 float: left;
     width: 100%;
-    background-color: darkkhaki;
+    /* background-color: darkkhaki; */
 }
 .Join-main-low-radiobox-class{
 
-    background-color: blanchedalmond;
+    /* background-color: blanchedalmond; */
     width: 20%;
     margin: auto;
     margin-top: 1%;
@@ -81,24 +81,24 @@ float: left;
 .Join-main-userdata-container-class{
     float: left;
     width: 100%;
-    background-color: rgb(189, 107, 127);
+    /* background-color: rgb(189, 107, 127); */
 }
 .Join-main-userdata-class{
     margin-left: 30%;
     margin-right: 30%;
-    background-color: blanchedalmond;
+    /* background-color: blanchedalmond; */
 }
 .Join-main-btn-container-class{
 
     float: left;
     width: 100%;
     margin-top: 2%;
-    background-color: rgb(14, 87, 42);
+    /* background-color: rgb(14, 87, 42); */
 }
 .Join-main-btn-class{
     /*common버튼 크기가 7em이라 맞춰줌*/
     width: 7em;
     text-align: center;
     margin: auto;
-    background-color: #fb4d4e;
+    /* background-color: #fb4d4e; */
 }
