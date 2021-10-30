@@ -32,7 +32,7 @@ public class DirectDonationController {
     }
 
     @PutMapping("/directeds/directedItem/{id}")
-    public void putDirectedItem(DirectDonationUpdateDto directDonationUpdateDto, @PathVariable("id") Long id){
+    public void putDirectedItem(@RequestBody DirectDonationUpdateDto directDonationUpdateDto, @PathVariable("id") Long id){
         directDonationService.updateDirectDonationById(id, directDonationUpdateDto);
     }
 
@@ -42,7 +42,9 @@ public class DirectDonationController {
     }
 
     @PostMapping("/directeds/directedItem")
-    public ResponseEntity<DirectDonation> postDirectedItem(DirectDonation directDonation){
+    public ResponseEntity<DirectDonation> postDirectedItem(@RequestBody DirectDonation directDonation){
+        System.out.println("==============Receive DirectDonation============");
+        System.out.println(directDonation);
         return new ResponseEntity<>(directDonationService.saveDirectDonation(directDonation), HttpStatus.OK);
     }
 
@@ -59,7 +61,7 @@ public class DirectDonationController {
     }
 
     @PostMapping("/directeds/directedItem/{id}/applicant")
-    public ResponseEntity<Applicant> postApplicant(Applicant applicant, @PathVariable("id") Long id){
+    public ResponseEntity<Applicant> postApplicant(@RequestBody Applicant applicant, @PathVariable("id") Long id){
         return new ResponseEntity<>(directDonationService.saveApplicant(applicant, id), HttpStatus.OK);
     }
 

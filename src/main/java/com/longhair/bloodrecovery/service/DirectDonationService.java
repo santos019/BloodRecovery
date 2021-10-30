@@ -76,7 +76,9 @@ public class DirectDonationService {
     public DirectDonation saveDirectDonation(DirectDonation directDonation){
         //Todo
         // 요청자 정보 가져오기
-
+        directDonation.setRequesterNickname("testname");
+        directDonation.setRequesterLevel(4);
+        directDonation.setCompleteStatus(false);
         directDonationRepository.save(directDonation);
         return directDonation;
     }
