@@ -19,7 +19,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class RankController {
-
     private final RankService rankService;
 
     //전체 랭킹 조회
