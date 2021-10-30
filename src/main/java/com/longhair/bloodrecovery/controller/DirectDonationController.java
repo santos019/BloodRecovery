@@ -18,6 +18,8 @@ public class DirectDonationController {
     @Autowired
     DirectDonationService directDonationService;
 
+    // Jenkins Test
+
     @GetMapping("/directeds")
     public ResponseEntity<List<DirectDonationSimpleDto>> getDirecteds(){
         List<DirectDonationSimpleDto> directDonationSimpleDtos = directDonationService.findDirectDonationAll();
