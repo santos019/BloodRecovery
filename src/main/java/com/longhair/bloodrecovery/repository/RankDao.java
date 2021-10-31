@@ -12,10 +12,8 @@ import java.util.List;
 @Repository
 public interface RankDao extends JpaRepository<Rank, Long> {
 
-//    @Query(nativeQuery = true, value = "select ranking_id,user_id,user_nickname,user_profile,user_point,dense_rank() over(order by user_point desc) as rank from ranking")
+//    @Query(nativeQuery = true, value = "select ranking_id,user_id,user_nickname,user_profile,user_point,dense_rank() over(order by user_point desc) as user_rank from ranking")
 //    public List<Rank> addbyRank();
-
-
 
 //    void addRank();
 
