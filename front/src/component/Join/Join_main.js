@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Menu_nav_text from "../Common/Menu_nav_text";
 import './Join_main.css';
 import Join_low from "./Join_low";
@@ -7,7 +7,10 @@ import Join_userdata from "./Join_userdata";
 import Common_Button from "../Common/Button/Common_Button";
 import blood from "../../Img/blood.png";
 function Join_main() {
-
+    const [sendUserCheck,setSendUserCheck]=useState(false)
+    const getsetValue = (text) => {
+        setSendUserCheck(text)
+    }
 
     return (
 
@@ -36,14 +39,14 @@ function Join_main() {
                 </div>
                 <div className="Join-main-low-radiobox-container-class">
                 <div className="Join-main-low-radiobox-class">
-                    <Join_checkbox></Join_checkbox>
+                    <Join_checkbox getsetValue={getsetValue}>{console.log(sendUserCheck)}</Join_checkbox>
                 </div>
                 </div>
 
             </div>
             <div className="Join-main-userdata-container-class">
             <div className="Join-main-userdata-class">
-                <Join_userdata>dd</Join_userdata>
+                <Join_userdata sendagreement={sendUserCheck&&true}></Join_userdata>
             </div>
             </div>
         

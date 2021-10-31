@@ -29,16 +29,10 @@ const Checkvalue = useCallback(
 
 }
 */}
-var nicknameCheck=false;
-var idCheck;
-var passwordCheck;
-var passwordconfirmCheck;
-var nameCheck;
-var resister1Check;
-var resister2Check;
 
-function Join_userdata() {
-   
+
+const Join_userdata=(sendagreement)=>{
+
 const [nicknameCheck,setNicknameCheck]=useState(false)
 const [idCheck,setIdCheck]=useState(false)
 const [passwordCheck,setPasswordCheck]=useState(false)
@@ -46,7 +40,6 @@ const [passwordconfirmCheck,setPasswordconfirmCheck]=useState(false)
 const [nameCheck,setNameCheck]=useState(false)
 const [resister1Check,setResister1Check]=useState(false)
 const [resister2Check,setResister2Check]=useState(false)
-
 
 const [inputs, setInputs] = useState({  
 
@@ -114,7 +107,7 @@ const onChange=(e)=>{
              else if(name==="join_register2")
              {
                  console.log("주민번호2 유효성",register2EXP.test(e.target.value))
-                 setResister1Check(register2EXP.test(e.target.value))
+                 setResister2Check(register2EXP.test(e.target.value))
 
              }
 }   
@@ -122,8 +115,8 @@ const onChange=(e)=>{
 
 const valueCheck=()=>{
 
-
- console.log(nicknameCheck,
+ console.log(sendagreement.sendagreement,
+    nicknameCheck,
     idCheck,
     passwordCheck,
     passwordconfirmCheck,
