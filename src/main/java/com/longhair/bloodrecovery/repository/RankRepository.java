@@ -1,8 +1,7 @@
 package com.longhair.bloodrecovery.repository;
 
 import com.longhair.bloodrecovery.domain.Rank;
-import com.longhair.bloodrecovery.domain.RankRenew;
-import org.springframework.data.jpa.repository.Query;
+import com.longhair.bloodrecovery.domain.RankHistory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -21,8 +20,8 @@ public class RankRepository {
     }
 
     //갱신된 Rank api 디비에 저장
-    public void save(RankRenew rankRenew) {
-         em.persist(rankRenew);
+    public void save(RankHistory rankHistory) {
+         em.persist(rankHistory);
     }
 
     //나의 랭킹 조회
@@ -34,6 +33,10 @@ public class RankRepository {
     public List<Rank> findAll() {
         return em.createQuery("select r from Rank r order by r.userPoint desc ", Rank.class)
                 .getResultList();
+    }
+
+    public List<Rank> addbyRank() {
+        return em.createNativeQuery("select ranking_id,user_id,user_nickname,user_profile,user_point,dense_rank() over(order by user_point desc) as user_rank from ranking").getResultList();
     }
 
 //    String jpql = "select user_id,user_nickname,user_profile,user_point, dense_rank() over(order by user_point desc) as rank from ranking r";

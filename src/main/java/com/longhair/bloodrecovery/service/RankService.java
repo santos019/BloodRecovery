@@ -1,11 +1,10 @@
 package com.longhair.bloodrecovery.service;
 
 import com.longhair.bloodrecovery.domain.Rank;
-import com.longhair.bloodrecovery.domain.RankRenew;
+import com.longhair.bloodrecovery.domain.RankHistory;
 import com.longhair.bloodrecovery.repository.RankDao;
 import com.longhair.bloodrecovery.repository.RankRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -29,10 +28,10 @@ public class RankService {
         return rankRepository.findAll();
     }
 
-    //User에서 받아온 데이터 RankRenew 저장
-    public void save(RankRenew rankRenew) {
-        rankRenew.setRenewDate(LocalDateTime.now());
-        rankRepository.save(rankRenew);
+    //User에서 받아온 데이터 RankHistory 저장
+    public void save(RankHistory rankHistory) {
+        rankHistory.setRenewDate(LocalDateTime.now());
+        rankRepository.save(rankHistory);
     }
 
     //Rank로 저장
@@ -45,8 +44,9 @@ public class RankService {
         rankDao.deleteAll();
     }
 
-    //Rank 갱신될 때마다 순위 정렬해서 컬럼 추가
-//    public void addRank() {
-//        rankDao.addbyRank();
-//    }
+//    Rank 갱신될 때마다 순위 정렬해서 컬럼 추가
+    @org.springframework.transaction.annotation.Transactional
+    public void addRank() {
+        rankRepository.addbyRank();
+    }
 }
