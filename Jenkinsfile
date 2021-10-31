@@ -50,6 +50,7 @@ pipeline {
         stage('Remote SSH'){
             steps{
                 sshagent(credentials : ['ec2-user-credential']){
+                    sh 'ssh -v ec2-user@$url'
                     sh 'docker stop myapp'
                     sh 'docker stop mydb'
                     sh 'docker rm mydb'
