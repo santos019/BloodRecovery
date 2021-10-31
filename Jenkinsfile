@@ -4,6 +4,10 @@ pipeline {
         registryCredential = 'docker'
         version = "direct"
         ec2_url = "ec2-18-188-48-137.us-east-2.compute.amazonaws.com"
+        remote = [:]
+        remote.name = "$version"
+        remote.host = "$ec2_url"
+        remote.allowAnyHosts = true
     }
     agent any
     stages {
@@ -46,10 +50,6 @@ pipeline {
         stage('Remote SSH'){
             steps{
                 withCredentials([sshUserPrivateKey(credentialsId: 'ec2-user-credential', keyFileVariable: 'identity', passphraseVariable: 'passphrase', usernameVariable: 'userName')]){
-                    def remote = [:]
-                    remote.name = "$version"
-                    remote.host = "$ec2_url"
-                    remote.allowAnyHosts = true
                     remote.user = userName
                     remote.identityFile = identity
                     //remote.passphrase = passphrase
