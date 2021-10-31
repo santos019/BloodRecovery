@@ -51,14 +51,14 @@ pipeline {
             steps{
                 sshagent(credentials : ['ec2-user-credential']){
                     sh 'ssh -v ec2-user@$url'
-                    sh 'docker stop myapp'
-                    sh 'docker stop mydb'
-                    sh 'docker rm mydb'
-                    sh 'docker rm myapp'
-                    sh 'docker pull $registry:$version'
-                    sh 'docker pull $registry:mysql'
-                    sh 'docker run -d -p 3306:3306 --name mydb $registry:mysql'
-                    sh 'docker run -d -p 8000:8000 --name myapp --add-host=host.docker.internal:host-gateway $registry:$version'
+                    sh 'ssh ec2-user@$url docker stop myapp'
+                    sh 'ssh ec2-user@$url docker stop mydb'
+                    sh 'ssh ec2-user@$url docker rm mydb'
+                    sh 'ssh ec2-user@$url docker rm myapp'
+                    sh 'ssh ec2-user@$url docker pull $registry:$version'
+                    sh 'ssh ec2-user@$url docker pull $registry:mysql'
+                    sh 'ssh ec2-user@$url docker run -d -p 3306:3306 --name mydb $registry:mysql'
+                    sh 'ssh ec2-user@$url docker run -d -p 8000:8000 --name myapp --add-host=host.docker.internal:host-gateway $registry:$version'
                 }
 //                 withCredentials([sshUserPrivateKey(credentialsId: 'ec2-user-credential', keyFileVariable: 'identity', passphraseVariable: 'passphrase', usernameVariable: 'userName')]){
 //                     remote.user = userName
