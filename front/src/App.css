@@ -1,7 +1,17 @@
+
+
 .App {
   text-align: center;
+  width: 100vh;
+ 
+  
 }
-
+body{
+  background-image:url("./Img/bgimg.png");
+  background-repeat : no-repeat;
+  background-size : cover;
+  
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -36,3 +46,42 @@
     transform: rotate(360deg);
   }
 }
+/* .Main_list_class{
+float: left;
+  width: 20%;
+  height: 20%;
+  margin-left: -18%;
+  margin-top: 30%;
+  
+  background-color: #61dafb;
+} */
+/* .Main_nav_class{
+  margin-top: 10px !important;
+  float: left;
+  margin-left: 80%;
+  background-color: aqua;
+  z-index: 1000;
+  position: fixed;
+}
+ .Main_nav_login_class{
+
+  width: 100px;
+  height: 50px;
+  background-color: #7bff00;
+  margin-right: 10px;
+
+  float: left;
+}
+.Main_nav_join_class{
+  width: 100px;
+  height: 50px;
+  background-color: #7bff00;
+
+ 
+  float: left;
+
+}  */
+/* .Main_list_class{
+margin-top: 500px;
+
+} */
