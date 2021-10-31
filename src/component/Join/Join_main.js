@@ -46,12 +46,7 @@ function Join_main() {
                 <Join_userdata>dd</Join_userdata>
             </div>
             </div>
-            <div className="Join-main-btn-container-class">
-            <div className="Join-main-btn-class">
-                <Common_Button name={"가입완료"}></Common_Button>
-
-            </div>
-            </div>
+        
         </div>
 
 

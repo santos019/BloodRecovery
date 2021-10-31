@@ -78,3 +78,28 @@ input:focus {outline:none;}
 .Textbox-class{
     width: 6vw;
 }
+.Textbox1-class
+{
+    width: 2.5vw;
+
+}
+.Join-userdata-register-p-class{
+    font-size: 1px;
+    width: 1vw;
+    margin-left: 3px;
+    margin-right: 1px;
+}
+.Join-userdata-complete-btn-container-class{
+
+    float: left;
+    width: 100%;
+    margin-top: 2%;
+    /* background-color: rgb(14, 87, 42); */
+}
+.Join-userdata-complete-btn-class{
+    /*common버튼 크기가 7em이라 맞춰줌*/
+    width: 7em;
+    text-align: center;
+    margin: auto;
+     /* background-color: #6d4dfb; */
+}
