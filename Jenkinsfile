@@ -43,26 +43,25 @@ pipeline {
                 sh "docker rmi $registry:$version"
             }
         }
-        withCredentials([sshUserPrivateKey(credentialsId: 'ec2-user-credential', keyFileVariable: 'identity', passphraseVariable: 'passphrase', usernameVariable: 'userName')]){
-            def remote = [:]
-            remote.name = "$version"
-            remote.host = "$ec2_url"
-            remote.allowAnyHosts = true
-            remote.user = userName
-            remote.identityFile = identity
-            //remote.passphrase = passphrase
-            stage("Remote SSH") {
-                sshCommand remote: remote, command: "docker stop myapp"
-                sshCommand remote: remote, command: "docker stop mydb"
-                sshCommand remote: remote, command: "docker rm mydb"
-                sshCommand remote: remote, command: "docker rm myapp"
-                sshCommand remote: remote, command: "docker pull $registry:$version"
-                sshCommand remote: remote, command: "docker pull $registry:mysql"
-                sshCommand remote: remote, command: "docker run -d -p 3306:3306 --name mydb $registry:mysql"
-                sh "sleep 5"
-                sshCommand remote: remote, command: "docker run -d -p 8000:8000 --name myapp --add-host=host.docker.internal:host-gateway $registry:$version"
-
-            }
+    }
+    withCredentials([sshUserPrivateKey(credentialsId: 'ec2-user-credential', keyFileVariable: 'identity', passphraseVariable: 'passphrase', usernameVariable: 'userName')]){
+        def remote = [:]
+        remote.name = "$version"
+        remote.host = "$ec2_url"
+        remote.allowAnyHosts = true
+        remote.user = userName
+        remote.identityFile = identity
+        //remote.passphrase = passphrase
+        stage("Remote SSH") {
+            sshCommand remote: remote, command: "docker stop myapp"
+            sshCommand remote: remote, command: "docker stop mydb"
+            sshCommand remote: remote, command: "docker rm mydb"
+            sshCommand remote: remote, command: "docker rm myapp"
+            sshCommand remote: remote, command: "docker pull $registry:$version"
+            sshCommand remote: remote, command: "docker pull $registry:mysql"
+            sshCommand remote: remote, command: "docker run -d -p 3306:3306 --name mydb $registry:mysql"
+            sh "sleep 5"
+            sshCommand remote: remote, command: "docker run -d -p 8000:8000 --name myapp --add-host=host.docker.internal:host-gateway $registry:$version"
         }
-     }
+    }
 }
