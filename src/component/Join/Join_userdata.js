@@ -46,10 +46,15 @@ if(textvalue.target.value.length<1){
 }
 },[])
 const [inputs, setInputs] = useState({  
-    name: '',
-    nickname: '',
+
+    join_nickname: '',
+    join_id:'',
+    join_password:'',
+    join_passwordconfirm:'',
+    join_name:'',
+    join_register:''
 })
-const { name, nickname } = inputs   
+const {join_nickname, join_id,join_password, join_passwordconfirm,join_name,join_register  } = inputs   
 const onChange=(e)=>{
     const { name, value } = e.target   
     const nextInputs = {            
@@ -58,8 +63,8 @@ const onChange=(e)=>{
                  [name]: value,
              }
         //만든 변수를 seInput으로 변경해준다.
-             setInputs(inputs)  
-            
+             setInputs(nextInputs)  
+             console.log(inputs);
 }   
     return (
 
@@ -68,7 +73,7 @@ const onChange=(e)=>{
                 <div className="Join-userdata-nickname-text-class">
                     <div className="Textbox">
                         <span className="Textbox-name-class" for="Textbox-class">닉네임</span>
-                        <input type="text" name="nickname" value={nickname} onChange={onChange}className="Textbox-class">
+                        <input type="text" name="join_nickname" value={join_nickname} onChange={onChange}className="Textbox-class">
                         </input>
                     </div>
                 </div>
@@ -85,7 +90,7 @@ const onChange=(e)=>{
                 <div className="Join-userdata-nickname-text-class">
                 <div className="Textbox">
                         <span className="Textbox-name-class" for="Textbox-class">아이디</span>
-                        <input type="text" value={textvalue} className="Textbox-class">
+                        <input type="text" name="join_id" value={join_id} onChange={onChange} className="Textbox-class">
                         </input>
                         {console.log(textvalue)}
                     </div>  
@@ -97,28 +102,28 @@ const onChange=(e)=>{
             <div className="Join-userdata-nickname-text-class">
             <div className="Textbox">
                         <span className="Textbox-name-class" for="Textbox-class">비밀번호</span>
-                        <input type="text" value={textvalue} className="Textbox-class">
+                        <input type="text" name="join_password" value={join_password} onChange={onChange} className="Textbox-class">
                         </input>
                     </div>
             </div>
             <div className="Join-userdata-nickname-text-class">
             <div className="Textbox">
                         <span className="Textbox-name-class" for="Textbox-class">비밀번호 확인</span>
-                        <input type="text" value={textvalue} className="Textbox-class">
+                        <input type="text" name="join_passwordconfirm" value={join_passwordconfirm} onChange={onChange} className="Textbox-class">
                         </input>
                     </div>
             </div>
             <div className="Join-userdata-nickname-text-class">
             <div className="Textbox">
                         <span className="Textbox-name-class" for="Textbox-class">성명</span>
-                        <input type="text" value={textvalue} className="Textbox-class">
+                        <input type="text" name="join_name" value={join_name} onChange={onChange} className="Textbox-class">
                         </input>
                     </div>
             </div>
             <div className="Join-userdata-nickname-text-class">
             <div className="Textbox">
                         <span className="Textbox-name-class" for="Textbox-class">주민등록번호</span>
-                        <input type="text" value={textvalue} className="Textbox-class">
+                        <input type="text" name="join_register" value={join_register} onChange={onChange} className="Textbox-class">
                         </input>
                     </div>
             </div>
