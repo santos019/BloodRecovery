@@ -7,20 +7,20 @@ margin-right: 250px; */
 width: 400px;
 height: 500px;
 margin: auto;
-background-color: aqua;
+/* background-color: aqua; */
 }
 .Login-main-container-class{
     width: 100%;
     height: 50px;
     margin: auto;
-    background-color: bisque;
+    /* background-color: bisque; */
     padding-bottom: 0.5%;
     border-bottom: solid 4px #fb4d4e;
 }
 .Login-main-input-container-class{
     width: 65%;
     height: 30%;
-    background-color: rgb(129, 24, 106);
+    /* background-color: rgb(129, 24, 106); */
     float: left;
 
 }
@@ -29,14 +29,14 @@ background-color: aqua;
     margin-top: 10%;
     height: 45%;
     float: left;
-    background-color: rgb(175, 102, 12);    
+    /* background-color: rgb(175, 102, 12);     */
 }
 .Login-main-input-password-class{
     width: 250px;
     margin-top: -10%;
     height: 45%;
     float: left;
-    background-color: rgb(12, 175, 161);    
+    /* background-color: rgb(12, 175, 161);     */
 
 }
 .Login-main-input-box-class{
@@ -47,7 +47,7 @@ background-color: aqua;
 }
 .Login-main-btn-container-class{
     float: left;
-    background-color: darkolivegreen;
+    /* background-color: darkolivegreen; */
     width: 35%;
     height: 30%;
 }
@@ -55,7 +55,7 @@ background-color: aqua;
     margin-top: 30%;
 
    height: 60%;
-   background-color: lightblue;
+   /* background-color: lightblue; */
 }
 .Login-Common-Button-class{
     cursor: pointer;
@@ -65,7 +65,7 @@ background-color: aqua;
     width: 80%;
     height: 100%;
     margin-top: 5%;
-    box-shadow: 5px 5px 5px 5px gray;
+    box-shadow: 4px 5px 5px 2px rgb(163, 163, 163);
 }
 .Login-Common-Button-text-class{
     padding-top: 30%;
@@ -91,11 +91,11 @@ background-color: aqua;
 .Login-main-find-container{
     width: 100%;
     float: left;
-    background-color: chartreuse;
+    /* background-color: chartreuse; */
 
 }
 .Login-main-find-class{
-    background-color: brown;
+    /* background-color: brown; */
     text-align: center;
     font-size: 0.8em;
     width: 40%;
@@ -109,7 +109,7 @@ background-color: aqua;
     width: 100%;
     height: 10%;
     margin-top: 4%;
-    background-color: chocolate;
+    /* background-color: chocolate; */
 }
 
 .Login-Common-joinbtn-class{
@@ -121,7 +121,7 @@ background-color: aqua;
     height: 100%;
     margin-top: 5%;
     margin: auto;
-    box-shadow: 5px 5px 5px 5px gray;
+    box-shadow: 4px 5px 5px 2px rgb(163, 163, 163);
 }
 .Login-Common-joinbtn-text-class{
     padding-top: 9%;
