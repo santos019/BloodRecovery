@@ -4,6 +4,7 @@ import com.longhair.bloodrecovery.domain.Applicant;
 import com.longhair.bloodrecovery.domain.DirectDonation;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class DirectDonationDto {
     private Integer bloodMaxCount;
     private Integer bloodCurrentCount;
     private Boolean completeStatus;
-    private List<Applicant> applicants;
+    private List<String> applicants = new ArrayList<>();
 
     public DirectDonationDto(DirectDonation directDonation){
         id = directDonation.getId();
@@ -46,6 +47,6 @@ public class DirectDonationDto {
         bloodMaxCount = directDonation.getBloodMaxCount();
         bloodCurrentCount = directDonation.getBloodCurrentCount();
         completeStatus = directDonation.getCompleteStatus();
-        applicants = directDonation.getApplicants();
+        directDonation.getApplicants().forEach(e -> applicants.add(e.getApplicantNickname()));
     }
 }
