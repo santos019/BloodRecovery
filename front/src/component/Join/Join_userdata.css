@@ -52,6 +52,7 @@ input[type= text]{
     margin-left: 2px;
     border:solid 2px rgb(236, 138, 138);
     vertical-align: middle;
+    box-shadow: 5px 5px 5px 5px gray;
 }
 input[type= text]:hover{
     border:solid 2px rgb(236, 138, 138);

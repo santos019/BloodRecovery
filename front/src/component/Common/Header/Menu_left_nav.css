@@ -1,0 +1,15 @@
+.Menu-left-nav-text{
+
+    background-color: blue;
+    float: left;
+    color: rgb(0, 0, 0);
+    display: flex;
+}
+.Menu-left-nav-img-class{
+
+}
+.Menu-left-nav-h1-class{
+
+    text-align: right;
+    margin: auto;
+}
