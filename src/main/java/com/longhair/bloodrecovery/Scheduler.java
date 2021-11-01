@@ -15,7 +15,7 @@ public class Scheduler {
     @Autowired
     private DirectDonationRepository directDonationRepository;
 
-    @Scheduled(cron = "0 0 * * *")          //매일 0시에 작동
+    @Scheduled(cron = "0 0 0 * * *")          //매일 0시에 작동
     //@Scheduled(cron = "0/10 * * * * *")   //10초마다 작동 테스트용
     @Transactional
     public void directScheduler(){
