@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -26,10 +27,13 @@ public class DirectDonationService {
     public ApplicantDto saveApplicant(Applicant applicant, Long id){
         Optional<DirectDonation> item = directDonationRepository.findById(id);
         if(item.isPresent()){
-            applicant.setDirectDonation(item.get());
-            item.get().getApplicants().add(applicant);
-            directDonationRepository.save(item.get());
-            applicantRepository.save(applicant);
+            Date date = new Date();
+            if(item.get().getPeriodTo().after(date)){
+                applicant.setDirectDonation(item.get());
+                item.get().getApplicants().add(applicant);
+                directDonationRepository.save(item.get());
+                applicantRepository.save(applicant);
+            }
         }
         return new ApplicantDto(applicant);
     }
@@ -41,10 +45,24 @@ public class DirectDonationService {
         return list;
     }
 
-    //TODO
-    // 지정헌혈 인증기능
     public void applyApplicant(Applicant applicant, Long id){
+        boolean result = true;
+        Optional<DirectDonation> directDonation = directDonationRepository.findById(id);
+        if(directDonation.isPresent()){
+            DirectDonation item = directDonation.get();
+            if(result && (item.getBloodCurrentCount() < item.getBloodMaxCount())){     // 인증 완료
+                //TODO 혈액증서 인증
 
+                item.setBloodCurrentCount(item.getBloodCurrentCount() + 1);
+                item.getApplicants().add(applicant);
+                applicantRepository.save(applicant);
+                directDonationRepository.save(item);
+                System.out.println("인증 성공");
+            }
+            else{           // 인증 실패
+                System.out.println("인증 실패");
+            }
+        }
     }
 
     @Transactional(readOnly=true)
@@ -124,7 +142,6 @@ public class DirectDonationService {
         Optional<DirectDonation> e = directDonationRepository.findById(directDonationUpdateDto.getId());
         if(e.isPresent()){
             DirectDonation item = e.get();
-            System.out.println("============================");
             item.setId(directDonationUpdateDto.getId());
             item.setRequesterId(directDonationUpdateDto.getRequesterId());
             item.setTitle(directDonationUpdateDto.getTitle());
@@ -135,6 +152,7 @@ public class DirectDonationService {
             item.setPeriodTo(directDonationUpdateDto.getPeriodTo());
             item.setCompleteStatus(directDonationUpdateDto.getCompleteStatus());
             directDonationRepository.save(item);
+            System.out.println("업데이트 됨");
         }
     }
 }
