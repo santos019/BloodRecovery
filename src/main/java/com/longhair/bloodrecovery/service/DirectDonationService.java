@@ -1,5 +1,6 @@
 package com.longhair.bloodrecovery.service;
 
+import com.longhair.bloodrecovery.SearchData;
 import com.longhair.bloodrecovery.domain.Applicant;
 import com.longhair.bloodrecovery.domain.DirectDonation;
 import com.longhair.bloodrecovery.dto.*;
@@ -47,9 +48,39 @@ public class DirectDonationService {
     }
 
     @Transactional(readOnly=true)
-    public List<DirectDonationSimpleDto> findDirectDonationAll(){
+    public List<DirectDonationSimpleDto> findDirectDonationAll(SearchData searchData){
         List<DirectDonationSimpleDto> directDonationSimpleDtos = new ArrayList<>();
-        directDonationRepository.findAll().forEach(e -> directDonationSimpleDtos.add(new DirectDonationSimpleDto(e)));
+        List<DirectDonation> directDonations = new ArrayList<>();
+
+        switch (searchData.getSearchMode()){
+            case 0:     // 필터링 모드 없는 것.(Status = false)
+                directDonations = directDonationRepository.findDirectDonationsByCompleteStatus(false);
+                break;
+            case 1:     // 혈액형 모드
+                directDonations = directDonationRepository.findDirectDonationsByBloodTypeAndCompleteStatus(searchData.getBloodType(), false);
+                break;
+            case 2:     // 상태 모드 (Status = true)
+                directDonations = directDonationRepository.findDirectDonationsByCompleteStatus(true);
+                break;
+            case 3:     // 혈액형 + 상태 모드
+                directDonations = directDonationRepository.findDirectDonationsByBloodTypeAndCompleteStatus(searchData.getBloodType(), true);
+                break;
+            case 4:     // 장소 모드
+                directDonations = directDonationRepository.findDirectDonationsByCompleteStatusAndLocationSidoAndLocationSigungu(false, searchData.getSido(), searchData.getSigungu());
+                break;
+            case 5:     // 혈액형 + 장소 모드
+                directDonations = directDonationRepository.findDirectDonationsByBloodTypeAndCompleteStatusAndLocationSidoAndLocationSigungu(searchData.getBloodType(), false, searchData.getSido(), searchData.getSigungu());
+                break;
+            case 6:     // 상태 + 장소 모드
+                directDonations = directDonationRepository.findDirectDonationsByCompleteStatusAndLocationSidoAndLocationSigungu(true, searchData.getSido(), searchData.getSigungu());
+                break;
+            case 7:     // 혈액형 + 상태 + 장소 모드
+                directDonations = directDonationRepository.findDirectDonationsByBloodTypeAndCompleteStatusAndLocationSidoAndLocationSigungu(searchData.getBloodType(), true, searchData.getSido(), searchData.getSigungu());
+                break;
+            default:
+                break;
+        }
+        directDonations.forEach(e -> directDonationSimpleDtos.add(new DirectDonationSimpleDto(e)));
         return directDonationSimpleDtos;
     }
 

@@ -1,5 +1,6 @@
 package com.longhair.bloodrecovery.controller;
 
+import com.longhair.bloodrecovery.SearchData;
 import com.longhair.bloodrecovery.domain.Applicant;
 import com.longhair.bloodrecovery.domain.DirectDonation;
 import com.longhair.bloodrecovery.dto.*;
@@ -19,8 +20,9 @@ public class DirectDonationController {
     DirectDonationService directDonationService;
 
     @GetMapping("/directeds")
-    public ResponseEntity<List<DirectDonationSimpleDto>> getDirecteds(){
-        return new ResponseEntity<>(directDonationService.findDirectDonationAll(), HttpStatus.OK);
+    public ResponseEntity<List<DirectDonationSimpleDto>> getDirecteds(SearchData searchData){
+        System.out.println(searchData);
+        return new ResponseEntity<>(directDonationService.findDirectDonationAll(searchData), HttpStatus.OK);
     }
 
     @GetMapping("/directeds/directedItem/{id}")
