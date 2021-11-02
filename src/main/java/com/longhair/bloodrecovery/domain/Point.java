@@ -15,11 +15,10 @@ public class Point {
     @GeneratedValue
     private Long id;
 
-    @OneToOne
-    private User user;
-
-    private Long plusPoint;
-    private Long minusPoint;
+    private String userId;
+    private int plusPoint;
+    private int minusPoint;
+    private int currentPoint;
     private Date date;
     private String breakdown;
 }

@@ -16,8 +16,9 @@ public class User {
     private String userId;
     private String password;
     private String name;
+    private String nickname;
     private String personalNumber;
-    private String profileImage;
-    private Long point;
+    private String profile;
+    private int point;
     private int level;
 }
