@@ -14,7 +14,6 @@ public class Rank {
     @Column(name = "ranking_id")
     private Long id;
 
-//    @Transient //컬럼으로 안 만듦
     private int userRank;
 
     //User

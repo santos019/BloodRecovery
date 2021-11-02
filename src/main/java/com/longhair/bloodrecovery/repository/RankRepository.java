@@ -15,17 +15,17 @@ public class RankRepository {
     private EntityManager em;
 
     //Rank 엔티티 디비에 저장
-    public void save(Rank rank){
+    public void save(Rank rank) {
         em.persist(rank);
     }
 
     //갱신된 Rank api 디비에 저장
     public void save(RankHistory rankHistory) {
-         em.persist(rankHistory);
+        em.persist(rankHistory);
     }
 
     //나의 랭킹 조회
-    public Rank findOne(Long id){
+    public Rank findOne(Long id) {
         return em.find(Rank.class, id);
     }
 
@@ -35,21 +35,10 @@ public class RankRepository {
                 .getResultList();
     }
 
-    public List<Rank> addbyRank() {
-        return em.createNativeQuery("select ranking_id,user_id,user_nickname,user_profile,user_point,dense_rank() over(order by user_point desc) as user_rank from ranking").getResultList();
+    public void updatebyRank() {
+        em.createNativeQuery("update mainDB.ranking A, (select ranking_id,dense_rank() over(order by user_point desc) as user_rank from mainDB.ranking) B set A.user_rank = B.user_rank where A.ranking_id = B.ranking_id;").executeUpdate();
+        em.createNativeQuery("commit;").executeUpdate();
     }
-
-//    String jpql = "select user_id,user_nickname,user_profile,user_point, dense_rank() over(order by user_point desc) as rank from ranking r";
-//    List<Rank> addbyRank = em.createQuery(jpql, Rank.class).getResultList();
-
-//    private Long userId;
-//    private String userNickname;
-//    private String userProfile;
-//    private int userPoint;
-
-//    String jpql = "select m from Member m where m.age > 18";
-//    List<Member> result = em.createQuery(jpql, Member.class)
-//            .getResultList();
 
 
 }
