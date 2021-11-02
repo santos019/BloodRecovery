@@ -2,6 +2,8 @@ package com.longhair.bloodrecovery.controller;
 
 
 import com.longhair.bloodrecovery.domain.Clause;
+import com.longhair.bloodrecovery.domain.ClauseBreakdown;
+import com.longhair.bloodrecovery.domain.User;
 import com.longhair.bloodrecovery.service.PointService;
 import com.longhair.bloodrecovery.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ public class UserController {
     UserService userService;
 
     @Autowired
-
+    PointService pointService;
 
     @GetMapping("/clause")
     public ResponseEntity<List<Clause>> getClause(){
@@ -27,13 +29,13 @@ public class UserController {
     }
 
     @PostMapping("/clause")
-    public void postClause(){
-
+    public ResponseEntity<ClauseBreakdown> postClause(@RequestBody ClauseBreakdown clauseBreakdown){
+        return new ResponseEntity<>(userService.postClauseBreakdown(clauseBreakdown), HttpStatus.OK);
     }
 
     @PostMapping("/registry")
-    public void registry(){
-
+    public ResponseEntity<User> register(@RequestBody User user){
+        return new ResponseEntity<>(userService.registerUser(user), HttpStatus.OK);
     }
 
     @PostMapping("/login")
