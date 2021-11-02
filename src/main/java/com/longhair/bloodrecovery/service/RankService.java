@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 @Transactional
@@ -30,7 +32,7 @@ public class RankService {
 
     //User에서 받아온 데이터 RankHistory 저장
     public void save(RankHistory rankHistory) {
-        rankHistory.setRenewDate(LocalDateTime.now());
+        rankHistory.setRenewDate(LocalDateTime.parse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'hh:mm"))));
         rankRepository.save(rankHistory);
     }
 
@@ -44,9 +46,13 @@ public class RankService {
         rankDao.deleteAll();
     }
 
-//    Rank 갱신될 때마다 순위 정렬해서 컬럼 추가
+//    public void saveAll(List<Rank> items){
+//        rankDao.saveAll(items);
+//    }
+
+//    Rank 갱신될 때마다 순위 정렬해서 컬럼 업데이트
     @org.springframework.transaction.annotation.Transactional
-    public void addRank() {
-        rankRepository.addbyRank();
+    public void updateRank() {
+        rankRepository.updatebyRank();
     }
 }

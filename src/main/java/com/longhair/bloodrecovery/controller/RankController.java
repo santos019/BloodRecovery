@@ -5,6 +5,7 @@ import com.longhair.bloodrecovery.service.RankService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin("*")
 public class RankController {
 
     private final RankService rankService;
@@ -25,8 +27,8 @@ public class RankController {
     }
 
     //나의 랭킹 조회
-    @GetMapping("/rankings/{id}") //설계서 추가..
-    public  Rank myRank(@PathVariable("id") Long id){
+    @GetMapping("/rankings/{userId}") //설계서 추가.. 유저아이디로 바꿔야 하는가?
+    public  Rank myRank(@PathVariable("userId") Long id){
         return rankService.findOne(id);
     }
 
