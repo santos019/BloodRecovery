@@ -121,7 +121,7 @@ function Directed_main() {
                 {/* {getData.map((menu)=>(menu.requesterId))
                 } */}
                 {
-                    getData.map((menu,index)=>(<Directed_card getData={getData} index={index} >
+                    getData.map((menu,index)=>(<Directed_card getData={getData[index]}  >
                         {console.log("index",index)}
                     </Directed_card>))
                 }
