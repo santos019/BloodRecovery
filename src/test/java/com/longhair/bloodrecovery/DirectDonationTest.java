@@ -63,8 +63,8 @@ public class DirectDonationTest {
 //        directDonation.setDate(new Date());
 //        directDonation.setLocationSido(0);
 //        directDonation.setLocationSigungu(12);
-//        directDonation.setPeriodFrom(new Date(100));
-//        directDonation.setPeriodTo(new Date());
+//        directDonation.setPeriodFrom(new Date());
+//        directDonation.setPeriodTo(new Date(10000));
 //        directDonation.setBloodType("A");
 //        directDonation.setBloodMaxCount(5);
 //        directDonation.setBloodCurrentCount(1);
