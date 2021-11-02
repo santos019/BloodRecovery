@@ -100,11 +100,7 @@ function App() {
           <Route exact path="/notice" component={Notice_main} />
           <Route exact path="/ranking" component={Rank_main} />
 
-      
-          <Route exact path="/join" component={Join_main}/>
-
-
-
+          <Route exact path="/join" component={Join_main} />
 
           {/* <ReactModal style={modal_style} isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
             <Link to="/">
