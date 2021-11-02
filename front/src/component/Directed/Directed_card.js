@@ -1,6 +1,6 @@
 import React from "react";
 import './Directed_card.css';
-const Directed_card=()=>{
+const Directed_card=(getData,index)=>{
 
 
 
@@ -9,7 +9,7 @@ const Directed_card=()=>{
         <div className="Directed-card-container">
             <div className="Directed-card-nav-container">
                 <div className="Directed-card-nav-usericon-class">
-                    ss
+                   
                 </div>
                 <div className="Directed-card-nav-username-class">
                     최고봉
@@ -23,6 +23,17 @@ const Directed_card=()=>{
             </div>
             <div className="Directed-card-footer-container">
                 푸터
+                {getData.getData[0]?.id
+                
+                    //getData.getData[0]
+                    //==="id"?console.log("ture"):console("false")
+                    
+                }
+                {
+                    console.log(index)
+                }
+                
+                
             </div>
 
         </div>
