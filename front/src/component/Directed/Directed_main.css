@@ -81,3 +81,8 @@ select :focus{
     margin-top: 10px;
     background-color: coral;
 }
+.Directed-main-cardmain-container{
+    float: left;
+    width: 50%;
+    height: 30%;
+}

@@ -98,7 +98,6 @@ function App() {
           <Route exact path="/board" component={Board_main} />
           <Route exact path="/directed" component={Directed_main} />
           <Route exact path="/notice" component={Notice_main} />
-
           <Route exact path="/ranking" component={Rank_main} />
 
       

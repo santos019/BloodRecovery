@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Menu_left_nav from '../Common/Header/Menu_left_nav';
 import './Directed_main.css';
 import DIRECTEDIMG from '../../Img/DIRECTEDIMG.png';
 import SEARCHICON from '../../Img/searchicon.png';
 import WRITEICON from '../../Img/WRITE.png';
+import Directed_card from './Directed_card';
+import axios from "axios";
 
 const SelectBox = () => {
 	return (
@@ -28,8 +30,18 @@ const SelectBox2 = () => {
 
 
 function Directed_main() {
-
-
+    let form = new FormData();
+    useEffect(() => {
+        axios
+          .get("http://localhost:8000/directed/")
+          .then((response) => (console.log(response)));
+        // .then(({ data }) => setRanks(data));
+      }, []);
+     
+    
+    
+    
+    
     return (
         <div className="Directed-main-container">
             <div className="Directed-main-nav-container">
@@ -50,6 +62,9 @@ function Directed_main() {
                 <div className="Directed-main-nav-write-class">
                 <img src={WRITEICON} className="Directed-main-nav-writeicon-class"></img>
                 </div>
+            </div>
+            <div  className="Directed-main-cardmain-container">
+                <Directed_card></Directed_card>
             </div>
         </div>
     )
