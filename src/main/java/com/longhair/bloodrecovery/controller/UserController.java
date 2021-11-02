@@ -1,12 +1,9 @@
 package com.longhair.bloodrecovery.controller;
 
 
-import com.longhair.bloodrecovery.Result;
+import com.longhair.bloodrecovery.dto.*;
 import com.longhair.bloodrecovery.domain.Point;
 import com.longhair.bloodrecovery.domain.User;
-import com.longhair.bloodrecovery.dto.PointDto;
-import com.longhair.bloodrecovery.dto.UserInfoDto;
-import com.longhair.bloodrecovery.dto.UserPutDto;
 import com.longhair.bloodrecovery.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,43 +18,43 @@ public class UserController {
     @Autowired
     UserService userService;
 
-
-    @PostMapping("/idCheck")
-    public ResponseEntity<Result> idCheck(@RequestParam("id")String id){
-        return new ResponseEntity<>(new Result(userService.checkId(id)), HttpStatus.OK);
+    @GetMapping("/idCheck/{userId}")
+    public ResponseEntity<Result> idCheck(@PathVariable("userId")String userId){
+        return new ResponseEntity<>(new Result(userService.checkId(userId)), HttpStatus.OK);
     }
 
-    @PostMapping("/nicknameCheck")
-    public ResponseEntity<Result> nicknameCheck(@RequestParam("nickname")String nickname){
+    @GetMapping("/nicknameCheck/{nickname}")
+    public ResponseEntity<Result> nicknameCheck(@PathVariable("nickname")String nickname){
         return new ResponseEntity<>(new Result(userService.checkNickname(nickname)), HttpStatus.OK);
     }
+
     @PostMapping("/register")
     public ResponseEntity<User> register(@RequestBody User user){
         return new ResponseEntity<>(userService.registerUser(user), HttpStatus.OK);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Result> login(@RequestParam("id")String userId, @RequestParam("password")String password){
-        return new ResponseEntity<>(new Result(userService.login(userId, password)), HttpStatus.OK);
+    public ResponseEntity<Result> login(@RequestBody LoginDto loginDto){
+        return new ResponseEntity<>(new Result(userService.login(loginDto.getId(), loginDto.getPassword())), HttpStatus.OK);
     }
 
-    @DeleteMapping("/")
-    public void dropUser(@RequestParam("id")String userId){
+    @DeleteMapping("/{userId}")
+    public void dropUser(@PathVariable("userId")String userId){
         userService.deleteUser(userId);
     }
 
     @PostMapping("/idFind")
-    public ResponseEntity<String> idFind(@RequestParam("name")String name, @RequestParam("personalNumber")String personalNumber){
-        return new ResponseEntity<>(userService.searchId(name, personalNumber), HttpStatus.OK);
+    public ResponseEntity<String> idFind(@RequestBody FindDto findDto){
+        return new ResponseEntity<>(userService.searchId(findDto.getName(), findDto.getPersonalNumber()), HttpStatus.OK);
     }
 
     @PostMapping("/pwReset")
-    public ResponseEntity<Result> pwReset(@RequestParam("id")String userId, @RequestParam("password")String password){
-        return new ResponseEntity<>(new Result(userService.resetPassword(userId, password)), HttpStatus.OK);
+    public ResponseEntity<Result> pwReset(@RequestBody LoginDto loginDto){
+        return new ResponseEntity<>(new Result(userService.resetPassword(loginDto.getId(), loginDto.getPassword())), HttpStatus.OK);
     }
 
-    @GetMapping("/info")
-    public ResponseEntity<UserInfoDto> getUserInfo(@RequestParam("id")String userId){
+    @GetMapping("/info/{userId}")
+    public ResponseEntity<UserInfoDto> getUserInfo(@PathVariable("userId")String userId){
         return new ResponseEntity<>(userService.getUserInfo(userId), HttpStatus.OK);
     }
 
@@ -71,8 +68,18 @@ public class UserController {
         return new ResponseEntity<>(userService.changePoint(pointDto), HttpStatus.OK);
     }
 
-    @PostMapping("/point")
-    public ResponseEntity<List<Point>> getPoint(@RequestParam("id")String userId){
+    @GetMapping("/point/{userId}")
+    public ResponseEntity<List<Point>> getPoint(@PathVariable("userId")String userId){
         return new ResponseEntity<>(userService.getPoint(userId), HttpStatus.OK);
+    }
+
+    @GetMapping("/ban/{userId}")
+    public ResponseEntity<User> banUser(@PathVariable("userId")String userId){
+        return new ResponseEntity<>(userService.banUser(userId), HttpStatus.OK);
+    }
+
+    @GetMapping("")
+    public ResponseEntity<List<UserInfoDto>> getUsers(){
+        return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
 }

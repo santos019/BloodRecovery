@@ -11,6 +11,11 @@ public class UserInfoDto {
     private String profile;
     private int point;
     private int level;
+    private int banLevel;
+
+    public UserInfoDto(){
+
+    }
 
     public UserInfoDto(User user){
         this.userId = user.getUserId();
@@ -19,5 +24,6 @@ public class UserInfoDto {
         this.profile = user.getProfile();
         this.point = user.getPoint();
         this.level = user.getLevel();
+        this.banLevel = user.getBanLevel();
     }
 }

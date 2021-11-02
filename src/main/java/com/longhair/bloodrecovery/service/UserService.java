@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,12 +27,12 @@ public class UserService {
 
     @Transactional
     public boolean checkId(String id){
-        return userRepository.findUserByUserId(id) != null;
+        return userRepository.findUserByUserId(id) == null;
     }
 
     @Transactional
     public boolean checkNickname(String nickname){
-        return userRepository.findUserByNickname(nickname) != null;
+        return userRepository.findUserByNickname(nickname) == null;
     }
 
     @Transactional
@@ -39,7 +40,7 @@ public class UserService {
         user.setPoint(0);
         user.setLevel(1);
         userRepository.save(user);
-        registerPoint(user.getUserId(), 1000);
+        registerPoint(user.getUserId(), 300);
         return user;
     }
 
@@ -48,13 +49,16 @@ public class UserService {
         PointDto pointDto = new PointDto();
         pointDto.setUserId(userId);
         pointDto.setPlusPoint(point);
-        pointDto.setCurrentPoint(userRepository.findUserByUserId(userId).getPoint());
         pointDto.setBreakdown("회원가입 축하 포인트");
         changePoint(pointDto);
     }
     @Transactional
     public boolean login(String userId, String password){
-        return password.equals(userRepository.findUserByUserId(userId).getPassword());
+        User user = userRepository.findUserByUserId(userId);
+        if(user == null){
+            return false;
+        }
+        else return user.getPassword().equals(password);
     }
 
     @Transactional
@@ -64,7 +68,11 @@ public class UserService {
 
     @Transactional
     public String searchId(String name, String personalNumber){
-        return userRepository.findUserByNameAndPersonalNumber(name, personalNumber).getUserId();
+        String result = userRepository.findUserByNameAndPersonalNumber(name, personalNumber).getUserId();
+        if(result == null){
+            result = "";
+        }
+        return result;
     }
 
     @Transactional
@@ -76,7 +84,11 @@ public class UserService {
 
     @Transactional
     public UserInfoDto getUserInfo(String userId){
-        return new UserInfoDto(userRepository.findUserByUserId(userId));
+        User user = userRepository.findUserByUserId(userId);
+        if(user == null){
+            return new UserInfoDto();
+        }
+        return new UserInfoDto(user);
     }
 
     @Transactional
@@ -95,7 +107,8 @@ public class UserService {
         return new UserInfoDto(userRepository.save(user));
     }
 
-    public Integer changePoint(PointDto pointDto){
+    @Transactional
+    public int changePoint(PointDto pointDto){
         User user = userRepository.findUserByUserId(pointDto.getUserId());
         Point point = new Point();
         point.setUserId(pointDto.getUserId());
@@ -106,6 +119,7 @@ public class UserService {
         point.setBreakdown(pointDto.getBreakdown());
         point.setDate(new Date());
         user.setPoint(crntPoint);
+        user.setLevel(updateLevel(crntPoint));
 
         userRepository.save(user);
         pointRepository.save(point);
@@ -113,7 +127,39 @@ public class UserService {
         return crntPoint;
     }
 
+    private int updateLevel(int point){
+        int result;
+        if(point < 1000){
+            result = 1;
+        }
+        else if(point < 2000){
+            result = 2;
+        }
+        else if(point < 3000){
+            result = 3;
+        }
+        else{
+            result = 4;
+        }
+        return result;
+    }
+
+    @Transactional
     public List<Point> getPoint(String userId){
         return pointRepository.findAllByUserId(userId);
+    }
+
+    @Transactional
+    public List<UserInfoDto> findAll(){
+        List<UserInfoDto> list = new ArrayList<>();
+        userRepository.findAll().forEach(e -> list.add(new UserInfoDto(e)));
+        return list;
+    }
+
+    @Transactional
+    public User banUser(String userId){
+        User user = userRepository.findUserByUserId(userId);
+        user.setBanLevel(user.getBanLevel() + 1);
+        return userRepository.save(user);
     }
 }

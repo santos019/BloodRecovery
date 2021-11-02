@@ -7,6 +7,5 @@ public class PointDto {
     private String userId;
     private int plusPoint;
     private int minusPoint;
-    private int currentPoint;
     private String breakdown;
 }

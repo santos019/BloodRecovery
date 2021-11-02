@@ -21,4 +21,5 @@ public class User {
     private String profile;
     private int point;
     private int level;
+    private int banLevel;
 }
