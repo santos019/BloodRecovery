@@ -21,7 +21,6 @@ public class DirectDonationController {
 
     @GetMapping("/directeds")
     public ResponseEntity<List<DirectDonationSimpleDto>> getDirecteds(SearchData searchData){
-        System.out.println(searchData);
         return new ResponseEntity<>(directDonationService.findDirectDonationAll(searchData), HttpStatus.OK);
     }
 
