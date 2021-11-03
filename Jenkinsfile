@@ -2,7 +2,7 @@ pipeline {
     environment {
         registry = "chungil987/blood_recovery"
         registryCredential = 'docker'
-        version = "브랜치 이름(ex: direct)"
+        version = "reactapi"
         ec2_url = "EC2 퍼블릭 주소"
     }
     agent any
