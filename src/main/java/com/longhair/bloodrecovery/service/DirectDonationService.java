@@ -15,7 +15,7 @@ import java.util.*;
 
 @Service
 public class DirectDonationService {
-    private final static String url = "http://ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/user/user/info/";
+    private final static String url = "http://ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/user/info/";
 
     @Autowired
     private DirectDonationRepository directDonationRepository;
