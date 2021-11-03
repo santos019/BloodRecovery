@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 public class DirectDonationUpdateDto {
     private Long id;
-    private Long requesterId;
+    private String requesterUserId;
     private String title;
     private String contents;
     private String image;
@@ -17,9 +17,9 @@ public class DirectDonationUpdateDto {
     private Date periodTo;
     private Boolean completeStatus;
 
-    public DirectDonationUpdateDto(Long id, Long requesterId, String title, String contents, String image, Date date, Date periodFrom, Date periodTo, Boolean completeStatus) {
+    public DirectDonationUpdateDto(Long id, String requesterUserId, String title, String contents, String image, Date date, Date periodFrom, Date periodTo, Boolean completeStatus) {
         this.id = id;
-        this.requesterId = requesterId;
+        this.requesterUserId = requesterUserId;
         this.title = title;
         this.contents = contents;
         this.image = image;
@@ -31,7 +31,7 @@ public class DirectDonationUpdateDto {
 
     public DirectDonationUpdateDto(DirectDonation directDonation){
         id = directDonation.getId();
-        requesterId = directDonation.getRequesterId();
+        requesterUserId = directDonation.getRequesterUserId();
         title = directDonation.getTitle();
         contents = directDonation.getContents();
         image = directDonation.getImage();

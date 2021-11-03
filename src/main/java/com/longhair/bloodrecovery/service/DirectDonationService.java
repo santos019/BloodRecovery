@@ -1,6 +1,6 @@
 package com.longhair.bloodrecovery.service;
 
-import com.longhair.bloodrecovery.SearchData;
+import com.longhair.bloodrecovery.dto.SearchData;
 import com.longhair.bloodrecovery.domain.Applicant;
 import com.longhair.bloodrecovery.domain.DirectDonation;
 import com.longhair.bloodrecovery.dto.*;
@@ -9,11 +9,9 @@ import com.longhair.bloodrecovery.repository.DirectDonationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class DirectDonationService {
@@ -125,11 +123,11 @@ public class DirectDonationService {
 
     @Transactional
     public DirectDonation saveDirectDonation(DirectDonation directDonation){
-        //Todo
-        // 요청자 정보 가져오기
-        directDonation.setRequesterNickname("이힛이핏");
-        directDonation.setRequesterLevel(4);
-        // 요청자 정보 가져오기===
+        RestTemplate rt = new RestTemplate();
+        String url = "http://ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/user/user/info/" + directDonation.getRequesterUserId();
+        Map map = rt.getForObject(url, Map.class);
+        directDonation.setRequesterNickname(map.get("nickname").toString());
+        directDonation.setRequesterLevel(Integer.parseInt(map.get("level").toString()));
 
         directDonation.setCompleteStatus(false);
         directDonationRepository.save(directDonation);
@@ -143,7 +141,7 @@ public class DirectDonationService {
         if(e.isPresent()){
             DirectDonation item = e.get();
             item.setId(directDonationUpdateDto.getId());
-            item.setRequesterId(directDonationUpdateDto.getRequesterId());
+            item.setRequesterUserId(directDonationUpdateDto.getRequesterUserId());
             item.setTitle(directDonationUpdateDto.getTitle());
             item.setContents(directDonationUpdateDto.getContents());
             item.setImage(directDonationUpdateDto.getImage());
