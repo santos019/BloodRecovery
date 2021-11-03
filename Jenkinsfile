@@ -3,7 +3,7 @@ pipeline {
         registry = "chungil987/blood_recovery"
         registryCredential = 'docker'
         version = "reactapi"
-        ec2_url = "EC2 퍼블릭 주소"
+        ec2_url = "ec2-18-219-208-124.us-east-2.compute.amazonaws.com"
     }
     agent any
     stages {
