@@ -25,8 +25,8 @@ public class RankRepository {
     }
 
     //나의 랭킹 조회
-    public Rank findOne(Long id) {
-        return em.find(Rank.class, id);
+    public Rank findOne(String userId) {
+        return em.createQuery("select r from Rank r where r.userId = ?1", Rank.class).setParameter(1, userId).getSingleResult();
     }
 
     //전체 랭킹 조회
