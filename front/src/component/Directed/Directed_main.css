@@ -1,7 +1,7 @@
 .Directed-main-container{
 
 
-    background-color: rgb(129, 129, 179);
+    /* background-color: rgb(129, 129, 179); */
     width: 970px;
 height: 734px;
 margin: auto;
@@ -10,7 +10,7 @@ margin: auto;
     float: left;
     height: 8%;
     width: 100%;
-    background-color: aqua;
+    /* background-color: aqua; */
     border-bottom: solid 4px #fb4d4e;
 
 }
@@ -20,23 +20,35 @@ margin: auto;
     margin-top: 1%;
     width: 45%;
     float: left;
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
 }
 .Directed-main-nav-search-class{
     float: left;
-    background-color: rgb(120, 120, 180);
+    /* background-color: rgb(120, 120, 180); */
     height: 100%;
     width: 17.5%;
     
 }
-.Directed-main-nav-searchicon-class{
+.Directed-main-nav-searchicon-container{
+    float: left;
     height: 27px;
     width: 25px;
-    background-color: rgb(255, 255, 255);
-    float: left;
+    /* background-color: aqua; */
+    border-bottom:solid 2px rgb(236, 138, 138);
+    border-top:solid 2px rgb(236, 138, 138);
+    border-right:solid 2px rgb(236, 138, 138);
     margin-top: 16px;
-    border:solid 2px rgb(236, 138, 138);
+
+}
+.Directed-main-nav-searchicon-class{
+    height: 20px;
+    width: 20px;
+    background-color: rgb(255, 255, 255);
+    margin-left: 10%;
+    margin-top: 15%;
     
+   
+
 }
 .Directed-main-input{
     margin-top: 16px;
@@ -52,14 +64,14 @@ margin: auto;
     width: 13%;
     height: 100%;
     float: left;
-    background-color: chartreuse;
+    /* background-color: chartreuse; */
 }
 .Directed-main-nav-select2-class{
 
     width: 13%;
     height: 100%;
     float: left;
-    background-color: rgb(255, 0, 157);
+    /* background-color: rgb(255, 0, 157); */
 }
 select {
     
@@ -76,13 +88,13 @@ select :focus{
     float: left;
     width: 8%;
     height: 100%;
-    background-color: cornflowerblue;
+    /* background-color: cornflowerblue; */
 }
 .Directed-main-nav-writeicon-class{
     width: 35px;
     margin-left: 10px;
     margin-top: 10px;
-    background-color: coral;
+    /* background-color: coral; */
 }
 .Directed-main-cardmain-container{
     /* float: left; */
@@ -95,6 +107,6 @@ select :focus{
     /* margin-right: 5%; */
     margin-top: 2%;
     margin: auto;
-    background-color: aqua;
+    /* background-color: aqua; */
     
 }

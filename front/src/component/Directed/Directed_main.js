@@ -104,7 +104,9 @@ function Directed_main() {
                 <div className="Directed-main-nav-search-class">
                     <input type="text" name="search_Data" className="Directed-main-input">
                     </input>
+                    <div className="Directed-main-nav-searchicon-container">
                     <img src={SEARCHICON} className="Directed-main-nav-searchicon-class"></img>
+                    </div>
                 </div>
                 <div className="Directed-main-nav-select-class">
                     <SelectBox></SelectBox>
