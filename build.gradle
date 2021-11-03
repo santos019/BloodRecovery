@@ -57,9 +57,9 @@ task buildReact(type: Exec){
     inputs.dir "$frontendDir"
     group = BasePlugin.BUILD_GROUP
     if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
-        commandLine "npm.cmd", "build"
+        commandLine "npm.cmd", "run-script", "build"
     } else {
-        commandLine "npm", "build"
+        commandLine "npm", "run-script", "build"
     }
 }
 
