@@ -1,4 +1,4 @@
-package com.longhair.bloodrecovery;
+package com.longhair.bloodrecovery.dto;
 
 import lombok.Data;
 

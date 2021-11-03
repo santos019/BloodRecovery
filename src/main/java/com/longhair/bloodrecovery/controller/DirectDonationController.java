@@ -1,6 +1,6 @@
 package com.longhair.bloodrecovery.controller;
 
-import com.longhair.bloodrecovery.SearchData;
+import com.longhair.bloodrecovery.dto.SearchData;
 import com.longhair.bloodrecovery.domain.Applicant;
 import com.longhair.bloodrecovery.domain.DirectDonation;
 import com.longhair.bloodrecovery.dto.*;
@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/")
