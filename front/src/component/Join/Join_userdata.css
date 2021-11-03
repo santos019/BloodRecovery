@@ -48,7 +48,7 @@
     margin-left: 85%;
 
 }
-input[type= text]{
+input[type= text] :not(.Directed-main-input){
     margin-left: 2px;
     border:solid 2px rgb(236, 138, 138);
     vertical-align: middle;

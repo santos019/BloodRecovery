@@ -97,7 +97,7 @@ function Directed_main() {
             <div className="Directed-main-nav-container">
                 <div className="Directed-main-nav-class" >
                     <Menu_left_nav name={"지정헌혈"} imgname={DIRECTEDIMG}></Menu_left_nav>
-          ddd       
+               
                     {console.log("ge",getData[0]?.id)}
                   
                 </div>
