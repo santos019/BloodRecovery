@@ -27,9 +27,9 @@ public class RankController {
     }
 
     //나의 랭킹 조회
-    @GetMapping("/rankings/{userId}") //설계서 추가.. 유저아이디로 바꿔야 하는가?
-    public  Rank myRank(@PathVariable("userId") Long id){
-        return rankService.findOne(id);
+    @GetMapping("/rankings/{userId}") //설계서 추가.. 유저아이디로 바꿈
+    public  Rank myRank(@PathVariable("userId") String userId){
+        return rankService.findOne(userId);
     }
 
 }

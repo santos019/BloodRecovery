@@ -17,7 +17,7 @@ public class Rank {
     private int userRank;
 
     //User
-    private Long userId;
+    private String userId;
     private String userNickname;
     private String userProfile;
     private int userPoint;

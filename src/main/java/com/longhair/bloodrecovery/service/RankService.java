@@ -21,8 +21,8 @@ public class RankService {
     private final RankDao rankDao;
 
     //나의 랭킹 조회
-    public Rank findOne(Long rankId) {
-        return rankRepository.findOne(rankId);
+    public Rank findOne(String userId) {
+        return rankRepository.findOne(userId);
     }
 
     //랭킹 전체 조회
