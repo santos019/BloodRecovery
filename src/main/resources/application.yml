@@ -15,13 +15,13 @@ zuul:
       url: http://ec2-3-17-79-25.us-east-2.compute.amazonaws.com:8000
     card-service:
       path: /card/**
-      url: ec2-18-119-109-59.us-east-2.compute.amazonaws.com:8000
+      url: http://ec2-18-119-109-59.us-east-2.compute.amazonaws.com:8000
     mypage-service:
       path: /mypage/**
-      url: ec2-18-216-151-205.us-east-2.compute.amazonaws.com:8000
+      url: http://ec2-18-216-151-205.us-east-2.compute.amazonaws.com:8000
     notice-service:
       path: /notice/**
-      url: ec2-13-58-198-229.us-east-2.compute.amazonaws.com:8000
+      url: http://ec2-13-58-198-229.us-east-2.compute.amazonaws.com:8000
     user-service:
       path: /user/**
-      url: ec2-18-117-80-129.us-east-2.compute.amazonaws.com:8000
+      url: http://ec2-18-117-80-129.us-east-2.compute.amazonaws.com:8000
