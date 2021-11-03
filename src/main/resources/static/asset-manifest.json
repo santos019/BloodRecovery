@@ -1,23 +1,32 @@
 {
   "files": {
-    "main.css": "/static/css/main.a617e044.chunk.css",
-    "main.js": "/static/js/main.7dbcb9b7.chunk.js",
-    "main.js.map": "/static/js/main.7dbcb9b7.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.697ccc74.js",
-    "runtime-main.js.map": "/static/js/runtime-main.697ccc74.js.map",
-    "static/js/2.bbce5adf.chunk.js": "/static/js/2.bbce5adf.chunk.js",
-    "static/js/2.bbce5adf.chunk.js.map": "/static/js/2.bbce5adf.chunk.js.map",
-    "static/js/3.13a95277.chunk.js": "/static/js/3.13a95277.chunk.js",
-    "static/js/3.13a95277.chunk.js.map": "/static/js/3.13a95277.chunk.js.map",
+    "main.css": "/static/css/main.188d687a.chunk.css",
+    "main.js": "/static/js/main.2dd805c0.chunk.js",
+    "main.js.map": "/static/js/main.2dd805c0.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.b0a4858f.js",
+    "runtime-main.js.map": "/static/js/runtime-main.b0a4858f.js.map",
+    "static/js/2.57151b9c.chunk.js": "/static/js/2.57151b9c.chunk.js",
+    "static/js/2.57151b9c.chunk.js.map": "/static/js/2.57151b9c.chunk.js.map",
+    "static/js/3.7a159503.chunk.js": "/static/js/3.7a159503.chunk.js",
+    "static/js/3.7a159503.chunk.js.map": "/static/js/3.7a159503.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.a617e044.chunk.css.map": "/static/css/main.a617e044.chunk.css.map",
-    "static/js/2.bbce5adf.chunk.js.LICENSE.txt": "/static/js/2.bbce5adf.chunk.js.LICENSE.txt",
-    "static/media/logo.6ce24c58.svg": "/static/media/logo.6ce24c58.svg"
+    "static/css/main.188d687a.chunk.css.map": "/static/css/main.188d687a.chunk.css.map",
+    "static/js/2.57151b9c.chunk.js.LICENSE.txt": "/static/js/2.57151b9c.chunk.js.LICENSE.txt",
+    "static/media/1_vip.a718b6ee.png": "/static/media/1_vip.a718b6ee.png",
+    "static/media/2_gold.d03005e5.png": "/static/media/2_gold.d03005e5.png",
+    "static/media/3_silver.d4907852.png": "/static/media/3_silver.d4907852.png",
+    "static/media/4_bronze.7fbaafcf.png": "/static/media/4_bronze.7fbaafcf.png",
+    "static/media/App.css": "/static/media/bgimg.f51e9af2.png",
+    "static/media/blood-drop.a0b1e538.png": "/static/media/blood-drop.a0b1e538.png",
+    "static/media/location.4ba2450b.png": "/static/media/location.4ba2450b.png",
+    "static/media/login.84f7515d.png": "/static/media/login.84f7515d.png",
+    "static/media/password.f5031183.png": "/static/media/password.f5031183.png",
+    "static/media/site_title.746e915e.png": "/static/media/site_title.746e915e.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.697ccc74.js",
-    "static/js/2.bbce5adf.chunk.js",
-    "static/css/main.a617e044.chunk.css",
-    "static/js/main.7dbcb9b7.chunk.js"
+    "static/js/runtime-main.b0a4858f.js",
+    "static/js/2.57151b9c.chunk.js",
+    "static/css/main.188d687a.chunk.css",
+    "static/js/main.2dd805c0.chunk.js"
   ]
 }
