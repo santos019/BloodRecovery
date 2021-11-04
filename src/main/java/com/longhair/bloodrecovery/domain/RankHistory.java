@@ -10,16 +10,16 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter
-public class RankRenew {
+public class RankHistory {
 
     @Id
     @GeneratedValue
     private Long id;
     private LocalDateTime renewDate;
 
-    private Long userId;
-    private String userNickname;
-    private String userProfile;
-    private int userPoint;
+    private String userId;
+    private String nickname;
+    private String profile;
+    private int point;
 
 }
