@@ -18,8 +18,8 @@ public class RankHistory {
     private LocalDateTime renewDate;
 
     private String userId;
-    private String userNickname;
-    private String userProfile;
-    private int userPoint;
+    private String nickname;
+    private String profile;
+    private int point;
 
 }

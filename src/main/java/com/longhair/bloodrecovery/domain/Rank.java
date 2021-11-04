@@ -18,15 +18,15 @@ public class Rank {
 
     //User
     private String userId;
-    private String userNickname;
-    private String userProfile;
-    private int userPoint;
+    private String nickname;
+    private String profile;
+    private int point;
 
     public Rank(RankHistory rankHistory){
         this.userId = rankHistory.getUserId();
-        this.userNickname = rankHistory.getUserNickname();
-        this.userPoint = rankHistory.getUserPoint();
-        this.userProfile = rankHistory.getUserProfile();
+        this.nickname = rankHistory.getNickname();
+        this.point = rankHistory.getPoint();
+        this.profile = rankHistory.getProfile();
     }
 
 

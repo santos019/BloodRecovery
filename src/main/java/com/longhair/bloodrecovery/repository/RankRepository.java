@@ -31,12 +31,12 @@ public class RankRepository {
 
     //전체 랭킹 조회
     public List<Rank> findAll() {
-        return em.createQuery("select r from Rank r order by r.userPoint desc ", Rank.class)
+        return em.createQuery("select r from Rank r order by r.point desc ", Rank.class)
                 .getResultList();
     }
 
     public void updatebyRank() {
-        em.createNativeQuery("update mainDB.ranking A, (select ranking_id,dense_rank() over(order by user_point desc) as user_rank from mainDB.ranking) B set A.user_rank = B.user_rank where A.ranking_id = B.ranking_id;").executeUpdate();
+        em.createNativeQuery("update mainDB.ranking A, (select ranking_id,dense_rank() over(order by point desc) as user_rank from mainDB.ranking) B set A.user_rank = B.user_rank where A.ranking_id = B.ranking_id;").executeUpdate();
         em.createNativeQuery("commit;").executeUpdate();
     }
 
