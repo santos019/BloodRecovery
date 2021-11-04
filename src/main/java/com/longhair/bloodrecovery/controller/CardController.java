@@ -2,6 +2,7 @@ package com.longhair.bloodrecovery.controller;
 
 import com.longhair.bloodrecovery.domain.Card;
 import com.longhair.bloodrecovery.service.CardService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,14 +22,14 @@ public class CardController {
 
     //헌혈증 조회
     @GetMapping("/bloodpocket/{id}")
-    public List<Card> cards(@PathVariable("id") Long id) {
+    public List<Card> cards(@PathVariable("id") String id) {
         return cardService.findCards(id);
     }
 
     //헌혈증 소유자 변경
     @PutMapping("/card/{id}/{userid}")
     @ResponseBody
-    public Card putCardItem(@PathVariable("id") Long id, @PathVariable("userid") Long userid){
+    public Card putCardItem(@PathVariable("id") Long id, @PathVariable("userid") String userid){
         return cardService.updateCard(id, userid);
     }
 
@@ -41,10 +42,9 @@ public class CardController {
 //    }
 
     //헌혈증추가1 -> 이미지첨부, OCR
-    @PostMapping("/bloodpocket/{id}")
-    public Card save(@RequestBody Card card, @PathVariable("id") Long id) {
-
-        return cardService.save(card, id);
+    @PostMapping("/card/{userid}")
+    public Card save(@RequestBody Card card, @PathVariable("userid") String userid) {
+        return cardService.save(card, userid);
     }
 
 

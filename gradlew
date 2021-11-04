@@ -115,7 +115,7 @@ case "$( uname )" in                #(
 esac
 
 CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
-
+#GOOGLE_APPLICATION_CREDENTIALS=C:\Users\Admin\Downloads\ocr-test-project-331005-faf99684c459.json
 
 # Determine the Java command to use to start the JVM.
 if [ -n "$JAVA_HOME" ] ; then

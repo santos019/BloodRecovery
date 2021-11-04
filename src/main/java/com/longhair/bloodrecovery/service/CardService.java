@@ -20,50 +20,39 @@ public class CardService {
     private final CardRepository cardRepository;
 
     //헌혈증 조회
-    public List<Card> findCards(Long id) {
+    public List<Card> findCards(String id) {
         return cardRepository.findByUserid(id);
 //        return cardRepository.findAll();
     }
 
     //헌혈증 소유자 변경
     @Transactional
-    public Card updateCard(Long cardId, Long userId){
-        Optional<Card> opt = cardRepository.findById(cardId);
+    public Card updateCard(Long cardid, String userid){
+        Optional<Card> opt = cardRepository.findById(cardid);
         Card findCard = null;
         if(opt.isPresent()) {
             findCard = opt.get();
-            findCard.setUserid(userId);
+            findCard.setUserid(userid);
         }
         return cardRepository.save(findCard);
     }
 
-
-    //단건조회
-    public Card findOne(Long cardId){
-        Optional<Card> opt = cardRepository.findById(cardId);
-        Card card = null;
-        if(opt.isPresent()) {
-            card = opt.get();
-        }
-        return card;
-    }
-
-
     //헌혈증추가
-    public Card save(Card card, Long id){
-    card.setUserid(id);
+    public Card save(Card card, String id){
+        card.setUserid(id);
 //        card.setImage(card.getImage());
         return cardRepository.save(card);
     }
 
-//    //이미지추가
-//    public void save(Card card) {
-//        Card c = new Card();
-//        c.setImage(card.getImage());
-//
-//        cardRepository.save(c);
+//    //단건조회
+//    public Card findOne(Long cardId){
+//        Optional<Card> opt = cardRepository.findById(cardId);
+//        Card card = null;
+//        if(opt.isPresent()) {
+//            card = opt.get();
+//        }
+//        return card;
 //    }
-
 
 
 
