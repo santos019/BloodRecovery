@@ -6,6 +6,8 @@ import FIRST from "../../Img/RankIMG/rank1.png";
 import SECOND from "../../Img/RankIMG/rank2.png";
 import THIRD from "../../Img/RankIMG/rank3.png";
 import RANKIMG from "../../Img/RankIMG/rankicon.png";
+import PROFILEICON from "../../Img/RankIMG/profileicon.png";
+import PROFILEICON1 from "../../Img/RankIMG/profileicon1.png";
 function Rank_main() {
   const [ranks, setRanks] = useState([]);
   useEffect(() => {
@@ -31,39 +33,48 @@ function Rank_main() {
     if (inputrank.userRank == 1) {
       return (
         <div className="rank-1-container">
-          <div className="rank-1-p">{inputrank.userNickname}</div>
+          <div className="rank-3-img-container">
+            <img className="rank-3-img" src={PROFILEICON1}></img>
+          </div>
+          <div className="rank-1-p">
+            {inputrank.userNickname} <br></br> {inputrank.userPoint}P
+          </div>
           <img className="rank-1" src={FIRST}></img>
         </div>
       );
     } else if (inputrank.userRank == 2) {
       return (
         <div className="rank-2-container">
-          <p className="rank-2-p">{inputrank.userNickname}</p>
+          <div className="rank-3-img-container">
+            <img className="rank-3-img" src={PROFILEICON}></img>
+          </div>
+          <div className="rank-2-p">
+            {inputrank.userNickname} <br></br> {inputrank.userPoint}P
+          </div>
           <img className="rank-2" src={SECOND}></img>
         </div>
       );
     } else if (inputrank.userRank == 3) {
       return (
         <div className="rank-3-container">
-          <p className="rank-3-p">{inputrank.userNickname}</p>
+          <div className="rank-3-img-container">
+            <img className="rank-3-img" src={PROFILEICON}></img>
+          </div>
+          <div className="rank-3-p">
+            {inputrank.userNickname} <br></br> {inputrank.userPoint}P
+          </div>
           <img className="rank-3" src={THIRD}></img>
         </div>
       );
     }
-    // else if (inputrank.userRank == 4)
-    //   return (
-    //     <p className="rank-other-p">
-    //       {inputrank.userNickname} {inputrank.userNickname}{" "}
-    //       {inputrank.userPoint}
-    //     </p>
-    //   );
   };
 
   const dividerankother = (otherrank) => {
     if (otherrank.userRank > 3)
       return (
         <p className="rank-other-p">
-          {otherrank.userNickname} {otherrank.userPoint}
+          {otherrank.userRank}. {otherrank.userProfile} {otherrank.userNickname}{" "}
+          {otherrank.userPoint}P
         </p>
       );
   };
@@ -89,10 +100,12 @@ function Rank_main() {
           )}
         </div>
       </div>
-      <div className="rank-main-all-other-class">
-        {ranks.map((rank) => dividerankother(rank))}
+      <div className="rank-main-all-other-container">
+        <div className="rank-main-all-other-class">
+          {ranks.map((rank) => dividerankother(rank))}
+        </div>
       </div>
-      <div className="rank_bottom">
+      <div className="rank-bottom">
         <p>매월 1일 00시 정각 기준 랭킹 1위에게는 소정의 상품이 증정됩니다!</p>
         <p>랭킹은 매시간 마다 갱신됩니다.</p>
       </div>
