@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CardDonationRepository extends JpaRepository<CardRequest, Long> {
-
+//    CardRequest findCardRequestBy
 }

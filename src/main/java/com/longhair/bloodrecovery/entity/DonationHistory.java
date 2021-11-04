@@ -3,9 +3,7 @@ package com.longhair.bloodrecovery.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -16,8 +14,8 @@ public class DonationHistory {
     @GeneratedValue
     private Long id;
 
-    private Long requestId; //요청 아이디
-    private Long donationId; //기부 아이디
+//    private Long requestId; //요청 아이디
+//    private Long donationId; //기부 아이디
 
     //User
     private String userId; //기부자 아이디
@@ -28,4 +26,14 @@ public class DonationHistory {
     private int giveCount; //기부한 헌혈증 갯수
 
     private LocalDate donateDate; //기부한 날짜
+
+    //기부요청(CardRequest)이랑 다대일
+    @ManyToOne
+    @JoinColumn(name = "request_id")
+    private CardRequest cardRequest;
+
+    //기부(Donation)랑 다대일
+    @ManyToOne
+    @JoinColumn(name = "donation_id")
+    private Donation donation;
 }
