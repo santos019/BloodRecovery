@@ -22,8 +22,8 @@ public class Scheduler {
     private final RankService rankService;
 
     //User에서 포인트로 1시간마다 정렬된 데이터 받아옴 30위까지...
-//    @Scheduled(cron = "0 0 0/1 * * *")//1시간마다 갱신
-    @Scheduled(cron = "0 0/10 * * * *")//10분마다 갱신
+    @Scheduled(cron = "0 0 0/1 * * *")//1시간마다 갱신
+//    @Scheduled(cron = "0 0/10 * * * *")//10분마다 갱신
 //    @Scheduled(cron = "0/10 * * * * *")//10초마다 갱신
 
     //==========RestTemplate===========//
