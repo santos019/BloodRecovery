@@ -18,10 +18,9 @@ public class Card {
     private String code;
     private String image;
 
-//    @Column(name = "USER_ID")
-//    private Long userId;
 
-    private Long userid;
+
+    private String userid;
 
 
 //
