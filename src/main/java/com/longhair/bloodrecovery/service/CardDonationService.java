@@ -22,9 +22,9 @@ public class CardDonationService {
     }
 
     //기부 특정 요청글 조회
-//    public CardRequest findById(Long id) {
-//        Optional<CardRequest> opt = cardDonationRepository.findById(id);
-//        return
-//    }
+    public CardRequest findById(Long id) {
+        Optional<CardRequest> opt = cardDonationRepository.findById(id);
+        return opt.get();
+    }
 
 }

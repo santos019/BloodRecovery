@@ -4,11 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Currency;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -33,5 +32,10 @@ public class CardRequest {
     private int donationCount; //기부받은 헌혈증 개수
     private LocalDate requestDate; //기부 요청한 날짜
     //상태도 해야하는가 ...
+
+    //기부 히스토리랑 다대일
+    @OneToMany(mappedBy = "cardRequest")
+    private List<DonationHistory> history = new ArrayList<>();
+
 
 }
