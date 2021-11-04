@@ -7,8 +7,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -26,8 +28,13 @@ public class CardDonationController {
     }
 
     //기부 특정 요청글 조회
+    @GetMapping("/requests/{id}")
+    public CardRequest cardRequest(@PathParam("id") Long id) {
+        return cardDonationService.findById(id);
+    }
 
-    //기부자 헌혈증 조회 => 헌혈증 선택 후 기부
+    //기부하기
+    @PostMapping("")
 
     //기부자 목록 조회 => 기부 요청글 밑에 출력
 
