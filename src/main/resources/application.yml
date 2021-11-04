@@ -7,14 +7,33 @@ spring:
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
-  profiles:
-    active: prod
+#
+
+
+
+
+
+
+#spring:
+#  datasource:
+#    url: jdbc:h2:tcp://localhost/~/blood_rank
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+#  profiles:
+#    active: prod
+
+#spring:
+#  datasource:
+#      platform: oracle
+#      driver-class-name: oracle.jdbc.driver.OracleDriver
+#      url: jdbc:log4jdbc:oracle:thin:@localhost:1521:xe
+#      username: local
+#      password: local
 
   jpa:
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: create #나중에 none으로 바꿔
+      ddl-auto: update #나중에 none으로 바꿔
     properties:
       hibernate:
         #         show_sql: true
