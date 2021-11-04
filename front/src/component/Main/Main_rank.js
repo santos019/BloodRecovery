@@ -13,9 +13,7 @@ const Main_rank=(props)=>
         
         <div className="Main-rank-class">
             <div className="Main-rank-img-container">
-            <img className="Main-rank-img-imgclass" src={Test_img1}>
-                
-            </img>
+            {sessionStorage.getItem("userId")===null?<img className="Main-rank-img-imgclass" src={Test_img1}></img>:<img className="Main-rank-img-imgclass" src={Test_img1}></img> }
             </div>
             <div className="Main-rank-text-container-class">
                 <div className="Main-rank-text-class" onClick={()=>sendValue("랭킹")}>

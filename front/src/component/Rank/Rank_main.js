@@ -11,17 +11,26 @@ import PROFILEICON1 from "../../Img/RankIMG/profileicon1.png";
 function Rank_main() {
   const [ranks, setRanks] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8000/rankings").then(function (response) {
-      setRanks(response.data);
-      // console.log("rr" + response.data[0]["id"]);
-    });
+    axios
+      .get(
+        "http://ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/rank/rankings"
+      )
+      .then(function (response) {
+        setRanks(response.data);
+        // console.log("rr" + response.data[0]["id"]);
+      });
   }, []);
 
   const [my, setMyRank] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8000/rankings/1").then(function (response) {
-      setMyRank(response.data);
-    });
+    axios
+      .get(
+        "http://ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/rank/rankings/" +
+          sessionStorage.getItem("userId")
+      )
+      .then(function (response) {
+        setMyRank(response.data);
+      });
   }, []);
 
   const rankfunction = (ranking) => {
@@ -37,7 +46,7 @@ function Rank_main() {
             <img className="rank-3-img" src={PROFILEICON1}></img>
           </div>
           <div className="rank-1-p">
-            {inputrank.userNickname} <br></br> {inputrank.userPoint}P
+            {inputrank.nickname} <br></br> {inputrank.point}P
           </div>
           <img className="rank-1" src={FIRST}></img>
         </div>
@@ -49,7 +58,7 @@ function Rank_main() {
             <img className="rank-3-img" src={PROFILEICON}></img>
           </div>
           <div className="rank-2-p">
-            {inputrank.userNickname} <br></br> {inputrank.userPoint}P
+            {inputrank.nickname} <br></br> {inputrank.point}P
           </div>
           <img className="rank-2" src={SECOND}></img>
         </div>
@@ -61,7 +70,7 @@ function Rank_main() {
             <img className="rank-3-img" src={PROFILEICON}></img>
           </div>
           <div className="rank-3-p">
-            {inputrank.userNickname} <br></br> {inputrank.userPoint}P
+            {inputrank.nickname} <br></br> {inputrank.point}P
           </div>
           <img className="rank-3" src={THIRD}></img>
         </div>
@@ -73,8 +82,8 @@ function Rank_main() {
     if (otherrank.userRank > 3)
       return (
         <p className="rank-other-p">
-          {otherrank.userRank}. {otherrank.userProfile} {otherrank.userNickname}{" "}
-          {otherrank.userPoint}P
+          {otherrank.userRank}. {otherrank.profile} {otherrank.nickname}{" "}
+          {otherrank.point}P
         </p>
       );
   };
@@ -87,8 +96,14 @@ function Rank_main() {
       </div>
       <div className="rank-main-myrank-container">
         <div className="rank-main-myrank-class">
-          "{my.userNickname}님의 포인트는 {my.userPoint}점입니다. 현재 랭킹은{" "}
-          {my.userRank}위 입니다!"
+          {sessionStorage.getItem("userId") === null ? (
+            <div>"당신도 피로회복에 참여해보세요!"</div>
+          ) : (
+            <div>
+              {console.log("sdfsdf")} "{my.nickname}님의 포인트는{" "}
+              {my.point}점입니다. 현재 랭킹은 {my.userRank}위 입니다!"
+            </div>
+          )}
         </div>
       </div>
       <div className="rank-main-all-container">
