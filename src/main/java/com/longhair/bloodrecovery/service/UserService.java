@@ -108,13 +108,16 @@ public class UserService {
     }
 
     @Transactional
-    public int changePoint(PointDto pointDto){
+    public boolean changePoint(PointDto pointDto){
         User user = userRepository.findUserByUserId(pointDto.getUserId());
         Point point = new Point();
         point.setUserId(pointDto.getUserId());
         point.setPlusPoint(pointDto.getPlusPoint());
         point.setMinusPoint(pointDto.getMinusPoint());
         int crntPoint = user.getPoint() + point.getPlusPoint() - point.getMinusPoint();
+        if(crntPoint < 0){
+            return false;
+        }
         point.setCurrentPoint(crntPoint);
         point.setBreakdown(pointDto.getBreakdown());
         point.setDate(new Date());
@@ -124,7 +127,7 @@ public class UserService {
         userRepository.save(user);
         pointRepository.save(point);
 
-        return crntPoint;
+        return true;
     }
 
     private int updateLevel(int point){
