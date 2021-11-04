@@ -15,7 +15,7 @@ import java.util.*;
 
 @Service
 public class DirectDonationService {
-    private final static String url = "http://ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/user/user/info/";
+    private final static String url = "http://ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/user/";
 
     @Autowired
     private DirectDonationRepository directDonationRepository;
@@ -30,7 +30,7 @@ public class DirectDonationService {
             Date date = new Date();
             if(item.get().getPeriodTo().after(date)){
                 RestTemplate rt = new RestTemplate();
-                String location = url + item.get().getRequesterUserId();
+                String location = url + "info/" + item.get().getRequesterUserId();
                 Map map = rt.getForObject(location, Map.class);
                 applicant.setApplicantNickname(map.get("nickname").toString());
                 applicant.setDirectDonation(item.get());
@@ -130,7 +130,20 @@ public class DirectDonationService {
     @Transactional
     public DirectDonation saveDirectDonation(DirectDonation directDonation){
         RestTemplate rt = new RestTemplate();
-        String location = url + directDonation.getRequesterUserId();
+        String location = url + "point";
+        Map<String, Object> pointMap = new HashMap<>();
+        pointMap.put("userId", directDonation.getRequesterUserId());
+        pointMap.put("plusPoint", 0);
+        //TODO
+        //지정헌혈 헌혈 종류 상관없이 개당 50포인트 차감
+        pointMap.put("minusPoint", directDonation.getBloodMaxCount() * 50);
+        pointMap.put("breakdown", "지정헌혈 " + directDonation.getBloodMaxCount() + "개의 포인트 차감");
+        Boolean result = rt.postForObject(location, pointMap, Boolean.class);
+        if(!result){
+            return new DirectDonation();
+        }
+
+        location = url + "info/" + directDonation.getRequesterUserId();
         Map map = rt.getForObject(location, Map.class);
         directDonation.setRequesterNickname(map.get("nickname").toString());
         directDonation.setRequesterLevel(Integer.parseInt(map.get("level").toString()));
