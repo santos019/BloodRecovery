@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 import java.util.List;
 
@@ -34,7 +35,11 @@ public class CardDonationController {
     }
 
     //기부하기
-    @PostMapping("")
+    @PostMapping("/requests/requestItem/{id}/donation")
+    public String request_donation(  Long id , String userId, Long cardId  ) {
+        cardDonationService.donate(  id, userId, cardId  );
+        return "redirect:/기부주소";
+    }
 
     //기부자 목록 조회 => 기부 요청글 밑에 출력
 

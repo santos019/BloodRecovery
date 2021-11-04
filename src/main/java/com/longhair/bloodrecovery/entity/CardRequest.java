@@ -16,7 +16,7 @@ public class CardRequest {
 
     @Id
     @GeneratedValue
-    @Column(name = "requset_id")
+    @Column(name = "request_id")
     private Long id;
 
     //User
