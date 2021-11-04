@@ -40,8 +40,8 @@ const Login_main=(props)=>{
 
         if (res.data.result === true) {
           alert("로그인성공")
-          sessionStorage.setItem("userid",loginId)
-          console.log(sessionStorage.getItem("userid"))
+          sessionStorage.setItem("userId",loginId)
+          console.log(sessionStorage.getItem("userId"))
           sendValue("성공")
 
         }

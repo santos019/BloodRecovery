@@ -100,7 +100,7 @@ function Rank_main() {
             <div>"당신도 피로회복에 참여해보세요!"</div>
           ) : (
             <div>
-              {console.console.log("sdfsdf")} "{my.nickname}님의 포인트는{" "}
+              {console.log("sdfsdf")} "{my.nickname}님의 포인트는{" "}
               {my.point}점입니다. 현재 랭킹은 {my.userRank}위 입니다!"
             </div>
           )}

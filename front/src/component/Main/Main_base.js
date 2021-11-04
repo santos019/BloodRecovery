@@ -93,7 +93,7 @@ function Main_base() {
             <div className="Main-base-Header-class"  >
                 {/*</div><div className="Main-base-Header-class" onClick={() => setModalIsOpen(true)}>*/}
                 {console.log("main",sessionStorage.getItem("userid"))}
-                {sessionStorage.getItem("userid")===null?<Header_nav value={text} getsetValue={getsetValue}></Header_nav>:<Header_nav_login logoutsuccess={logoutsuccess}></Header_nav_login>}
+                {sessionStorage.getItem("userId")===null?<Header_nav value={text} getsetValue={getsetValue}></Header_nav>:<Header_nav_login logoutsuccess={logoutsuccess}></Header_nav_login>}
                     {/*<div className="test1" onClick={() => onChageClick2(getValue)}> emry</div>
                     {console.log("test:"+text+"get:"+getValue)}*/}
                 </div>
