@@ -12,7 +12,7 @@ import Login_main from "../Login/Login_main";
 import Notice_main from "../Notice/Notice_main";
 import Rank_main from "../Rank/Rank_main";
 import Bloodhouse_main from "../Bloodhouse/Bloodhouse_main";
-
+import Header_nav_login from "../Common/Header/Header_nav_login";
 import "./Main_base.css";
 var text="";
 function Main_base() {
@@ -64,12 +64,26 @@ function Main_base() {
         alert("회원가입이 완료되었습니다.")
         setmodal("로그인");
     }
+
+    const logoutsuccess=()=>
+    {
+        settestvalue(false)
+        console.log("logout")
+    }
+    const loginsuccess = (text) => {
+        console.log(text)
+        setModalIsOpen(false)
+    }
     const onChageClick=(menu,e)=>{
         setModalIsOpen(true);
         setmodal(menu);
 
     }
-   
+   useEffect(()=>{
+
+
+
+   })
   
     return (
         <div className="Main-base-class">
@@ -78,7 +92,8 @@ function Main_base() {
           
             <div className="Main-base-Header-class"  >
                 {/*</div><div className="Main-base-Header-class" onClick={() => setModalIsOpen(true)}>*/}
-                <Header_nav value={text} getsetValue={getsetValue}></Header_nav>
+                {console.log("main",sessionStorage.getItem("userid"))}
+                {sessionStorage.getItem("userid")===null?<Header_nav value={text} getsetValue={getsetValue}></Header_nav>:<Header_nav_login logoutsuccess={logoutsuccess}></Header_nav_login>}
                     {/*<div className="test1" onClick={() => onChageClick2(getValue)}> emry</div>
                     {console.log("test:"+text+"get:"+getValue)}*/}
                 </div>
@@ -125,7 +140,7 @@ function Main_base() {
                        지정헌혈: <Directed_main></Directed_main>,
                        헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
                        공지사항: <Notice_main></Notice_main>,
-                       로그인: <Login_main></Login_main>,
+                       로그인: <Login_main loginsuccess={loginsuccess}></Login_main>,
                        회원가입: <Join_main getsetValue1={getsetValue1}></Join_main>,
                        랭킹: <Rank_main></Rank_main>,
 
