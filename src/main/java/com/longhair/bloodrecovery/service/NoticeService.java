@@ -12,7 +12,7 @@ import java.util.*;
 
 @Service
 public class NoticeService {
-    private final static String url = "ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/user/";
+    private final static String url = "http://ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/user/";
 
     @Autowired
     NoticeRespository noticeRespository;
@@ -42,12 +42,18 @@ public class NoticeService {
 
     @Transactional
     public Notice updateNotice(Notice notice, Long id){
+        Notice result = null;
         Optional<Notice> item = noticeRespository.findById(id);
         if(item.isPresent()){
-            notice.setId(id);
-            noticeRespository.save(notice);
+            result = item.get();
+            result.setTitle(notice.getTitle());
+            result.setContents(notice.getContents());
+            result.setImage(notice.getImage());
+            result.setImageUrl(notice.getImageUrl());
+            result.setDate(new Date());
+            noticeRespository.save(result);
         }
-        return notice;
+        return result;
     }
 
     @Transactional
