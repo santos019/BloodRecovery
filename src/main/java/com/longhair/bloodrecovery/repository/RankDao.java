@@ -12,28 +12,4 @@ import java.util.List;
 @Repository
 public interface RankDao extends JpaRepository<Rank, Long> {
 
-//    @Query(nativeQuery = true, value = "select ranking_id,user_id,user_nickname,user_profile,user_point,dense_rank() over(order by user_point desc) as user_rank from ranking")
-//    public List<Rank> addbyRank();
-
-//    void addRank();
-
-//    private Long userId;
-//    private String nickname;
-//    private String profile;
-//    private int point;
-
-//    List<Movie> searchByTitleLike(@Param("title") String title);
-
-
-
-
-//
-//    @Query(nativeQuery = true, value = "select p.*, (6371 *
-//            acos(cos(radians(?1)) * cos(radians(p.latitude)) *
-//            cos(radians(p.longitude) – radians(?2)) + sin(radians(?3)) *
-//    sin(radians(p.latitude)))) as distance from point p having distance <= 3
-//    order by distance")
-//    public List<point> findByLatLng(double lat1, double lng, double
-//            lat2);
-
 }

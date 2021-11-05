@@ -46,11 +46,7 @@ public class RankService {
         rankDao.deleteAll();
     }
 
-//    public void saveAll(List<Rank> items){
-//        rankDao.saveAll(items);
-//    }
-
-//    Rank 갱신될 때마다 순위 정렬해서 컬럼 업데이트
+    //Rank 갱신될 때마다 순위 정렬해서 컬럼 업데이트
     @org.springframework.transaction.annotation.Transactional
     public void updateRank() {
         rankRepository.updatebyRank();
