@@ -2,7 +2,7 @@ package com.longhair.bloodrecovery.service;
 
 import com.longhair.bloodrecovery.domain.Notice;
 import com.longhair.bloodrecovery.dto.NoticeDto;
-import com.longhair.bloodrecovery.repository.NoticeRespository;
+import com.longhair.bloodrecovery.repository.NoticeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,18 +15,18 @@ public class NoticeService {
     private final static String url = "http://ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/user/";
 
     @Autowired
-    NoticeRespository noticeRespository;
+    NoticeRepository noticeRepository;
 
     @Transactional(readOnly = true)
     public List<NoticeDto> getNoticeList(){
         List<NoticeDto> noticeDtos = new ArrayList<>();
-        noticeRespository.findAll().forEach(e -> noticeDtos.add(new NoticeDto(e)));
+        noticeRepository.findAll().forEach(e -> noticeDtos.add(new NoticeDto(e)));
         return noticeDtos;
     }
 
     @Transactional(readOnly = true)
     public Notice getNotice(Long id){
-        return noticeRespository.findById(id).orElseGet(Notice::new);
+        return noticeRepository.findById(id).orElseGet(Notice::new);
     }
 
     @Transactional
@@ -37,13 +37,13 @@ public class NoticeService {
         notice.setWriterNickname(map.get("nickname").toString());
         notice.setWriterLevel(Integer.parseInt(map.get("level").toString()));
         notice.setDate(new Date());
-        return noticeRespository.save(notice);
+        return noticeRepository.save(notice);
     }
 
     @Transactional
     public Notice updateNotice(Notice notice, Long id){
         Notice result = null;
-        Optional<Notice> item = noticeRespository.findById(id);
+        Optional<Notice> item = noticeRepository.findById(id);
         if(item.isPresent()){
             result = item.get();
             result.setTitle(notice.getTitle());
@@ -51,13 +51,13 @@ public class NoticeService {
             result.setImage(notice.getImage());
             result.setImageUrl(notice.getImageUrl());
             result.setDate(new Date());
-            noticeRespository.save(result);
+            noticeRepository.save(result);
         }
         return result;
     }
 
     @Transactional
     public void deleteNotice(Long id){
-        noticeRespository.deleteById(id);
+        noticeRepository.deleteById(id);
     }
 }
