@@ -7,6 +7,9 @@ import com.longhair.bloodrecovery.dto.*;
 import com.longhair.bloodrecovery.repository.ApplicantRepository;
 import com.longhair.bloodrecovery.repository.DirectDonationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -138,8 +141,8 @@ public class DirectDonationService {
         //지정헌혈 헌혈 종류 상관없이 개당 50포인트 차감
         pointMap.put("minusPoint", directDonation.getBloodMaxCount() * 50);
         pointMap.put("breakdown", "지정헌혈 " + directDonation.getBloodMaxCount() + "개의 포인트 차감");
-        Boolean result = rt.postForObject(location, pointMap, Boolean.class);
-        if(!result){
+        ResponseEntity<Map> result = rt.exchange(location, HttpMethod.PUT, new HttpEntity<Map>(pointMap), Map.class);
+        if(!Boolean.parseBoolean(result.getBody().get("result").toString())){
             return new DirectDonation();
         }
 
