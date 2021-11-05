@@ -65,8 +65,8 @@ public class UserController {
     }
 
     @PutMapping("/point")
-    public ResponseEntity<Integer> changePoint(@RequestBody PointDto pointDto){
-        return new ResponseEntity<>(userService.changePoint(pointDto), HttpStatus.OK);
+    public ResponseEntity<Result> changePoint(@RequestBody PointDto pointDto){
+        return new ResponseEntity<>(new Result(userService.changePoint(pointDto)), HttpStatus.OK);
     }
 
     @GetMapping("/point/{userId}")
