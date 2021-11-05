@@ -32,12 +32,15 @@ public class CardDonationService {
     }
 
     //기부하기
-    public Donation donate(Long requestId, String userId, Long cardId){
+    public Donation donate(Long id, Long requestId, String userId, String nickname, String cardId, int giveCount){
 
         /* 1. Donation 정보 저장 */
         Donation donation = new Donation();
+        donation.setId(id);
         donation.setUserId(userId);
-//        donation.setCode(cardId);
+        donation.setCode(cardId);
+        donation.setNickname(nickname);
+        donation.setGiveCount(giveCount);
 
         /* 2. CardRequest 정보 조회 => 매핑 테이블의 외래키로 저장하기 위해서 */
         CardRequest cardRequest = new CardRequest();
@@ -48,37 +51,11 @@ public class CardDonationService {
         donationHistory.setDonation(donation);
 
         //기부 정보 저장
-        Donation d = donationRepository.save(donation);
+        Donation saveDonation = donationRepository.save(donation);
 
-        return d;
-
-
+        return saveDonation; //여기에 이걸로 해도 되겠지..?ㅎ
     }
 
-//    /** 주문 */
-//    @Transactional
-//    public Long order(Long memberId, Long itemId, int count) {
-//
-////엔티티 조회
-//        Member member = memberRepository.findOne(memberId);
-//        Item item = itemRepository.findOne(itemId);
-//
-////배송정보 생성
-//        Delivery delivery = new Delivery();
-//        delivery.setAddress(member.getAddress());
-//        delivery.setStatus(DeliveryStatus.READY);
-//
-////주문상품 생성
-//        OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(),
-//
-//                count);
-////주문 생성
-//        Order order = Order.createOrder(member, delivery, orderItem);
-//
-////주문 저장
-//        orderRepository.save(order);
-//        return order.getId();
-//    }
 
     //기부자 목록 조회 => 기부 요청글 밑에 출력
 
