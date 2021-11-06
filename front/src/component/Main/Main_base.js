@@ -55,7 +55,7 @@ function Main_base() {
     useEffect(() => {
         window.localStorage.setItem("modal", JSON.stringify(modal));
     }, [modal]);
-    const [testvalue,settestvalue]=useState("");
+    const [testvalue,settestvalue]=useState(true);
     const [getValue, setValue] = useState("");
     const getsetValue = (text) => {
         setValue(text);
@@ -73,9 +73,10 @@ function Main_base() {
         setmodal("지정헌혈조회");
     }
     const logoutsuccess=()=>
-    {
-        settestvalue(false)
+    {   //로그인수정 중복된값을 넣어서 새로 렌더링이안되었던거같음
+        settestvalue(!testvalue)
         console.log("logout")
+      
     }
     const loginsuccess = (text) => {
         console.log(text)
