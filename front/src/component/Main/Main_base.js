@@ -16,6 +16,7 @@ import Header_nav_login from "../Common/Header/Header_nav_login";
 
 import "./Main_base.css";
 import Mypage_main from "../Mypage/Mypage_main";
+import Directed_inquire from "../Directed/Directed_inquire";
 var text="";
 function Main_base() {
     var tmp;
@@ -66,7 +67,11 @@ function Main_base() {
         alert("회원가입이 완료되었습니다.")
         setmodal("로그인");
     }
-
+    const getsetValue2 = (text) => {
+        console.log("여기로~")
+      
+        setmodal("지정헌혈조회");
+    }
     const logoutsuccess=()=>
     {
         settestvalue(false)
@@ -139,7 +144,8 @@ function Main_base() {
                 
                 {     
                        헌혈증_기부: <Board_main></Board_main>,
-                       지정헌혈: <Directed_main></Directed_main>,
+                       지정헌혈: <Directed_main getsetValue1={getsetValue1}></Directed_main>,
+                       지정헌혈조회:<Directed_inquire ></Directed_inquire>,
                        //헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
                         헌혈의_집_예약:<Mypage_main></Mypage_main>,                    
                        공지사항: <Notice_main></Notice_main>,
