@@ -15,6 +15,7 @@ import Login_main from "./component/Login/Login_main";
 import Join_main from "./component/Join/Join_main";
 import Rank_main from "./component/Rank/Rank_main";
 import Main_base from "./component/Main/Main_base";
+import Directed_inquire from "./component/Directed/Directed_inquire";
 var modal = "";
 var text = "";
 function App() {
@@ -53,7 +54,8 @@ function App() {
 
   return (
     <div className="App">
-      <Main_base></Main_base>
+     <Link to="/test">test</Link>
+      {/* <Main_base></Main_base> */}
       {/* <div className="Main_nav_class" onClick={() => setModalIsOpen(true)}>
         <div className="Main_nav_login_class" onClick={() => setmodal("로그인")}>
           <Main_Button name={"로그인"} ></Main_Button>
@@ -70,7 +72,8 @@ function App() {
 
       {/* <Main_list></Main_list> */}
 
-      <BrowserRouter>
+   
+      
         {/* <div className="Main_list_class" onClick={() => setModalIsOpen(true)}>
           {/* <div onClick={() => setmodal(getValue)}>
             <Main_rank value={text} getsetValue={getsetValue}></Main_rank>
@@ -94,13 +97,14 @@ function App() {
         </div> */}
 
         <Switch>
-          <Route exact path="/test1" component={Test1} />
+          <Route exact={true} path="/test1" component={Test1} />
           <Route exact path="/board" component={Board_main} />
           <Route exact path="/directed" component={Directed_main} />
           <Route exact path="/notice" component={Notice_main} />
           <Route exact path="/ranking" component={Rank_main} />
-
+          <Route path="/test" component={Directed_inquire} exact={true}/>
           <Route exact path="/join" component={Join_main} />
+          <Route exact path="/" component={Main_base} exact={true}/>
 
           {/* <ReactModal style={modal_style} isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
             <Link to="/">
@@ -124,7 +128,7 @@ function App() {
 
           </ReactModal> */}
         </Switch>
-      </BrowserRouter>
+     
     </div>
   );
 }

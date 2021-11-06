@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{Link,Route}from "react";
 import './Directed_card.css';
 import BRONZE from "../../Img/Grade/4_bronze.png";
 import SIVER from "../../Img/Grade/3_silver.png";
@@ -6,6 +6,9 @@ import GOLD from "../../Img/Grade/2_gold.png";
 import VIP from "../../Img/Grade/1_vip.png";
 import BLOODDROP from "../../Img/DirectedIMG/blood-drop.png";
 import LOCATION from "../../Img/DirectedIMG/location.png";
+import Directed_inquire from './Directed_inquire';
+import Directed_main from "./Directed_main";
+
 const gradefunction=(Grade)=>{
 
     if(Grade===34) //BRONZE 예정
@@ -36,13 +39,18 @@ const choicestatus=()=>{
 
 
 }
-const Directed_card=(getData)=>{
 
+const Directed_card=(getData)=>{
+    const sendValue=(text)=>{
+        getData.getsetValue(text);
+        //그냥이렇게하면된다!!
+    } 
 
 
     return(
+        
+        <div className="Directed-card-container" onClick={sendValue}>
 
-        <div className="Directed-card-container">
             <div className="Directed-card-nav-container">
                 <div className="Directed-card-nav-usericon-class">
                    {
