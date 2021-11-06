@@ -165,4 +165,12 @@ public class UserService {
         user.setBanLevel(user.getBanLevel() + 1);
         return userRepository.save(user);
     }
+
+    @Transactional
+    public User registerAdmin(User user){
+        user.setLevel(0);
+        user.setPoint(0);
+        user.setBanLevel(0);
+        return userRepository.save(user);
+    }
 }

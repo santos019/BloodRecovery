@@ -82,4 +82,9 @@ public class UserController {
     public ResponseEntity<List<UserInfoDto>> getUsers(){
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
+
+    @PostMapping("/admin")
+    public ResponseEntity<User> postAdmin(@RequestBody User user){
+        return new ResponseEntity<>(userService.registerAdmin(user), HttpStatus.OK);
+    }
 }
