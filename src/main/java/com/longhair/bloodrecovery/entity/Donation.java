@@ -26,6 +26,9 @@ public class Donation {
 
     private int giveCount; //기부한 헌혈증 갯수
 
+    //요청글 아이디
+    private Long requestId;
+
     @OneToMany(mappedBy = "donation")
     private List<DonationHistory>  history = new ArrayList<>();
 

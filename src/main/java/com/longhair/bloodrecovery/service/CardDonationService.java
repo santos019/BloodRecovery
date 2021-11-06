@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,24 +32,76 @@ public class CardDonationService {
         return opt.get();
     }
 
+    //기부 요청글 등록
+    public CardRequest saveCardRequest(CardRequest cardRequest){
+        cardRequest.setCompleteStatus(false);
+        cardDonationRepository.save(cardRequest);
+        return cardRequest;
+    }
+
+    //기부 요청글 삭제
+    public void deleteCardRequestById(Long id){
+        Optional<CardRequest> item = cardDonationRepository.findById(id);
+        List<Long> idList = new ArrayList<>();
+        cardDonationRepository.deleteById(id);
+    }
+    //흐음 다 삭제해야하나....ㅎㅎㅎ
+//    public void deleteDirectDonationById(Long id){
+//        Optional<DirectDonation> item = directDonationRepository.findById(id);
+//        List<Long> idList = new ArrayList<>();
+//        if(item.isPresent()){
+//            item.get().getApplicants().forEach(e -> idList.add(e.getId()));
+//            applicantRepository.deleteAllById(idList);
+//        }
+//        directDonationRepository.deleteById(id);
+//    }
+
+    //기부 요청글 수정
+    public void updateCardRequsetById(CardRequest cardRequest){
+        Optional<CardRequest> e = cardDonationRepository.findById(cardRequest.getId());
+
+    }
+
+//    public void updateDirectDonationById(DirectDonationUpdateDto directDonationUpdateDto){
+//        System.out.println(directDonationUpdateDto.getId());
+//        Optional<DirectDonation> e = directDonationRepository.findById(directDonationUpdateDto.getId());
+//        if(e.isPresent()){
+//            DirectDonation item = e.get();
+//            item.setId(directDonationUpdateDto.getId());
+//            item.setRequesterUserId(directDonationUpdateDto.getRequesterUserId());
+//            item.setTitle(directDonationUpdateDto.getTitle());
+//            item.setContents(directDonationUpdateDto.getContents());
+//            item.setImage(directDonationUpdateDto.getImage());
+//            item.setDate(directDonationUpdateDto.getDate());
+//            item.setPeriodFrom(directDonationUpdateDto.getPeriodFrom());
+//            item.setPeriodTo(directDonationUpdateDto.getPeriodTo());
+//            item.setCompleteStatus(directDonationUpdateDto.getCompleteStatus());
+//            directDonationRepository.save(item);
+//            System.out.println("업데이트 됨");
+//        }
+//    }
+
+
+
     //기부하기
-    public Donation donate(Long id, Long requestId, String userId, String nickname, String cardId, int giveCount){
+    public Donation donate(Donation donation){
 
         /* 1. Donation 정보 저장 */
-        Donation donation = new Donation();
-        donation.setId(id);
-        donation.setUserId(userId);
-        donation.setCode(cardId);
-        donation.setNickname(nickname);
-        donation.setGiveCount(giveCount);
+        Donation savedonation = new Donation();
+        savedonation.setId(donation.getId());
+        savedonation.setUserId(donation.getUserId());
+        savedonation.setCode(donation.getCode());
+        savedonation.setNickname(donation.getNickname());
+        savedonation.setGiveCount(donation.getGiveCount());
+        savedonation.setRequestId(donation.getRequestId());
 
         /* 2. CardRequest 정보 조회 => 매핑 테이블의 외래키로 저장하기 위해서 */
         CardRequest cardRequest = new CardRequest();
-        cardRequest.setId(requestId);
+        cardRequest.setId(cardRequest.getId());
 
         DonationHistory donationHistory = new DonationHistory();
         donationHistory.setCardRequest(cardRequest);
-        donationHistory.setDonation(donation);
+        donationHistory.setDonation(savedonation);
 
         //기부 정보 저장
         Donation saveDonation = donationRepository.save(donation);
