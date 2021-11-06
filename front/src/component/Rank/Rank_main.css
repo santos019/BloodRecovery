@@ -117,9 +117,10 @@
   margin: auto;
   font-size: 25px;
   width: 40%;
-  /* background-color: #fb4d4e; */
+  margin-right: 255px;
+  background-color: #fb4d4e;
 
-  text-align: center;
+  /* text-align: center; */
 }
 
 .rank-bottom {
@@ -134,11 +135,55 @@
   height: 100px;
   border-radius: 100%;
   border: 2px solid #fb4d4e;
-  overflow: hidden;
   margin: auto;
+  overflow: hidden;
   /* background-color: aquamarine; */
 }
 .rank-3-img {
   width: 100%;
   height: 100%;
+}
+
+.rank-3-img {
+  /* width: 65px; */
+}
+
+.profile-img1 {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  border: 2px solid #fb4d4e;
+  /* margin: auto; */
+  overflow: hidden;
+  float: left;
+  margin-left: 30px;
+  margin-top: 15px;
+  margin-right: 5px;
+}
+
+.profile-img2 {
+  width: 65px;
+  /* background-color: aqua; */
+}
+
+.rankall {
+  background-color: aqua;
+  margin-top: 10%;
+}
+.rank-other-p {
+  width: 250px;
+  /* background-color: #fb4d4e; */
+  float: left;
+  white-space: nowrap;
+}
+
+.point-css {
+  color: #fb4d4e;
+}
+
+.userRank-css {
+  color: #fb4d4e;
+  /* white-space: nowrap; */
+  background-color: aquamarine;
+  width: 20px;
 }
