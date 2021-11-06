@@ -40,13 +40,22 @@ const Directed_main=(props)=>{
     var arrNumber = new Array(); 
     const [getData, setGetdata] = useState([]);
 
-    const getsetValue = (props) => {
+    
+    // const sendValue=(props)=>{
+    //     props.getsetValue2("test")
+    // }
+    //props 개념에대해 다시 알아봐야할것같다... getsetValue2 인자에 props를 메인에서 props를 읽을수없다 
+    const getsetValue2 = () => {
         console.log("지정헌혈")
-        // props.getsetValue1("지정헌혈조회");
+        props.getsetValue2();
+    
      
     }
-    const sendValue=(props)=>{
-        
+    const getsetValue3 = () => {
+        console.log("지정헌혈조회백")
+        props.getsetValue3();
+    
+     
     }
     useEffect(() => {
         axios
@@ -107,10 +116,7 @@ const Directed_main=(props)=>{
         <div className="Directed-main-container">
             <div className="Directed-main-nav-container">
                 <div className="Directed-main-nav-class" >
-                <Link to="/test">test</Link>
-
-                    <Menu_left_nav name={"지정헌혈"} imgname={DIRECTEDIMG}></Menu_left_nav>
-               
+                    <Menu_left_nav name={"지정헌혈"} imgname={DIRECTEDIMG}></Menu_left_nav>               
                     {console.log("ge",getData[0]?.id)}
                   
                 </div>
@@ -136,7 +142,7 @@ const Directed_main=(props)=>{
                 {/* {getData.map((menu)=>(menu.requesterId))
                 } */}
                 {//워닝이뜨기떄문에 key값설정해야함
-                    getData.map((menu,index)=>(<Directed_card getData={getData[index]} key={index} getsetValue={getsetValue} >
+                    getData.map((menu,index)=>(<Directed_card getData={getData[index]} key={index} getsetValue={getsetValue2} >
                         {console.log("index",index)}
                     </Directed_card>))
                 }
