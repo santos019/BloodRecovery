@@ -38,7 +38,7 @@ const dividedate=(inputdate)=>{
 
 const Directed_card=(getData)=>{
     const sendValue=(text)=>{
-        getData.getsetValue(text);
+        getData.getsetValue3(getData.getData.id);
         //그냥이렇게하면된다!!
     } 
 
