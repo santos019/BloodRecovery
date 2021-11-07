@@ -45,9 +45,9 @@ const Directed_main=(props)=>{
     //     props.getsetValue2("test")
     // }
     //props 개념에대해 다시 알아봐야할것같다... getsetValue2 인자에 props를 메인에서 props를 읽을수없다 
-    const getsetValue2 = () => {
-        console.log("지정헌혈")
-        props.getsetValue2();
+    const getsetValue2 = (getData) => {
+        console.log("지정헌혈",getData)
+        props.getsetValue2(getData);
     
      
     }
@@ -57,6 +57,8 @@ const Directed_main=(props)=>{
     
      
     }
+    const test=()=>
+    {console.log("zzzzzzzzzzzzzzzzzzzzzzz")}
     useEffect(() => {
         axios
             .get("http://ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/direct")
@@ -142,7 +144,7 @@ const Directed_main=(props)=>{
                 {/* {getData.map((menu)=>(menu.requesterId))
                 } */}
                 {//워닝이뜨기떄문에 key값설정해야함
-                    getData.map((menu,index)=>(<Directed_card getData={getData[index]} key={index} getsetValue={getsetValue2} >
+                    getData.map((menu,index)=>(<Directed_card getData={getData[index]} key={index} getsetValue3={getsetValue2} >
                         {console.log("index",index)}
                     </Directed_card>))
                 }

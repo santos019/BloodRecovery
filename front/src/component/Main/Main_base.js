@@ -18,6 +18,7 @@ import "./Main_base.css";
 import Mypage_main from "../Mypage/Mypage_main";
 import Directed_inquire from "../Directed/Directed_inquire";
 var text="";
+var sendid;
 function Main_base() {
     var tmp;
     const modal_style = {
@@ -57,6 +58,7 @@ function Main_base() {
     }, [modal]);
     const [testvalue,settestvalue]=useState(true);
     const [getValue, setValue] = useState("");
+    //const [getidValue,setGetidValue]=useState(0);
     const getsetValue = (text) => {
         setValue(text);
         setModalIsOpen(true);
@@ -67,9 +69,12 @@ function Main_base() {
         alert("회원가입이 완료되었습니다.")
         setmodal("로그인");
     }
-    const getsetValue2 = () => {
-        console.log("여기로~")
-      
+    const getsetValue2 = (getData) => {
+        console.log("여기로~",getData)
+        //setGetidValue(getData)
+        sendid=getData;
+        console.log("입력아이디",sendid)
+        // datesent(getData)
         setmodal("지정헌혈조회");
     }
     const getsetValue3 = () => {
@@ -77,6 +82,11 @@ function Main_base() {
       
         setmodal("지정헌혈");
     }
+    // const datesent=(getDate)=>{
+    //     console.log("getDate~",getDate)
+    //     return getDate;
+
+    // }
     const logoutsuccess=()=>
     {   //로그인수정 중복된값을 넣어서 새로 렌더링이안되었던거같음
         settestvalue(!testvalue)
@@ -151,7 +161,7 @@ function Main_base() {
                 {     
                        헌혈증_기부: <Board_main></Board_main>,
                        지정헌혈: <Directed_main getsetValue2={getsetValue2}></Directed_main>,
-                       지정헌혈조회:<Directed_inquire getsetValue3={getsetValue3}></Directed_inquire>,
+                       지정헌혈조회:<Directed_inquire getsetValue3={getsetValue3} id={sendid} ></Directed_inquire>,
                        //헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
                         헌혈의_집_예약:<Mypage_main></Mypage_main>,                    
                        공지사항: <Notice_main></Notice_main>,
