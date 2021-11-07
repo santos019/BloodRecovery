@@ -12,7 +12,7 @@ import java.util.*;
 
 @Service
 public class NoticeService {
-    private final static String url = "http://ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/user/";
+    private final static String url = "http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/user/";
 
     @Autowired
     NoticeRepository noticeRepository;
