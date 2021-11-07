@@ -27,7 +27,7 @@ import java.util.*;
 @Slf4j
 public class CardService {
     //헌혈증조회, 추가, 파일업로드, 헌혈증 기부하기-> 다른 유저의 지갑으로 이동(이걸 어케하지....)
-    private final static String url = "ec2-18-219-208-124.us-east-2.compute.amazonaws.com/user/info/";
+    private final static String url = "http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/user/info/";
     @Autowired
     private final CardRepository cardRepository;
 
