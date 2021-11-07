@@ -9,19 +9,19 @@ zuul:
   routes:
     direct-service:
       path: /direct/**
-      url: http://ec2-18-188-48-137.us-east-2.compute.amazonaws.com:8000
+      url: http://BloodRecovery-LB-637965799.us-east-2.elb.amazonaws.com:8001
     rank-service:
       path: /rank/**
-      url: http://ec2-3-17-79-25.us-east-2.compute.amazonaws.com:8000
+      url: http://BloodRecovery-LB-637965799.us-east-2.elb.amazonaws.com:8002
     card-service:
       path: /card/**
-      url: http://ec2-18-119-109-59.us-east-2.compute.amazonaws.com:8000
+      url: http://BloodRecovery-LB-637965799.us-east-2.elb.amazonaws.com:8003
     mypage-service:
       path: /mypage/**
-      url: http://ec2-18-216-151-205.us-east-2.compute.amazonaws.com:8000
+      url: http://BloodRecovery-LB-637965799.us-east-2.elb.amazonaws.com:8004
     notice-service:
       path: /notice/**
-      url: http://ec2-13-58-198-229.us-east-2.compute.amazonaws.com:8000
+      url: http://BloodRecovery-LB-637965799.us-east-2.elb.amazonaws.com:8005
     user-service:
       path: /user/**
-      url: http://ec2-18-117-80-129.us-east-2.compute.amazonaws.com:8000
+      url: http://BloodRecovery-LB-637965799.us-east-2.elb.amazonaws.com:8006
