@@ -29,7 +29,7 @@ public class Scheduler {
     //==========RestTemplate===========//
     public void RankRenewApi() {
         RestTemplate rt = new RestTemplate();
-        RankHistory[] list = rt.getForObject("http://ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/user", RankHistory[].class);
+        RankHistory[] list = rt.getForObject("http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/user", RankHistory[].class);
 
         //Rank 데이터 전체 삭제
         rankService.deleteAll();
