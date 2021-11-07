@@ -18,7 +18,7 @@ import java.util.*;
 
 @Service
 public class DirectDonationService {
-    private final static String url = "http://BloodRecovery-LB-637965799.us-east-2.elb.amazonaws.com:8000/user/";
+    private final static String url = "http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/user/";
 
     @Autowired
     private DirectDonationRepository directDonationRepository;
