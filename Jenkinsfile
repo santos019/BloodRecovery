@@ -53,7 +53,7 @@ pipeline {
                     sh 'ssh ec2-user@$ec2_url "docker rm myapp"'
                     sh 'ssh ec2-user@$ec2_url "docker pull $registry:$version"'
                     sh 'ssh ec2-user@$ec2_url "docker pull $registry:mysql"'
-                    sh 'ssh ec2-user@$ec2_url "docker run -d -p 3306:3306 --name mydb $registry:mysql"'
+                    sh 'ssh ec2-user@$ec2_url "docker run -d -p 3306:3306 --cap-add=sys_nice --name mydb $registry:mysql"'
                     sh 'ssh ec2-user@$ec2_url "docker run -d -p 8000:8000 --name myapp --add-host=host.docker.internal:host-gateway $registry:$version"'
                 }
             }
