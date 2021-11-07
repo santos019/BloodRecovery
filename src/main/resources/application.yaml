@@ -14,7 +14,7 @@ spring:
     # password:
     # driver-class-name: org.h2.Driver
 #    url: jdbc:mysql://${DATABASE_HOST}:3306/mainDB
-    url: jdbc:mysql://localhost:3306/mainDB
+    url: ec2-3-144-213-215.us-east-2.compute.amazonaws.com:3306/directDB
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver

@@ -43,20 +43,47 @@ pipeline {
                 sh "docker rmi $registry:$version"
             }
         }
-        stage('Remote SSH'){
-            steps{
-                sshagent(credentials : ['ec2-user-credential']){
-                    sh 'ssh -o StrictHostKeyChecking=no ec2-user@$ec2_url uptime'
-                    sh 'ssh ec2-user@$ec2_url "docker stop myapp"'
-                    sh 'ssh ec2-user@$ec2_url "docker stop mydb"'
-                    sh 'ssh ec2-user@$ec2_url "docker rm mydb"'
-                    sh 'ssh ec2-user@$ec2_url "docker rm myapp"'
-                    sh 'ssh ec2-user@$ec2_url "docker pull $registry:$version"'
-                    sh 'ssh ec2-user@$ec2_url "docker pull $registry:mysql"'
-                    sh 'ssh ec2-user@$ec2_url "docker run -d -p 3306:3306 --name mydb $registry:mysql"'
-                    sh 'ssh ec2-user@$ec2_url "docker run -d -p 8000:8000 --name myapp --add-host=host.docker.internal:host-gateway $registry:$version"'
-                }
-            }
-        }
+//         stage('Deploy'){
+//             steps {
+//                 script{
+//                     try {
+//                         withAWS(role: 'ecsTaskExecutionRole', roleAccount: 'arn:aws:iam::709745608741:user/sk206-001', credentials : ['ec2-user-credential']) {
+//                             sh"""
+//                                 aws ecs update-service --region us-east-2 --cluster BloodRecovery --service Direct-SVC --force-new-deployment
+//                             """
+//                         }
+//
+//                     } catch (error) {
+//                         print(error)
+//                         echo 'Remove Deploy Files'
+//                         sh "sudo rm -rf /var/lib/jenkins/workspace/${env.JOB_NAME}/*"
+//                         currentBuild.result = 'FAILURE'
+//                     }
+//                 }
+//             }
+//             post {
+//                 success {
+//                     echo "The deploy stage successfully."
+//                 }
+//                 failure {
+//                     echo "The deploy stage failed."
+//                 }
+//             }
+//         }
+//         stage('Remote SSH'){
+//             steps{
+//                 sshagent(credentials : ['ec2-user-credential']){
+//                     sh 'ssh -o StrictHostKeyChecking=no ec2-user@$ec2_url uptime'
+//                     sh 'ssh ec2-user@$ec2_url "docker stop myapp"'
+//                     sh 'ssh ec2-user@$ec2_url "docker stop mydb"'
+//                     sh 'ssh ec2-user@$ec2_url "docker rm mydb"'
+//                     sh 'ssh ec2-user@$ec2_url "docker rm myapp"'
+//                     sh 'ssh ec2-user@$ec2_url "docker pull $registry:$version"'
+//                     sh 'ssh ec2-user@$ec2_url "docker pull $registry:mysql"'
+//                     sh 'ssh ec2-user@$ec2_url "docker run -d -p 3306:3306 --name mydb $registry:mysql"'
+//                     sh 'ssh ec2-user@$ec2_url "docker run -d -p 8000:8000 --name myapp --add-host=host.docker.internal:host-gateway $registry:$version"'
+//                 }
+//             }
+//         }
     }
 }
