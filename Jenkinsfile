@@ -3,7 +3,7 @@ pipeline {
         registry = "chungil987/blood_recovery"
         registryCredential = 'docker'
         version = "direct"
-        ec2_url = "ec2-18-188-48-137.us-east-2.compute.amazonaws.com"
+        service = "Direct-SVC"
     }
     agent any
     stages {
@@ -46,7 +46,7 @@ pipeline {
         stage('Deploy'){
             steps {
                 withAWS(credentials: 'sk206-001'){
-                    sh "/usr/local/bin/aws ecs update-service --region us-east-2 --cluster BloodRecovery --service Direct-SVC --force-new-deployment"
+                    sh "/usr/local/bin/aws ecs update-service --region us-east-2 --cluster BloodRecovery --service $service --force-new-deployment"
                 }
             }
         }
