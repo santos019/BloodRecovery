@@ -29,7 +29,7 @@ const Login_main=(props)=>{
     console.log("id", loginId, "password", loginPassword);
     console.log(inputs);
     axios
-      .post("http://ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/user/login", JSON.stringify(inputs), {
+      .post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/login", JSON.stringify(inputs), {
         headers: {
           "Content-Type": `application/json`,
         },

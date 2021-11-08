@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router";
 import Menu_left_nav from '../Common/Header/Menu_left_nav';
 import DIRECTEDIMG from '../../Img/DIRECTEDIMG.png';
@@ -11,53 +11,74 @@ import SIVER from "../../Img/Grade/3_silver.png";
 import GOLD from "../../Img/Grade/2_gold.png";
 import VIP from "../../Img/Grade/1_vip.png";
 import axios from "axios";
+import Directed_inquire_default from "./Directed_inquire_default";
+import Directed_inquire_default_data from "./Directed_inquire_default_dats";
 import './Directed_inquire.css';
 
 
 const Directed_inquire = (id) => {
-const [getData,setGetData]=useState();
+    const [getData, setGetData] = useState();
+    const [viewData,setViewData]=useState(false);
+    const [getApplicants,setGetApplicants]=useState();
     const sendValue = () => {
         id.getsetValue3()
+        
+    
+    }
+    const getValue=()=>{
 
+        setViewData(!viewData);
+        console.log("test")
     }
     useEffect(() => {
         axios
-            .get("http://ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/direct/directedItem/"+id.id)
-       
-            .then(function(response){
-                
-                setGetData(response); 
-                console.log("response",response)
-        
+            .get("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + id.id)
+
+            .then(function (response) {
+
+                setGetData(response);
+                console.log("response", response)
+
             });
-        
+
     }, []);
-    
-    const writeStatue=(status)=>
-    {
-        if(status===false)
-        return "진행중";
+    useEffect(() => {
+        axios
+            .get("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + id.id+"/applicants")
+
+            .then(function (response) {
+
+                setGetApplicants(response);
+                console.log("response", response)
+
+            });
+
+    }, []);
+
+    const writeStatue = (status) => {
+        if (status === false)
+            return "진행중";
         else return "완료"
 
 
     }
-    const dividedate=(inputdate)=>{
+    const dividedate = (inputdate) => {
 
-        var redate="";
-        for(var i in inputdate)
-        {   if(inputdate[i]=="T")break;
-    
-            redate = redate+ inputdate[i];
+        var redate = "";
+        for (var i in inputdate) {
+            if (inputdate[i] == "T") break;
+
+            redate = redate + inputdate[i];
         }
         return redate;
-    
-    }
-    const levelIMG=(level)=>{
 
-        if(level===1) return BRONZE;
-        else if(level===2) return SIVER;
-        else if(level===3) return GOLD;
-        else if(level===4) return VIP;
+    }
+    const levelIMG = (level) => {
+
+        if (level === 1) return BRONZE;
+        else if (level === 2) return SIVER;
+        else if (level === 3) return GOLD;
+        else if (level === 4) return VIP;
     }
 
     return (
@@ -100,27 +121,21 @@ const [getData,setGetData]=useState();
                                 </div>
                             </div>
                             <div className="Directed-inquire-card-context-class">
-                               {getData?.data.contents}
+                                {getData?.data.contents}
                             </div>
                             <div className="Directed-inquire-card-footer-class">
                                 <div className="Directed-inquire-card-footer-status">
                                     <img src={BLOODDROPIMG} className="Directed-inquire-card-footer-statueIMG"></img>
-                                    <div className="Directed-inquire-carad-footer-statustext">{writeStatue(getData?.data.completeStatus)}</div>
+                                    <div className="Directed-inquire-card-footer-statustext">{writeStatue(getData?.data.completeStatus)}</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="Directed-inquire-footer-container">
-                        <div className="Directed-inquire-footer-btn-container">
-                            <div className="Directed-inquire-footer-btn-class">
-                                <Common_Button_IMG name={"신청하기"} imgname={DIRECTED_BUTTON_IMG}></Common_Button_IMG>
-                            </div>
-                        </div>
-                        <div className="Directed-inquire-footer-info1-class">
-                            신청 하기를 누르면 요청자의 상세 정보를 열람할 수 있습니다.
-                        </div>
-                        <div className="Directed-inquire-footer-info2-class">
-                            헌혈의 집을 이용한 지정 헌혈만 가능 합니다.
+                    {viewData===true?<Directed_inquire_default_data id={id}></Directed_inquire_default_data>
+                        :<Directed_inquire_default id={id} getValue={getValue}></Directed_inquire_default>}
+                        <div className="Directed-inquire-footer-applicant">
+                            기부자
                         </div>
                     </div>
                 </div>
