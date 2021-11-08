@@ -46,7 +46,7 @@ pipeline {
         stage('Deploy'){
             steps {
                 script{
-                    withAWS(credentials : ['ec2-user-credential']) {
+                    withAWS(credentials:"$AWS_CREDENTIALS") {
                         sh"""
                             aws ecs update-service --region us-east-2 --cluster BloodRecovery --service Direct-SVC --force-new-deployment
                         """
