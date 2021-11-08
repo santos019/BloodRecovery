@@ -45,7 +45,7 @@ pipeline {
         }
         stage('Deploy'){
             steps {
-                withAWS(credentialsId: 'sk206-001'){
+                withAWS(credentials: 'sk206-001'){
                     sh "/usr/local/bin/aws ecs update-service --region us-east-2 --cluster BloodRecovery --service Direct-SVC --force-new-deployment"
                 }
             }
