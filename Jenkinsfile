@@ -43,33 +43,25 @@ pipeline {
                 sh "docker rmi $registry:$version"
             }
         }
-//         stage('Deploy'){
-//             steps {
-//                 script{
-//                     try {
-//                         withAWS(role: 'ecsTaskExecutionRole', roleAccount: 'arn:aws:iam::709745608741:user/sk206-001', credentials : ['ec2-user-credential']) {
-//                             sh"""
-//                                 aws ecs update-service --region us-east-2 --cluster BloodRecovery --service Direct-SVC --force-new-deployment
-//                             """
-//                         }
-//
-//                     } catch (error) {
-//                         print(error)
-//                         echo 'Remove Deploy Files'
-//                         sh "sudo rm -rf /var/lib/jenkins/workspace/${env.JOB_NAME}/*"
-//                         currentBuild.result = 'FAILURE'
-//                     }
-//                 }
-//             }
-//             post {
-//                 success {
-//                     echo "The deploy stage successfully."
-//                 }
-//                 failure {
-//                     echo "The deploy stage failed."
-//                 }
-//             }
-//         }
+        stage('Deploy'){
+            steps {
+                script{
+                    try {
+                        withAWS(role: 'ecsTaskExecutionRole', roleAccount: 'arn:aws:iam::709745608741:user/sk206-001', credentials : ['ec2-user-credential']) {
+                            sh"""
+                                aws ecs update-service --region us-east-2 --cluster BloodRecovery --service Direct-SVC --force-new-deployment
+                            """
+                        }
+
+                    } catch (error) {
+                        print(error)
+                        echo 'Remove Deploy Files'
+                        sh "sudo rm -rf /var/lib/jenkins/workspace/${env.JOB_NAME}/*"
+                        currentBuild.result = 'FAILURE'
+                    }
+                }
+            }
+        }
 //         stage('Remote SSH'){
 //             steps{
 //                 sshagent(credentials : ['ec2-user-credential']){
