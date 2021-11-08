@@ -45,7 +45,9 @@ pipeline {
         }
         stage('Deploy'){
             steps {
-                sh "/usr/local/bin/aws ecs update-service --region us-east-2 --cluster BloodRecovery --service Direct-SVC --force-new-deployment"
+                withAWS(credentialsId: 'sk206-001'){
+                    sh "/usr/local/bin/aws ecs update-service --region us-east-2 --cluster BloodRecovery --service Direct-SVC --force-new-deployment"
+                }
             }
         }
 //         stage('Remote SSH'){
