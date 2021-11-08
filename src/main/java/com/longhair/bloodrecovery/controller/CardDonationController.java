@@ -1,9 +1,13 @@
 package com.longhair.bloodrecovery.controller;
 
+import com.longhair.bloodrecovery.dto.CardRequestSimpleDto;
+import com.longhair.bloodrecovery.dto.CardRequestUpdateDto;
+import com.longhair.bloodrecovery.dto.SearchData;
 import com.longhair.bloodrecovery.entity.CardRequest;
 import com.longhair.bloodrecovery.entity.Donation;
 import com.longhair.bloodrecovery.service.CardDonationService;
 
+import com.longhair.bloodrecovery.service.DonationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -21,6 +25,13 @@ import java.util.List;
 public class CardDonationController {
 
     private final CardDonationService cardDonationService;
+    private final DonationService donationService;
+
+    //검색기능
+    @GetMapping("")
+    public ResponseEntity<List<CardRequestSimpleDto>> getRequests(SearchData searchData){
+        return new ResponseEntity<>(cardDonationService.findCardRequestAll(searchData), HttpStatus.OK);
+    }
 
     //기부 요청글 전체 조회
     @GetMapping("/requests")
@@ -34,6 +45,7 @@ public class CardDonationController {
         return cardDonationService.findById(id);
     }
 
+
     //기부 요청글 등록
     @PostMapping("/requests/requestItem")
     public ResponseEntity<CardRequest> postRequestItem(@RequestBody CardRequest cardRequest){
@@ -41,15 +53,11 @@ public class CardDonationController {
     }
 
     //기부 요청글 수정
-
-
-
-//    @PutMapping("/directedItem/{id}")
-//    public void putDirectedItem(@RequestBody DirectDonationUpdateDto directDonationUpdateDto, @PathVariable("id") Long id){
-//        directDonationUpdateDto.setId(id);
-//        directDonationService.updateDirectDonationById(directDonationUpdateDto);
-//    }
-
+    @PutMapping("/requests/requestItem/{id}")
+    public void putRequestItem(@RequestBody CardRequestUpdateDto cardRequestUpdateDto, @PathVariable("id") Long id){
+        cardRequestUpdateDto.setId(id);
+        cardDonationService.updateCardRequestById(cardRequestUpdateDto);
+    }
 
     //기부 요청글 삭제
     @DeleteMapping("/requests/requestItem/{id}")
@@ -60,14 +68,14 @@ public class CardDonationController {
     //기부하기
     @PostMapping("/requests/requestItem/{id}/donation")
     public String request_donation(@RequestBody Donation donation) {
-        cardDonationService.donate(donation);
+        donationService.donate(donation);
         return "redirect:/기부요청글 주소";
     }
 
     //기부자 목록 조회 => 기부 요청글 밑에 출력
-//    @GetMapping("/requests/requestItem/{id}/donation"){
-//
-//    }
-
+    @GetMapping("/requests/requestItem/{id}/donations")
+    public List<Donation> donations() {
+        return donationService.findAll();
+    }
 
 }

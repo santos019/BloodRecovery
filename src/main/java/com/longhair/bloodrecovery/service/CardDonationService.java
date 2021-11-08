@@ -1,10 +1,14 @@
 package com.longhair.bloodrecovery.service;
 
+import com.longhair.bloodrecovery.dto.CardRequestSimpleDto;
+import com.longhair.bloodrecovery.dto.CardRequestUpdateDto;
+import com.longhair.bloodrecovery.dto.SearchData;
 import com.longhair.bloodrecovery.entity.CardRequest;
 import com.longhair.bloodrecovery.entity.Donation;
 import com.longhair.bloodrecovery.entity.DonationHistory;
 import com.longhair.bloodrecovery.repository.CardDonationRepository;
 import com.longhair.bloodrecovery.repository.DonationRepository;
+import com.sun.istack.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +24,22 @@ public class CardDonationService {
 
     private final CardDonationRepository cardDonationRepository;
     private final DonationRepository donationRepository;
+
+    //검색 필터링 기능
+    public List<CardRequestSimpleDto> findCardRequestAll(SearchData searchData){
+        List<CardRequestSimpleDto> cardRequestSimpleDtos = new ArrayList<>();
+        List<CardRequest> cardRequests = new ArrayList<>();
+
+        switch (searchData.getSearchMode()){
+            case 2: //리액트때 민정이꺼 보기 편할려고 2로 해놓음ㅎ
+                cardRequests = cardDonationRepository.findCardRequestByCompleteStatus(true);
+                break;
+            default:
+                break;
+        }
+        cardRequests.forEach(e -> cardRequestSimpleDtos.add(new CardRequestSimpleDto(e)));
+        return cardRequestSimpleDtos;
+    }
 
     //기부 요청글 전체 조회
     public List<CardRequest> findAll() {
@@ -57,65 +77,19 @@ public class CardDonationService {
 //    }
 
     //기부 요청글 수정
-    public void updateCardRequsetById(CardRequest cardRequest){
-        Optional<CardRequest> e = cardDonationRepository.findById(cardRequest.getId());
-
+    public void updateCardRequestById(CardRequestUpdateDto cardRequestUpdateDto){
+        Optional<CardRequest> e = cardDonationRepository.findById(cardRequestUpdateDto.getId());
+        if (e.isPresent()){
+            CardRequest item = e.get();
+            item.setId(cardRequestUpdateDto.getId());
+            item.setUserId(cardRequestUpdateDto.getUserId());
+            item.setTitle(cardRequestUpdateDto.getTitle());
+            item.setContexts(cardRequestUpdateDto.getContexts());
+            item.setImage(cardRequestUpdateDto.getImage());
+            cardDonationRepository.save(item);
+            System.out.println("업데이트 완료");
+        }
     }
 
-//    public void updateDirectDonationById(DirectDonationUpdateDto directDonationUpdateDto){
-//        System.out.println(directDonationUpdateDto.getId());
-//        Optional<DirectDonation> e = directDonationRepository.findById(directDonationUpdateDto.getId());
-//        if(e.isPresent()){
-//            DirectDonation item = e.get();
-//            item.setId(directDonationUpdateDto.getId());
-//            item.setRequesterUserId(directDonationUpdateDto.getRequesterUserId());
-//            item.setTitle(directDonationUpdateDto.getTitle());
-//            item.setContents(directDonationUpdateDto.getContents());
-//            item.setImage(directDonationUpdateDto.getImage());
-//            item.setDate(directDonationUpdateDto.getDate());
-//            item.setPeriodFrom(directDonationUpdateDto.getPeriodFrom());
-//            item.setPeriodTo(directDonationUpdateDto.getPeriodTo());
-//            item.setCompleteStatus(directDonationUpdateDto.getCompleteStatus());
-//            directDonationRepository.save(item);
-//            System.out.println("업데이트 됨");
-//        }
-//    }
-
-
-
-    //기부하기
-    public Donation donate(Donation donation){
-
-        /* 1. Donation 정보 저장 */
-        Donation savedonation = new Donation();
-        savedonation.setId(donation.getId());
-        savedonation.setUserId(donation.getUserId());
-        savedonation.setCode(donation.getCode());
-        savedonation.setNickname(donation.getNickname());
-        savedonation.setGiveCount(donation.getGiveCount());
-        savedonation.setRequestId(donation.getRequestId());
-
-        /* 2. CardRequest 정보 조회 => 매핑 테이블의 외래키로 저장하기 위해서 */
-        CardRequest cardRequest = new CardRequest();
-        cardRequest.setId(cardRequest.getId());
-
-        DonationHistory donationHistory = new DonationHistory();
-        donationHistory.setCardRequest(cardRequest);
-        donationHistory.setDonation(savedonation);
-
-        //기부 정보 저장
-        Donation saveDonation = donationRepository.save(donation);
-
-        return saveDonation; //여기에 이걸로 해도 되겠지..?ㅎ
-    }
-
-
-    //기부자 목록 조회 => 기부 요청글 밑에 출력
-
-    //기부 요청글 등록
-
-    //기부 요청글 수정
-
-    //기부 요청글 삭제
 
 }
