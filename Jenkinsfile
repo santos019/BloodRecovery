@@ -45,13 +45,7 @@ pipeline {
         }
         stage('Deploy'){
             steps {
-                script{
-                    withAWS(role: 'arn:aws:iam::709745608741:role/ecsTaskExecutionRole', roleAccount: '709745608741', externalId: 'externalId') {
-                        sh"""
-                            aws ecs update-service --region us-east-2 --cluster BloodRecovery --service Direct-SVC --force-new-deployment
-                        """
-                    }
-                }
+                sh "aws ecs update-service --region us-east-2 --cluster BloodRecovery --service Direct-SVC --force-new-deployment"
             }
         }
 //         stage('Remote SSH'){
