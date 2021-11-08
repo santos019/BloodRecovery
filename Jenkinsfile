@@ -45,10 +45,7 @@ pipeline {
         }
         stage('Deploy'){
             steps {
-                sh """
-                #!/bin/bash
-                aws ecs update-service --region us-east-2 --cluster BloodRecovery --service Direct-SVC --force-new-deployment
-                """
+                sh "/usr/local/bin/aws ecs update-service --region us-east-2 --cluster BloodRecovery --service Direct-SVC --force-new-deployment"
             }
         }
 //         stage('Remote SSH'){
