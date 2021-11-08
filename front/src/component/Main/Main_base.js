@@ -13,7 +13,7 @@ import Notice_main from "../Notice/Notice_main";
 import Rank_main from "../Rank/Rank_main";
 import Bloodhouse_main from "../Bloodhouse/Bloodhouse_main";
 import Header_nav_login from "../Common/Header/Header_nav_login";
-
+import Directed_write from "../Directed/Directed_write";
 import "./Main_base.css";
 import Mypage_main from "../Mypage/Mypage_main";
 import Directed_inquire from "../Directed/Directed_inquire";
@@ -163,7 +163,7 @@ function Main_base() {
                        지정헌혈: <Directed_main getsetValue2={getsetValue2}></Directed_main>,
                        지정헌혈조회:<Directed_inquire getsetValue3={getsetValue3} id={sendid} ></Directed_inquire>,
                        //헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
-                        헌혈의_집_예약:<Mypage_main></Mypage_main>,                    
+                        헌혈의_집_예약:<Directed_write></Directed_write>,                    
                        공지사항: <Notice_main></Notice_main>,
                        로그인: <Login_main loginsuccess={loginsuccess}></Login_main>,
                        회원가입: <Join_main getsetValue1={getsetValue1}></Join_main>,
