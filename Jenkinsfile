@@ -46,7 +46,7 @@ pipeline {
         stage('Deploy'){
             steps {
                 script{
-                    withAWS(credentials:"$AWS_CREDENTIALS") {
+                    withAWS(role: 'ecsTaskExecutionRole', roleAccount: '709745608741', externalId: 'externalId') {
                         sh"""
                             aws ecs update-service --region us-east-2 --cluster BloodRecovery --service Direct-SVC --force-new-deployment
                         """
