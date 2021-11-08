@@ -189,3 +189,24 @@
     border-top:1px solid rgb(91, 92, 91) ;
     color: #fb4d4e;
   }
+  .Directed-inquire-footer-mypost{
+      width: 100%;
+      height: 15%;
+      background-color: #941515;
+      font-size: 17px;
+  }
+  .Directed-inquire-footer-repost{
+      width: 8%;
+      background-color: rgb(158, 93, 8);
+      float:right;
+      color: rgb(0, 0, 0);
+      cursor: pointer;
+  }
+  .Directed-inquire-footer-delete{
+    width: 8%;
+    background-color: rgb(190, 182, 170);
+    float:right;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+
+  }

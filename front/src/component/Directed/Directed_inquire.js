@@ -37,7 +37,7 @@ const Directed_inquire = (id) => {
             .then(function (response) {
 
                 setGetData(response);
-                console.log("response", response)
+                console.log("response1", response)
 
             });
 
@@ -54,7 +54,18 @@ const Directed_inquire = (id) => {
             });
 
     }, []);
+    const deleteData=()=>{
 
+        axios
+        .delete("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + id.id)
+
+        .then(function (response) {
+            alert("게시글이 삭제되었습니다.")
+            console.log("response", response)
+
+        });
+
+    }
     const writeStatue = (status) => {
         if (status === false)
             return "진행중";
@@ -132,9 +143,19 @@ const Directed_inquire = (id) => {
                         </div>
                     </div>
                     <div className="Directed-inquire-footer-container">
-                    {viewData===true?<Directed_inquire_default_data id={id}></Directed_inquire_default_data>
+                        {getData?.data.requesterUserId===sessionStorage.getItem("userId") ?<div>
+                            <div className="Directed-inquire-footer-mypost">
+                                <div className="Directed-inquire-footer-delete" onClick={deleteData}>
+                                삭제
+                                </div>
+                                <div className="Directed-inquire-footer-repost">
+                                    수정
+                                </div>
+                            </div>
+                        </div>: viewData===true?<Directed_inquire_default_data id={id}></Directed_inquire_default_data>
                         :<Directed_inquire_default id={id} getValue={getValue}></Directed_inquire_default>}
-                        <div className="Directed-inquire-footer-applicant">
+
+                                           <div className="Directed-inquire-footer-applicant">
                             기부자
                         </div>
                     </div>
