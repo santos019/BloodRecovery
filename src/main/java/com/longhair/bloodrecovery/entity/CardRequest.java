@@ -23,7 +23,7 @@ public class CardRequest {
     private String userId; //요청자 아이디
     private String nickname; //요청자 닉네임
     private Integer level; //요청자 등급
-    //포인트도 필요한가?
+    private Integer point; //요청자 포인트
 
     private String title; //요청글 제목
     private String contents; //요청글 내용

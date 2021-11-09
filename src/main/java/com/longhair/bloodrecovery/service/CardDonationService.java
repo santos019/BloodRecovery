@@ -62,10 +62,11 @@ public class CardDonationService {
 
         Map<String, Object> pointMap = new HashMap<>();
         pointMap.put("userId", cardRequest.getUserId());
-        pointMap.put("plusPoint", 0); //이 부분 덜 됨
-        //TODO
+        pointMap.put("plusPoint", (cardRequest.getRequestCount() - cardRequest.getDonationCount()) * 50);
+        //((요청한 헌혈증 개수 - 기부 받은 헌혈증 개수) * 50 )만큼 포인트 돌려받기
         pointMap.put("minusPoint", cardRequest.getRequestCount() * 50); //요청 수 마다 50포인트 차감
-        pointMap.put("breakdown", "헌혈증기부" + cardRequest.getRequestCount() + "개의 포인트 차감"); //이 부분은 뭐지..?ㅎ
+        pointMap.put("breakdown", "헌혈증기부" + cardRequest.getRequestCount() + "개의 포인트 차감");
+
         ResponseEntity<Map> result = rt.exchange(location, HttpMethod.PUT, new HttpEntity<>(pointMap), Map.class);
         if (!Boolean.parseBoolean(result.getBody().get("result").toString())){
             return new CardRequest();
@@ -75,6 +76,7 @@ public class CardDonationService {
         Map map = rt.getForObject(location, Map.class);
         cardRequest.setNickname(map.get("nickname").toString());
         cardRequest.setLevel(Integer.parseInt(map.get("level").toString()));
+        cardRequest.setPoint(Integer.parseInt(map.get("point").toString()));
         cardRequest.setCompleteStatus(false); //완료상태가 아니다!
 
         cardDonationRepository.save(cardRequest);
