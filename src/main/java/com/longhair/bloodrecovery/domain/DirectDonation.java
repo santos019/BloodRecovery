@@ -39,6 +39,7 @@ public class DirectDonation {
     private String patientName;
     private String hospitalName;
     private String roomNumber;
+    private String phoneNumber;
 
     @OneToMany(mappedBy="directDonation")
     private List<Applicant> applicants = new ArrayList<>();
