@@ -20,13 +20,14 @@ public class RankController {
     private final RankService rankService;
 
     //전체 랭킹 조회
+    @CrossOrigin("*")
     @GetMapping("/rankings")
     public  List<Rank> ranks() {
       return rankService.findAll();
     }
 
-    //나의 랭킹 조회
-    @GetMapping("/rankings/{userId}") //설계서 추가.. 유저아이디로 바꿈
+    //나의 랭킹 조회 -> userId로 조회
+    @GetMapping("/rankings/{userId}")
     public  Rank myRank(@PathVariable("userId") String userId){
         return rankService.findOne(userId);
     }
