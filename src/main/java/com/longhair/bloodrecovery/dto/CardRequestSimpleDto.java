@@ -4,6 +4,7 @@ import com.longhair.bloodrecovery.entity.CardRequest;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 public class CardRequestSimpleDto {
@@ -14,7 +15,7 @@ public class CardRequestSimpleDto {
     private String title; //요청글 제목
     private int requestCount; //요청한 헌혈증 개수
     private int donationCount; //기부받은 헌혈증 개수
-    private LocalDate requestDate; //기부 요청한 날짜
+    private LocalDateTime requestDate; //기부 요청한 날짜
 
     public CardRequestSimpleDto(CardRequest cardRequest){
         id = cardRequest.getId();
