@@ -32,9 +32,7 @@ var register1EXP=/^[0-9]{6}$/
 var register2EXP=/^[0-9]{7}$/
 const {join_nickname, join_id,join_password, join_passwordconfirm,join_name,join_register1,join_register2  } = inputs   
 const join_agreement=false;
-const sendValue=(text)=>{
-    props.getsetValue(text);
-}
+
 const onChange1=(e)=>{
 
     setAgreement(!agreement)
@@ -180,7 +178,7 @@ console.log(personalNumber);
                 <div className="Join-userdata-nickname-text-class">
                     <div className="Textbox">
                         <span className="Textbox-name-class" for="Textbox-class">닉네임</span>
-                        <input type="text" name="join_nickname" value={join_nickname} onChange={onChange}className="Textbox-class">
+                        <input type="text1" name="join_nickname" value={join_nickname} onChange={onChange}className="Textbox-class">
                         </input>
                     </div>
                 </div>
@@ -197,7 +195,7 @@ console.log(personalNumber);
                 <div className="Join-userdata-nickname-text-class">
                 <div className="Textbox">
                         <span className="Textbox-name-class" for="Textbox-class">아이디</span>
-                        <input type="text" name="join_id" value={join_id} onChange={onChange} className="Textbox-class">
+                        <input type="text1" name="join_id" value={join_id} onChange={onChange} className="Textbox-class">
                         </input>
                     </div>  
                 </div>
@@ -208,31 +206,31 @@ console.log(personalNumber);
             <div className="Join-userdata-nickname-text-class">
             <div className="Textbox">
                         <span className="Textbox-name-class" for="Textbox-class">비밀번호</span>
-                        <input type="text" name="join_password" value={join_password} onChange={onChange} className="Textbox-class">
+                        <input type="text1" name="join_password" value={join_password} onChange={onChange} className="Textbox-class">
                         </input>
                     </div>
             </div>
             <div className="Join-userdata-nickname-text-class">
             <div className="Textbox">
                         <span className="Textbox-name-class" for="Textbox-class">비밀번호 확인</span>
-                        <input type="text" name="join_passwordconfirm" value={join_passwordconfirm} onChange={onChange} className="Textbox-class">
+                        <input type="text1" name="join_passwordconfirm" value={join_passwordconfirm} onChange={onChange} className="Textbox-class">
                         </input>
                     </div>
             </div>
             <div className="Join-userdata-nickname-text-class">
             <div className="Textbox">
                         <span className="Textbox-name-class" for="Textbox-class">성명</span>
-                        <input type="text" name="join_name" value={join_name} onChange={onChange} className="Textbox-class">
+                        <input type="text1" name="join_name" value={join_name} onChange={onChange} className="Textbox-class">
                         </input>
                     </div>
             </div>
             <div className="Join-userdata-nickname-text-class">
             <div className="Textbox">
                         <span className="Textbox-name-class" for="Textbox-class">주민등록번호</span>
-                        <input type="text" maxlength='6' name="join_register1" value={join_register1} onChange={onChange} className="Textbox1-class">
+                        <input type="text1" maxlength='6' name="join_register1" value={join_register1} onChange={onChange} className="Textbox1-class">
                         </input> 
                         <p className="Join-userdata-register-p-class">-</p>
-                        <input type="text" maxlength='7'name="join_register2" value={join_register2} onChange={onChange} className="Textbox1-class">
+                        <input type="text1" maxlength='7'name="join_register2" value={join_register2} onChange={onChange} className="Textbox1-class">
                             </input> 
                     </div>
             </div>

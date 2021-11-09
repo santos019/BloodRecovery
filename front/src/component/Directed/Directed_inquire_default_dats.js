@@ -7,7 +7,7 @@ const Directed_inquire_default_data=(id)=>{
 const [getData,setGetData]=useState();
     useEffect(() => {
         axios
-            .get("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + id.id.id+"/patient")
+            .get("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" +  sessionStorage.getItem("directId")+"/patient")
 
             .then(function (response) {
 

@@ -87,12 +87,12 @@ const Login_main=(props)=>{
         <div className="Login-main-input-id-class">
           <img className="Login-main-idimg-class" src={IDIMG} />
 
-          <input className="Login-main-input-box-class" type="text" name="id" onChange={onChange} >
+          <input className="Login-main-input-box-class" type="text1" name="id" onChange={onChange} >
           </input>
         </div>
         <div className="Login-main-input-password-class">
           <img className="Login-main-idimg-class" src={PASSIMG} />
-          <input type="text" className="Login-main-input-box-class" name="password" onChange={onChange}>
+          <input type="text1" className="Login-main-input-box-class" name="password" onChange={onChange}>
           </input>
         </div>
       </div>

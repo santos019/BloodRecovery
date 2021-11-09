@@ -52,47 +52,21 @@ const Directed_main=(props)=>{
     
      
     }
-    const getsetValue3 = () => {
-        console.log("지정헌혈조회백")
-        props.getsetValue3();
-    
-     
-    }
-    const test=()=>
-    {console.log("zzzzzzzzzzzzzzzzzzzzzzz")}
+   
+  
     useEffect(() => {
         axios
             .get("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct")
-        //     .data(
-        //         {id: ,
-        // requesterId: ,
-        // requesterNickname: {},
-        // requesterLevel: {},
-        // title: {},
-        // locationSido: {},
-        // locationSigungu: {},
-        // periodTo: {},
-        // bloodType: {},
-        // completeStatus:{},}
-        //     )
             .then(function(response){
                 
                 setGetdata(response.data); 
                 newdata();
                 console.log("response",response)
-            // if(response != 'undefined' && response != null) {
-            //     setGetdata(response.data)
-            //  }
+          
 
             });
-            //key1= getData[0];
-            console.log("jet",key1)
-            
-            /*.then(response=>console.log(response))*/
-            //console.log("get"+JSON.stringify(getData))
-           
-           // alert(JSON.stringify(getData.data));
-        // .then(({ data }) => setRanks(data));
+   
+        
     }, []);
   
    
@@ -127,7 +101,7 @@ const Directed_main=(props)=>{
                   
                 </div>
                 <div className="Directed-main-nav-search-class">
-                    <input type="text" name="search_Data" className="Directed-main-input">
+                    <input type="text1" name="search_Data" className="Directed-main-input">
                     </input>
                     <div className="Directed-main-nav-searchicon-container">
                     <img src={SEARCHICON}  className="Directed-main-nav-searchicon-class"></img>
