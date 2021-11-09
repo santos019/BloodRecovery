@@ -2,8 +2,8 @@ pipeline {
     environment {
         registry = "chungil987/blood_recovery"
         registryCredential = 'docker'
-        version = "브랜치 이름(ex: direct)"
-        service = "서비스 이름(ex: Direct-SVC, Card-SVC, Mypage-SVC)"
+        version = "card"
+        service = "Card-SVC"
     }
     agent any
     stages {
