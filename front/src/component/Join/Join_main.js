@@ -7,15 +7,9 @@ import blood from "../../Img/blood.png";
 
 const Join_main=(props)=>{
     const [getValue, setValue] = useState("");
-    const getsetValue = (text) => {
-        setValue(text);
-       console.log(getValue)
-       sendValue(text)
-    }
+
   
-    const sendValue=(text)=>{
-        props.getsetValue1(text);
-    }
+   
    
 
     return (
@@ -48,7 +42,7 @@ const Join_main=(props)=>{
             </div>
             <div className="Join-main-userdata-container-class">
             <div className="Join-main-userdata-class">
-                <Join_userdata getsetValue={getsetValue}></Join_userdata>
+                <Join_userdata></Join_userdata>
             </div>
             </div>
         

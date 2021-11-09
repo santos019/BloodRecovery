@@ -8,14 +8,15 @@ import BLOODDROP from "../../Img/DirectedIMG/blood-drop.png";
 import LOCATION from "../../Img/DirectedIMG/location.png";
 import Directed_inquire from './Directed_inquire';
 import Directed_main from "./Directed_main";
-
+import {connect} from 'react-redux'
+import {addPage} from '../../component/Modalmove/subscribers/action'
 const gradefunction=(Grade)=>{
 
-    if(Grade===34) //BRONZE 예정
+    if(Grade===1) //BRONZE 예정
         return (<img className="Directed-img-userimg" src={BRONZE}></img>)
-    else if(Grade===32) //SIVER 예정
+    else if(Grade===2) //SIVER 예정
         return (<img className="Directed-img-userimg" src={SIVER}></img>)
-    else if(Grade===30) //GOLD 예정
+    else if(Grade===3) //GOLD 예정
         return (<img className="Directed-img-userimg" src={GOLD}></img>)
     else //레벨4 VIP
         return (<img className="Directed-img-userimg" src={VIP}></img>)
@@ -34,27 +35,22 @@ const dividedate=(inputdate)=>{
 
 }
 
-const choicestatus=()=>{
 
-
-
-}
 
 const Directed_card=(getData)=>{
-    const sendValue=(text)=>{
-        getData.getsetValue(text);
-        //그냥이렇게하면된다!!
-    } 
-
+    // const sendValue=(text)=>{
+    //     getData.getsetValue3(getData.getData.id);
+    //     //그냥이렇게하면된다!!
+    // } 
 
     return(
         
-        <div className="Directed-card-container" onClick={sendValue}>
+        <div className="Directed-card-container" onClick={ ()=>getData.addPage("지정헌혈조회")}>
 
             <div className="Directed-card-nav-container">
                 <div className="Directed-card-nav-usericon-class">
                    {
-                       gradefunction(getData.getData?.requesterId)
+                       gradefunction(getData.getData?.requesterLevel)
                      
                    }
                 </div>
@@ -113,5 +109,15 @@ const Directed_card=(getData)=>{
     )
 
 }
-
-export default Directed_card;
+const mapStateToProps=(state)=>{
+    return{
+        page:state.page
+        
+    }
+}
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        addPage: (text)=>dispatch(addPage(text))
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Directed_card);
