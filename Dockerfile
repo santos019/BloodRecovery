@@ -3,4 +3,4 @@ EXPOSE 8003
 VOLUME /tmp
 ARG JAR_FILE=build/libs/*SNAPSHOT.jar
 COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java", "-jar", "/app.jar", "-Duser.timezone=Asia/Seoul"]
+ENTRYPOINT ["java", "-jar", "-Duser.timezone=Asia/Seoul", "/app.jar"]
