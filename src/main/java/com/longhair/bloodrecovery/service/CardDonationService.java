@@ -10,12 +10,14 @@ import com.longhair.bloodrecovery.repository.CardDonationRepository;
 import com.longhair.bloodrecovery.repository.DonationRepository;
 import com.sun.istack.NotNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Transactional
@@ -54,8 +56,29 @@ public class CardDonationService {
 
     //기부 요청글 등록
     public CardRequest saveCardRequest(CardRequest cardRequest){
-        cardRequest.setCompleteStatus(false);
+
+        RestTemplate rt = new RestTemplate();
+        String location = "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/" + "point"; //url은 유저꺼
+
+        Map<String, Object> pointMap = new HashMap<>();
+        pointMap.put("userId", cardRequest.getUserId());
+        pointMap.put("plusPoint", 0); //이 부분 덜 됨
+        //TODO
+        pointMap.put("minusPoint", cardRequest.getRequestCount() * 50); //요청 수 마다 50포인트 차감
+        pointMap.put("breakdown", "헌혈증기부" + cardRequest.getRequestCount() + "개의 포인트 차감"); //이 부분은 뭐지..?ㅎ
+        ResponseEntity<Map> result = rt.exchange(location, HttpMethod.PUT, new HttpEntity<>(pointMap), Map.class);
+        if (!Boolean.parseBoolean(result.getBody().get("result").toString())){
+            return new CardRequest();
+        }
+
+        location = "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/" + "info/" + cardRequest.getUserId();
+        Map map = rt.getForObject(location, Map.class);
+        cardRequest.setNickname(map.get("nickname").toString());
+        cardRequest.setLevel(Integer.parseInt(map.get("level").toString()));
+        cardRequest.setCompleteStatus(false); //완료상태가 아니다!
+
         cardDonationRepository.save(cardRequest);
+
         return cardRequest;
     }
 
@@ -84,7 +107,7 @@ public class CardDonationService {
             item.setId(cardRequestUpdateDto.getId());
             item.setUserId(cardRequestUpdateDto.getUserId());
             item.setTitle(cardRequestUpdateDto.getTitle());
-            item.setContexts(cardRequestUpdateDto.getContexts());
+            item.setContents(cardRequestUpdateDto.getContents());
             item.setImage(cardRequestUpdateDto.getImage());
             cardDonationRepository.save(item);
             System.out.println("업데이트 완료");

@@ -10,7 +10,7 @@ public class CardRequestSimpleDto {
     private Long id;
 //    private String userId; //얘 필요한가..?
     private String nickname; //요청자 닉네임
-    private String level; //요청자 등급
+    private Integer level; //요청자 등급
     private String title; //요청글 제목
     private int requestCount; //요청한 헌혈증 개수
     private int donationCount; //기부받은 헌혈증 개수
