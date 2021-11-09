@@ -22,11 +22,11 @@ public class CardRequest {
     //User
     private String userId; //요청자 아이디
     private String nickname; //요청자 닉네임
-    private String level; //요청자 등급
+    private Integer level; //요청자 등급
     //포인트도 필요한가?
 
     private String title; //요청글 제목
-    private String contexts; //요청글 내용
+    private String contents; //요청글 내용
     private String image; //요청글에 첨부하는 이미지 주소
     private int requestCount; //요청한 헌혈증 개수
     private int donationCount; //기부받은 헌혈증 개수

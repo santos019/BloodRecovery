@@ -67,9 +67,9 @@ public class CardDonationController {
 
     //기부하기
     @PostMapping("/requests/requestItem/{id}/donation")
-    public String request_donation(@RequestBody Donation donation) {
+    public String request_donation(@RequestBody Donation donation, @PathVariable("id") Long id) {
         donationService.donate(donation);
-        return "redirect:/기부요청글 주소";
+        return "redirect:/requestItem/{id}";
     }
 
     //기부자 목록 조회 => 기부 요청글 밑에 출력
