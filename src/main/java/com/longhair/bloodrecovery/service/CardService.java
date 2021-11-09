@@ -20,6 +20,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
+import java.util.regex.Pattern;
 
 @Service
 @Transactional
@@ -56,10 +57,13 @@ public class CardService {
 
     public OcrDto useOcr(Image image){
         OcrDto ocrDto = new OcrDto();
+        String compareName = "성 명: ";
+        String compareType = "헌혈종류: ";
+        String compareDate = "헌혈일자: ";
 
         //OCR 초기설정
         List<AnnotateImageRequest> requests = new ArrayList<>();
-        Feature feature = Feature.newBuilder().setType(Feature.Type.TEXT_DETECTION).build();
+        Feature feature = Feature.newBuilder().setType(Feature.Type.DOCUMENT_TEXT_DETECTION).build();
         AnnotateImageRequest request = AnnotateImageRequest.newBuilder().addFeatures(feature).setImage(image).build();
         requests.add(request);
 
@@ -69,45 +73,30 @@ public class CardService {
             BatchAnnotateImagesResponse response = client.batchAnnotateImages(requests);
             List<AnnotateImageResponse> responses = response.getResponsesList();
 
-            //결과값(String) 저장
-            for (AnnotateImageResponse res : responses) {
-                if (res.hasError()) {
-                    log.error(res.getError().getMessage());
-                }
-                // For full list of available annotations, see http://g.co/cloud/vision/docs
-                for (EntityAnnotation annotation : res.getTextAnnotationsList()) {
-                    log.info("Text: " + annotation.getDescription());
-                    responseString += annotation.getDescription();
-                }
-            }
-            //저장된 결과값(String) Map으로 분류
+            responseString += responses.get(0).getTextAnnotationsList().get(0).getDescription();
+            log.info(responseString);
+
             String[] strings = responseString.split("\n");
+            String name = "";
+            String type = "";
+            String date = "";
+            String code = strings[0];
             for(String e : strings){
-                if(e.contains(":")){
-                    String[] items = e.split(":");
-                    String tmp = items[0].replaceAll("\\s", "");
-                    String tmp2 = items[1].replaceAll("\\s", "");
-                    //TODO 헌혈증 바코드값 입력 해야함.
-                    switch (tmp) {
-                        case "헌혈종류":
-                            items[0] = "donationType";
-                            ocrDto.setDonationType(tmp2);
-                            break;
-                        case "성명":
-                            ocrDto.setName(tmp2);
-                            break;
-                        case "생년월일":
-                            ocrDto.setBirth(tmp2);
-                            break;
-                        case "헌혈일자":
-                            ocrDto.setDate(tmp2);
-                            break;
-                        case "성별":
-                            ocrDto.setSex(tmp2);
-                            break;
-                    }
+                if(e.contains(compareName)){
+                    name = e.split(compareName)[1].split(" ")[0];
+                }
+                if(e.contains(compareType)){
+                    type = e.split(compareType)[1];
+                }
+                if(e.contains(compareDate)){
+                    date = e.split(compareDate)[1];
                 }
             }
+            log.info("result[ code:" + code + ", name:" + name + ", type:" + type + ", date:" + date + " ]");
+            ocrDto.setName(name);
+            ocrDto.setDonationType(type);
+            ocrDto.setCode(code);
+            ocrDto.setDate(date);
         } catch (Exception e){
             e.printStackTrace();
         }
