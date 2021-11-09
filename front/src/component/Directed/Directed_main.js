@@ -7,7 +7,8 @@ import SEARCHICON from '../../Img/searchicon.png';
 import WRITEICON from '../../Img/WRITE.png';
 import Directed_card from './Directed_card';
 import Directed_inquire from './Directed_inquire';
-
+import {connect} from 'react-redux'
+import {addPage} from '../../component/Modalmove/subscribers/action'
 import axios from "axios";
 
 
@@ -111,7 +112,10 @@ const Directed_main=(props)=>{
       // console.log(arrNumber)
     }
 
+    const movepage=(text)=>{
+       
 
+       }
 
     return (
 
@@ -126,7 +130,7 @@ const Directed_main=(props)=>{
                     <input type="text" name="search_Data" className="Directed-main-input">
                     </input>
                     <div className="Directed-main-nav-searchicon-container">
-                    <img src={SEARCHICON} className="Directed-main-nav-searchicon-class"></img>
+                    <img src={SEARCHICON}  className="Directed-main-nav-searchicon-class"></img>
                     </div>
                 </div>
                 <div className="Directed-main-nav-select-class">
@@ -136,7 +140,7 @@ const Directed_main=(props)=>{
                     <SelectBox2></SelectBox2>
                 </div>
                 <div className="Directed-main-nav-write-class">
-                    <img src={WRITEICON} className="Directed-main-nav-writeicon-class"></img>
+                    <img src={WRITEICON} onClick={()=>props.addPage("지정헌혈_글쓰기")} className="Directed-main-nav-writeicon-class"></img>
                 </div>
             </div>
             <div className="Directed-main-cardmain-container">
@@ -154,5 +158,16 @@ const Directed_main=(props)=>{
         </div>
     )
 }
+const mapStateToProps=(state)=>{
+    return{
+        page:state.page
+        
+    }
+}
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        addPage: (text)=>dispatch(addPage(text))
+    }
+}
 
-export default Directed_main;
+export default connect(mapStateToProps,mapDispatchToProps)(Directed_main);

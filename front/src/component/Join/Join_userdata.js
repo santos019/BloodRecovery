@@ -2,7 +2,8 @@ import react, { useCallback, useState } from "react";
 import './Join_userdata.css';
 import Common_Button from "../Common/Button/Common_Button";
 import axios from "axios";
-
+import {connect} from 'react-redux'
+import {addPage} from '../../component/Modalmove/subscribers/action'
 
 const Join_userdata=(props)=>{
     
@@ -142,7 +143,8 @@ console.log(personalNumber);
 
 
     {   alert_blank=7;
-        sendValue(alert_blank);
+        alert("회원가입이 완료되었습니다")
+        props.addPage("로그인")
     }
     // if(alert_blank==2) alert("양식을 올바르게 입력해주세요")
     //     //else if() 나머지는 api와 연동한뒤구현예정
@@ -247,5 +249,16 @@ console.log(personalNumber);
         </div>
     )
 }
+const mapStateToProps=(state)=>{
+    return{
+        page:state.page
+        
+    }
+}
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        addPage: (text)=>dispatch(addPage(text))
+    }
+}
 
-export default Join_userdata;
+export default connect(mapStateToProps,mapDispatchToProps)(Join_userdata);
