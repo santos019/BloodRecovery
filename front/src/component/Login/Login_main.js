@@ -5,13 +5,13 @@ import IDIMG from '../../Img/login.png';
 import PASSIMG from '../../Img/password.png';
 import blood from '../../Img/blood.png';
 import axios from "axios";
-
+import {connect} from 'react-redux'
+import {addPage} from '../../component/Modalmove/subscribers/action'
 const Login_main=(props)=>{
 
   const [loginId, setLoginid] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  //{sessionStorage.setItem("domain", "webisfresse.com")}
-  //{sessionStorage.getItem("domain")}
+
 
   const [inputs, setInputs] = useState({
 

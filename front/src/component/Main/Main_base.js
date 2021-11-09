@@ -17,9 +17,12 @@ import Directed_write from "../Directed/Directed_write";
 import "./Main_base.css";
 import Mypage_main from "../Mypage/Mypage_main";
 import Directed_inquire from "../Directed/Directed_inquire";
+import {connect} from 'react-redux'
+import {addPage} from '../../component/Modalmove/subscribers/action'
 var text="";
 var sendid;
-function Main_base() {
+var num=0;
+function Main_base(props) {
     var tmp;
     const modal_style = {
 
@@ -57,12 +60,11 @@ function Main_base() {
         window.localStorage.setItem("modal", JSON.stringify(modal));
     }, [modal]);
     const [testvalue,settestvalue]=useState(true);
-    const [getValue, setValue] = useState("");
-    //const [getidValue,setGetidValue]=useState(0);
     const getsetValue = (text) => {
-        setValue(text);
+
+        props.addPage(text)
         setModalIsOpen(true);
-        setmodal(text);
+      
     }
     const getsetValue1 = (text) => {
         console.log(text)
@@ -82,11 +84,7 @@ function Main_base() {
       
         setmodal("지정헌혈");
     }
-    // const datesent=(getDate)=>{
-    //     console.log("getDate~",getDate)
-    //     return getDate;
-
-    // }
+  
     const logoutsuccess=()=>
     {   //로그인수정 중복된값을 넣어서 새로 렌더링이안되었던거같음
         settestvalue(!testvalue)
@@ -97,24 +95,19 @@ function Main_base() {
         console.log(text)
         setModalIsOpen(false)
     }
-    const onChageClick=(menu,e)=>{
-        setModalIsOpen(true);
-        setmodal(menu);
-
-    }
-   useEffect(()=>{
-
-
-
-   })
+  
+   function movepage(text){
+    props.addPage(text)
+    setModalIsOpen(true);
+   }
   
     return (
         <div className="Main-base-class">
             
             <div className="Main-base-Header-container-class">
-          
+          {console.log(props.index)}
+          {console.log("last",JSON.parse(window.localStorage.getItem("last")))}
             <div className="Main-base-Header-class"  >
-                {/*</div><div className="Main-base-Header-class" onClick={() => setModalIsOpen(true)}>*/}
                 {console.log("main",sessionStorage.getItem("userid"))}
                 {sessionStorage.getItem("userId")===null?<Header_nav value={text} getsetValue={getsetValue}></Header_nav>:<Header_nav_login logoutsuccess={logoutsuccess}></Header_nav_login>}
                     {/*<div className="test1" onClick={() => onChageClick2(getValue)}> emry</div>
@@ -136,19 +129,20 @@ function Main_base() {
             <div className="Main-base-list-container-class">
                 <div className="Main-base-list-class" >
                     {/*<Main_list></Main_list>*/}
-                    <div className="Main-base-list-button" onClick={(e)=>{onChageClick("헌혈증_기부",e)}}>                  
+                    <div className="Main-base-list-button" onClick={()=>movepage("헌혈증_기부")}>                  
                         <Main_Button name={"헌혈증 기부"} ></Main_Button>
                     </div>
-                    <div className="Main-base-list-button" onClick={(e)=>{onChageClick("지정헌혈",e)}}>
+                    <div className="Main-base-list-button" onClick={()=>movepage("지정헌혈")}>
                         <Main_Button name={"지정헌혈"} ></Main_Button>
                     </div>
-                    <div className="Main-base-list-button" onClick={(e)=>{onChageClick("헌혈의_집_예약",e)}}>
+                    <div className="Main-base-list-button" onClick={()=>movepage("헌혈의_집_예약")}>
                         <Main_Button name={"헌혈의 집 예약"} ></Main_Button>
                     </div>
 
-                    <div className="Main-base-list-button" onClick={(e)=>{onChageClick("공지사항",e)}}>
+                    <div className="Main-base-list-button" onClick={()=>movepage("공지사항")}>
                         <Main_Button name={"공지사항"} ></Main_Button>
                     </div>
+            
                 </div>
             </div>
 
@@ -162,14 +156,15 @@ function Main_base() {
                        헌혈증_기부: <Board_main></Board_main>,
                        지정헌혈: <Directed_main getsetValue2={getsetValue2}></Directed_main>,
                        지정헌혈조회:<Directed_inquire getsetValue3={getsetValue3} id={sendid} ></Directed_inquire>,
+                       지정헌혈_글쓰기:<Directed_write></Directed_write>,
                        //헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
                         헌혈의_집_예약:<Directed_write></Directed_write>,                    
                        공지사항: <Notice_main></Notice_main>,
                        로그인: <Login_main loginsuccess={loginsuccess}></Login_main>,
-                       회원가입: <Join_main getsetValue1={getsetValue1}></Join_main>,
+                       회원가입: <Join_main></Join_main>,
                        랭킹: <Rank_main></Rank_main>,
 
-                }[modal]
+                }[JSON.parse(window.localStorage.getItem("last"))]
                 
                 }
 
@@ -183,6 +178,18 @@ function Main_base() {
     )
 
 }
+const mapStateToProps=(state)=>{
+    return{
+        page:state.page,
+        index:state.index
+        
+    }
+}
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        addPage: (text)=>dispatch(addPage(text))
+    }
+}
 
-export default Main_base;
+export default connect(mapStateToProps,mapDispatchToProps)(Main_base);
 

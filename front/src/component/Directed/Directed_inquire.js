@@ -13,6 +13,8 @@ import VIP from "../../Img/Grade/1_vip.png";
 import axios from "axios";
 import Directed_inquire_default from "./Directed_inquire_default";
 import Directed_inquire_default_data from "./Directed_inquire_default_dats";
+import {connect} from 'react-redux'
+import {addPage} from '../../component/Modalmove/subscribers/action'
 import './Directed_inquire.css';
 
 
@@ -102,7 +104,7 @@ const Directed_inquire = (id) => {
                     {console.log(id.id)}
                 </div>
                 <div className="Directed-inquire-nav-goback">
-                    <img className="Directed-inquire-goback-bntimg-class" onClick={sendValue} src={GOBACKBTN}></img>
+                    <img className="Directed-inquire-goback-bntimg-class" onClick={()=>id.addPage("지정헌혈")} src={GOBACKBTN}></img>
                 </div>
             </div>
             <div className="Directed-inquire-content-container">
@@ -165,5 +167,16 @@ const Directed_inquire = (id) => {
     )
 
 }
+const mapStateToProps=(state)=>{
+    return{
+        page:state.page
+        
+    }
+}
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        addPage: (text)=>dispatch(addPage(text))
+    }
+}
 
-export default Directed_inquire;
+export default  connect(mapStateToProps,mapDispatchToProps)(Directed_inquire);

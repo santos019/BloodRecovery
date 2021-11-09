@@ -8,7 +8,8 @@ import BLOODDROP from "../../Img/DirectedIMG/blood-drop.png";
 import LOCATION from "../../Img/DirectedIMG/location.png";
 import Directed_inquire from './Directed_inquire';
 import Directed_main from "./Directed_main";
-
+import {connect} from 'react-redux'
+import {addPage} from '../../component/Modalmove/subscribers/action'
 const gradefunction=(Grade)=>{
 
     if(Grade===1) //BRONZE 예정
@@ -37,14 +38,14 @@ const dividedate=(inputdate)=>{
 
 
 const Directed_card=(getData)=>{
-    const sendValue=(text)=>{
-        getData.getsetValue3(getData.getData.id);
-        //그냥이렇게하면된다!!
-    } 
+    // const sendValue=(text)=>{
+    //     getData.getsetValue3(getData.getData.id);
+    //     //그냥이렇게하면된다!!
+    // } 
 
     return(
         
-        <div className="Directed-card-container" onClick={sendValue}>
+        <div className="Directed-card-container" onClick={ ()=>getData.addPage("지정헌혈조회")}>
 
             <div className="Directed-card-nav-container">
                 <div className="Directed-card-nav-usericon-class">
@@ -108,5 +109,15 @@ const Directed_card=(getData)=>{
     )
 
 }
-
-export default Directed_card;
+const mapStateToProps=(state)=>{
+    return{
+        page:state.page
+        
+    }
+}
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        addPage: (text)=>dispatch(addPage(text))
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Directed_card);
