@@ -41,10 +41,9 @@ public class CardDonationController {
 
     //기부 특정 요청글 조회
     @GetMapping("/requests/{id}")
-    public CardRequest cardRequest(@PathParam("id") Long id) {
+    public CardRequest cardRequest(@PathVariable("id") Long id) {
         return cardDonationService.findById(id);
     }
-
 
     //기부 요청글 등록
     @PostMapping("/requests/requestItem")
