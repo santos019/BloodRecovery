@@ -15,9 +15,9 @@ spring:
 
   # jpa
   jpa:
-    #    database: mysql
-    #    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    database-platform: org.hibernate.dialect.H2Dialect
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    # database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
     hibernate:
       ddl-auto: create
