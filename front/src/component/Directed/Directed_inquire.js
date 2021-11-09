@@ -34,7 +34,7 @@ const Directed_inquire = (id) => {
     }
     useEffect(() => {
         axios
-            .get("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + id.id)
+            .get("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + sessionStorage.getItem("directId"))
 
             .then(function (response) {
 

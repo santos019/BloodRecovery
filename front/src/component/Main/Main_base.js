@@ -164,7 +164,7 @@ function Main_base(props) {
                        회원가입: <Join_main></Join_main>,
                        랭킹: <Rank_main></Rank_main>,
 
-                }[JSON.parse(window.localStorage.getItem("last"))]
+                }[JSON.parse(window.sessionStorage.getItem("last"))]
                 
                 }
 

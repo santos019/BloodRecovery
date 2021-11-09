@@ -42,11 +42,16 @@ const Directed_card=(getData)=>{
     //     getData.getsetValue3(getData.getData.id);
     //     //그냥이렇게하면된다!!
     // } 
+    //게시글조회
+    function clickevent(){
 
+        sessionStorage.setItem("directId",getData.getData.id)
+        getData.addPage("지정헌혈조회")
+    }
+    
     return(
-        
-        <div className="Directed-card-container" onClick={ ()=>getData.addPage("지정헌혈조회")}>
-
+       
+        <div className="Directed-card-container" onClick={clickevent}>
             <div className="Directed-card-nav-container">
                 <div className="Directed-card-nav-usericon-class">
                    {

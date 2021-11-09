@@ -76,24 +76,6 @@ const Login_main=(props)=>{
 
   }
 
-  // useEffect(()=>{
-  //   let data = {
-  //     "id": "chungil987",
-  //     "password": "1234"
-  // }
-  // axios
-  // .post("http://ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/user/login",  JSON.stringify(inputs), {
-  //   headers: {
-  //     "Content-Type": `application/json`,
-  //   },
-  // })
-  // .then((res) => {
-  //   console.log(res);
-  // });
-
-
-  // },[])
-
 
   return (
     <div className="Login-main-class">

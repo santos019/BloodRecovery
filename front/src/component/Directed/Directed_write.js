@@ -2,13 +2,12 @@ import React from "react";
 import DIRECTEDIMG from '../../Img/DIRECTEDIMG.png';
 import GOBACKBTN from '../../Img/DirectedIMG/arrow.png';
 import Menu_left_nav from '../Common/Header/Menu_left_nav';
+import {connect} from 'react-redux'
+import {addPage} from '../../component/Modalmove/subscribers/action'
+
 function Directed_write(props) {
 
-    const sendValue = () => {
-        props.getsetValue3()
-        
-    
-    }
+   
     return (
 
         <div className="Directed-inquire-container">
@@ -18,7 +17,7 @@ function Directed_write(props) {
                     {console.log()}
                 </div>
                 <div className="Directed-inquire-nav-goback">
-                    <img className="Directed-inquire-goback-bntimg-class" onClick={sendValue} src={GOBACKBTN}></img>
+                    <img className="Directed-inquire-goback-bntimg-class" onClick={()=>props.addPage("지정헌혈")} src={GOBACKBTN}></img>
                 </div>
             </div>
             <div className="Directed-inquire-content-container">
@@ -51,4 +50,17 @@ function Directed_write(props) {
         </div>
     )
 }
-export default Directed_write;
+
+const mapStateToProps=(state)=>{
+    return{
+        page:state.page
+        
+    }
+}
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        addPage: (text)=>dispatch(addPage(text))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Directed_write);
