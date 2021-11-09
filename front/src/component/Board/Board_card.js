@@ -36,16 +36,12 @@ const dividedate = (inputdate) => {
 };
 
 const Board_card = (getData) => {
-  // const sendValue=(text)=>{
-  //     getData.getsetValue3(getData.getData.id);
-  //     //그냥이렇게하면된다!!
-  // }
-
+  function clickevent() {
+    sessionStorage.setItem("boardId", getData.getData.id);
+    getData.addPage("헌혈증요청조회");
+  }
   return (
-    <div
-      className="Board-card-container"
-      onClick={() => getData.addPage("헌혈증요청조회")}
-    >
+    <div className="Board-card-container" onClick={clickevent}>
       <div className="Board-card-nav-container">
         <div className="Board-card-nav-usericon-class">
           {gradefunction(getData.getData?.level)}

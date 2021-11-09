@@ -20,6 +20,7 @@ import Mypage_main from "../Mypage/Mypage_main";
 import Directed_inquire from "../Directed/Directed_inquire";
 import { connect } from "react-redux";
 import { addPage } from "../../component/Modalmove/subscribers/action";
+import Board_inquire from "../Board/Board_inquire";
 var text = "";
 var sendid;
 var num = 0;
@@ -160,7 +161,7 @@ function Main_base(props) {
         {
           {
             헌혈증_기부: <Board_main getsetValue2={getsetValue2}></Board_main>,
-            // 헌혈증요청조회:
+            헌혈증요청조회: <Board_inquire />,
             헌혈증_글쓰기: <Board_write></Board_write>,
             지정헌혈: (
               <Directed_main getsetValue2={getsetValue2}></Directed_main>

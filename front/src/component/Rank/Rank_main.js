@@ -13,11 +13,13 @@ function Rank_main() {
   useEffect(() => {
     axios
       .get(
-        "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/rank/rankings"
+        // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/rank/rankings"
+        "http://localhost:8002/rankings"
       )
       .then(function (response) {
         setRanks(response.data);
-        // console.log("rr" + response.data[0]["id"]);
+
+        console.log("rr", ranks);
       });
   }, []);
 
@@ -25,8 +27,8 @@ function Rank_main() {
   useEffect(() => {
     axios
       .get(
-        "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/rank/rankings" +
-          sessionStorage.getItem("userId")
+        // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/rank/rankings/" +
+        "http://localhost:8002/rankings/" + sessionStorage.getItem("userId")
       )
       .then(function (response) {
         setMyRank(response.data);
