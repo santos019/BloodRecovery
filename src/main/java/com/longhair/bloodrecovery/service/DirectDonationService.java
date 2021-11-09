@@ -6,6 +6,7 @@ import com.longhair.bloodrecovery.domain.DirectDonation;
 import com.longhair.bloodrecovery.dto.*;
 import com.longhair.bloodrecovery.repository.ApplicantRepository;
 import com.longhair.bloodrecovery.repository.DirectDonationRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,8 +15,10 @@ import org.springframework.web.client.RestTemplate;
 import java.util.*;
 
 @Service
+@Slf4j
 public class DirectDonationService {
     private final static String url = "http://ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/user/";
+    private final static int minusPoint = 50;
 
     @Autowired
     private DirectDonationRepository directDonationRepository;
@@ -29,11 +32,10 @@ public class DirectDonationService {
         if(item.isPresent()){
             Date date = new Date();
             if(item.get().getPeriodTo().after(date)){
-                RestTemplate rt = new RestTemplate();
-                String location = url + "info/" + item.get().getRequesterUserId();
-                Map map = rt.getForObject(location, Map.class);
+                Map map = getUserInfo(applicant.getApplicantIdentify());
                 applicant.setApplicantNickname(map.get("nickname").toString());
                 applicant.setDirectDonation(item.get());
+                applicant.setApplyStatus(false);
                 item.get().getApplicants().add(applicant);
                 directDonationRepository.save(item.get());
                 applicantRepository.save(applicant);
@@ -54,17 +56,22 @@ public class DirectDonationService {
         Optional<DirectDonation> directDonation = directDonationRepository.findById(id);
         if(directDonation.isPresent()){
             DirectDonation item = directDonation.get();
-            if(result && (item.getBloodCurrentCount() < item.getBloodMaxCount())){     // 인증 완료
-                //TODO 혈액증서 인증
-
-                item.setBloodCurrentCount(item.getBloodCurrentCount() + 1);
-                item.getApplicants().add(applicant);
-                applicantRepository.save(applicant);
-                directDonationRepository.save(item);
-                System.out.println("인증 성공");
+            //TODO 혈액증서 인증
+            //result = 인증 API 사용.
+            if(result){     // 인증 완료
+                log.info("인증 성공");
+                if(item.getBloodCurrentCount() < item.getBloodMaxCount()){
+                    item.setBloodCurrentCount(item.getBloodCurrentCount() + 1);
+                    item.getApplicants().add(applicant);
+                    applicantRepository.save(applicant);
+                    directDonationRepository.save(item);
+                }
+                else{
+                    log.info("이미 꽉찬 신청글입니다.");
+                }
             }
             else{           // 인증 실패
-                System.out.println("인증 실패");
+                log.info("인증 실패");
             }
         }
     }
@@ -127,24 +134,33 @@ public class DirectDonationService {
         directDonationRepository.deleteById(id);
     }
 
-    @Transactional
-    public DirectDonation saveDirectDonation(DirectDonation directDonation){
+    private boolean changePoint(String userId, int plusCount, int minusCount, String reason){
         RestTemplate rt = new RestTemplate();
         String location = url + "point";
         Map<String, Object> pointMap = new HashMap<>();
-        pointMap.put("userId", directDonation.getRequesterUserId());
-        pointMap.put("plusPoint", 0);
+        pointMap.put("userId", userId);
+        pointMap.put("plusPoint", plusCount * minusPoint);
         //TODO
         //지정헌혈 헌혈 종류 상관없이 개당 50포인트 차감
-        pointMap.put("minusPoint", directDonation.getBloodMaxCount() * 50);
-        pointMap.put("breakdown", "지정헌혈 " + directDonation.getBloodMaxCount() + "개의 포인트 차감");
+        pointMap.put("minusPoint", minusCount * minusPoint);
+        pointMap.put("breakdown", reason);
         Boolean result = rt.postForObject(location, pointMap, Boolean.class);
-        if(!result){
+        return result;
+    }
+
+    private Map getUserInfo(String userId){
+        RestTemplate rt = new RestTemplate();
+        String location = url + "info/" + userId;
+        return rt.getForObject(location, Map.class);
+    }
+
+    @Transactional
+    public DirectDonation saveDirectDonation(DirectDonation directDonation){
+        if(!changePoint(directDonation.getRequesterUserId(), 0, directDonation.getBloodMaxCount(), "지정헌혈 요청으로 인한 포인트")){
             return new DirectDonation();
         }
 
-        location = url + "info/" + directDonation.getRequesterUserId();
-        Map map = rt.getForObject(location, Map.class);
+        Map map = getUserInfo(directDonation.getRequesterUserId());
         directDonation.setRequesterNickname(map.get("nickname").toString());
         directDonation.setRequesterLevel(Integer.parseInt(map.get("level").toString()));
 
@@ -167,9 +183,18 @@ public class DirectDonationService {
             item.setDate(directDonationUpdateDto.getDate());
             item.setPeriodFrom(directDonationUpdateDto.getPeriodFrom());
             item.setPeriodTo(directDonationUpdateDto.getPeriodTo());
-            item.setCompleteStatus(directDonationUpdateDto.getCompleteStatus());
+            if(item.getCompleteStatus() != directDonationUpdateDto.getCompleteStatus()){
+                changeComplete(item);
+                item.setCompleteStatus(directDonationUpdateDto.getCompleteStatus());
+            }
             directDonationRepository.save(item);
-            System.out.println("업데이트 됨");
+            log.info("업데이트 됨");
         }
+    }
+
+    @Transactional
+    public void changeComplete(DirectDonation directDonation){
+        int num = directDonation.getBloodMaxCount() - directDonation.getBloodCurrentCount();
+        changePoint(directDonation.getRequesterUserId(), num, 0, "완료 상태 변경으로 인한 캐쉬백");
     }
 }
