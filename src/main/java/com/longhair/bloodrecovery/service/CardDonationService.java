@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -77,7 +79,9 @@ public class CardDonationService {
         cardRequest.setNickname(map.get("nickname").toString());
         cardRequest.setLevel(Integer.parseInt(map.get("level").toString()));
         cardRequest.setPoint(Integer.parseInt(map.get("point").toString()));
+
         cardRequest.setCompleteStatus(false); //완료상태가 아니다!
+        cardRequest.setRequestDate(LocalDateTime.parse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'hh:mm"))));
 
         cardDonationRepository.save(cardRequest);
 

@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Currency;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class CardRequest {
     private String image; //요청글에 첨부하는 이미지 주소
     private int requestCount; //요청한 헌혈증 개수
     private int donationCount; //기부받은 헌혈증 개수
-    private LocalDate requestDate; //기부 요청한 날짜
+    private LocalDateTime requestDate; //기부 요청한 날짜
     private Boolean completeStatus; //요청글 상태
     
     //기부 히스토리랑 다대일
