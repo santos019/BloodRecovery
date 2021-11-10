@@ -3,8 +3,8 @@
     width: 970px;
     height: 734px;
     margin: auto;
-
-    background-color: aqua;
+/* 
+    background-color: aqua; */
   }
   .Directed-write-nav-container {
     float: left;
@@ -12,14 +12,14 @@
     width: 100%;
     /* background-color: aqua; */
     border-bottom: solid 4px #fb4d4e;
-    background-color: rgb(12, 74, 128);
+    /* background-color: rgb(12, 74, 128); */
   }
   .Directed-write-nav-class {
     margin-left: 3%;
     margin-top: 1%;
     width: 89%;
     float: left;
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
   }
   .Directed-write-content-container{
 
@@ -30,7 +30,7 @@
   }
   .Directed-write-content-class{
     margin: auto;
-    background-color: rgb(155, 155, 155);
+    /* background-color: rgb(155, 155, 155); */
     width: 80%;
     height: 90%;
     /* height: 70%; */
@@ -44,20 +44,20 @@
     width: 40px;
     height: 40px;
     float: left;
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
   }
   .Directed-write-nav-goback{
     width: 8%;
     height: 100%;
-    background-color: coral;
+    /* background-color: coral; */
     float: left;
   }
   .Directed-write-card-class{
     width: 100%;
     float: left;
     height: auto;
-    background-color: darkgoldenrod;
-    border: 2px solid  #fb4d4e;
+    /* background-color: darkgoldenrod; */
+    border: 2px solid  #c2c2c29d;
     border-radius: 50px 50px 50px 50px;
   }
   .Dircected-write-card-total{
@@ -68,15 +68,17 @@
   .Directed-write-card-nav-class{
     width: 100%;
     height: 50px;
-    border-bottom: solid 4px #fb4d4e;
-    background-color: rgba(0, 0, 255, 0.075);
+    border-bottom: solid 2px #b3b3b3;
+    /* background-color: rgba(0, 0, 255, 0.075); */
   }
   .Directed-write-card-title-class{
     float: left;
     margin-top: 3%;
     width: 65%;
-    background-color: aqua;
+    /* background-color: aqua; */
     font-size: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.247) ; 
+    
 
   }
   .Directed-write-card-data-class{
@@ -85,7 +87,7 @@
     margin-top: 3%;
     width: 32%;
     height: 50%;
-    background-color: rgb(13, 122, 86);
+    /* background-color: rgb(13, 122, 86); */
     font-size: 16px;
   }
  
@@ -94,18 +96,18 @@
   .Directed-write-card-context-class{
     
     padding-top: 1%;
-   
+    padding-bottom: 2%;
     margin: auto;
     height: auto;
     width: 100%;
-    background-color: rgb(0, 255, 13);
+    /* background-color: rgb(0, 255, 13); */
     font-size: 16px;
     
   }
 
   .Directed-write-card-footer-class{
     height: 0px;
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
   }
  
   .Directed-write-footer-container{
@@ -113,7 +115,7 @@
       float: left;
       height: 40%;
       margin-top: 2%;
-      background-color: rgb(0, 195, 255);
+      /* background-color: rgb(0, 195, 255); */
   }
   
   
@@ -121,19 +123,19 @@
   .Directed-inquire-footer-mypost{
       width: 100%;
       height: 15%;
-      background-color: #941515;
+      /* background-color: #941515; */
       font-size: 17px;
   }
   .Directed-inquire-footer-repost{
       width: 8%;
-      background-color: rgb(158, 93, 8);
+      /* background-color: rgb(158, 93, 8); */
       float:right;
       color: rgb(0, 0, 0);
       cursor: pointer;
   }
   .Directed-inquire-footer-delete{
     width: 8%;
-    background-color: rgb(190, 182, 170);
+    /* background-color: rgb(190, 182, 170); */
     float:right;
     color: rgb(0, 0, 0);
     cursor: pointer;
@@ -143,10 +145,11 @@
   .Directed-write-card-context-input{
       width: 100%;
       height: 170px;
-      background-color: #fb4d4e;
+      border: 1px solid rgba(0, 0, 0, 0.247) ; 
+      /* background-color: #fb4d4e; */
   }
   /*//////////////////////////////////////////*/
-  .react-datepicker__navigation{
+  /* .react-datepicker__navigation{
 background-color: aqua;
 
   }
@@ -182,7 +185,7 @@ border: 2px solid#fb4d4e;
      height: 100%;
 
  }
- .react-datepicker__day-names{/*su Mo tu we th fr sa*/
+ .react-datepicker__day-names{
      background-color: rgb(57, 100, 100);
      width: 100%;
      display: flex;
@@ -215,124 +218,146 @@ border: 2px solid#fb4d4e;
     background-color: #fb4d4e;
    width: 40%;
 }
-input[type=text]{
-    /* background-color: rgb(0, 4, 255); */
+ */
+ input[type=text]{
+    
     width: 100%;
     border: 1px solid #fb4d4e;
     text-align: center;
+   
 
+}
+.Directed-write-calender1{
+    width: 90px;
+    /* background-color: #883939; */
+    float: left;
+}
+.Directed-write-calender2{
+    width: 90px;
+    /* background-color: #883939; */
+    float: left;
+}
+.react-datepicker__input-container{
+    
+    /* background-color: #211591; */
 }
 .Directed-write-card-wow{
     font-size: 20px;
-    background-color: rgba(240, 248, 255, 0.041);
+    /* background-color: rgba(240, 248, 255, 0.041); */
     width: 25px;
     height: 25px;
     text-align: center;
     float: left;
     margin-left: 3%;
 }
-.react-datepicker__current-month{
+/* .react-datepicker__current-month{
 
     text-align: center;
 
-}
+} */
 .Directed-write-footer-upload-container{
 
     width: 100%;
     
-    background-color: #fb4d4e;
+    /* background-color: #fb4d4e; */
 }
 .Directed-write-footer-upload{
     width: 55%;
     margin: auto;
-    background-color: #e0c3c3;
+    /* background-color: #e0c3c3; */
 }
 .Directed-write-footer-givecount-container{
     width: 100%;
     height: 10%;
-    background-color: #e6c4c4;
+    /* background-color: #e6c4c4; */
 }
 .Directed-write-footer-givecount{
 
     width: 33%;
     height: 100%;
-    background-color: #61fb4d;
+    /* background-color: #61fb4d; */
     margin: auto;
 }
 .Directed-write-footer-givecounttext{
 
-    width: 60%;
+    width: 52%;
     float: left;
     height: 100%;
     margin-left: 4%;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
 }
 .Directed-write-footer-givecountimg{
     width: 22px;
-    background-color: azure;
+    /* background-color: azure; */
     float: left;
     
 }
 .Directed-write-footer-count-container{
     width: 23%;
-    background-color: rgba(142, 173, 0, 0.678);
+    /* background-color: rgba(142, 173, 0, 0.678); */
     float: left;
     text-align: center;
     font-size: 16px;
 }
 .Directed_countdown{
     width: 30%;
-    background-color: #fb4d4e;
+    color: #fb4d4e;
     float: left;
     cursor: pointer;
+    font-size: 18px;
 }
 .Directed_count{
     width: 40%;
-    background-color: #883939;
+    background-color: #ebaaaa;
     float: left;
+    
 }
 .Directed_countup{
 
     width: 30%;
-    background-color: #398588;
+    color: #fb4d4e;
     float: left;
     cursor: pointer;
+    font-size: 18px;
 }
 .Directed-write-footer-bloodtype-container{
     width: 100%;
     height: 10%;
-    background-color: #239115;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    /* background-color: #239115; */
 }
 .Directed-write-footer-bloodtype-class{
     width: 40%;
     height: 100%;
-    background-color: #883939;
+    /* background-color: #883939; */
     margin: auto;
 }
 .Directed-write-footer-bloodtypetext{
     float: left;
     width: 50%;
     height: 100%;
-    background-color: #e6c4c4;
+    /* background-color: #e6c4c4; */
 }
 .Directed-write-footer-bloodtypeinput{
     float: left;
     width: 35%;
+    margin-top: 2px;
 }
 .Directed-write-footer-location-container{
     width: 100%;
-    background-color: #fb4d4e;
+    /* background-color: #fb4d4e; */
     height: 10%;
 }
 .Directed-write-footer-locatin-class{
     width: 51%;
     height: 100%;
-    background-color: #0b4e03;
+    /* background-color: #0b4e03; */
     margin: auto;
 }
 .Directed-write-footer-locationtext{
     width: 42%;
-    background-color: #e0c3c3;
+    /* background-color: #e0c3c3; */
     height: 100%;
     float: left;
 
@@ -341,8 +366,9 @@ input[type=text]{
     float: left;
     width: 50%;
     height: auto;
-    margin-bottom: 10%;
-    background-color: #61fb4d;
+    margin-bottom: 4%;
+    margin-top: 0.5%;
+ 
     display: flex;
 
 }
@@ -352,53 +378,67 @@ input[type=text]{
 }
 .Directed-write-data-container{
     height: 65%;
-    background-color: rgb(208, 255, 0);
+    /* background-color: rgb(208, 255, 0); */
     margin-top: 2%;
 }
 .Directed-write-data-class{
     margin: auto;
     width: 40%;
     height: 85%;
-    background-color: brown;
+    /* background-color: brown; */
     border-radius: 15px 15px 15px 15px;
-    border: 5px dotted blue;
+    border: 5px dotted rgb(224, 54, 54);
     text-align: center;
     
 }
 .Directed-write-data-data1{
-    height: 33px;
+    height: 30px;
     font-size: 15px;
-    margin-bottom: 2%;
-    background-color: #239115;
+    width: 100%;
+
+
+    /* background-color: #239115; */
     
 }
 .Directed-write-data-data2{
     font-size: 13px;
-    background-color: #e0c3c3;
+    /* background-color: #e0c3c3; */
    height: 15%;
    width: 62%;
     display:flex;
    margin: auto;
    justify-content: space-around;
+   padding-bottom: 1%;
 }
 .Directed-write-data-data2text{
-    background-color: aqua;
+    /* background-color: aqua; */
     width: 35%;
     text-align: right;
     float: left;
 }
 .direct-patientname,.direct-hopitalname,.direct-roomnumber,.direct-phonenumber
-{   background-color: #239115;
+{  
+     /* background-color: #239115; */
     width: 60%;
     float: left;
 }
 .Directed-write-btn-container{
     width: 100%;
     height: 25%;
-    background-color: #398588;
+    /* background-color: #398588; */
 }
 .Directed-write-btn-class{
     width: 20%;
     height: 100%;
     margin: auto;
+}
+.Directed-write-data-text-p{
+    /* background-color: #fb4d4e; */
+    height: 20px;
+    width: 310px;
+   position: absolute;
+   margin-top: 5px;
+   
+    
+
 }
