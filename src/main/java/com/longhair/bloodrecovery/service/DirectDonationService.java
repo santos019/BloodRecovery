@@ -17,7 +17,7 @@ import java.util.*;
 @Service
 @Slf4j
 public class DirectDonationService {
-    private final static String url = "http://ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/user/";
+    private final static String url = "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/";
     private final static int minusPoint = 50;
 
     @Autowired
@@ -144,8 +144,10 @@ public class DirectDonationService {
         //지정헌혈 헌혈 종류 상관없이 개당 50포인트 차감
         pointMap.put("minusPoint", minusCount * minusPoint);
         pointMap.put("breakdown", reason);
-        Boolean result = rt.postForObject(location, pointMap, Boolean.class);
-        return result;
+        log.info(location);
+        log.info(pointMap.toString());
+        Map result = rt.postForObject(location, pointMap, Map.class);
+        return Boolean.parseBoolean(result.get("result").toString());
     }
 
     private Map getUserInfo(String userId){
