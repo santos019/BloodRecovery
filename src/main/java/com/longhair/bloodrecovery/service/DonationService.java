@@ -4,9 +4,11 @@ import com.longhair.bloodrecovery.entity.CardRequest;
 import com.longhair.bloodrecovery.entity.Donation;
 import com.longhair.bloodrecovery.entity.DonationHistory;
 import com.longhair.bloodrecovery.repository.CardDonationRepository;
+import com.longhair.bloodrecovery.repository.DonationHistoryRepository;
 import com.longhair.bloodrecovery.repository.DonationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.spring5.processor.SpringUErrorsTagProcessor;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -18,6 +20,7 @@ public class DonationService {
 
     private final DonationRepository donationRepository;
     private final CardDonationRepository cardDonationRepository;
+    private final DonationHistoryRepository donationHistoryRepository;
 
     //기부자 목록 조회 => 기부 요청글 밑에 출력
     public List<Donation> findAll() {
@@ -46,12 +49,13 @@ public class DonationService {
             cardRequest.setCompleteStatus(true);
         }//요청개수를 다 채우면 완료상태를 true로 변경
 
-        DonationHistory donationHistory = new DonationHistory();
-        donationHistory.setCardRequest(cardRequest);
-        donationHistory.setDonation(savedonation);
+        DonationHistory savehistory = new DonationHistory();
+        savehistory.setCardRequest(cardRequest);
+        savehistory.setDonation(savedonation);
 
         //기부 정보 저장
         Donation saveDonation = donationRepository.save(donation);
+        DonationHistory
 
         return saveDonation;
     }
