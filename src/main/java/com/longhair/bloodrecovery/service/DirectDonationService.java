@@ -8,17 +8,23 @@ import com.longhair.bloodrecovery.repository.ApplicantRepository;
 import com.longhair.bloodrecovery.repository.DirectDonationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @Slf4j
 public class DirectDonationService {
-    private final static String url = "http://ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/user/";
+    private final static String url = "http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/user/";
     private final static int minusPoint = 50;
+    private final static int vipLevel = 4;
 
     @Autowired
     private DirectDonationRepository directDonationRepository;
@@ -109,7 +115,19 @@ public class DirectDonationService {
             default:
                 break;
         }
-        directDonations.forEach(e -> directDonationSimpleDtos.add(new DirectDonationSimpleDto(e)));
+
+        List<DirectDonation> vipItems = new ArrayList<>();
+        List<DirectDonation> normalItems = new ArrayList<>();
+        directDonations.forEach(e -> {
+            if(e.getRequesterLevel() >= vipLevel){
+                vipItems.add(e);
+            }
+            else{
+                normalItems.add(e);
+            }
+        });
+        vipItems.forEach(e -> directDonationSimpleDtos.add(new DirectDonationSimpleDto(e)));
+        normalItems.forEach(e -> directDonationSimpleDtos.add(new DirectDonationSimpleDto(e)));
         return directDonationSimpleDtos;
     }
 
@@ -144,8 +162,10 @@ public class DirectDonationService {
         //지정헌혈 헌혈 종류 상관없이 개당 50포인트 차감
         pointMap.put("minusPoint", minusCount * minusPoint);
         pointMap.put("breakdown", reason);
-        Boolean result = rt.postForObject(location, pointMap, Boolean.class);
-        return result;
+        log.info(location);
+        log.info(pointMap.toString());
+        ResponseEntity<Map> result = rt.exchange(location, HttpMethod.PUT, new HttpEntity<>(pointMap), Map.class);
+        return Boolean.parseBoolean(result.getBody().get("result").toString());
     }
 
     private Map getUserInfo(String userId){
@@ -179,7 +199,6 @@ public class DirectDonationService {
             item.setTitle(directDonationUpdateDto.getTitle());
             item.setContents(directDonationUpdateDto.getContents());
             item.setImage(directDonationUpdateDto.getImage());
-            item.setDate(directDonationUpdateDto.getDate());
             item.setPeriodFrom(directDonationUpdateDto.getPeriodFrom());
             item.setPeriodTo(directDonationUpdateDto.getPeriodTo());
             if(item.getCompleteStatus() != directDonationUpdateDto.getCompleteStatus()){
