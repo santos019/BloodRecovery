@@ -20,8 +20,8 @@ public class DirectDonationDto {
     private String contents;
     private String image;
     private Date date;
-    private Integer locationSido;
-    private Integer locationSigungu;
+    private String locationSido;
+    private String locationSigungu;
     private Date periodFrom;
     private Date periodTo;
     private String bloodType;

@@ -24,8 +24,8 @@ public class DirectDonation {
     private String image;
     private Date date;
 
-    private Integer locationSido;
-    private Integer locationSigungu;
+    private String locationSido;
+    private String locationSigungu;
 
     private Date periodFrom;
     private Date periodTo;

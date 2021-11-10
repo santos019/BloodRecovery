@@ -10,10 +10,10 @@ public interface DirectDonationRepository extends JpaRepository<DirectDonation, 
     List<DirectDonation> findDirectDonationsByPeriodToBefore(Date date);
     List<DirectDonation> findDirectDonationsByBloodType(String bloodType);
     List<DirectDonation> findDirectDonationsByCompleteStatus(boolean completeStatus);
-    List<DirectDonation> findDirectDonationsByLocationSidoAndLocationSigungu(int sido, int sigungu);
+    List<DirectDonation> findDirectDonationsByLocationSidoAndLocationSigungu(String sido, String sigungu);
     List<DirectDonation> findDirectDonationsByBloodTypeAndCompleteStatus(String bloodType, boolean completeStatus);
-    List<DirectDonation> findDirectDonationsByBloodTypeAndLocationSidoAndLocationSigungu(String bloodType, int sido, int sigungu);
-    List<DirectDonation> findDirectDonationsByCompleteStatusAndLocationSidoAndLocationSigungu(boolean completeStatus, int sido, int sigungu);
-    List<DirectDonation> findDirectDonationsByBloodTypeAndCompleteStatusAndLocationSidoAndLocationSigungu(String bloodType, boolean completeStatus, int sido, int sigungu);
+    List<DirectDonation> findDirectDonationsByBloodTypeAndLocationSidoAndLocationSigungu(String bloodType, String sido, String sigungu);
+    List<DirectDonation> findDirectDonationsByCompleteStatusAndLocationSidoAndLocationSigungu(boolean completeStatus, String sido, String sigungu);
+    List<DirectDonation> findDirectDonationsByBloodTypeAndCompleteStatusAndLocationSidoAndLocationSigungu(String bloodType, boolean completeStatus, String sido, String sigungu);
 
 }

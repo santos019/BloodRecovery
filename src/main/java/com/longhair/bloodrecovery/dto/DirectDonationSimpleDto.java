@@ -12,8 +12,8 @@ public class DirectDonationSimpleDto {
     private String requesterNickname;
     private Integer requesterLevel;
     private String title;
-    private Integer locationSido;
-    private Integer locationSigungu;
+    private String locationSido;
+    private String locationSigungu;
     private Date periodTo;
     private String bloodType;
     private Boolean completeStatus;
