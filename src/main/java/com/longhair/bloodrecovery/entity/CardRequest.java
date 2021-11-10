@@ -34,9 +34,6 @@ public class CardRequest {
     private LocalDateTime requestDate; //기부 요청한 날짜
     private Boolean completeStatus; //요청글 상태
     
-    //기부랑 다대일 양방향
-    @OneToMany(mappedBy = "cardRequest")
-    private List<Donation> donations = new ArrayList<>();
-
+    //기부랑 다대일 단방향
 
 }

@@ -26,6 +26,8 @@ public class CardDonationService {
     private final CardDonationRepository cardDonationRepository;
     private final DonationRepository donationRepository;
 
+    private final static String url = "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/";
+
     //검색 필터링 기능
     public List<CardRequestSimpleDto> findCardRequestAll(SearchData searchData){
         List<CardRequestSimpleDto> cardRequestSimpleDtos = new ArrayList<>();
@@ -57,11 +59,12 @@ public class CardDonationService {
     public CardRequest saveCardRequest(CardRequest cardRequest){
 
         RestTemplate rt = new RestTemplate();
-        String location = "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/" + "point"; //url은 유저꺼
+        String location = url + "point";
 
         Map<String, Object> pointMap = new HashMap<>();
         pointMap.put("userId", cardRequest.getUserId());
-        pointMap.put("plusPoint", (cardRequest.getRequestCount() - cardRequest.getDonationCount()) * 50);
+//        pointMap.put("plusPoint", (cardRequest.getRequestCount() - cardRequest.getDonationCount()) * 50);
+        pointMap.put("plusPoint", (cardRequest.getDonationCount()) * 50);
         //((요청한 헌혈증 개수 - 기부 받은 헌혈증 개수) * 50 )만큼 포인트 돌려받기
         pointMap.put("minusPoint", cardRequest.getRequestCount() * 50); //요청 수 마다 50포인트 차감
         pointMap.put("breakdown", "헌혈증기부" + cardRequest.getRequestCount() + "개의 포인트 차감");
@@ -71,7 +74,7 @@ public class CardDonationService {
             return new CardRequest();
         }
 
-        location = "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/" + "info/" + cardRequest.getUserId();
+        location = url + "info/" + cardRequest.getUserId();
         Map map = rt.getForObject(location, Map.class);
         cardRequest.setNickname(map.get("nickname").toString());
         cardRequest.setLevel(Integer.parseInt(map.get("level").toString()));
@@ -86,24 +89,27 @@ public class CardDonationService {
     }
 
     //기부 요청글 삭제
-    public void deleteCardRequestById(Long id){
+    public void deleteCardRequestById(Long id, CardRequest cardRequest){
         Optional<CardRequest> item = cardDonationRepository.findById(id);
         List<Long> idList = new ArrayList<>();
+        donationRepository.deleteByCardRequestId(id); //기부 내역 삭제
         cardDonationRepository.deleteById(id);
+
+        //삭제했을 경우 포인트 캐쉬백
+        RestTemplate rt = new RestTemplate();
+        String location = url + "point";
+
+        Map<String, Object> pointMap = new HashMap<>();
+        pointMap.put("userId", cardRequest.getUserId());
+        pointMap.put("plusPoint", (cardRequest.getRequestCount() - cardRequest.getDonationCount()) * 50);
+        //((요청한 헌혈증 개수 - 기부 받은 헌혈증 개수) * 50 )만큼 포인트 돌려받기
+        pointMap.put("breakdown", "포인트 캐쉬백");
+
+        ResponseEntity<Map> result = rt.exchange(location, HttpMethod.PUT, new HttpEntity<>(pointMap), Map.class);
     }
-    //흐음 다 삭제해야하나....ㅎㅎㅎ
-//    public void deleteDirectDonationById(Long id){
-//        Optional<DirectDonation> item = directDonationRepository.findById(id);
-//        List<Long> idList = new ArrayList<>();
-//        if(item.isPresent()){
-//            item.get().getApplicants().forEach(e -> idList.add(e.getId()));
-//            applicantRepository.deleteAllById(idList);
-//        }
-//        directDonationRepository.deleteById(id);
-//    }
 
     //기부 요청글 수정
-    public void updateCardRequestById(CardRequestUpdateDto cardRequestUpdateDto){
+    public void updateCardRequestById(CardRequestUpdateDto cardRequestUpdateDto, CardRequest cardRequest){
         Optional<CardRequest> e = cardDonationRepository.findById(cardRequestUpdateDto.getId());
         if (e.isPresent()){
             CardRequest item = e.get();
@@ -112,10 +118,23 @@ public class CardDonationService {
             item.setTitle(cardRequestUpdateDto.getTitle());
             item.setContents(cardRequestUpdateDto.getContents());
             item.setImage(cardRequestUpdateDto.getImage());
+            item.setCompleteStatus(cardRequestUpdateDto.getCompleteStatus());
             cardDonationRepository.save(item);
+
+            if (cardRequestUpdateDto.getCompleteStatus() == true){
+                //상태가 변경될 경우 포인트 캐쉬백
+                RestTemplate rt = new RestTemplate();
+                String location = url + "point";
+
+                Map<String, Object> pointMap = new HashMap<>();
+                pointMap.put("userId", cardRequest.getUserId());
+                pointMap.put("plusPoint", (cardRequest.getRequestCount() - cardRequest.getDonationCount()) * 50);
+                //((요청한 헌혈증 개수 - 기부 받은 헌혈증 개수) * 50 )만큼 포인트 돌려받기
+                pointMap.put("breakdown", "포인트 캐쉬백");
+
+                ResponseEntity<Map> result = rt.exchange(location, HttpMethod.PUT, new HttpEntity<>(pointMap), Map.class);
+            }
             System.out.println("업데이트 완료");
         }
     }
-
-
 }

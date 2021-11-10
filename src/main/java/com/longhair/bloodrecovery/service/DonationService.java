@@ -5,10 +5,14 @@ import com.longhair.bloodrecovery.entity.Donation;
 import com.longhair.bloodrecovery.repository.CardDonationRepository;
 import com.longhair.bloodrecovery.repository.DonationRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,9 +24,11 @@ public class DonationService {
     private final DonationRepository donationRepository;
     private final CardDonationRepository cardDonationRepository;
 
+    private final static String url = "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/";
+
     //기부자 목록 조회 => 기부 요청글 밑에 출력
-    public List<Donation> findAll() {
-        return donationRepository.findAll();
+    public List<Donation> findList(Long id) {
+        return donationRepository.findDonationByCardRequestId(id);
     }
 
     //기부하기
@@ -37,10 +43,22 @@ public class DonationService {
 
         // User 불러오기
         RestTemplate rt = new RestTemplate();
-        String location = "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/" + "info/" + donation.getUserId();
+        String location = url + "info/" + donation.getUserId();
         Map map = rt.getForObject(location, Map.class);
         savedonation.setNickname(map.get("nickname").toString());
         savedonation.setPoint(Integer.parseInt(map.get("point").toString()));
+
+        //기부자 포인트 추가하기
+        location = url + "point";
+        Map<String, Object> pointMap = new HashMap<>();
+        pointMap.put("userId", donation.getUserId());
+        pointMap.put("plusPoint", 50); //헌혈증 기부로 50포인트 추가
+        pointMap.put("breakdown", "헌혈증기부로 50포인트 추가");
+
+        ResponseEntity<Map> result = rt.exchange(location, HttpMethod.PUT, new HttpEntity<>(pointMap), Map.class);
+        if (!Boolean.parseBoolean(result.getBody().get("result").toString())){
+            return new Donation();
+        }
 
         // 기부 요청글 조회
         CardRequest cardRequest = cardDonationRepository.findById(id).get();
@@ -52,6 +70,7 @@ public class DonationService {
         if (cardRequest.getRequestCount() == cardRequest.getDonationCount()){
             cardRequest.setCompleteStatus(true);
         }//요청개수를 다 채우면 완료상태를 true로 변경
+
 
         //기부 정보 저장
         Donation saveDonation = donationRepository.save(savedonation);
