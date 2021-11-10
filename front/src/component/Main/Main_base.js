@@ -176,7 +176,7 @@ function Main_base(props) {
             //헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
             헌혈의_집_예약: <Directed_write></Directed_write>,
             공지사항: <Notice_main></Notice_main>,
-            로그인: <Login_main loginsuccess={loginsuccess}></Login_main>,
+            로그인: <Login_main loginsuccess={loginsuccess}></Login_main>, //.....
             회원가입: <Join_main></Join_main>,
             랭킹: <Rank_main></Rank_main>,
           }[JSON.parse(window.localStorage.getItem("last"))]
