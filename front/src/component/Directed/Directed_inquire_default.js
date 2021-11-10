@@ -5,32 +5,25 @@ import Directed_inquire_default_data from "./Directed_inquire_default_dats";
 import axios from "axios";
 import './Directed_inquire_default.css';
 const Directed_inquire_default = (id) => {
-const [context,setContext]=useState(false)
-   var sendname="";
+
 
     const beaApplicant = () => {
         if (sessionStorage.getItem("userId") == null) {
             alert("로그인해주세요")
         }
         else {
-           // setContext(!context)
+            axios
+            .get("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + sessionStorage.getItem("directId")+"/applicant")
+
+            .then(function (response) {
+
+                console.log("response1", response)
+
+            });
+
             id.getValue();
         }
    
-
-        // axios
-        //     .post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + id.id + "/applicant", { applicantId: sessionStorage.getItem("userId") })
-        //     // .params(
-        //     //     {
-        //     //         "applicantId":sessionStorage.getItem("userId")
-        //     //     }
-        //     // )
-        //     .then(function (response) {
-
-        //         console.log("response", response)
-
-        //     });
-
 
     }
     return (

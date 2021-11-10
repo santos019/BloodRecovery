@@ -14,12 +14,13 @@ import Rank_main from "../Rank/Rank_main";
 import Bloodhouse_main from "../Bloodhouse/Bloodhouse_main";
 import Header_nav_login from "../Common/Header/Header_nav_login";
 import Directed_write from "../Directed/Directed_write";
-import Board_write from "../Board/Board_wite";
+import Board_write from "../Board/Board_write";
 import "./Main_base.css";
 import Mypage_main from "../Mypage/Mypage_main";
 import Directed_inquire from "../Directed/Directed_inquire";
 import { connect } from "react-redux";
 import { addPage } from "../../component/Modalmove/subscribers/action";
+import Board_inquire from "../Board/Board_inquire";
 var text = "";
 var sendid;
 var num = 0;
@@ -97,7 +98,7 @@ function Main_base(props) {
     <div className="Main-base-class">
       <div className="Main-base-Header-container-class">
         {console.log(props.index)}
-        {console.log("last", JSON.parse(window.localStorage.getItem("last")))}
+        {console.log("last", JSON.parse(window.sessionStorage.getItem("last")))}
         <div className="Main-base-Header-class">
           {console.log("main", sessionStorage.getItem("userid"))}
           {sessionStorage.getItem("userId") === null ? (
@@ -160,7 +161,7 @@ function Main_base(props) {
         {
           {
             헌혈증_기부: <Board_main getsetValue2={getsetValue2}></Board_main>,
-            // 헌혈증요청조회:
+            헌혈증요청조회: <Board_inquire />,
             헌혈증_글쓰기: <Board_write></Board_write>,
             지정헌혈: (
               <Directed_main getsetValue2={getsetValue2}></Directed_main>
@@ -173,12 +174,12 @@ function Main_base(props) {
             ),
             지정헌혈_글쓰기: <Directed_write></Directed_write>,
             //헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
-            헌혈의_집_예약: <Directed_write></Directed_write>,
+            헌혈의_집_예약: <Mypage_main></Mypage_main>,
             공지사항: <Notice_main></Notice_main>,
-            로그인: <Login_main loginsuccess={loginsuccess}></Login_main>,
+            로그인: <Login_main loginsuccess={loginsuccess}></Login_main>, //.....
             회원가입: <Join_main></Join_main>,
             랭킹: <Rank_main></Rank_main>,
-          }[JSON.parse(window.localStorage.getItem("last"))]
+          }[JSON.parse(window.sessionStorage.getItem("last"))]
         }
       </ReactModal>
     </div>
