@@ -1,18 +1,25 @@
-.Main-base-class {
+.Mypage-main-class {
   width: 100vh;
 }
+.Mypage-main-container-class {
+  width: 100%;
+  background-color: #349fdd;
+}
+.Mypage-main-nav-container {
+  float: left;
+  height: 8%;
+  width: 100%;
 
-.Main-base-Header-container-class {
+  border-bottom: solid 4px #fb4d4e;
+}
+
+.Mypage-main-Header-container-class {
   float: left;
   width: 100vw;
   height: 100%;
   /* background-color: brown; */
 }
-.test1 {
-  width: 500px;
-  /* background-color: dodgerblue; */
-}
-.Main-base-Header-class {
+.Mypage-main-Header-class {
   width: 13%;
   height: auto;
   float: right;
@@ -22,39 +29,43 @@
   position: fixed;
   /* background-color: rgb(0, 255, 21); */
 }
-.Main-base-title-container-class {
-  width: 100vw;
+.Mypage-usericon-class {
+  width: 40px;
+  height: 40px;
+  margin-left: 40%;
+  padding-top: 5px;
   float: left;
-  /* background-color: coral; */
+  background-color: rgb(217, 250, 99);
 }
-.Main-base-title-class {
-  width: auto;
-  justify-content: center;
-  align-items: center;
+.Mypage-img-userimg {
+  /* background-color: blue; */
+  width: 40px;
+}
+.Mypage-main-profile {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  border: 2px solid #000000;
+  background-color: rgb(0, 255, 21);
+  overflow: hidden;
 
-  display: flex;
-  /* background-color: forestgreen; */
-}
-.Main-base-rank-container-class {
-  float: left;
-  width: 100vw;
-  /* background-color: blueviolet; */
-}
-.Main-base-rank-class {
-  float: left;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  display: flex;
+  margin-top: 30px;
   margin: auto;
 }
-
-.Main-base-list-container-class {
+.Mypage-main-nickname {
+  background-color: #ec25ba;
+  margin: auto;
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  font-size: 25px;
+}
+.Mypage-list-container-class {
   float: left;
   width: 100vw;
   /* background-color: aqua; */
 }
-.Main-base-list-class {
+.Mypage-list-class {
   /*background-color: rgb(123, 255, 0);*/
   width: 15%;
   height: 10%;
@@ -62,4 +73,12 @@
   justify-content: center;
   align-items: center;
   padding-top: 1%;
+}
+.Mypage-list-button {
+  width: 200px;
+  height: 80px;
+  background-color: bisque;
+  border-radius: 12px 12px 12px 12px;
+  border: 2px solid #fb4d4e;
+  margin: auto;
 }

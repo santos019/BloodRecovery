@@ -38,14 +38,15 @@ function Notice_main() {
 
           {/* {console.log("ge", getData[0]?.id)} */}
         </div>
-      </div>
 
-      <div className="Notice-main-nav-search-class">
-        <div className="Notice-main-nav-write-class">
-          <img
-            src={WRITEICON}
-            className="Notice-main-nav-writeicon-class"
-          ></img>
+        <div className="Notice-main-nav-search-class">
+          <div className="Notice-main-nav-write-class">
+            <img
+              src={WRITEICON}
+              // onClick={() => props.addPage("공지사항_글쓰기")}
+              className="Notice-main-nav-writeicon-class"
+            ></img>
+          </div>
         </div>
       </div>
       <div className="Notice-main-cardmain-container">
