@@ -6,10 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 @Data
 @Slf4j
 public class SearchData {
-    private String bloodType = null;    // 1
+    private String bloodType = "";    // 1
     private boolean status = false;     // 2
-    private String sido = null;               // 4
-    private String sigungu = null;
+    private String sido = "";               // 4
+    private String sigungu = "";
 
     public int getSearchMode(){
         int result=0;
