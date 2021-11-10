@@ -197,7 +197,6 @@ public class DirectDonationService {
             item.setTitle(directDonationUpdateDto.getTitle());
             item.setContents(directDonationUpdateDto.getContents());
             item.setImage(directDonationUpdateDto.getImage());
-            item.setDate(directDonationUpdateDto.getDate());
             item.setPeriodFrom(directDonationUpdateDto.getPeriodFrom());
             item.setPeriodTo(directDonationUpdateDto.getPeriodTo());
             if(item.getCompleteStatus() != directDonationUpdateDto.getCompleteStatus()){
