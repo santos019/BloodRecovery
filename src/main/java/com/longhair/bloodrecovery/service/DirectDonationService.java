@@ -171,7 +171,6 @@ public class DirectDonationService {
 
     @Transactional
     public void updateDirectDonationById(DirectDonationUpdateDto directDonationUpdateDto){
-        System.out.println(directDonationUpdateDto.getId());
         Optional<DirectDonation> e = directDonationRepository.findById(directDonationUpdateDto.getId());
         if(e.isPresent()){
             DirectDonation item = e.get();
