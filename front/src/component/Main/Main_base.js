@@ -98,7 +98,7 @@ function Main_base(props) {
     <div className="Main-base-class">
       <div className="Main-base-Header-container-class">
         {console.log(props.index)}
-        {console.log("last", JSON.parse(window.localStorage.getItem("last")))}
+        {console.log("last", JSON.parse(window.sessionStorage.getItem("last")))}
         <div className="Main-base-Header-class">
           {console.log("main", sessionStorage.getItem("userid"))}
           {sessionStorage.getItem("userId") === null ? (
@@ -180,7 +180,7 @@ function Main_base(props) {
             로그인: <Login_main loginsuccess={loginsuccess}></Login_main>, //.....
             회원가입: <Join_main></Join_main>,
             랭킹: <Rank_main></Rank_main>,
-          }[JSON.parse(window.localStorage.getItem("last"))]
+          }[JSON.parse(window.sessionStorage.getItem("last"))]
         }
       </ReactModal>
     </div>
