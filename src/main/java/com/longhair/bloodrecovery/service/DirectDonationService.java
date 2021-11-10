@@ -8,6 +8,9 @@ import com.longhair.bloodrecovery.repository.ApplicantRepository;
 import com.longhair.bloodrecovery.repository.DirectDonationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -146,8 +149,8 @@ public class DirectDonationService {
         pointMap.put("breakdown", reason);
         log.info(location);
         log.info(pointMap.toString());
-        Map result = rt.postForObject(location, pointMap, Map.class);
-        return Boolean.parseBoolean(result.get("result").toString());
+        ResponseEntity<Map> result = rt.exchange(location, HttpMethod.PUT, new HttpEntity<>(pointMap), Map.class);
+        return Boolean.parseBoolean(result.getBody().get("result").toString());
     }
 
     private Map getUserInfo(String userId){
@@ -166,6 +169,7 @@ public class DirectDonationService {
         directDonation.setRequesterNickname(map.get("nickname").toString());
         directDonation.setRequesterLevel(Integer.parseInt(map.get("level").toString()));
 
+        directDonation.setDate(new Date());
         directDonation.setCompleteStatus(false);
         directDonationRepository.save(directDonation);
         return directDonation;
