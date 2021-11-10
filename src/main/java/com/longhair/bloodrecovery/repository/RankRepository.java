@@ -36,7 +36,7 @@ public class RankRepository {
     }
 
     public void updatebyRank() {
-        em.createNativeQuery("update mainDB.ranking A, (select ranking_id,dense_rank() over(order by point desc) as user_rank from mainDB.ranking) B set A.user_rank = B.user_rank where A.ranking_id = B.ranking_id;").executeUpdate();
+        em.createNativeQuery("update rankDB.ranking A, (select ranking_id,dense_rank() over(order by point desc) as user_rank from rankDB.ranking) B set A.user_rank = B.user_rank where A.ranking_id = B.ranking_id;").executeUpdate();
         em.createNativeQuery("commit;").executeUpdate();
     }
 
