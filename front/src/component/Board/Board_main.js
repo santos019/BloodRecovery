@@ -38,7 +38,8 @@ const Board_main = (props) => {
   useEffect(() => {
     axios
       .get(
-        "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests"
+        // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests"
+        "http://localhost:8003/requests"
       )
       // "id": 1,
       // "userId": "아이디2",
@@ -97,7 +98,7 @@ const Board_main = (props) => {
         <div className="Board-main-nav-write-class">
           <img
             src={WRITEICON}
-            // onClick={(e) => props.addPage("헌혈증_글쓰기")}
+            onClick={(e) => props.addPage("헌혈증_글쓰기")}
             className="Board-main-nav-writeicon-class"
           ></img>
         </div>

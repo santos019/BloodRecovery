@@ -14,7 +14,7 @@ import Rank_main from "../Rank/Rank_main";
 import Bloodhouse_main from "../Bloodhouse/Bloodhouse_main";
 import Header_nav_login from "../Common/Header/Header_nav_login";
 import Directed_write from "../Directed/Directed_write";
-import Board_write from "../Board/Board_wite";
+import Board_write from "../Board/Board_write";
 import "./Main_base.css";
 import Mypage_main from "../Mypage/Mypage_main";
 import Directed_inquire from "../Directed/Directed_inquire";
@@ -108,7 +108,6 @@ function Main_base(props) {
           )}
           {/*<div className="test1" onClick={() => onChageClick2(getValue)}> emry</div>
                     {console.log("test:"+text+"get:"+getValue)}*/}
-
         </div>
       </div>
       <div className="Main-base-title-container-class">
