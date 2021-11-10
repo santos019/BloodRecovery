@@ -20,8 +20,9 @@ import java.util.*;
 @Service
 @Slf4j
 public class DirectDonationService {
-    private final static String url = "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/";
+    private final static String url = "http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/user/";
     private final static int minusPoint = 50;
+    private final static int vipLevel = 4;
 
     @Autowired
     private DirectDonationRepository directDonationRepository;
@@ -112,7 +113,19 @@ public class DirectDonationService {
             default:
                 break;
         }
-        directDonations.forEach(e -> directDonationSimpleDtos.add(new DirectDonationSimpleDto(e)));
+
+        List<DirectDonation> vipItems = new ArrayList<>();
+        List<DirectDonation> normalItems = new ArrayList<>();
+        directDonations.forEach(e -> {
+            if(e.getRequesterLevel() >= vipLevel){
+                vipItems.add(e);
+            }
+            else{
+                normalItems.add(e);
+            }
+        });
+        vipItems.forEach(e -> directDonationSimpleDtos.add(new DirectDonationSimpleDto(e)));
+        normalItems.forEach(e -> directDonationSimpleDtos.add(new DirectDonationSimpleDto(e)));
         return directDonationSimpleDtos;
     }
 
@@ -169,7 +182,6 @@ public class DirectDonationService {
         directDonation.setRequesterNickname(map.get("nickname").toString());
         directDonation.setRequesterLevel(Integer.parseInt(map.get("level").toString()));
 
-        directDonation.setDate(new Date());
         directDonation.setCompleteStatus(false);
         directDonationRepository.save(directDonation);
         return directDonation;
