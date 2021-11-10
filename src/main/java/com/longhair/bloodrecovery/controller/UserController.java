@@ -88,4 +88,9 @@ public class UserController {
     public ResponseEntity<User> postAdmin(@RequestBody User user){
         return new ResponseEntity<>(userService.registerAdmin(user), HttpStatus.OK);
     }
+
+    @PostMapping("/verify")
+    public ResponseEntity<Result> verifyPersonalNumber(@RequestBody FindDto findDto){
+        return new ResponseEntity<>(new Result(userService.verify(findDto)), HttpStatus.OK);
+    }
 }

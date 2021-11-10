@@ -2,6 +2,7 @@ package com.longhair.bloodrecovery.service;
 
 import com.longhair.bloodrecovery.domain.Point;
 import com.longhair.bloodrecovery.domain.User;
+import com.longhair.bloodrecovery.dto.FindDto;
 import com.longhair.bloodrecovery.dto.PointDto;
 import com.longhair.bloodrecovery.dto.UserInfoDto;
 import com.longhair.bloodrecovery.dto.UserPutDto;
@@ -172,5 +173,12 @@ public class UserService {
         user.setPoint(0);
         user.setBanLevel(0);
         return userRepository.save(user);
+    }
+
+    public boolean verify(FindDto findDto){
+        //TODO
+        //실명인증 부분
+
+        return true;
     }
 }
