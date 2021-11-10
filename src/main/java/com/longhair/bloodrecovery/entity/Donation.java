@@ -19,18 +19,20 @@ public class Donation {
     //User
     private String userId; //기부자 아이디
     private String nickname; //기부자 닉네임
+    private Integer point; //기부자 포인트
 
     //헌혈증
     private String code; //기부자가 기부한 헌혈증 코드
-    //헌혈증 조회할때 필요한 데이터 다 있어야 하는감?
 
     private int giveCount; //기부한 헌혈증 갯수
 
     //요청글 아이디
-    private Long requestId;
+//    private Long requestId;
 
-    @OneToMany(mappedBy = "donation")
-    private List<DonationHistory>  history = new ArrayList<>();
+    //기부요청(CardRequest)이랑 다대일
+    @ManyToOne
+    @JoinColumn(name = "request_id")
+    private CardRequest cardRequest;
 
 
 

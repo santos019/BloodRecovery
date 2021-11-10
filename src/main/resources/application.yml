@@ -22,7 +22,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create #나중에 none으로 바꿔
+      ddl-auto: update #나중에 none으로 바꿔
     properties:
       hibernate:
         #         show_sql: true
