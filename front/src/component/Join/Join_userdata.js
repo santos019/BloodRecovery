@@ -187,7 +187,7 @@ console.log(personalNumber);
     }
     else{   //alert_blank=7;
         
-        axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/register",{userId:"santos",password:"123456789",name:"중성화한미자",nickname:"미자미자",personalNumber:"1234561234567"})
+        axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/register",{userId:join_nickname,password:join_password,name:join_name,nickname:join_nickname,personalNumber:personalNumber})
         .then(function (response) {
             console.log(response);          });
         

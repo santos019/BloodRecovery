@@ -18,11 +18,12 @@ const myBucket = new AWS.S3({
   region: REGION,
 });
 
- function S3Upload() {
+ function S3Upload(props) {
 
 const [progress , setProgress] = useState(0);
 const [selectedFile, setSelectedFile] = useState(null);
 const [showAlert, setShowAlert] = useState(false);
+
 
 
 const uploadFile = (file) => {
@@ -32,8 +33,8 @@ const uploadFile = (file) => {
     Bucket: S3_BUCKET,
     Key: "upload/" + file.name
   };
-  
-  myBucket.putObject(params)
+ 
+   myBucket.putObject(params)
     .on('httpUploadProgress', (evt) => {
       setProgress(Math.round((evt.loaded / evt.total) * 100))
       setShowAlert(true);
@@ -43,8 +44,13 @@ const uploadFile = (file) => {
       }, 3000)
     })
     .send((err) => {
-      if (err) console.log(err)
+      if (err) {console.log(err)
+      alert("파일 업로드가 실패되었습니다.")}
+      else props.getfilename(file.name)
     })
+    
+//에러안나면    
+  
 }
 
 
@@ -56,6 +62,8 @@ const handleFileInput = (e) => {
       alert('jpg 파일만 Upload 가능합니다.');
       return;
     }
+    
+    console.log(props.sendname)
     setProgress(0);
     setSelectedFile(e.target.files[0]);
   }
