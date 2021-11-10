@@ -8,7 +8,7 @@ const initialState={
 function memory(key,data){
    // JSON.parse(window.localStorage.getItem(key)) 
     window.sessionStorage.setItem("last", JSON.stringify(data))
-    console.log( JSON.parse(window.sessionStorage.getItem("last")))
+    console.log( "indata",JSON.parse(window.sessionStorage.getItem("last")))
 }
 const subcribersReducer =(state=initialState, action)=>{
 
@@ -18,7 +18,7 @@ const subcribersReducer =(state=initialState, action)=>{
             return {
             ...state,
             index:state.index+1,
-            page: JSON.parse(window.sessionStorage.getItem("last"))
+            page: (window.sessionStorage.getItem("last"))
             
             
             
