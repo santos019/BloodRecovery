@@ -108,6 +108,7 @@ function Main_base(props) {
           )}
           {/*<div className="test1" onClick={() => onChageClick2(getValue)}> emry</div>
                     {console.log("test:"+text+"get:"+getValue)}*/}
+
         </div>
       </div>
       <div className="Main-base-title-container-class">

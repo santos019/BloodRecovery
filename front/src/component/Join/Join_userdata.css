@@ -48,13 +48,13 @@
     margin-left: 85%;
 
 }
-input[type= text] :not(.Directed-main-input){
+input[type= text1] :not(.Directed-main-input){
     margin-left: 2px;
     border:solid 2px rgb(236, 138, 138);
     vertical-align: middle;
     box-shadow: 4px 5px 5px 2px rgb(163, 163, 163);
 }
-input[type= text]:hover{
+input[type= text1]:hover{
     border:solid 2px rgb(236, 138, 138);
 }
 /* 클릭시버튼없애기 */

@@ -53,18 +53,20 @@
 }
 .Directed-main-nav-select-class {
   width: 13%;
+  padding-top: 1.5%;
   height: 100%;
   float: left;
   /* background-color: chartreuse; */
 }
 .Directed-main-nav-select2-class {
   width: 13%;
+  padding-top: 1.5%;
   height: 100%;
   float: left;
   /* background-color: rgb(255, 0, 157); */
 }
 select {
-  margin-top: 13%;
+
   border: solid 2px rgb(236, 138, 138);
   width: 90%;
   height: 50%;
