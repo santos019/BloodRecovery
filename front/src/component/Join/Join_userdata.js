@@ -1,8 +1,9 @@
 import react, { useCallback, useState } from "react";
 import './Join_userdata.css';
 import Common_Button from "../Common/Button/Common_Button";
-
-
+import axios from "axios";
+import {connect} from 'react-redux'
+import {addPage} from '../../component/Modalmove/subscribers/action'
 
 const Join_userdata=(props)=>{
     
@@ -14,7 +15,6 @@ const [passwordconfirmCheck,setPasswordconfirmCheck]=useState(false)
 const [nameCheck,setNameCheck]=useState(false)
 const [resister1Check,setResister1Check]=useState(false)
 const [resister2Check,setResister2Check]=useState(false)
-
 const [inputs, setInputs] = useState({  
     join_nickname: '',
     join_id:'',
@@ -57,8 +57,8 @@ const onChange=(e)=>{
              }
             else if(name==="join_id")
              {
-                console.log("아이디 유효성",idEXP.test(e.target.value))
-                setIdCheck(idEXP.test(e.target.value))
+                // console.log("아이디 유효성",idEXP.test(e.target.value))
+                // setIdCheck(idEXP.test(e.target.value))
              }
              else if(name==="join_password")
              {
@@ -92,7 +92,25 @@ const onChange=(e)=>{
 
              }
 }   
+const idoverlap=()=>{
 
+    if(idEXP.test(join_id)==false)
+    {
+        console.log("아이디 양식에 맞춰 입력해주세요");
+    }
+    else if(idEXP.test(join_id)===true){
+
+        axios.get("ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/user/idCheck/"+join_id)
+        .then(function(res){
+            console.log(res)
+        })
+
+    }
+
+
+    console.log("아이디 유효성",idEXP.test(join_id))
+    setIdCheck(idEXP.test(join_id))
+}
 
 const valueCheck=()=>{
     var alert_blank=0;
@@ -102,28 +120,42 @@ const valueCheck=()=>{
 // 4는 아이디 중복확인체크
 // 5는 비밀번호 확인 체크
 // 6은 성명과 주민등록번호 인증 체크
+var personalNumber=join_register1+join_register2;
+console.log(personalNumber);
     for(const key in inputs)//빈칸체크
     {
-       
+       //검증탈락
         if (inputs[key]==false)
         {
             //console.log(inputs[key]+"error");
             alert_blank=2;
-            console.log("alert_blank11"+inputs)  
+            console.log("alert_blank11",inputs) 
+            alert("양식을 바르게 입력해주세요")
+            break;
         }
         
         // console.log([key] , inputs[key]);
         // console.log({key} , inputs[key]);
     }
-   
-    if(alert_blank==2) alert("양식을 올바르게 입력해주세요")
-        //else if() 나머지는 api와 연동한뒤구현예정
-    else{alert_blank=7;   
-        console.log("ㅁㅁalert_blank"+alert_blank)    
-        sendValue(alert_blank);
-        
-    
+    //무사히 검증이끝남
+    if(alert_blank!=2)
+
+
+
+    {   alert_blank=7;
+        alert("회원가입이 완료되었습니다")
+        props.addPage("로그인")
     }
+    // if(alert_blank==2) alert("양식을 올바르게 입력해주세요")
+    //     //else if() 나머지는 api와 연동한뒤구현예정
+    // else{alert_blank=7;   
+    //     console.log("ㅁㅁalert_blank"+alert_blank)    
+    //     //sendValue(alert_blank);    
+    //     setpersonalNumber(join_register1+join_register2)
+    //     console.log("check",personalNumber)
+    //     //axios.get("ec2-18-219-208-124.us-east-2.compute.amazonaws.com:8000/user/register")
+    //     //.data()
+    // }
     
  console.log(agreement,
     nicknameCheck,
@@ -152,7 +184,7 @@ const valueCheck=()=>{
                         </input>
                     </div>
                 </div>
-                <div className="Join-userdata-button-class" onClick={()=>{console.log(inputs)}}>
+                <div className="Join-userdata-button-class">
                     <Common_Button name={"중복확인"}></Common_Button>
                 </div>
                 <div className="Join-userdata-notice-class">
@@ -169,8 +201,8 @@ const valueCheck=()=>{
                         </input>
                     </div>  
                 </div>
-                <div className="Join-userdata-button-class" >
-                    <Common_Button name={"중복확인"} ></Common_Button>
+                <div className="Join-userdata-button-class" onClick={idoverlap} >
+                    <Common_Button name={"중복확인"}  ></Common_Button>
                 </div>
             </div>
             <div className="Join-userdata-nickname-text-class">
@@ -217,5 +249,16 @@ const valueCheck=()=>{
         </div>
     )
 }
+const mapStateToProps=(state)=>{
+    return{
+        page:state.page
+        
+    }
+}
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        addPage: (text)=>dispatch(addPage(text))
+    }
+}
 
-export default Join_userdata;
+export default connect(mapStateToProps,mapDispatchToProps)(Join_userdata);

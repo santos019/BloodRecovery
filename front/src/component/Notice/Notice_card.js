@@ -41,7 +41,7 @@ const Notice_card = (setData) => {
           <p className="Notice-card-content-class">
             {setData.setData?.contents}
           </p>
-          내용
+          내용블라블라
         </div>
 
         <div className="Notice-card-footer-date-container">
