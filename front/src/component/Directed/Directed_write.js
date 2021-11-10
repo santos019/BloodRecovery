@@ -12,17 +12,19 @@ import BLOODDROP from '../../Img/DirectedIMG/blood-drop.png';
 import LOCATIONIMG from '../../Img/DirectedIMG/location.png';
 import Common_Button_IMG from '../../component/Common/Button/Common_Button_IMG';
 import WRITEWHITEIMG from '../../Img/DirectedIMG/WRITE_WHITE.png';
-
+import Directed_write_select from "./Directed_write_select";
 
 
 
 
 function Directed_write(props) {
-    const [getState,setState]=useState("1");
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setendDate] = useState(new Date());
     //헌혈증받는변수
     const [directCount, setDirectCount] = useState(0);
+    const [getSido,setSido]=useState(1);
+    const [getSigungu,setSigungu]=useState(1);
+
 
     const [inputs, setInputs] = useState({
         direct_title: '',
@@ -88,243 +90,8 @@ function Directed_write(props) {
     //              }
     // }   
     //헌혈증카운트세는거
-    const handleChange=(e)=>{
-        setState(e.target.value);
-    
-        
-      }
-      const SelectBox = () => {
-        return (
-            <select value={getState} onChange={handleChange}>
-                <option key="서울특별시" value="1">서울특별시</option>
-                <option key="부산광역시" value="2">부산광역시</option>
-                <option key="대구광역시" value="3">대구광역시</option>
-                <option key="인천광역시" value="4">인천광역시</option>
-                <option key="광주광역시" value="5">광주광역시</option>
-                <option key="대전광역시" value="6">대전광역시</option>
-                <option key="울산광역시" value="7">울산광역시</option>
-                <option key="경기도" value="8">경기도</option>
-                <option key="강원도" value="9">강원도</option>
-                <option key="충청북도" value="10">충청북도</option>
-                <option key="충청남도" value="11">충청남도</option>
-                <option key="전라북도" value="12">전라북도</option>
-                <option key="전라남도" value="13">전라남도</option>
-                <option key="경상북도" value="14">경상북도</option>
-                <option key="경상남도" value="15">경상남도</option>
-                <option key="제주특별자치도" value="16">제주특별자치도</option>
-    
-            </select>
-        );
-    };
-    const SelectBox2 = () => {
-        
-        if(getState==="1")//서울
-        {return (
-            <select>
-                <option key="ing" value="ing">종로구</option>
-                <option key="end" value="end">중구</option>
-                <option key="ing" value="ing">용산구</option>
-                <option key="end" value="end">성동구</option>
-                <option key="ing" value="ing">광진구</option>
-                <option key="end" value="end">동대문구</option>
-                <option key="ing" value="ing">중랑구</option>
-                <option key="end" value="end">성북구</option>
-                <option key="ing" value="ing">강북구</option>
-                <option key="end" value="end">도봉구</option>
-                <option key="ing" value="ing">노원구</option>
-                <option key="end" value="end">은평구</option>
-                <option key="ing" value="ing">서대문구</option>
-                <option key="end" value="end">마포구</option>
-                <option key="ing" value="ing">양천구</option>
-                <option key="end" value="end">강서구</option>
-                <option key="ing" value="ing">구로구</option>
-                <option key="end" value="end">금천구</option>
-                <option key="ing" value="ing">영등포구</option>
-                <option key="end" value="end">동작구</option>
-                <option key="end" value="end">관악구</option>
-                <option key="ing" value="ing">서초구</option>
-                <option key="end" value="end">강남구</option>
-                <option key="ing" value="ing">송파구</option>
-                <option key="end" value="end">강동구</option>
-            </select>
-        );}
-        else if(getState==="2")//부산
-        {return (
-            <select>
-                <option key="ing" value="ing">중구</option>
-                <option key="end" value="end">서구</option>
-                <option key="ing" value="ing">동구</option>
-                <option key="end" value="end">영도구</option>
-                <option key="ing" value="ing">부산진구</option>
-                <option key="end" value="end">동래구</option>
-                <option key="ing" value="ing">남구</option>
-                <option key="end" value="end">북구</option>
-                <option key="ing" value="ing">강서구</option>
-                <option key="end" value="end">해운대구</option>
-                <option key="ing" value="ing">사하구</option>
-                <option key="end" value="end">금정구</option>
-                <option key="ing" value="ing">연제구</option>
-                <option key="end" value="end">수영구</option>
-                <option key="ing" value="ing">사상구</option>
-            </select>
-        );
-        }
-        else if(getState==="3")//대구
-        {return (
-            <select>
-                <option key="ing" value="ing">중구</option>
-                <option key="end" value="end">동구</option>
-                <option key="ing" value="ing">서구</option>
-                <option key="end" value="end">남구</option>
-                <option key="ing" value="ing">북구</option>
-                <option key="end" value="end">수성구</option>
-                <option key="ing" value="ing">달서구</option>
-                <option key="end" value="end">달성군</option>
-            </select>
-        );
-        }
-        else if(getState==="4")//인천
-        {return (
-            <select>
-                <option key="ing" value="ing">중구</option>
-                <option key="end" value="end">동구</option>
-                <option key="ing" value="ing">미추홀구</option>
-                <option key="end" value="end">연수구</option>
-                <option key="ing" value="ing">남동구</option>
-                <option key="end" value="end">부평구</option>
-                <option key="ing" value="ing">계양구</option>
-                <option key="end" value="end">서구</option>
-                <option key="ing" value="ing">강화군</option>
-                <option key="end" value="end">옹진군</option>
-            </select>
-        );
-        }
-        else if(getState==="5")//광주
-        {return (
-            <select>
-                <option key="ing" value="ing">동구</option>
-                <option key="end" value="end">서구</option>
-                <option key="ing" value="ing">남구</option>
-                <option key="end" value="end">북구</option>
-                <option key="ing" value="ing">광산구</option>
-            </select>
-        );
-        }
-        else if(getState==="6")//대전광역시
-        {return (
-            <select>
-                <option key="ing" value="ing">동구</option>
-                <option key="end" value="end">중구</option>
-                <option key="ing" value="ing">서구</option>
-                <option key="end" value="end">유성구</option>
-                <option key="ing" value="ing">대덕구</option>
-            </select>
-        );
-        }
-        else if(getState==="7")//울산
-        {return (
-            <select>
-                 <option key="ing" value="ing">중구</option>
-                <option key="end" value="end">남구</option>
-                <option key="ing" value="ing">동구</option>
-                <option key="end" value="end">북구</option>
-                <option key="ing" value="ing">울주군</option>
-            </select>
-        );
-        }
-        else if(getState==="8")//경기도
-        {return (
-            <select>
-                <option key="ing" value="ing">
-                    부산
-                </option>
-                <option key="end" value="end">경기도</option>
-            </select>
-        );
-        }
-        else if(getState==="9")//강원도
-        {return (
-            <select>
-                <option key="ing" value="ing">
-                    부산
-                </option>
-                <option key="end" value="end">경기도</option>
-            </select>
-        );
-        }
-        else if(getState==="10")//충청북도
-        {return (
-            <select>
-                <option key="ing" value="ing">
-                    부산
-                </option>
-                <option key="end" value="end">경기도</option>
-            </select>
-        );
-        }
-        else if(getState==="11")//충청남도
-        {return (
-            <select>
-                <option key="ing" value="ing">
-                    부산
-                </option>
-                <option key="end" value="end">경기도</option>
-            </select>
-        );
-        }
-        else if(getState==="12")//전라북도
-        {return (
-            <select>
-                <option key="ing" value="ing">
-                    부산
-                </option>
-                <option key="end" value="end">경기도</option>
-            </select>
-        );
-        }
-        else if(getState==="13")//전라남도
-        {return (
-            <select>
-                <option key="ing" value="ing">
-                    부산
-                </option>
-                <option key="end" value="end">경기도</option>
-            </select>
-        );
-        }
-        else if(getState==="14")//경상북도
-        {return (
-            <select>
-                <option key="ing" value="ing">
-                    부산
-                </option>
-                <option key="end" value="end">경기도</option>
-            </select>
-        );
-        }
-        else if(getState==="15")//경상남도
-        {return (
-            <select>
-                <option key="ing" value="ing">
-                    부산
-                </option>
-                <option key="end" value="end">경기도</option>
-            </select>
-        );
-        }
-        else if(getState==="16")//제주특별자치도
-        {return (
-            <select>
-                <option key="ing" value="ing">
-                    부산
-                </option>
-                <option key="end" value="end">경기도</option>
-            </select>
-        );
-        }
-        
-
-    };
+ 
+      
     const countClick = (text) => {
 
         if (text === "countdown" && directCount > 0) {
@@ -337,13 +104,22 @@ function Directed_write(props) {
         }
 
     }
+    const getValue=(text)=>{
+        setSido(text)
+        
+
+    }
+    const getValue2=(text)=>{
+        setSigungu(text)
+       
+
+    }
     return (
 
         <div className="Directed-write-container">
             <div className="Directed-write-nav-container">
                 <div className="Directed-write-nav-class">
                     <Menu_left_nav name={"지정헌혈"} imgname={DIRECTEDIMG}></Menu_left_nav>
-                   {console.log("chenk",getState)}
                 </div>
                 <div className="Directed-write-nav-goback">
                     <img className="Directed-write-goback-bntimg-class" onClick={() => props.addPage("지정헌혈")} src={GOBACKBTN}></img>
@@ -412,8 +188,8 @@ function Directed_write(props) {
                                     지정헌혈 받을 병원 위치
                                 </div>
                                 <div className="Directed-write-footer-locationselect">
-                                    <SelectBox></SelectBox><SelectBox2></SelectBox2>
-                                    {console.log()}
+                                    <Directed_write_select getValue={getValue} getValue2={getValue2}/>
+                                    {console.log("get",getSido,"se",getSigungu)}
                                 </div>
                             </div>
                         </div>
