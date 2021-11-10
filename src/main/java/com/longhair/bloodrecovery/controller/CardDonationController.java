@@ -55,13 +55,13 @@ public class CardDonationController {
     @PutMapping("/requests/requestItem/{id}")
     public void putRequestItem(@RequestBody CardRequestUpdateDto cardRequestUpdateDto, @PathVariable("id") Long id){
         cardRequestUpdateDto.setId(id);
-        cardDonationService.updateCardRequestById(cardRequestUpdateDto);
+        cardDonationService.updateCardRequestById(cardRequestUpdateDto, cardRequest(id));
     }
 
     //기부 요청글 삭제
     @DeleteMapping("/requests/requestItem/{id}")
     public void deleteRequestItem(@PathVariable("id") Long id){
-        cardDonationService.deleteCardRequestById(id);
+        cardDonationService.deleteCardRequestById(id, cardRequest(id));
     }
 
     //기부하기
@@ -73,8 +73,8 @@ public class CardDonationController {
 
     //기부자 목록 조회 => 기부 요청글 밑에 출력
     @GetMapping("/requests/requestItem/{id}/donations")
-    public List<Donation> donations() {
-        return donationService.findAll();
+    public List<Donation> donations(@PathVariable("id") Long id) {
+        return donationService.findList(id);
     }
 
 }

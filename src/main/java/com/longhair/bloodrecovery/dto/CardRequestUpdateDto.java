@@ -12,9 +12,8 @@ public class CardRequestUpdateDto {
     private String title; //요청글 제목
     private String contents; //요청글 내용
     private String image; //요청글에 첨부하는 이미지 주소
-//    private int requestCount; //요청한 헌혈증 개수 ->이미 받은 애들은? ㅇ ㅓ 청일이 이거 수정 안되게 헀네..!
 //    private LocalDate requestDate; //기부 요청한 날짜 (수정 날짜로?)
-//    private Boolean completeStatus; //요청글 상태 애도...? 이제 필요없으면 그냥 삭제하면 안되나 ㅎㅎ;;
+    private Boolean completeStatus;
 
 
     public CardRequestUpdateDto(Long id, String userId, String title, String contents, String image){
