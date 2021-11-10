@@ -4,7 +4,11 @@ import Menu_left_nav from "../Common/Header/Menu_left_nav";
 import CARDDONATION from "../../Img/CARDDONATION.png";
 import GOBACKBTN from "../../Img/DirectedIMG/arrow.png";
 // import Common_Button_IMG from "../Common/Button/Common_Button_IMG";
-// import Directed_BUTTON_IMG from "../../Img/DirectedIMG/DirectedIMGWHITE.png";
+// import Board_BUTTON_IMG from "../../Img/BoardIMG/BoardIMGWHITE.png";
+
+import Board_BUTTON_IMG from "../../Img/CARDDONATIONWHITE.png";
+import Common_Button_IMG from "../Common/Button/Common_Button_IMG";
+
 import BLOODDROPIMG from "../../Img/DirectedIMG/blood-drop.png";
 import BRONZE from "../../Img/Grade/4_bronze.png";
 import SIVER from "../../Img/Grade/3_silver.png";
@@ -68,6 +72,28 @@ const Board_inquire = (id) => {
     else if (level === 2) return SIVER;
     else if (level === 3) return GOLD;
     else if (level === 4) return VIP;
+  };
+
+  const beaApplicant = () => {
+    if (sessionStorage.getItem("userId") == null) {
+      alert("로그인 후 기부가 가능합니다!");
+    } else {
+      // setContext(!context)
+      id.getValue();
+    }
+
+    // axios
+    //     .post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + id.id + "/applicant", { applicantId: sessionStorage.getItem("userId") })
+    //     // .params(
+    //     //     {
+    //     //         "applicantId":sessionStorage.getItem("userId")
+    //     //     }
+    //     // )
+    //     .then(function (response) {
+
+    //         console.log("response", response)
+
+    //     });
   };
 
   return (
@@ -142,6 +168,23 @@ const Board_inquire = (id) => {
                 </div>
               </div>
             ) : null}
+
+            <div className="Board-inquire-default-footer-container">
+              <div className="Board-inquire-default-footer-btn-container">
+                <div
+                  className="Board-inquire-default-footer-btn-class"
+                  onClick={beaApplicant}
+                >
+                  <Common_Button_IMG
+                    name={"기부하기"}
+                    imgname={Board_BUTTON_IMG}
+                  ></Common_Button_IMG>
+                </div>
+              </div>
+              <div className="Board-inquire-default-footer-info1-class">
+                소중한 기부 감사합니다! :)
+              </div>
+            </div>
 
             <div className="Board-inquire-footer-applicant">기부자</div>
           </div>
