@@ -64,7 +64,7 @@ public class UserController {
         return new ResponseEntity<>(userService.updateUserInfo(userPutDto), HttpStatus.OK);
     }
 
-    @PostMapping("/point")
+    @PutMapping("/point")
     public ResponseEntity<Result> changePoint(@RequestBody PointDto pointDto){
         return new ResponseEntity<>(new Result(userService.changePoint(pointDto)), HttpStatus.OK);
     }
