@@ -14,13 +14,14 @@ import Rank_main from "../Rank/Rank_main";
 import Bloodhouse_main from "../Bloodhouse/Bloodhouse_main";
 import Header_nav_login from "../Common/Header/Header_nav_login";
 import Directed_write from "../Directed/Directed_write";
-import Board_write from "../Board/Board_wite";
+import Board_write from "../Board/Board_write";
 import "./Main_base.css";
 import Mypage_main from "../Mypage/Mypage_main";
 import Directed_inquire from "../Directed/Directed_inquire";
 import { connect } from "react-redux";
 import { addPage } from "../../component/Modalmove/subscribers/action";
 import Board_inquire from "../Board/Board_inquire";
+import Notice_inquire from "../Notice/Notice_inquire";
 var text = "";
 var sendid;
 var num = 0;
@@ -108,7 +109,6 @@ function Main_base(props) {
           )}
           {/*<div className="test1" onClick={() => onChageClick2(getValue)}> emry</div>
                     {console.log("test:"+text+"get:"+getValue)}*/}
-
         </div>
       </div>
       <div className="Main-base-title-container-class">
@@ -177,6 +177,12 @@ function Main_base(props) {
             //헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
             헌혈의_집_예약: <Mypage_main></Mypage_main>,
             공지사항: <Notice_main></Notice_main>,
+            공지사항조회: (
+              <Notice_inquire
+                getsetValue3={getsetValue3}
+                id={sendid}
+              ></Notice_inquire>
+            ),
             로그인: <Login_main loginsuccess={loginsuccess}></Login_main>, //.....
             회원가입: <Join_main></Join_main>,
             랭킹: <Rank_main></Rank_main>,
