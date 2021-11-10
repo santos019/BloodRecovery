@@ -103,23 +103,27 @@
   width: 25%;
   height: 70%;
   margin-bottom: 20%;
-  /* background-color: aliceblue; */
+
+
 }
 .Directed-card-footer-locationname-si {
   float: left;
-  width: 50%;
-
-  /* background-color: blue; */
-  margin-left: 5%;
-  margin-right: 10%;
-  margin-bottom: 70%;
-  font-size: 14px;
+  width: 65px;
+  height: 15px;
+  font-size: 2px;
+  position: absolute;
+  text-align: center;
+  
 }
 .Directed-card-footer-locationname-gu {
   float: left;
-  width: 30%;
-  /* background-color: aquamarine; */
-  font-size: 14px;
+  width: 65px;
+  height: 15px;
+
+  font-size: 6px;
+  position: absolute;
+  margin-top: 20px;
+  text-align: center;
 }
 .Directed-card-footer-bloodtype-container {
   float: left;

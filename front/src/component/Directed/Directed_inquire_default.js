@@ -13,11 +13,11 @@ const Directed_inquire_default = (id) => {
         }
         else {
             axios
-            .get("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + sessionStorage.getItem("directId")+"/applicant")
+            .post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + sessionStorage.getItem("directId")+"/applicant",{applicantId:sessionStorage.getItem("userId")})
 
             .then(function (response) {
 
-                console.log("response1", response)
+                console.log("yo", response)
 
             });
 

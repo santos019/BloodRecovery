@@ -67,9 +67,6 @@ function Directed_write(props) {
     const senddata=()=>{
 
         console.log("requesterUserId:",sessionStorage.getItem("userId"),"title:",inputs.direct_title,"contents:",inputs.direct_context,"image:",getIMG,"locationSido:",getSido,"locationSigungu:",getSigungu,"periodFrom:",changeFormat(startDate, "yyyy-MM-DD"),"periodTo:",changeFormat(endDate, "yyyy-MM-DD"),"bloodType:",inputs.direct_bloodtype,"bloodMaxCount:",directCount,"patientName:",inputs.direct_patient,"hospitalName:",inputs.direct_hospital,"roomNumber:",inputs.direct_room,"phoneNumber:",inputs.direct_phonenumber)
-        axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem",{requesterUserId:sessionStorage.getItem("userId"),title:inputs.direct_title,contents:inputs.direct_context,image:getIMG,locationSido:1,locationSigungu:2,periodFrom:changeFormat(startDate, "yyyy-MM-DD"),periodTo:changeFormat(endDate, "yyyy-MM-DD"),bloodType:inputs.direct_bloodtype,bloodMaxCount:directCount,patientName:inputs.direct_patient,hospitalName:inputs.direct_hospital,roomNumber:inputs.direct_room,phoneNumber:inputs.direct_phonenumber})
-        .then(function (response) {
-            console.log(response);          });
        
         // console.log(changeFormat(startDate, "yyyy-MM-DD"))
         // console.log(changeFormat(endDate, "yyyy-MM-DD"))
@@ -96,6 +93,12 @@ function Directed_write(props) {
         }
         else if(inputs.direct_phonenumber===""){
             alert("내용을 넣어주세요")
+        }
+        else{
+            axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem",{requesterUserId:sessionStorage.getItem("userId"),title:inputs.direct_title,contents:inputs.direct_context,image:getIMG,locationSido:getSido,locationSigungu:getSigungu,periodFrom:changeFormat(startDate, "yyyy-MM-DD"),periodTo:changeFormat(endDate, "yyyy-MM-DD"),bloodType:inputs.direct_bloodtype,bloodMaxCount:directCount,patientName:inputs.direct_patient,hospitalName:inputs.direct_hospital,roomNumber:inputs.direct_room,phoneNumber:inputs.direct_phonenumber})
+            .then(function (response) {
+                console.log(response);          });
+           
         }
 
 
@@ -226,6 +229,7 @@ function Directed_write(props) {
                                 <div className="Directed-write-data-data2">
                                 <div className="Directed-write-data-data2text"> 연락처:</div>
                                 <input className="direct-phonenumber" name="direct_phonenumber" onChange={onChange}></input>
+                                <div className="Directed-write-information-text">지정헌혈 신청자만 정보를 열람할 수 있습니다.</div>
                                 </div>
                             </div>
                         </div>

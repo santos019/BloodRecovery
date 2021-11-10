@@ -86,7 +86,7 @@ const Directed_main=(props)=>{
       // console.log(arrNumber)
     }
 
-    const movepage=(text)=>{
+    const movewritepa=(text)=>{
        
 
        }
@@ -114,7 +114,7 @@ const Directed_main=(props)=>{
                     <SelectBox2></SelectBox2>
                 </div>
                 <div className="Directed-main-nav-write-class">
-                    <img src={WRITEICON} onClick={()=>props.addPage("지정헌혈_글쓰기")} className="Directed-main-nav-writeicon-class"></img>
+                    <img src={WRITEICON} onClick={()=>sessionStorage.getItem("userId")!==null?props.addPage("지정헌혈_글쓰기"):alert("로그인을 해주세요")} className="Directed-main-nav-writeicon-class"></img>
                 </div>
             </div>
             <div className="Directed-main-cardmain-container">
