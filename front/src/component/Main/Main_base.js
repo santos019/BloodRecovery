@@ -24,6 +24,7 @@ import { addPage } from "../../component/Modalmove/subscribers/action";
 import Board_inquire from "../Board/Board_inquire";
 import Notice_inquire from "../Notice/Notice_inquire";
 import Directed_rewrite from "../Directed/Directed_rewrite";
+
 var text = "";
 var sendid;
 var num = 0;
