@@ -66,9 +66,9 @@ function Directed_write(props) {
       }
     const senddata=()=>{
 
-        console.log("requesterUserId:",sessionStorage.getItem("userId"),"title:",inputs.direct_title,"contents:",inputs.direct_context,"image:",getIMG,"locationSido:",getSido,"locationSigungu:",getSigungu,"periodFrom:",changeFormat(startDate, "yyyy-MM-DD"),"periodTo:",changeFormat(endDate, "yyyy-MM-DD"),"bloodType:",inputs.direct_bloodtype,"bloodMaxCount:",directCount,"patientName:",inputs.direct_patient,"hospitalName:",inputs.direct_hospital,"roomNumber:",inputs.direct_room,"phoneNumber:",inputs.direct_phonenumber)
+        console.log("requesterUserId:",sessionStorage.getItem("userId"),"title:",inputs.direct_title,"contents:",inputs.direct_context,"image:",getIMG,"locationSido:",getSido,"locationSigungu:",getSigungu,"periodFrom:",changeFormat(startDate, "yyyy-MM-DDT00:00:00"),"periodTo:",changeFormat(endDate, "yyyy-MM-DDT23:59:59"),"bloodType:",inputs.direct_bloodtype,"bloodMaxCount:",directCount,"patientName:",inputs.direct_patient,"hospitalName:",inputs.direct_hospital,"roomNumber:",inputs.direct_room,"phoneNumber:",inputs.direct_phonenumber)
        
-        // console.log(changeFormat(startDate, "yyyy-MM-DD"))
+        console.log(changeFormat(startDate, "yyyy-MM-DDT00:00:00"))
         // console.log(changeFormat(endDate, "yyyy-MM-DD"))
     
         // setStartDate(changeFormat(startDate, "yyyy-MM-DD"))
@@ -95,7 +95,8 @@ function Directed_write(props) {
             alert("내용을 넣어주세요")
         }
         else{
-            axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem",{requesterUserId:sessionStorage.getItem("userId"),title:inputs.direct_title,contents:inputs.direct_context,image:getIMG,locationSido:getSido,locationSigungu:getSigungu,periodFrom:changeFormat(startDate, "yyyy-MM-DD"),periodTo:changeFormat(endDate, "yyyy-MM-DD"),bloodType:inputs.direct_bloodtype,bloodMaxCount:directCount,patientName:inputs.direct_patient,hospitalName:inputs.direct_hospital,roomNumber:inputs.direct_room,phoneNumber:inputs.direct_phonenumber})
+            axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem",{requesterUserId:sessionStorage.getItem("userId"),title:inputs.direct_title,contents:inputs.direct_context,image:getIMG,locationSido:getSido,locationSigungu:getSigungu,
+            periodFrom:changeFormat(startDate, "yyyy-MM-DDT00:00:00"),periodTo:changeFormat(endDate, "yyyy-MM-DDT23:59:59"),bloodType:inputs.direct_bloodtype,bloodMaxCount:directCount,patientName:inputs.direct_patient,hospitalName:inputs.direct_hospital,roomNumber:inputs.direct_room,phoneNumber:inputs.direct_phonenumber})
             .then(function (response) {
                 console.log(response);          });
                 alert("게시글이 작성되었습니다.")
