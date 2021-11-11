@@ -58,7 +58,7 @@
   border: 2px solid #fb4d4e;
   border-radius: 50px 50px 50px 50px;
 }
-.Dircected-write-card-total {
+.Board-write-card-total {
   margin: auto;
   width: 90%;
 }
@@ -292,14 +292,7 @@ input[type="text"] {
   text-align: right;
   float: left;
 }
-.direct-patientname,
-.direct-hopitalname,
-.direct-roomnumber,
-.direct-phonenumber {
-  background-color: #239115;
-  width: 60%;
-  float: left;
-}
+
 .Board-write-btn-container {
   width: 100%;
   height: 25%;
