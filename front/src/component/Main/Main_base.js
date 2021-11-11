@@ -15,6 +15,7 @@ import Bloodhouse_main from "../Bloodhouse/Bloodhouse_main";
 import Header_nav_login from "../Common/Header/Header_nav_login";
 import Directed_write from "../Directed/Directed_write";
 import Board_write from "../Board/Board_write";
+import Notice_write from "../Notice/Notice_write";
 import "./Main_base.css";
 import Mypage_main from "../Mypage/Mypage_main";
 import Directed_inquire from "../Directed/Directed_inquire";
@@ -22,7 +23,11 @@ import { connect } from "react-redux";
 import { addPage } from "../../component/Modalmove/subscribers/action";
 import Board_inquire from "../Board/Board_inquire";
 import Notice_inquire from "../Notice/Notice_inquire";
+
 import Bloodpocket_main from "../Mypage/Bloodpocket";
+
+import Directed_rewrite from "../Directed/Directed_rewrite";
+
 var text = "";
 var sendid;
 var num = 0;
@@ -175,15 +180,20 @@ function Main_base(props) {
               ></Directed_inquire>
             ),
             지정헌혈_글쓰기: <Directed_write></Directed_write>,
+            지정헌혈_수정: <Directed_rewrite />,
             //헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
             헌혈의_집_예약: <Mypage_main></Mypage_main>,
             공지사항: <Notice_main></Notice_main>,
+
+            //getsetValue3 그대로 복붙해도돼,,,? 안될거같은디
             // 공지사항조회: (
             //   <Notice_inquire
             //     getsetValue3={getsetValue3}
             //     id={sendid}
             //   ></Notice_inquire>
             // ),
+            공지사항_글쓰기: <Notice_write></Notice_write>,
+
             내_지갑: <Bloodpocket_main />,
             로그인: <Login_main loginsuccess={loginsuccess}></Login_main>, //.....
             회원가입: <Join_main></Join_main>,

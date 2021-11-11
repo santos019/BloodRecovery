@@ -1,68 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router";
 import Menu_left_nav from "../Common/Header/Menu_left_nav";
-import DIRECTEDIMG from "../../Img/DIRECTEDIMG.png";
+import CARDDONATION from "../../Img/CARDDONATION.png";
 import GOBACKBTN from "../../Img/DirectedIMG/arrow.png";
-import Common_Button_IMG from "../Common/Button/Common_Button_IMG";
-import DIRECTED_BUTTON_IMG from "../../Img/DirectedIMG/DIRECTEDIMGWHITE.png";
-
+import ADMIN from "../../Img/Grade/0_admin.png";
 import axios from "axios";
-import { connect } from "react-redux";
+import { connect, ReactReduxContext } from "react-redux";
 import { addPage } from "../../component/Modalmove/subscribers/action";
 import "./Notice_inquire.css";
 
 const Notice_inquire = (id) => {
   const [getData, setGetData] = useState();
-  const [viewData, setViewData] = useState(false);
-  const [getApplicants, setGetApplicants] = useState();
-  const sendValue = () => {
-    id.getsetValue3();
-  };
-  const getValue = () => {
-    setViewData(!viewData);
-    console.log("test");
-  };
+
   useEffect(() => {
     axios
       .get(
-        "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/notice/" +
-          id.id
+        // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/notice"
+        "http://localhost:8005/" + sessionStorage.getItem("boardId")
       )
 
       .then(function (response) {
         setGetData(response);
-        console.log("response1", response);
+        // console.log("response1", response);
       });
   }, []);
-  useEffect(() => {
-    axios
-      .get(
-        "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/notice/" +
-          id.id +
-          "/applicants"
-      )
 
-      .then(function (response) {
-        setGetApplicants(response);
-        console.log("response", response);
-      });
-  }, []);
   const deleteData = () => {
     axios
       .delete(
-        "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/notice/" +
-          id.id
+        // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/notice"
+        "http://localhost:8005/" + sessionStorage.getItem("boardId")
       )
 
       .then(function (response) {
         alert("게시글이 삭제되었습니다.");
-        console.log("response", response);
+        id.addPage("공지사항");
+        // console.log("response", response);
       });
   };
-  const writeStatue = (status) => {
-    if (status === false) return "진행중";
-    else return "완료";
-  };
+
   const dividedate = (inputdate) => {
     var redate = "";
     for (var i in inputdate) {
@@ -73,14 +49,19 @@ const Notice_inquire = (id) => {
     return redate;
   };
 
+  const levelIMG = (level) => {
+    if (level === 0) return ADMIN;
+  };
+
   return (
     <div className="Notice-inquire-container">
       <div className="Notice-inquire-nav-container">
         <div className="Notice-inquire-nav-class">
           <Menu_left_nav
             name={"공지사항"}
-            imgname={DIRECTEDIMG}
+            imgname={CARDDONATION}
           ></Menu_left_nav>
+          {/* {console.log(id.id)} */}
         </div>
         <div className="Notice-inquire-nav-goback">
           <img
@@ -99,14 +80,17 @@ const Notice_inquire = (id) => {
                   {getData?.data.title}
                 </div>
                 <div className="Notice-inquire-card-data-class">
-                  {dividedate(getData?.data.periodFrom)}~
-                  {dividedate(getData?.data.periodTo)}
+                  {dividedate(getData?.data.date)}
                 </div>
               </div>
               <div className="Notice-inquire-card-info-class">
                 <div className="Notice-inquire-card-writer-container">
+                  <img
+                    src={levelIMG(getData?.data.writerLevel)}
+                    className="Notice-inquire-card-writer-icon"
+                  ></img>
                   <div className="Notice-inquire-card-writername-class">
-                    관리자
+                    {getData?.data.writerNickname}
                   </div>
                 </div>
               </div>
@@ -116,8 +100,7 @@ const Notice_inquire = (id) => {
             </div>
           </div>
           <div className="Notice-inquire-footer-container">
-            {getData?.data.requesterUserId ===
-            sessionStorage.getItem("userId") ? (
+            {getData?.data.writerUserId === sessionStorage.getItem("userId") ? (
               <div>
                 <div className="Notice-inquire-footer-mypost">
                   <div
@@ -131,10 +114,14 @@ const Notice_inquire = (id) => {
               </div>
             ) : null}
 
-            <div className="Notice-inquire-footer-applicant">기부자</div>
+            {/* <div className="Notice-inquire-default-footer-container">
+              <div className="Notice-inquire-default-footer-info1-class">
+                소중한 기부 감사합니다 :)
+                <p>=======================================================</p>
+              </div>
+            </div> */}
           </div>
         </div>
-        y
       </div>
     </div>
   );

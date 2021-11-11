@@ -13,27 +13,27 @@ import VIP from "../../Img/Grade/1_vip.png";
 import axios from "axios";
 import Directed_inquire_default from "./Directed_inquire_default";
 import Directed_inquire_default_data from "./Directed_inquire_default_dats";
-import {connect} from 'react-redux'
-import {addPage} from '../../component/Modalmove/subscribers/action'
+import { connect } from 'react-redux'
+import { addPage } from '../../component/Modalmove/subscribers/action'
 import './Directed_inquire.css';
 
 
 const Directed_inquire = (id) => {
     const [getData, setGetData] = useState();
-    const [viewData,setViewData]=useState(false);
-    const [getApplicants,setGetApplicants]=useState();
+    const [viewData, setViewData] = useState(false);
+    const [getApplicants, setGetApplicants] = useState();
     const sendValue = () => {
         id.getsetValue3()
-        
-    
+
+
     }
-    const getValue=()=>{
+    const getValue = () => {
 
         setViewData(!viewData);
         console.log("test")
 
 
-        
+
     }
     useEffect(() => {
         axios
@@ -49,7 +49,7 @@ const Directed_inquire = (id) => {
     }, []);
     useEffect(() => {
         axios
-            .get("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + sessionStorage.getItem("directId")+"/applicants")
+            .get("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + sessionStorage.getItem("directId") + "/applicants")
 
             .then(function (response) {
 
@@ -59,16 +59,16 @@ const Directed_inquire = (id) => {
             });
 
     }, []);
-    const deleteData=()=>{
+    const deleteData = () => {
 
         axios
-        .delete("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + sessionStorage.getItem("directId"))
+            .delete("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + sessionStorage.getItem("directId"))
 
-        .then(function (response) {
-            alert("게시글이 삭제되었습니다.")
-            console.log("response", response)
+            .then(function (response) {
+                alert("게시글이 삭제되었습니다.")
+                console.log("response", response)
 
-        });
+            });
 
     }
     const writeStatue = (status) => {
@@ -107,7 +107,7 @@ const Directed_inquire = (id) => {
                     {console.log(id.id)}
                 </div>
                 <div className="Directed-inquire-nav-goback">
-                    <img className="Directed-inquire-goback-bntimg-class" onClick={()=>id.addPage("지정헌혈")} src={GOBACKBTN}></img>
+                    <img className="Directed-inquire-goback-bntimg-class" onClick={() => id.addPage("지정헌혈")} src={GOBACKBTN}></img>
                 </div>
             </div>
             <div className="Directed-inquire-content-container">
@@ -124,7 +124,8 @@ const Directed_inquire = (id) => {
                             </div>
                             <div className="Directed-inquire-card-info-class">
                                 <div className="Directed-inquire-card-info-location">
-                                    {getData?.data.locationSido} {getData?.data.locationSigungu}
+                                    <div className="Directed-inquire-card-location1">{getData?.data.locationSido}</div>
+                                    <div className="Directed-inquire-card-location1">{getData?.data.locationSigungu}</div>
                                 </div>
                                 <div className="Directed-inquire-card-info-bloodtype">
                                     {getData?.data.bloodType}
@@ -148,19 +149,20 @@ const Directed_inquire = (id) => {
                         </div>
                     </div>
                     <div className="Directed-inquire-footer-container">
-                        {getData?.data.requesterUserId===sessionStorage.getItem("userId") ?<div>
+                        {getData?.data.requesterUserId === sessionStorage.getItem("userId") ? getData?.data.completeStatus===false?
+                        <div>
                             <div className="Directed-inquire-footer-mypost">
                                 <div className="Directed-inquire-footer-delete" onClick={deleteData}>
-                                삭제
+                                    삭제
                                 </div>
-                                <div className="Directed-inquire-footer-repost">
+                                <div className="Directed-inquire-footer-repost" onClick={()=>id.addPage("지정헌혈_수정")}>
                                     수정
                                 </div>
                             </div>
-                        </div>: viewData===true?<Directed_inquire_default_data id={id}></Directed_inquire_default_data>
-                        :<Directed_inquire_default id={id} getValue={getValue}></Directed_inquire_default>}
+                        </div>:null : viewData === true ? <Directed_inquire_default_data id={id}></Directed_inquire_default_data>
+                            : <Directed_inquire_default id={id} getValue={getValue}></Directed_inquire_default>}
 
-                                           <div className="Directed-inquire-footer-applicant">
+                        <div className="Directed-inquire-footer-applicant">
                             기부자
                         </div>
                     </div>
@@ -170,16 +172,16 @@ const Directed_inquire = (id) => {
     )
 
 }
-const mapStateToProps=(state)=>{
-    return{
-        page:state.page
-        
+const mapStateToProps = (state) => {
+    return {
+        page: state.page
+
     }
 }
-const mapDispatchToProps=(dispatch)=>{
-    return{
-        addPage: (text)=>dispatch(addPage(text))
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addPage: (text) => dispatch(addPage(text))
     }
 }
 
-export default  connect(mapStateToProps,mapDispatchToProps)(Directed_inquire);
+export default connect(mapStateToProps, mapDispatchToProps)(Directed_inquire);

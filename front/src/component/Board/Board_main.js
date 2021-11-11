@@ -9,6 +9,7 @@ import axios from "axios";
 import CARDDONATION from "../../Img/CARDDONATION.png";
 import SEARCHICON from "../../Img/searchicon.png";
 import WRITEICON from "../../Img/WRITE.png";
+import { getDefaultLocale } from "react-datepicker";
 
 const SelectBox = () => {
   return (
@@ -27,11 +28,11 @@ const Board_main = (props) => {
   const [getData, setGetdata] = useState([]);
 
   const getsetValue2 = (getData) => {
-    console.log("헌혈증기부", getData);
+    // console.log("헌혈증기부", getData);
     props.getsetValue2(getData);
   };
   const getsetValue3 = () => {
-    console.log("헌혈증기부 조회 백");
+    // console.log("헌혈증기부 조회 백");
     props.getsetValue3();
   };
 
@@ -39,7 +40,7 @@ const Board_main = (props) => {
     axios
       .get(
         // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests"
-        "http://localhost:8003/requests"
+        "http://localhost:8003"
       )
       // "id": 1,
       // "userId": "아이디2",
@@ -56,7 +57,7 @@ const Board_main = (props) => {
       .then(function (response) {
         setGetdata(response.data);
         newdata();
-        console.log("response", response);
+        // console.log("response", response);
       });
   }, []);
 
@@ -79,26 +80,18 @@ const Board_main = (props) => {
             imgname={CARDDONATION}
           ></Menu_left_nav>
         </div>
-        <div className="Board-main-nav-search-class">
-          <input
-            type="text"
-            name="search_Data"
-            className="Board-main-input"
-          ></input>
-          <div className="Board-main-nav-searchicon-container">
-            <img
-              src={SEARCHICON}
-              className="Board-main-nav-searchicon-class"
-            ></img>
-          </div>
-        </div>
+
         <div className="Board-main-nav-select-class">
           <SelectBox></SelectBox>
         </div>
         <div className="Board-main-nav-write-class">
           <img
             src={WRITEICON}
-            onClick={(e) => props.addPage("헌혈증_글쓰기")}
+            onClick={() =>
+              sessionStorage.getItem("userId") !== null
+                ? props.addPage("헌혈증_글쓰기")
+                : alert("로그인을 해주세요")
+            }
             className="Board-main-nav-writeicon-class"
           ></img>
         </div>

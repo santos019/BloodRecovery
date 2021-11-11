@@ -3,7 +3,7 @@
     width: 100%;
     /* background-color: blueviolet; */
     /* margin-left: 30%; */
-    margin-top: 5%;
+    margin-top: 2%;
 
     /* text-align:center */
     
@@ -145,13 +145,13 @@ input:focus {outline:none;}
     background-color: darkred;
 }
 .Join-checkbox-class{
-    background-color: chocolate;
-    width: auto;
+  
+    width: 320px;
+
 }
 
 .Join-checkbox-text-class{
     width: 50%;
-    /* background-color: aqua; */
     margin-left: 65%;
     font-size: 0.5em;
     float: left;
