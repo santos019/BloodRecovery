@@ -27,16 +27,10 @@ public class CardDonationController {
     private final CardDonationService cardDonationService;
     private final DonationService donationService;
 
-    //검색기능
+    //기부 요청글 전체 조회 (필터링 포함)
     @GetMapping("")
     public ResponseEntity<List<CardRequestSimpleDto>> getRequests(SearchData searchData){
         return new ResponseEntity<>(cardDonationService.findCardRequestAll(searchData), HttpStatus.OK);
-    }
-
-    //기부 요청글 전체 조회
-    @GetMapping("/requests")
-    public List<CardRequest> cardRequests() {
-        return cardDonationService.findAll();
     }
 
     //기부 특정 요청글 조회

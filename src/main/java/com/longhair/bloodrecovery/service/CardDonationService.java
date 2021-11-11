@@ -25,28 +25,44 @@ public class CardDonationService {
 
     private final CardDonationRepository cardDonationRepository;
     private final DonationRepository donationRepository;
+    private final static int vipLevel = 4;
 
     private final static String url = "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/";
 
-    //검색 필터링 기능
+    //기부 요청글 전체 조회 (필터링 포함)
     public List<CardRequestSimpleDto> findCardRequestAll(SearchData searchData){
         List<CardRequestSimpleDto> cardRequestSimpleDtos = new ArrayList<>();
         List<CardRequest> cardRequests = new ArrayList<>();
 
         switch (searchData.getSearchMode()){
+            case 0:     // 필터링 모드 없는 것.(Status = false)
+                cardRequests = cardDonationRepository.findCardRequestByCompleteStatus(false);
+                break;
             case 2: //리액트때 민정이꺼 보기 편할려고 2로 해놓음ㅎ
                 cardRequests = cardDonationRepository.findCardRequestByCompleteStatus(true);
                 break;
             default:
                 break;
         }
-        cardRequests.forEach(e -> cardRequestSimpleDtos.add(new CardRequestSimpleDto(e)));
-        return cardRequestSimpleDtos;
-    }
 
-    //기부 요청글 전체 조회
-    public List<CardRequest> findAll() {
-        return cardDonationRepository.findAll();
+        Collections.reverse(cardRequests);
+
+        List<CardRequest> vipItems = new ArrayList<>();
+        List<CardRequest> normalItems = new ArrayList<>();
+        cardRequests.forEach(e -> {
+            if(e.getLevel() >= vipLevel){
+                vipItems.add(e);
+            }
+            else{
+                normalItems.add(e);
+            }
+        });
+
+        vipItems.forEach(e -> cardRequestSimpleDtos.add(new CardRequestSimpleDto(e)));
+        normalItems.forEach(e -> cardRequestSimpleDtos.add(new CardRequestSimpleDto(e)));
+
+        return cardRequestSimpleDtos;
+
     }
 
     //기부 특정 요청글 조회
