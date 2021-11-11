@@ -16,6 +16,7 @@ public class CardRequestSimpleDto {
     private int requestCount; //요청한 헌혈증 개수
     private int donationCount; //기부받은 헌혈증 개수
     private LocalDateTime requestDate; //기부 요청한 날짜
+    private Boolean completeStatus; //요청글 상태
 
     public CardRequestSimpleDto(CardRequest cardRequest){
         id = cardRequest.getId();
@@ -25,6 +26,7 @@ public class CardRequestSimpleDto {
         requestCount = cardRequest.getRequestCount();
         donationCount = cardRequest.getDonationCount();
         requestDate = cardRequest.getRequestDate();
+        completeStatus = cardRequest.getCompleteStatus();
     }
 }
 
