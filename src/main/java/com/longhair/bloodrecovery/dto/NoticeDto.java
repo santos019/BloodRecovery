@@ -3,7 +3,7 @@ package com.longhair.bloodrecovery.dto;
 import com.longhair.bloodrecovery.domain.Notice;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 public class NoticeDto {
@@ -11,7 +11,7 @@ public class NoticeDto {
     private String writerNickname;
     private int writerLevel;
     private String title;
-    private Date date;
+    private LocalDateTime date;
 
     public NoticeDto(Notice notice){
         this.id = notice.getId();

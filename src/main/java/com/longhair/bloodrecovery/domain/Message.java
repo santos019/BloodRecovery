@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -18,6 +18,6 @@ public class Message {
     private String consumer;
     private String title;
     private String contents;
-    private Date date;
+    private LocalDateTime date;
     private boolean read;
 }

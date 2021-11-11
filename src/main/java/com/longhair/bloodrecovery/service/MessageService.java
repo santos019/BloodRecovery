@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -44,7 +44,7 @@ public class MessageService {
 
     @Transactional
     public Message sendMessage(Message message){
-        message.setDate(new Date());
+        message.setDate(LocalDateTime.now());
         message.setRead(false);
         return messageRepository.save(message);
     }
