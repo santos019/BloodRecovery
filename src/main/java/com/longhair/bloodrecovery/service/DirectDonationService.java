@@ -15,9 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @Slf4j
@@ -36,8 +35,8 @@ public class DirectDonationService {
     public ApplicantDto saveApplicant(Applicant applicant, Long id){
         Optional<DirectDonation> item = directDonationRepository.findById(id);
         if(item.isPresent()){
-            Date date = new Date();
-            if(item.get().getPeriodTo().after(date)){
+            LocalDateTime date = LocalDateTime.now();
+            if(item.get().getPeriodTo().isAfter(date)){
                 Map map = getUserInfo(applicant.getApplicantIdentify());
                 applicant.setApplicantNickname(map.get("nickname").toString());
                 applicant.setDirectDonation(item.get());

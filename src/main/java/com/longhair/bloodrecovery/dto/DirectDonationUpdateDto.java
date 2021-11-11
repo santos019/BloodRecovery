@@ -3,7 +3,8 @@ package com.longhair.bloodrecovery.dto;
 import com.longhair.bloodrecovery.domain.DirectDonation;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+
 
 @Data
 public class DirectDonationUpdateDto {
@@ -12,11 +13,11 @@ public class DirectDonationUpdateDto {
     private String title;
     private String contents;
     private String image;
-    private Date periodFrom;
-    private Date periodTo;
+    private LocalDateTime periodFrom;
+    private LocalDateTime periodTo;
     private Boolean completeStatus;
 
-    public DirectDonationUpdateDto(Long id, String requesterUserId, String title, String contents, String image, Date periodFrom, Date periodTo, Boolean completeStatus) {
+    public DirectDonationUpdateDto(Long id, String requesterUserId, String title, String contents, String image, LocalDateTime periodFrom, LocalDateTime periodTo, Boolean completeStatus) {
         this.id = id;
         this.requesterUserId = requesterUserId;
         this.title = title;
