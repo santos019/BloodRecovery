@@ -67,12 +67,7 @@ function Directed_write(props) {
     const senddata=()=>{
 
         console.log("requesterUserId:",sessionStorage.getItem("userId"),"title:",inputs.direct_title,"contents:",inputs.direct_context,"image:",getIMG,"locationSido:",getSido,"locationSigungu:",getSigungu,"periodFrom:",changeFormat(startDate, "yyyy-MM-DD"),"periodTo:",changeFormat(endDate, "yyyy-MM-DD"),"bloodType:",inputs.direct_bloodtype,"bloodMaxCount:",directCount,"patientName:",inputs.direct_patient,"hospitalName:",inputs.direct_hospital,"roomNumber:",inputs.direct_room,"phoneNumber:",inputs.direct_phonenumber)
-       
-        // console.log(changeFormat(startDate, "yyyy-MM-DD"))
-        // console.log(changeFormat(endDate, "yyyy-MM-DD"))
-    
-        // setStartDate(changeFormat(startDate, "yyyy-MM-DD"))
-        // setendDate(changeFormat(endDate, "yyyy-MM-DD"))
+     
         if(inputs.direct_title===""){
             alert("제목을 넣어주세요")
         }
@@ -105,28 +100,8 @@ function Directed_write(props) {
 
 
     }
-    const countClick = (text) => {
 
-        if (text === "countdown" && directCount > 0) {
-            setDirectCount(directCount - 1)
 
-        }
-        else if (text === "countup" && directCount < 10) {
-
-            setDirectCount(directCount + 1)
-        }
-
-    }
-    const getValue=(text)=>{
-        setSido(text)
-        
-
-    }
-    const getValue2=(text)=>{
-        setSigungu(text)
-       
-
-    }
     const getfilename=(value)=>{
         // console.log("wow",value)
         setIMG(value)
@@ -170,71 +145,10 @@ function Directed_write(props) {
                                 <S3Upload getfilename={getfilename}/>
                             </div>
                         </div>
-                        <div className="Directed-write-footer-givecount-container">
-                            <div className="Directed-write-footer-givecount">
-                                <img src={BLOODDROP} className="Directed-write-footer-givecountimg"></img>
-                                <div className="Directed-write-footer-givecounttext">
-                                    지정헌혈 받을 횟수
-                                </div>
-                                <div className="Directed-write-footer-count-container">
-                                    <div className="Directed_countdown" onClick={() => countClick("countdown")}>
-                                        -
-                                    </div>
-                                    <div className="Directed_count">
-                                        {directCount}
-                                    </div>
-                                    <div className="Directed_countup" onClick={() => countClick("countup")}>
-                                        +
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="Directed-write-footer-bloodtype-container">
-                            <div className="Directed-write-footer-bloodtype-class">
-                                <img src={BLOODDROP} className="Directed-write-footer-givecountimg"></img>
-                                <div className="Directed-write-footer-bloodtypetext">
-                                    지정헌혈 받을 혈액형
-                                </div>
-                                <input className="Directed-write-footer-bloodtypeinput" name="direct_bloodtype" onChange={onChange}></input>
-                            </div>
-
-                        </div>
-                        <div className="Directed-write-footer-location-container">
-                            <div className="Directed-write-footer-locatin-class">
-                                <img src={LOCATIONIMG} className="Directed-write-footer-givecountimg"></img>
-                                <div className="Directed-write-footer-locationtext">
-                                    지정헌혈 받을 병원 위치
-                                </div>
-                                <div className="Directed-write-footer-locationselect">
-                                    <Directed_write_select getValue={getValue} getValue2={getValue2}/>
-                                    {console.log("get",getSido,"se",getSigungu)}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="Directed-write-data-container">
-                            <div className="Directed-write-data-class">
-                                <div className="Directed-write-data-data1">
-                                    <div className="Directed-write-data-text-p"> 지정헌혈 정보</div>
-                                </div>
-                                <div className="Directed-write-data-data2">
-                                    <div className="Directed-write-data-data2text">환자 성명:</div>
-                                    <input className="direct-patientname" name="direct_patient" onChange={onChange}></input>
-                                </div>
-                                <div className="Directed-write-data-data2">
-                                <div className="Directed-write-data-data2text">의료기관명:</div>
-                                <input className="direct-hopitalname" name="direct_hospital" onChange={onChange}></input>
-                                </div>
-                                <div className="Directed-write-data-data2">
-                                <div className="Directed-write-data-data2text">병실호수:</div>
-                                <input className="direct-roomnumber" name="direct_room" onChange={onChange}></input>
-                                </div>
-                                <div className="Directed-write-data-data2">
-                                <div className="Directed-write-data-data2text"> 연락처:</div>
-                                <input className="direct-phonenumber" name="direct_phonenumber" onChange={onChange}></input>
-                                <div className="Directed-write-information-text">지정헌혈 신청자만 정보를 열람할 수 있습니다.</div>
-                                </div>
-                            </div>
-                        </div>
+                      
+                 
+                      
+                    
                         <div className="Directed-write-btn-container">
                             <div className="Directed-write-btn-class" onClick={senddata}>
                                 <Common_Button_IMG name={"작성완료"} imgname={WRITEWHITEIMG} ></Common_Button_IMG>
