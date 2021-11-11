@@ -36,7 +36,7 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<Result> login(@RequestBody LoginDto loginDto){
-        return new ResponseEntity<>(new Result(userService.login(loginDto.getId(), loginDto.getPassword())), HttpStatus.OK);
+        return new ResponseEntity<>(new Result(userService.login(loginDto.getUserId(), loginDto.getPassword())), HttpStatus.OK);
     }
 
     @DeleteMapping("/{userId}")
@@ -51,7 +51,7 @@ public class UserController {
 
     @PostMapping("/pwReset")
     public ResponseEntity<Result> pwReset(@RequestBody LoginDto loginDto){
-        return new ResponseEntity<>(new Result(userService.resetPassword(loginDto.getId(), loginDto.getPassword())), HttpStatus.OK);
+        return new ResponseEntity<>(new Result(userService.resetPassword(loginDto.getUserId(), loginDto.getPassword())), HttpStatus.OK);
     }
 
     @GetMapping("/info/{userId}")
