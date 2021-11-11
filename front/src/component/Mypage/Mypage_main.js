@@ -58,21 +58,25 @@ function Mypage_main(props, getData) {
           ></Menu_left_nav>
         </div>
       </div>
-      <div className="Notice-main-nav-container"></div>
+      <div className="Mypage-main-nav-container"></div>
 
-      <div className="Mypage-main-profile">프사</div>
+      <div className="Mypage-main-profile">{user?.profile}</div>
 
       <div className="Mypage-usericon-class">
         {gradefunction(getData.getData?.requesterLevel)}
       </div>
 
-      <div className="Mypage-main-nickname">닉네임</div>
+      <div className="Mypage-main-nickname">{user?.nickname}</div>
+
+      <div className="Mypage-info-change" onClick={() => movepage("정보수정")}>
+        내정보수정
+      </div>
 
       {/* {user.point} */}
       {/* <img className="profile-img2" src={otherrank.profile}></img> */}
 
-      <div className="Mypage-list-button" onClick={() => movepage("내 지갑")}>
-        내 지갑
+      <div className="Mypage-list-button" onClick={() => movepage("내_지갑")}>
+        헌혈증 지갑
       </div>
       <div
         className="Mypage-list-button"
@@ -80,15 +84,12 @@ function Mypage_main(props, getData) {
       >
         내가 요청한 기부
       </div>
-      <div
-        className="Mypage-list-button"
-        onClick={() => movepage("포인트내역")}
-      >
-        포인트내역
+      <div className="Mypage-list-button" onClick={() => movepage("포인트")}>
+        {user?.point}
       </div>
 
-      <div className="Mypage-list-button" onClick={() => movepage("공지사항")}>
-        공지사항
+      <div className="Mypage-withdrawal" onClick={() => movepage("회원탈퇴")}>
+        회원탈퇴
       </div>
     </div>
   );
