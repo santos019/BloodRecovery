@@ -54,7 +54,7 @@ const Directed_inquire = (id) => {
             .then(function (response) {
 
                 setGetApplicants(response);
-                console.log("response", response)
+                console.log("기부자목록", response)
 
             });
 
@@ -67,7 +67,7 @@ const Directed_inquire = (id) => {
             .then(function (response) {
                 alert("게시글이 삭제되었습니다.")
                 console.log("response", response)
-
+                id.addPage("지정헌혈")
             });
 
     }
@@ -140,6 +140,11 @@ const Directed_inquire = (id) => {
                             <div className="Directed-inquire-card-context-class">
                                 {getData?.data.contents}
                             </div>
+                            <div className="Directed-inquire-card-context-img-class">
+                                <div className="Directed-inquire-card-context-margin">
+                                <img src={getData?.data.image} className="Directed-inquire-cardset-img"/>
+                                </div>
+                            </div>
                             <div className="Directed-inquire-card-footer-class">
                                 <div className="Directed-inquire-card-footer-status">
                                     <img src={BLOODDROPIMG} className="Directed-inquire-card-footer-statueIMG"></img>
@@ -163,7 +168,8 @@ const Directed_inquire = (id) => {
                             : <Directed_inquire_default id={id} getValue={getValue}></Directed_inquire_default>}
 
                         <div className="Directed-inquire-footer-applicant">
-                            기부자
+                            {getApplicants?.data.map((menu,index)=>(getApplicants?.data[index].applyStatus===false?<div className="Directed-inquire-footer-appname">{getApplicants?.data[index].applicantNickname+"님이 지정헌혈을 예정중이십니다."}</div>
+                            :<div className="Directed-inquire-footer-appname">{getApplicants?.data[index].applicantNickname+"님이 지정헌혈을 완료하셨습니다!."}</div>))}
                         </div>
                     </div>
                 </div>

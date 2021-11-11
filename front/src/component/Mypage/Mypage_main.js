@@ -32,7 +32,7 @@ function Mypage_main(props, getData) {
     axios
       .get(
         "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/info/" +
-          sessionStorage.getItem("userId")
+        sessionStorage.getItem("userId")
       )
       .then(function (response) {
         setUser(response.data);
@@ -43,52 +43,44 @@ function Mypage_main(props, getData) {
   function movepage(text) {
     props.addPage(text);
   }
-  const getsetValue = (text) => {
-    props.addPage(text);
-  };
 
   return (
     <div className="Mypage-main-container-class">
       <div className="Mypage-main-class">
         <div className="Mypage-main-Header-container-class">
           {console.log(props.index)}
-          <Menu_left_nav
-            name={"마이페이지"}
-            imgname={POCKETICON}
-          ></Menu_left_nav>
+          <Menu_left_nav name={"마이페이지"} imgname={POCKETICON}></Menu_left_nav>
         </div>
       </div>
-      <div className="Notice-main-nav-container"></div>
+      <div className="Mypage-main-nav-container"></div>
 
-      <div className="Mypage-main-profile">프사</div>
+      <div className="Mypage-main-profile">{user?.profile}</div>
 
       <div className="Mypage-usericon-class">
         {gradefunction(getData.getData?.requesterLevel)}
       </div>
 
-      <div className="Mypage-main-nickname">닉네임</div>
+      <div className="Mypage-main-nickname">{user?.nickname}</div>
+
+      <div className="Mypage-info-change" onClick={() => movepage("정보수정")}>
+        내정보수정
+      </div>
 
       {/* {user.point} */}
       {/* <img className="profile-img2" src={otherrank.profile}></img> */}
 
-      <div className="Mypage-list-button" onClick={() => movepage("내 지갑")}>
-        내 지갑
+      <div className="Mypage-list-button" onClick={() => movepage("내_지갑")}>
+        헌혈증 지갑
       </div>
-      <div
-        className="Mypage-list-button"
-        onClick={() => movepage("내가 요청한 기부")}
-      >
+      <div className="Mypage-list-button" onClick={() => movepage("내가 요청한 기부")}>
         내가 요청한 기부
       </div>
-      <div
-        className="Mypage-list-button"
-        onClick={() => movepage("포인트내역")}
-      >
-        포인트내역
+      <div className="Mypage-list-button" onClick={() => movepage("포인트")}>
+        {user?.point}
       </div>
 
-      <div className="Mypage-list-button" onClick={() => movepage("공지사항")}>
-        공지사항
+      <div className="Mypage-withdrawal" onClick={() => movepage("회원탈퇴")}>
+        회원탈퇴
       </div>
     </div>
   );

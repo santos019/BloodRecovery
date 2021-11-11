@@ -40,14 +40,15 @@ function Directed_write(props) {
             .get("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + sessionStorage.getItem("directId"))
 
             .then(function (response) {
-                console.log(response)
+              
                 const firstinputs = {
                     direct_context: response.data.contents,
                     direct_title: response.data.title
                 }
                 setInputs(firstinputs)
                 setIMG(response.data.img)
-                // setStartDate(response.data.periodFrom)
+                setStartDate(response.data.periodFrom)
+                setendDate(changedate(response.data.periodTo))
             });
 
 
@@ -64,7 +65,30 @@ function Directed_write(props) {
         console.log(inputs)
 
     }
+    function changedate (inputdata){
 
+        var redate="";
+        for(var i in inputdata)
+        {   if(inputdata[i]==="T")break;
+            else 
+            redate = redate+ inputdata[i];
+        }
+        
+    const strArr = redate.split('-');
+
+    const date = new Date(strArr[0], strArr[1]-1, strArr[2]);
+        return date
+    }
+    function changedate2(input){
+
+        var redate2=""
+        for(var i in input)
+        {   if(input[i]==="T")break;
+            else 
+            redate2 = redate2+ input[i];
+        }
+        return redate2;
+    }
     function changeFormat(date, format) {
         if (moment(date).isValid()) {
             return moment(date).format(format);
@@ -85,19 +109,19 @@ function Directed_write(props) {
 
         else {
             axios.put("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/"+sessionStorage.getItem("directId"),{requesterUserId:sessionStorage.getItem("userId"),title:inputs.direct_title,contents:inputs.direct_context,image:getIMG,
-            periodTo:changeFormat(endDate, "yyyy-MM-DDT23:59:59"),
+            periodFrom:changeFormat(startDate, "yyyy-MM-DDT00:00:00"),periodTo:changeFormat(endDate, "yyyy-MM-DDT23:59:59"),
             completeStatus:restatus})
             .then(function (response) {
                 console.log(response);          });
                 alert("게시글이 수정되었습니다.")
-                // props.addPage("지정헌혈")
+                props.addPage("지정헌혈")
 
         }
         console.log("title", inputs.direct_title)
         console.log("contents", inputs.direct_context)
         console.log("name",getIMG)
         console.log("status",restatus)
-        console.log("start",startDate)
+        console.log("start",changedate(startDate))
         console.log("end",endDate)
     }
 
@@ -127,8 +151,8 @@ function Directed_write(props) {
                                 </input>
                                 <div className="Directed-rewrite-card-data-class">
                                     <div className="Directed-rewrite-calender1">
-                                        <DataPicker locale={ko} selected={startDate} dateFormat="yyyy/MM/dd" minDate={new Date()} onChange={date => setStartDate(date)}></DataPicker> </div><div className="Directed-write-card-wow">~</div>
-                                    <div className="Directed-rewrite-calender2"><DataPicker locale={ko} selected={endDate} dateFormat="yyyy/MM/dd" minDate={startDate} onChange={date => setendDate(date)}></DataPicker></div>
+                                    <DataPicker locale={ko} value={changedate2(startDate)}  dateFormat="yyyy/MM/dd" minDate={changedate(startDate)} ></DataPicker> </div><div className="Directed-write-card-wow">~</div>
+                                    <div className="Directed-rewrite-calender2"><DataPicker locale={ko} selected={endDate} dateFormat="yyyy/MM/dd" minDate={changedate(startDate)} onChange={date => setendDate(date)}></DataPicker></div>
                                 </div>
                             </div>
 

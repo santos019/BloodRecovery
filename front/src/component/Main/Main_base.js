@@ -23,9 +23,12 @@ import { connect } from "react-redux";
 import { addPage } from "../../component/Modalmove/subscribers/action";
 import Board_inquire from "../Board/Board_inquire";
 import Notice_inquire from "../Notice/Notice_inquire";
+import Bloodpocket_main from "../Mypage/Bloodpocket";
 import Directed_rewrite from "../Directed/Directed_rewrite";
 import Board_rewrite from "../Board/Board_rewrite";
 import Notice_rewrite from "../Notice/Notice_rewrite";
+import Login_find from "../Login/Login_find";
+
 var text = "";
 var sendid;
 var num = 0;
@@ -183,15 +186,19 @@ function Main_base(props) {
             //헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
             헌혈의_집_예약: <Mypage_main></Mypage_main>,
             공지사항: <Notice_main></Notice_main>,
-            공지사항조회: (
-              <Notice_inquire
-                getsetValue3={getsetValue3}
-                id={sendid}
-              ></Notice_inquire>
-            ),
+
+            //getsetValue3 그대로 복붙해도돼,,,? 안될거같은디
+            // 공지사항조회: (
+            //   <Notice_inquire
+            //     getsetValue3={getsetValue3}
+            //     id={sendid}
+            //   ></Notice_inquire>
+            // ),
             공지사항_글쓰기: <Notice_write></Notice_write>,
             공지사항_수정: <Notice_rewrite />,
+            내_지갑: <Bloodpocket_main />,
             로그인: <Login_main loginsuccess={loginsuccess}></Login_main>, //.....
+            아이디비밀번호찾기: <Login_find />,
             회원가입: <Join_main></Join_main>,
             랭킹: <Rank_main></Rank_main>,
           }[JSON.parse(window.sessionStorage.getItem("last"))]
