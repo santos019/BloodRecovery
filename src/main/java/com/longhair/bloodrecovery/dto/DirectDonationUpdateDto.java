@@ -4,7 +4,7 @@ import com.longhair.bloodrecovery.domain.DirectDonation;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+
 
 @Data
 public class DirectDonationUpdateDto {

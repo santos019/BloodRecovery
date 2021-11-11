@@ -1,15 +1,12 @@
 package com.longhair.bloodrecovery.dto;
 
-import com.longhair.bloodrecovery.domain.Applicant;
 import com.longhair.bloodrecovery.domain.DirectDonation;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
 
 @Data
 public class DirectDonationDto {
