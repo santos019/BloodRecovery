@@ -105,7 +105,7 @@
     
   }
 
-  .Directed-write-card-footer-class{
+  .Directed-rewrite-card-footer-class{
     height: 0px;
     /* background-color: blueviolet; */
   }
@@ -247,14 +247,77 @@ border: 2px solid#fb4d4e;
 
 
 
-.Directed-write-btn-container{
+.Directed-rewrite-btn-container{
     width: 100%;
     height: 25%;
     /* background-color: #398588; */
 }
-.Directed-write-btn-class{
+.Directed-rewrite-btn-class{
     width: 20%;
     height: 100%;
     margin: auto;
 }
 
+.Directed-rewrite-status-container{
+
+    width: 100%;
+    background-color: aqua;
+    height: 10%;
+    margin-bottom: 3%;
+}
+.Directed-rewrite-status-class{
+width: 21%;
+height: 100%;
+  
+    margin: auto;
+    font-size: 14px;
+}
+.Directed-rewrite-status-ongoging{
+    float: left;
+    height: 100%;
+    width: 43%;
+    background-color: #fed4d4;
+    border-radius: 5px 5px 5px 5px;
+    cursor: pointer;
+}
+.Directed-rewrite-status-stop{
+    float: right;
+    height: 100%;
+    width: 46%;
+    background-color: #F6F6F6;
+    border-radius: 5px 5px 5px 5px;
+    color:rgba(0, 0, 0, 0.116);
+    cursor: pointer;
+
+}
+.Directed-rewrite-status-ongogingnot{
+  float: left;
+  height: 100%;
+  width: 43%;
+  background-color: #F6F6F6;
+  border-radius: 5px 5px 5px 5px;
+  cursor: pointer;
+  color:rgba(0, 0, 0, 0.116);
+}
+.Directed-rewrite-status-stopnot{
+  float: right;
+  height: 100%;
+  width: 46%;
+  background-color: #fed4d4;
+  border-radius: 5px 5px 5px 5px;
+  color:black;
+  cursor: pointer;
+
+}
+.Directed-rewrite-status-img{
+
+    float: left;
+    height: 80%;
+    margin-top: 5%;
+    /* background-color: rgb(255, 0, 200); */
+   
+}
+.Directed-rewrite-status-ongoging1{
+    width: 100%;
+    height: 100%;
+}

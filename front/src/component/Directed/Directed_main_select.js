@@ -1,14 +1,17 @@
 import React,{useState} from "react";
 import './Directed_write_select.css';
 function Directed_write_select(props) {
-    const [getState, setState] = useState("서울특별시");
-    const [getState2, setState2] = useState("");
+    const [getState, setState] = useState("전체");
+    const [getState2, setState2] = useState(" ");
 
  
 
     const handleChange = (e) => {
         setState(e.target.value);
-        if(e.target.value==="서울특별시"){
+        if(e.target.value==="전체"){
+            setState2("")
+        }
+        else if(e.target.value==="서울특별시"){
             setState2("종로구")
         }
         else if(e.target.value==="부산광역시"){
@@ -72,6 +75,7 @@ function Directed_write_select(props) {
     const SelectBox = () => {
         return (
             <select value={getState} onChange={handleChange}>
+                <option key="전체" value="전체">전체</option>
                 <option key="서울특별시" value="서울특별시">서울특별시</option>
                 <option key="부산광역시" value="부산광역시">부산광역시</option>
                 <option key="대구광역시" value="대구광역시">대구광역시</option>
@@ -94,8 +98,15 @@ function Directed_write_select(props) {
         );
     }
     const SelectBox2 = () => {
-
-        if (getState === "서울특별시")//서울
+        if (getState==="전체")
+        {
+            return(
+                <select select value={getState2} onChange={handleChange2}>
+                    <option key="전체서브" value="전체서브"></option>
+                    </select>
+            )
+        }
+        else if (getState === "서울특별시")//서울
         {
             return (
                 <select select value={getState2} onChange={handleChange2}>
