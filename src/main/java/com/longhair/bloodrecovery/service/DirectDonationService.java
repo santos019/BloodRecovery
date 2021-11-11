@@ -181,7 +181,7 @@ public class DirectDonationService {
         Map map = getUserInfo(directDonation.getRequesterUserId());
         directDonation.setRequesterNickname(map.get("nickname").toString());
         directDonation.setRequesterLevel(Integer.parseInt(map.get("level").toString()));
-
+        directDonation.setDate(new Date());
         directDonation.setCompleteStatus(false);
         directDonationRepository.save(directDonation);
         return directDonation;
