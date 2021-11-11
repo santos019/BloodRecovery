@@ -154,7 +154,7 @@ const Directed_inquire = (id) => {
                                 <div className="Directed-inquire-footer-delete" onClick={deleteData}>
                                     삭제
                                 </div>
-                                <div className="Directed-inquire-footer-repost">
+                                <div className="Directed-inquire-footer-repost" onClick={()=>id.addPage("지정헌혈_수정")}>
                                     수정
                                 </div>
                             </div>
