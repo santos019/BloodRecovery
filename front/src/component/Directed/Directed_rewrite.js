@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import DIRECTEDIMG from '../../Img/DIRECTEDIMG.png';
 import GOBACKBTN from '../../Img/DirectedIMG/arrow.png';
 import Menu_left_nav from '../Common/Header/Menu_left_nav';
@@ -22,7 +22,7 @@ function Directed_write(props) {
     const [endDate, setendDate] = useState(new Date());
     //헌혈증받는변수
     const [restatus,setRestatus]=useState(false);
-
+    const [getData,setGetData]=useState();
     const [getIMG,setIMG]=useState(null);
     // const [titlecheck,setTitleCheck]=useState(false)
     // const [contextcheck,setContextCheck]=useState(false)
@@ -34,6 +34,24 @@ function Directed_write(props) {
      
     })
    
+
+    useEffect(() => {
+        axios
+            .get("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + sessionStorage.getItem("directId"))
+
+            .then(function (response) {
+                console.log(response)
+                const firstinputs={
+                    direct_context: response.data.contents,
+                    direct_title:response.data.title
+                }
+                setInputs(firstinputs) 
+                setRestatus(response.data.completeStatus)
+
+            });
+           
+
+    }, []);
     const onChange=(e)=>{
         const { name, value } = e.target   
         const nextInputs = {            
@@ -43,10 +61,6 @@ function Directed_write(props) {
                  }
             //만든 변수를 seInput으로 변경해준다.
                  setInputs(nextInputs)  
-                 if(name==="direct_title")
-                 {
-                    
-                 }
                  console.log(inputs)
  
     }   
@@ -77,7 +91,7 @@ function Directed_write(props) {
             //     props.addPage("지정헌혈")
            
         }
-
+        console.log("contents",inputs.direct_context)
 
     }
 
@@ -89,6 +103,7 @@ function Directed_write(props) {
     return (
 
         <div className="Directed-rewrite-container">
+            {console.log("rewrite", inputs)}
             <div className="Directed-rewrite-nav-container">
                 <div className="Directed-rewrite-nav-class">
                     <Menu_left_nav name={"지정헌혈"} imgname={DIRECTEDIMG}></Menu_left_nav>
@@ -102,7 +117,7 @@ function Directed_write(props) {
                     <div className="Directed-rewrite-card-class">
                         <div className="Dircected-rewrite-card-total">
                             <div className="Directed-rewrite-card-nav-class">
-                                <input name="direct_title" className="Directed-rewrite-card-title-class" onChange={onChange}>
+                                <input name="direct_title" className="Directed-rewrite-card-title-class" value={inputs.direct_title} onChange={onChange}>
                                 </input>
                                 <div className="Directed-rewrite-card-data-class">
                                     <div className="Directed-rewrite-calender1">
@@ -112,7 +127,7 @@ function Directed_write(props) {
                             </div>
 
                             <div className="Directed-rewrite-card-context-class">
-                                <textarea name="direct_context" className="Directed-rewrite-card-context-input" onChange={onChange}></textarea>
+                                <textarea name="direct_context" className="Directed-rewrite-card-context-input" value={inputs.direct_context} onChange={onChange}></textarea>
                             </div>
                             <div className="Directed-rewrite-card-footer-class">
 
@@ -128,7 +143,8 @@ function Directed_write(props) {
                         <div className="Directed-rewrite-status-container">
                             <div className="Directed-rewrite-status-class">
                             <div className="Directed-rewrite-status-ongoging">
-                               <img className="Directed-rewrite-status-img" src={BLOODDROP}/> 진행중
+                            {restatus===true?<div className="Directed-rewrite-status-ongoging1"><img className="Directed-rewrite-status-img" src={BLOODDROP}/>진행끝</div>:
+                              <div className="Directed-rewrite-status-ongoging1"><img className="Directed-rewrite-status-img" src={BLOODDROP}/> 진행중</div>}
                             </div>
                             <div className="Directed-rewrite-status-stop">
                             <img className="Directed-rewrite-status-img" src={BLOODDROP}/> 진행완료

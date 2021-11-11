@@ -65,7 +65,7 @@ const Directed_card=(getData)=>{
                 <div className="Directed-card-nav-userstatus-container">
                     <div className="Directed-card-nav-userstatus-class">
                         <img src={BLOODDROP} className="Directed-card-nav-userstatus-icon"></img>
-                        {console.log(getData.getData?.completeStatus)}
+                        {/* {console.log(getData.getData?.completeStatus)} */}
           {getData.getData?.completeStatus===false?<p className="Directed-card-nav-userstatus-p-class">진행중</p>:<p>완료</p> }
                     </div>
                 </div>
@@ -103,9 +103,7 @@ const Directed_card=(getData)=>{
                     //==="id"?console.log("ture"):console("false")
                     
                 }
-                {
-                    console.log(getData.getData?.id)
-                }
+            
                 
                 
             </div>
