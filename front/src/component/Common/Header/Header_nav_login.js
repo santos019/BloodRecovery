@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header_nav.css";
+import Message from "../../Message/Message";
+
 const Header_nav=(props)=>{
-
-
     const sendValue=(text)=>{
                  props.getsetValue(text);
              }
@@ -11,6 +11,7 @@ const Header_nav=(props)=>{
         props.logoutsuccess()
 
     }
+    const [messageShow, setMessageShow] = useState(false);
     return (
 
         <div className="Header-nav-class">
@@ -20,6 +21,9 @@ const Header_nav=(props)=>{
                 </div>
                 <div className="Header-nav-Join-class" onClick={()=>sendValue("회원가입")}>
                     마이페이지
+                </div>
+                <div className="Header-nav-Message-class" onClick={()=>setMessageShow(true)}>
+                    메시지
                 </div>
             </div>
         </div>
