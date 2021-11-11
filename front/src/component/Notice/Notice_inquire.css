@@ -1,4 +1,4 @@
-.Directed-inquire-container {
+.Notice-inquire-container {
   /* background-color: rgb(129, 129, 179); */
   width: 970px;
   height: 734px;
@@ -6,7 +6,7 @@
 
   background-color: aqua;
 }
-.Directed-inquire-nav-container {
+.Notice-inquire-nav-container {
   float: left;
   height: 8%;
   width: 100%;
@@ -14,20 +14,20 @@
   border-bottom: solid 4px #fb4d4e;
   background-color: rgb(12, 74, 128);
 }
-.Directed-inquire-nav-class {
+.Notice-inquire-nav-class {
   margin-left: 3%;
   margin-top: 1%;
   width: 89%;
   float: left;
   background-color: antiquewhite;
 }
-.Directed-inquire-content-container {
+.Notice-inquire-content-container {
   width: 100%;
   height: 92%;
   float: left;
   /* background-color: blue; */
 }
-.Directed-inquire-content-class {
+.Notice-inquire-content-class {
   margin: auto;
   background-color: rgb(155, 155, 155);
   width: 80%;
@@ -36,7 +36,7 @@
   padding-top: 3%;
 }
 
-.Directed-inquire-goback-bntimg-class {
+.Notice-inquire-goback-bntimg-class {
   margin-top: 8%;
   margin-left: 10%;
   width: 40px;
@@ -44,13 +44,13 @@
   float: left;
   background-color: blueviolet;
 }
-.Directed-inquire-nav-goback {
+.Notice-inquire-nav-goback {
   width: 8%;
   height: 100%;
   background-color: coral;
   float: left;
 }
-.Directed-inquire-card-class {
+.Notice-inquire-card-class {
   width: 100%;
   float: left;
   height: auto;
@@ -58,24 +58,24 @@
   border: 2px solid #fb4d4e;
   border-radius: 50px 50px 50px 50px;
 }
-.Dircected-inquire-card-total {
+.Notice-inquire-card-total {
   margin: auto;
   width: 90%;
 }
-.Directed-inquire-card-nav-class {
+.Notice-inquire-card-nav-class {
   width: 100%;
   height: 50px;
   border-bottom: solid 4px #fb4d4e;
   background-color: rgba(0, 0, 255, 0.075);
 }
-.Directed-inquire-card-title-class {
+.Notice-inquire-card-title-class {
   float: left;
   margin-top: 3%;
   width: 75%;
   background-color: aqua;
   font-size: 16px;
 }
-.Directed-inquire-card-data-class {
+.Notice-inquire-card-data-class {
   float: left;
   margin-top: 3%;
   width: 25%;
@@ -83,7 +83,7 @@
   font-size: 16px;
 }
 
-.Directed-inquire-card-info-class {
+.Notice-inquire-card-info-class {
   float: left;
   width: 100%;
   height: 5%;
@@ -91,7 +91,7 @@
   margin-bottom: 1%;
   background-color: rgb(168, 85, 60);
 }
-.Directed-inquire-card-info-location {
+.Notice-inquire-card-info-location {
   width: 10%;
   float: left;
   margin-top: 0.7%;
@@ -101,7 +101,7 @@
   font-size: 14px;
   background-color: #fed4d4;
 }
-.Directed-inquire-card-info-bloodtype {
+.Notice-inquire-card-info-bloodtype {
   width: 10%;
   float: left;
   margin-top: 0.7%;
@@ -113,7 +113,7 @@
   color: #fb4d4e;
   text-align: center;
 }
-.Directed-inquire-card-context-class {
+.Notice-inquire-card-context-class {
   padding-top: 1%;
   padding-bottom: 10%;
   margin: auto;
@@ -122,38 +122,38 @@
   background-color: rgb(0, 255, 13);
   font-size: 16px;
 }
-.Directed-inquire-card-writer-container {
+.Notice-inquire-card-writer-container {
   float: right;
   margin-top: 0%;
   width: 17%;
   height: 80%;
   background-color: #fb4d4e;
 }
-.Directed-inquire-card-writer-icon {
+.Notice-inquire-card-writer-icon {
   float: left;
   margin-top: 0%;
   height: 80%;
   width: 30%;
   background-color: aqua;
 }
-.Directed-inquire-card-writername-class {
+.Notice-inquire-card-writername-class {
   margin-top: 5%;
   float: left;
   background-color: blue;
   width: 70%;
 }
-.Directed-inquire-card-footer-class {
+.Notice-inquire-card-footer-class {
   height: 50px;
   background-color: blueviolet;
 }
-.Directed-inquire-card-footer-status {
+.Notice-inquire-card-footer-status {
   margin: auto;
   height: 70%;
   width: 10%;
   border-radius: 8px 8px 8px 8px;
   background-color: #fed4d4;
 }
-.Directed-inquire-footer-container {
+.Notice-inquire-footer-container {
   width: 100%;
   float: left;
   height: 40%;
@@ -161,17 +161,17 @@
   background-color: rgb(55, 0, 255);
 }
 
-.Directed-inquire-card-footer-statueIMG {
+.Notice-inquire-card-footer-statueIMG {
   float: left;
   width: 25px;
   margin-top: 5px;
 }
-.Directed-inquire-card-footer-statustext {
+.Notice-inquire-card-footer-statustext {
   float: left;
   font-size: 13px;
   margin-top: 6px;
 }
-.Directed-inquire-footer-applicant {
+.Notice-inquire-footer-applicant {
   float: left;
   width: 100%;
   height: auto;
@@ -180,20 +180,20 @@
   border-top: 1px solid rgb(91, 92, 91);
   color: #fb4d4e;
 }
-.Directed-inquire-footer-mypost {
+.Notice-inquire-footer-mypost {
   width: 100%;
   height: 15%;
   background-color: #941515;
   font-size: 17px;
 }
-.Directed-inquire-footer-repost {
+.Notice-inquire-footer-repost {
   width: 8%;
   background-color: rgb(158, 93, 8);
   float: right;
   color: rgb(0, 0, 0);
   cursor: pointer;
 }
-.Directed-inquire-footer-delete {
+.Notice-inquire-footer-delete {
   width: 8%;
   background-color: rgb(190, 182, 170);
   float: right;
