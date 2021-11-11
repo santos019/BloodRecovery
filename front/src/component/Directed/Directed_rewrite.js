@@ -18,7 +18,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 
 function Directed_write(props) {
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState();
     const [endDate, setendDate] = useState(new Date());
     //헌혈증받는변수
     const [restatus, setRestatus] = useState(false);
@@ -46,8 +46,8 @@ function Directed_write(props) {
                     direct_title: response.data.title
                 }
                 setInputs(firstinputs)
-
-
+                setIMG(response.data.img)
+                // setStartDate(response.data.periodFrom)
             });
 
 
@@ -84,15 +84,21 @@ function Directed_write(props) {
         }
 
         else {
-            // axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem",{requesterUserId:sessionStorage.getItem("userId"),title:inputs.direct_title,contents:inputs.direct_context,image:getIMG,locationSido:getSido,locationSigungu:getSigungu,periodFrom:changeFormat(startDate, "yyyy-MM-DD"),periodTo:changeFormat(endDate, "yyyy-MM-DD"),bloodType:inputs.direct_bloodtype,bloodMaxCount:directCount,patientName:inputs.direct_patient,hospitalName:inputs.direct_hospital,roomNumber:inputs.direct_room,phoneNumber:inputs.direct_phonenumber})
-            // .then(function (response) {
-            //     console.log(response);          });
-            //     alert("게시글이 작성되었습니다.")
-            //     props.addPage("지정헌혈")
+            axios.put("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/"+sessionStorage.getItem("directId"),{requesterUserId:sessionStorage.getItem("userId"),title:inputs.direct_title,contents:inputs.direct_context,image:getIMG,
+            periodTo:changeFormat(endDate, "yyyy-MM-DDT23:59:59"),
+            completeStatus:restatus})
+            .then(function (response) {
+                console.log(response);          });
+                alert("게시글이 수정되었습니다.")
+                // props.addPage("지정헌혈")
 
         }
+        console.log("title", inputs.direct_title)
         console.log("contents", inputs.direct_context)
         console.log("name",getIMG)
+        console.log("status",restatus)
+        console.log("start",startDate)
+        console.log("end",endDate)
     }
 
 
