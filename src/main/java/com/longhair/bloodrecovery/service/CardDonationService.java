@@ -60,7 +60,6 @@ public class CardDonationService {
 
         RestTemplate rt = new RestTemplate();
         String location = url + "point";
-
         Map<String, Object> pointMap = new HashMap<>();
         pointMap.put("userId", cardRequest.getUserId());
 //        pointMap.put("plusPoint", (cardRequest.getRequestCount() - cardRequest.getDonationCount()) * 50);
@@ -106,6 +105,7 @@ public class CardDonationService {
         pointMap.put("breakdown", "포인트 캐쉬백");
 
         ResponseEntity<Map> result = rt.exchange(location, HttpMethod.PUT, new HttpEntity<>(pointMap), Map.class);
+
     }
 
     //기부 요청글 수정
