@@ -3,19 +3,26 @@ import {useState} from "react";
 import AWS from 'aws-sdk';
 import { Row, Col, Button, Input, Alert } from 'reactstrap';
 
-const ACCESS_KEY = 'AKIA2KQBCRAS2C2XEMPR';
-const SECRET_ACCESS_KEY = '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';
-const REGION = "us-east-2";
-const S3_BUCKET = 'bloodrecovery';
+
+const ACCESS_KEY = 'U2FsdGVkX1+SG5rYpcIsEyLP8qdt/p0FwRGuLDstjmaTgmhBQPIMQimQIzwHwBaQ';
+const SECRET_ACCESS_KEY = 'U2FsdGVkX1/aj9bp0t551Vmx5gWQLRQePQnfeaYuArhywAYghoZHGPFPiS++PnNsnWammNZxCPnineNpadKDrg==';
+const REGION = "U2FsdGVkX194q5BrIV60z6bMqOomihEY7xSZGcnZtrg=";
+const S3_BUCKET = 'U2FsdGVkX1/le6BQQXav/Is2yrSyZxJ/oNDzfBSEFx0=';
+
+const CryptoJS = require('crypto-js');
+const access = CryptoJS.AES.decrypt(ACCESS_KEY, 'longhair').toString(CryptoJS.enc.Utf8);
+const secret = CryptoJS.AES.decrypt(SECRET_ACCESS_KEY, 'longhair').toString(CryptoJS.enc.Utf8);
+const region = CryptoJS.AES.decrypt(REGION, 'longhair').toString(CryptoJS.enc.Utf8);
+const bucket = CryptoJS.AES.decrypt(S3_BUCKET, 'longhair').toString(CryptoJS.enc.Utf8);
 
 AWS.config.update({
-  accessKeyId: ACCESS_KEY,
-  secretAccessKey: SECRET_ACCESS_KEY
+  accessKeyId: access,
+  secretAccessKey: secret
 });
 
 const myBucket = new AWS.S3({
-  params: { Bucket: S3_BUCKET},
-  region: REGION,
+  params: { Bucket: bucket},
+  region: region,
 });
 
  function S3Upload(props) {
@@ -30,7 +37,7 @@ const uploadFile = (file) => {
   const params = {
     ACL: 'public-read',
     Body: file,
-    Bucket: S3_BUCKET,
+    Bucket: bucket,
     Key: "upload/" + file.name
   };
  
