@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -36,7 +37,7 @@ public class NoticeService {
         Map map = rt.getForObject(location, Map.class);
         notice.setWriterNickname(map.get("nickname").toString());
         notice.setWriterLevel(Integer.parseInt(map.get("level").toString()));
-        notice.setDate(new Date());
+        notice.setDate(LocalDateTime.now());
         return noticeRepository.save(notice);
     }
 
@@ -50,7 +51,7 @@ public class NoticeService {
             result.setContents(notice.getContents());
             result.setImage(notice.getImage());
             result.setImageUrl(notice.getImageUrl());
-            result.setDate(new Date());
+            result.setDate(LocalDateTime.now());
             noticeRepository.save(result);
         }
         return result;

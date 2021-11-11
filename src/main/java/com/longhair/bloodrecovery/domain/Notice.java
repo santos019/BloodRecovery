@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -21,5 +21,5 @@ public class Notice {
     private String contents;
     private String image;
     private String imageUrl;
-    private Date date;
+    private LocalDateTime date;
 }
