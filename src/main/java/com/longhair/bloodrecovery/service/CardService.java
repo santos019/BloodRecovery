@@ -1,7 +1,6 @@
 package com.longhair.bloodrecovery.service;
 
 import com.google.cloud.vision.v1.*;
-import com.google.protobuf.ByteString;
 import com.longhair.bloodrecovery.domain.Card;
 import com.longhair.bloodrecovery.dto.CardApplyDto;
 import com.longhair.bloodrecovery.dto.OcrDto;
@@ -13,12 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.*;
 import java.util.regex.Pattern;
 
