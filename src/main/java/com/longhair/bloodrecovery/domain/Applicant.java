@@ -16,7 +16,7 @@ public class Applicant {
 
     private String applicantNickname;
 
-    private Boolean applyStatus;
+    private Boolean applyStatus = false;
 
     @ManyToOne
     @JoinColumn(name="DIRECTDONATION_ID")
