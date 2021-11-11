@@ -1,0 +1,26 @@
+.Login-find-container{
+
+    width: 970px;
+    height: 734px;
+    margin: auto;
+  background-color: aqua;
+}
+
+.Login-find-id-container{
+    float: left;
+    width: 50%;
+    height: 100%;
+    background-color: blue;
+}
+.Login-find-password-container{
+    float: left;
+    width: 50%;
+    height: 100%;
+    background-color: rgb(119, 119, 189);
+}
+.Login-find-margin{
+
+    margin-top: 30%;
+    height: 50%;
+    background-color: aquamarine;
+}

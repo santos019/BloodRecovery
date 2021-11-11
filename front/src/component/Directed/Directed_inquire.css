@@ -131,6 +131,21 @@
     font-size: 16px;
     
   }
+  .Directed-inquire-card-context-img-class{
+  
+    width: 100%;
+    height: 10%;
+    background-color: #fb4d4e;
+  }
+  .Directed-inquire-cardset-img{
+    width: 200px;
+    
+    background-color: rgb(63, 158, 158);
+  }
+  .Directed-inquire-card-context-margin{
+    width: 200px;
+    margin: auto;
+  }
   .Directed-inquire-card-writer-container{
     float: right;
     margin-top: 0%;
@@ -183,11 +198,17 @@
   .Directed-inquire-footer-applicant{
     float:left;
     width: 100%;
+    margin-bottom: 5%;
     height: auto;
-    background-color: bisque;
+
     text-align: center;
+    background-color: aqua;
     border-top:1px solid rgb(91, 92, 91) ;
     color: #fb4d4e;
+  }
+  .Directed-inquire-footer-appname{
+    background-color: beige;
+
   }
   .Directed-inquire-footer-mypost{
       width: 100%;

@@ -104,14 +104,14 @@ const Login_main=(props)=>{
         </div>
       </div>
       <div className="Login-main-find-container">
-        <div className="Login-main-find-class">
+        <div className="Login-main-find-class" onClick={()=>props.addPage("아이디비밀번호찾기")}>
           아이디 찾기 / 비밀 번호
         </div>
 
       </div>
       <div className="Login-main-joinbtn-container">
         <div className="Login-Common-joinbtn-class">
-          <div className="Login-Common-joinbtn-text-class">회원가입</div>
+          <div className="Login-Common-joinbtn-text-class" onClick={()=>props.addPage("회원가입")}>회원가입</div>
         </div>
       </div>
 
@@ -120,4 +120,16 @@ const Login_main=(props)=>{
   );
 }
 
-export default Login_main;
+
+const mapStateToProps = (state) => {
+  return {
+      page: state.page
+
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+      addPage: (text) => dispatch(addPage(text))
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Login_main);
