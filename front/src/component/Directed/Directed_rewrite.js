@@ -40,7 +40,7 @@ function Directed_write(props) {
             .get("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + sessionStorage.getItem("directId"))
 
             .then(function (response) {
-                console.log("이거만나온다고?",response)
+              
                 const firstinputs = {
                     direct_context: response.data.contents,
                     direct_title: response.data.title
@@ -48,7 +48,7 @@ function Directed_write(props) {
                 setInputs(firstinputs)
                 setIMG(response.data.img)
                 setStartDate(response.data.periodFrom)
-                setendDate(changedate(response.data.periodFrom))
+                setendDate(changedate(response.data.periodTo))
             });
 
 
@@ -109,12 +109,12 @@ function Directed_write(props) {
 
         else {
             axios.put("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/"+sessionStorage.getItem("directId"),{requesterUserId:sessionStorage.getItem("userId"),title:inputs.direct_title,contents:inputs.direct_context,image:getIMG,
-            periodTo:changeFormat(endDate, "yyyy-MM-DDT23:59:59"),
+            periodFrom:changeFormat(startDate, "yyyy-MM-DDT00:00:00"),periodTo:changeFormat(endDate, "yyyy-MM-DDT23:59:59"),
             completeStatus:restatus})
             .then(function (response) {
                 console.log(response);          });
                 alert("게시글이 수정되었습니다.")
-                // props.addPage("지정헌혈")
+                props.addPage("지정헌혈")
 
         }
         console.log("title", inputs.direct_title)

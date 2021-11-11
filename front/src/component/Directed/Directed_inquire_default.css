@@ -1,7 +1,7 @@
 .Directed-inquire-default-footer-container{
     float: left;
     width: 90%;
-    height: 90%;
+    height: 50%;
     margin-left: 5%;
     margin-right: 5%;
     background-color: aqua;                
@@ -9,7 +9,7 @@
 .Directed-inquire-default-footer-btn-container{
 
     width: 100%;
-    height: 25%;
+    height: 45%;
     float: inline-start;
     background-color: cadetblue;
   }
@@ -19,7 +19,7 @@
     margin: auto;
   }
   .Directed-inquire-default-footer-info1-class{
-    height: 8%;
+    height: 15%;
     margin-top: 2%;
     float: left;
     width: 100%;

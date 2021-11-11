@@ -28,6 +28,10 @@ import Bloodpocket_main from "../Mypage/Bloodpocket";
 
 import Directed_rewrite from "../Directed/Directed_rewrite";
 
+import Login_find from "../Login/Login_find";
+
+
+
 var text = "";
 var sendid;
 var num = 0;
@@ -196,6 +200,7 @@ function Main_base(props) {
 
             내_지갑: <Bloodpocket_main />,
             로그인: <Login_main loginsuccess={loginsuccess}></Login_main>, //.....
+            아이디비밀번호찾기:<Login_find/>,
             회원가입: <Join_main></Join_main>,
             랭킹: <Rank_main></Rank_main>,
           }[JSON.parse(window.sessionStorage.getItem("last"))]
