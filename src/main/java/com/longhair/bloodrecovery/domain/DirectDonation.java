@@ -19,27 +19,27 @@ public class DirectDonation {
     private String requesterNickname;
     private Integer requesterLevel;
 
-    private String title;
-    private String contents;
-    private String image;
+    private String title = "";
+    private String contents = "";
+    private String image = "";
     private LocalDateTime date;
 
-    private String locationSido;
-    private String locationSigungu;
+    private String locationSido = "";
+    private String locationSigungu = "";
 
     private LocalDateTime periodFrom;
     private LocalDateTime periodTo;
 
-    private String bloodType;
-    private Integer bloodMaxCount;
-    private Integer bloodCurrentCount;
+    private String bloodType = "";
+    private Integer bloodMaxCount = 0;
+    private Integer bloodCurrentCount = 0;
 
-    private Boolean completeStatus;
+    private Boolean completeStatus = false;
 
-    private String patientName;
-    private String hospitalName;
-    private String roomNumber;
-    private String phoneNumber;
+    private String patientName = "";
+    private String hospitalName = "";
+    private String roomNumber = "";
+    private String phoneNumber = "";
 
     @OneToMany(mappedBy="directDonation")
     private List<Applicant> applicants = new ArrayList<>();
