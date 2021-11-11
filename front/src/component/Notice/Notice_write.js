@@ -108,14 +108,6 @@ function Notice_write(props) {
                 <S3Upload getfilename={getfilename} />
               </div>
             </div>
-            <div className="Notice-write-footer-givecount-container">
-              <div className="Notice-write-footer-givecount">
-                <img
-                  src={BLOODDROP}
-                  className="Notice-write-footer-givecountimg"
-                ></img>
-              </div>
-            </div>
 
             <div className="Notice-write-btn-container">
               <div className="Notice-write-btn-class" onClick={senddata}>

@@ -109,7 +109,12 @@ const Notice_inquire = (id) => {
                   >
                     삭제
                   </div>
-                  <div className="Notice-inquire-footer-repost">수정</div>
+                  <div
+                    className="Notice-inquire-footer-repost"
+                    onClick={() => id.addPage("공지사항_수정")}
+                  >
+                    수정
+                  </div>
                 </div>
               </div>
             ) : null}

@@ -24,6 +24,8 @@ import { addPage } from "../../component/Modalmove/subscribers/action";
 import Board_inquire from "../Board/Board_inquire";
 import Notice_inquire from "../Notice/Notice_inquire";
 import Directed_rewrite from "../Directed/Directed_rewrite";
+import Board_rewrite from "../Board/Board_rewrite";
+import Notice_rewrite from "../Notice/Notice_rewrite";
 var text = "";
 var sendid;
 var num = 0;
@@ -166,6 +168,7 @@ function Main_base(props) {
             헌혈증_기부: <Board_main getsetValue2={getsetValue2}></Board_main>,
             헌혈증요청조회: <Board_inquire />,
             헌혈증_글쓰기: <Board_write></Board_write>,
+            헌혈증_수정: <Board_rewrite />,
             지정헌혈: (
               <Directed_main getsetValue2={getsetValue2}></Directed_main>
             ),
@@ -187,6 +190,7 @@ function Main_base(props) {
               ></Notice_inquire>
             ),
             공지사항_글쓰기: <Notice_write></Notice_write>,
+            공지사항_수정: <Notice_rewrite />,
             로그인: <Login_main loginsuccess={loginsuccess}></Login_main>, //.....
             회원가입: <Join_main></Join_main>,
             랭킹: <Rank_main></Rank_main>,

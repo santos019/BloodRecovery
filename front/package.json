@@ -6,7 +6,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "aws-sdk": "^2.1025.0",
+    "aws-sdk": "^2.1026.0",
     "axios": "^0.24.0",
     "crypto-js": "^4.1.1",
     "datapicker": "^1.0.0",

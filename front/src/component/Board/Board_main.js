@@ -11,55 +11,82 @@ import SEARCHICON from "../../Img/searchicon.png";
 import WRITEICON from "../../Img/WRITE.png";
 import { getDefaultLocale } from "react-datepicker";
 
-const SelectBox = () => {
-  return (
-    <select>
-      <option key="ing" value="ing">
-        진행중
-      </option>
-      <option key="end" value="end">
-        진행완료
-      </option>
-    </select>
-  );
-};
-
 const Board_main = (props) => {
+  var key1;
+  let form = new FormData();
+  var arrNumber = new Array();
+  const [getSi, setGetSi] = useState("전체");
   const [getData, setGetdata] = useState([]);
+  const [selectStatus, setSelectStatus] = useState(false);
+  const [frStatus, setfrStatus] = useState("진행중");
+  const [inputs, setInputs] = useState({
+    direct_main_bloodtype: "",
+  });
+
+  const SelectBox = () => {
+    return (
+      <select value={frStatus} onChange={handleChange}>
+        <option key="진행중" value="진행중">
+          진행중
+        </option>
+        <option key="진행완료" value="진행완료">
+          진행완료
+        </option>
+      </select>
+    );
+  };
+
+  const handleChange = (e) => {
+    setfrStatus(e.target.value);
+    if (e.target.value === "진행중") {
+      setSelectStatus(false);
+    } else if (e.target.value === "진행완료") {
+      setSelectStatus(true);
+    }
+  };
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    const nextInputs = {
+      //스프레드 문법으로 기존의 객체를 복사한다.
+      ...inputs,
+      [name]: value,
+    };
+    //만든 변수를 seInput으로 변경해준다.
+    setInputs(nextInputs);
+
+    // console.log(inputs);
+  };
 
   const getsetValue2 = (getData) => {
     // console.log("헌혈증기부", getData);
     props.getsetValue2(getData);
   };
-  const getsetValue3 = () => {
-    // console.log("헌혈증기부 조회 백");
-    props.getsetValue3();
-  };
+  // const getsetValue3 = () => {
+  //   // console.log("헌혈증기부 조회 백");
+  //   props.getsetValue3();
+  // };
 
   useEffect(() => {
-    axios
-      .get(
-        // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests"
-        "http://localhost:8003"
-      )
-      // "id": 1,
-      // "userId": "아이디2",
-      // "nickname": "닉네임2",
-      // "level": 1,
-      // "point": 200,
-      // "title": "제목11133",
-      // "contents": "내용",
-      // "image": "https://bloodrecovery.s3.us-east-2.amazonaws.com/direct/97883a2f-dafa-4dc5-9875-1a4a450cd45b.jpg",
-      // "requestCount": 5,
-      // "donationCount": 1,
-      // "requestDate": "2021-10-26",
-      // "completeStatus": false,
-      .then(function (response) {
-        setGetdata(response.data);
-        newdata();
-        // console.log("response", response);
-      });
-  }, []);
+    if (inputs.direct_main_bloodtype === "") {
+      if (getSi === "전체") {
+        axios
+          .get("http://localhost:8003?status=" + selectStatus) //status상태만붙여주고
+          .then(function (response) {
+            setGetdata(response.data);
+
+            console.log("1번케이스", response);
+          });
+      } else {
+        axios
+          .get("http://localhost:8003?status=") //status상태만붙여주고, 시도 붙여주기
+          .then(function (response) {
+            setGetdata(response.data);
+
+            console.log("2번케이스", response);
+          });
+      }
+    }
+  }, [selectStatus]);
 
   const newdata = () => {
     for (var i = 0; i < getData.length; i++) {
