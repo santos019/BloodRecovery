@@ -55,13 +55,14 @@ const Board_card = (getData) => {
               src={BLOODDROP}
               className="Board-card-nav-userstatus-icon"
             ></img>
-            {getData.getData?.completeStatus === false ? (
+            {getData.getData?.completeStatus == false ? (
               <p className="Directed-card-nav-userstatus-p-class">
                 {getData.getData?.donationCount}/{getData.getData?.requestCount}
               </p>
             ) : (
               <p>완료</p>
             )}
+            {console.log(getData)}
             {/* {getData.getData?.donationCount}/{getData.getData?.requestCount} */}
           </div>
         </div>

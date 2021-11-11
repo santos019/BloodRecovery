@@ -29,7 +29,7 @@ function Rank_main() {
       .get(
         "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/rank/rankings/" +
           // "http://localhost:8002/rankings/"
-          +sessionStorage.getItem("userId")
+          sessionStorage.getItem("userId")
       )
       .then(function (response) {
         setMyRank(response.data);
