@@ -3,6 +3,7 @@ package com.longhair.bloodrecovery.dto;
 import com.longhair.bloodrecovery.domain.DirectDonation;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -14,7 +15,7 @@ public class DirectDonationSimpleDto {
     private String title;
     private String locationSido;
     private String locationSigungu;
-    private Date periodTo;
+    private LocalDateTime periodTo;
     private String bloodType;
     private Boolean completeStatus;
 

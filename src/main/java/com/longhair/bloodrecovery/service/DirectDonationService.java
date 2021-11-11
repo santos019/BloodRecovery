@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -34,8 +35,8 @@ public class DirectDonationService {
     public ApplicantDto saveApplicant(Applicant applicant, Long id){
         Optional<DirectDonation> item = directDonationRepository.findById(id);
         if(item.isPresent()){
-            Date date = new Date();
-            if(item.get().getPeriodTo().after(date)){
+            LocalDateTime date = LocalDateTime.now();
+            if(item.get().getPeriodTo().isAfter(date)){
                 Map map = getUserInfo(applicant.getApplicantIdentify());
                 applicant.setApplicantNickname(map.get("nickname").toString());
                 applicant.setDirectDonation(item.get());
@@ -181,7 +182,7 @@ public class DirectDonationService {
         Map map = getUserInfo(directDonation.getRequesterUserId());
         directDonation.setRequesterNickname(map.get("nickname").toString());
         directDonation.setRequesterLevel(Integer.parseInt(map.get("level").toString()));
-
+        directDonation.setDate(LocalDateTime.now());
         directDonation.setCompleteStatus(false);
         directDonationRepository.save(directDonation);
         return directDonation;

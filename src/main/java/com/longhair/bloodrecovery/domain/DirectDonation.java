@@ -3,8 +3,8 @@ package com.longhair.bloodrecovery.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -22,13 +22,13 @@ public class DirectDonation {
     private String title;
     private String contents;
     private String image;
-    private Date date;
+    private LocalDateTime date;
 
     private String locationSido;
     private String locationSigungu;
 
-    private Date periodFrom;
-    private Date periodTo;
+    private LocalDateTime periodFrom;
+    private LocalDateTime periodTo;
 
     private String bloodType;
     private Integer bloodMaxCount;

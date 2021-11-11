@@ -4,6 +4,7 @@ import com.longhair.bloodrecovery.domain.Applicant;
 import com.longhair.bloodrecovery.domain.DirectDonation;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,11 +20,11 @@ public class DirectDonationDto {
     private String title;
     private String contents;
     private String image;
-    private Date date;
+    private LocalDateTime date;
     private String locationSido;
     private String locationSigungu;
-    private Date periodFrom;
-    private Date periodTo;
+    private LocalDateTime periodFrom;
+    private LocalDateTime periodTo;
     private String bloodType;
     private Integer bloodMaxCount;
     private Integer bloodCurrentCount;
