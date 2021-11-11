@@ -278,6 +278,7 @@ height: 100%;
     width: 43%;
     background-color: #fed4d4;
     border-radius: 5px 5px 5px 5px;
+    cursor: pointer;
 }
 .Directed-rewrite-status-stop{
     float: left;
@@ -286,7 +287,8 @@ height: 100%;
     background-color: #F6F6F6;
     border-radius: 5px 5px 5px 5px;
     margin-left: 10%;
-    color: #ABA6A9
+    color:black;
+    cursor: pointer;
 
 }
 
@@ -297,4 +299,8 @@ height: 100%;
     margin-top: 5%;
     /* background-color: rgb(255, 0, 200); */
    
+}
+.Directed-rewrite-status-ongoging1{
+    width: 100%;
+    height: 100%;
 }

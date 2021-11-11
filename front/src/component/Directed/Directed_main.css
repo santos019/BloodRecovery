@@ -52,18 +52,18 @@
   vertical-align: middle;
 }
 .Directed-main-nav-select-class {
-  width: 13%;
+  width: 10%;
   padding-top: 1.5%;
   height: 100%;
   float: left;
-  /* background-color: chartreuse; */
+  background-color: chartreuse;
 }
 .Directed-main-nav-select2-class {
-  width: 13%;
+  width: 19%;
   padding-top: 1.5%;
   height: 100%;
   float: left;
-  /* background-color: rgb(255, 0, 157); */
+  background-color: rgb(255, 0, 157);
 }
 select {
 
@@ -76,9 +76,10 @@ select :focus {
 }
 .Directed-main-nav-write-class {
   float: left;
-  width: 8%;
+  width: 5%;
   height: 100%;
-  /* background-color: cornflowerblue; */
+ 
+  background-color: cornflowerblue;
 }
 .Directed-main-nav-writeicon-class {
   width: 35px;

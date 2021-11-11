@@ -49,10 +49,7 @@ function Directed_write(props) {
                  }
             //만든 변수를 seInput으로 변경해준다.
                  setInputs(nextInputs)  
-                 if(name==="direct_title")
-                 {
-                    
-                 }
+                 
                  console.log(inputs)
  
     }   
