@@ -2,12 +2,14 @@
   width: 100vh;
 }
 .Mypage-main-container-class {
-  width: 100%;
+  width: 970px;
+  height: 734px;
+  margin: auto;
   background-color: #349fdd;
 }
 .Mypage-main-nav-container {
   float: left;
-  height: 8%;
+  height: 1%;
   width: 100%;
 
   border-bottom: solid 4px #fb4d4e;
@@ -55,11 +57,28 @@
 .Mypage-main-nickname {
   background-color: #ec25ba;
   margin: auto;
-  width: 100px;
+  width: 150px;
   height: 50px;
   text-align: center;
   font-size: 25px;
 }
+.Mypage-info-change {
+  background-color: #2543ec;
+  margin: auto;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  font-size: 15px;
+}
+.Mypage-withdrawal {
+  background-color: #757785;
+  margin: auto;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  font-size: 15px;
+}
+
 .Mypage-list-container-class {
   float: left;
   width: 100vw;
@@ -81,4 +100,5 @@
   border-radius: 12px 12px 12px 12px;
   border: 2px solid #fb4d4e;
   margin: auto;
+  margin-bottom: 2%;
 }

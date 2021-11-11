@@ -22,6 +22,7 @@ import { connect } from "react-redux";
 import { addPage } from "../../component/Modalmove/subscribers/action";
 import Board_inquire from "../Board/Board_inquire";
 import Notice_inquire from "../Notice/Notice_inquire";
+import Bloodpocket_main from "../Mypage/Bloodpocket";
 var text = "";
 var sendid;
 var num = 0;
@@ -177,12 +178,13 @@ function Main_base(props) {
             //헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
             헌혈의_집_예약: <Mypage_main></Mypage_main>,
             공지사항: <Notice_main></Notice_main>,
-            공지사항조회: (
-              <Notice_inquire
-                getsetValue3={getsetValue3}
-                id={sendid}
-              ></Notice_inquire>
-            ),
+            // 공지사항조회: (
+            //   <Notice_inquire
+            //     getsetValue3={getsetValue3}
+            //     id={sendid}
+            //   ></Notice_inquire>
+            // ),
+            내_지갑: <Bloodpocket_main />,
             로그인: <Login_main loginsuccess={loginsuccess}></Login_main>, //.....
             회원가입: <Join_main></Join_main>,
             랭킹: <Rank_main></Rank_main>,

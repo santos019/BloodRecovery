@@ -1,0 +1,106 @@
+.Bloodpocket-main-class {
+  width: 100vh;
+}
+.Bloodpocket-main-container-class {
+  width: 970px;
+  height: 734px;
+  margin: auto;
+  /* background-color: #349fdd; */
+}
+.Bloodpocket-main-nav-container {
+  float: left;
+  height: 1%;
+  width: 100%;
+
+  border-bottom: solid 4px #fb4d4e;
+}
+
+.Bloodpocket-main-Header {
+  float: left;
+  width: 100vw;
+  height: 100%;
+}
+.Bloodpocket-card-container {
+  width: 40%;
+  height: 200px;
+  /* background-color: lightpink; */
+  border-style: dotted;
+  border-width: 5px;
+  border-color: #fb4d4e;
+  border-radius: 30px 30px 30px 30px;
+  float: left;
+
+  margin-left: 6%;
+  margin-top: 3%;
+  cursor: pointer;
+}
+.Bloodpocket-card-nav-container {
+  margin-top: 2%;
+  width: 90%;
+  height: 25%;
+  margin-left: 5%;
+  margin-right: 5%;
+  /* background-color: rgba(0, 255, 255, 0.103); */
+  float: left;
+}
+.Bloodpocket-card-container:hover {
+  background-color: #cfdce4d5;
+}
+.Bloodpocket-footer-container {
+  float: left;
+  width: 90%;
+  height: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  /* background-color: aqua; */
+}
+
+.Bloodpocket-footer-btn-container {
+  width: 100%;
+  height: 10%;
+  float: inline-start;
+  padding-top: 10%;
+  background-color: cadetblue;
+}
+
+.Bloodpocket-footer-btn-class {
+  width: 20%;
+  height: 55px;
+  margin: auto;
+}
+
+.Bloodpocket-footer-info1-class {
+  height: 5%;
+
+  float: left;
+  width: 100%;
+  background-color: blueviolet;
+  text-align: center;
+  font-size: 11px;
+  color: rgb(0, 0, 0);
+}
+
+/* .Mypage-write-footer-upload-container {
+  width: 100%;
+
+  background-color: #fb4d4e;
+}
+.Mypage-write-footer-upload {
+  width: 55%;
+  margin: auto;
+  background-color: #e0c3c3;
+} */
+.Bloodpocket-goback-bntimg-class {
+  margin-top: 8%;
+  margin-left: 10%;
+  width: 40px;
+  height: 40px;
+  float: left;
+  background-color: rgb(255, 6, 27);
+}
+.Bloodpocket-nav-goback {
+  width: 8%;
+  height: 100%;
+  /* background-color: coral; */
+  float: left;
+}
