@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import DIRECTEDIMG from '../../Img/DIRECTEDIMG.png';
 import GOBACKBTN from '../../Img/DirectedIMG/arrow.png';
 import Menu_left_nav from '../Common/Header/Menu_left_nav';
@@ -21,19 +21,19 @@ function Directed_write(props) {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setendDate] = useState(new Date());
     //헌혈증받는변수
-    const [restatus,setRestatus]=useState(false);
-    const [getData,setGetData]=useState();
-    const [getIMG,setIMG]=useState(null);
+    const [restatus, setRestatus] = useState(false);
+    const [getData, setGetData] = useState();
+    const [getIMG, setIMG] = useState(null);
     // const [titlecheck,setTitleCheck]=useState(false)
     // const [contextcheck,setContextCheck]=useState(false)
     // const [bloodtypecheck,setBloodCheck]=useState(false)
     // const [signal,setSignal]=useState(false)
     const [inputs, setInputs] = useState({
         direct_title: '',
-        direct_context:'',
-     
+        direct_context: '',
+
     })
-   
+
 
     useEffect(() => {
         axios
@@ -41,62 +41,62 @@ function Directed_write(props) {
 
             .then(function (response) {
                 console.log(response)
-                const firstinputs={
+                const firstinputs = {
                     direct_context: response.data.contents,
-                    direct_title:response.data.title
+                    direct_title: response.data.title
                 }
-                setInputs(firstinputs) 
-                setRestatus(response.data.completeStatus)
+                setInputs(firstinputs)
+
 
             });
-           
+
 
     }, []);
-    const onChange=(e)=>{
-        const { name, value } = e.target   
-        const nextInputs = {            
+    const onChange = (e) => {
+        const { name, value } = e.target
+        const nextInputs = {
             //스프레드 문법으로 기존의 객체를 복사한다.
-                     ...inputs,  
-                     [name]: value,
-                 }
-            //만든 변수를 seInput으로 변경해준다.
-                 setInputs(nextInputs)  
-                 console.log(inputs)
- 
-    }   
- 
-    function changeFormat(date, format) { 
-        if (moment(date).isValid()) {
-          return moment(date).format(format);
-        } else {
-          return null;
+            ...inputs,
+            [name]: value,
         }
-      }
-    const senddata=()=>{
+        //만든 변수를 seInput으로 변경해준다.
+        setInputs(nextInputs)
+        console.log(inputs)
+
+    }
+
+    function changeFormat(date, format) {
+        if (moment(date).isValid()) {
+            return moment(date).format(format);
+        } else {
+            return null;
+        }
+    }
+    const senddata = () => {
 
         // console.log("requesterUserId:",sessionStorage.getItem("userId"),"title:",inputs.direct_title,"contents:",inputs.direct_context,"image:",getIMG,"locationSido:",getSido,"locationSigungu:",getSigungu,"periodFrom:",changeFormat(startDate, "yyyy-MM-DD"),"periodTo:",changeFormat(endDate, "yyyy-MM-DD"),"bloodType:",inputs.direct_bloodtype,"bloodMaxCount:",directCount,"patientName:",inputs.direct_patient,"hospitalName:",inputs.direct_hospital,"roomNumber:",inputs.direct_room,"phoneNumber:",inputs.direct_phonenumber)
-     
-        if(inputs.direct_title===""){
+
+        if (inputs.direct_title === "") {
             alert("제목을 넣어주세요")
         }
-        else if(inputs.direct_context===""){
+        else if (inputs.direct_context === "") {
             alert("내용을 넣어주세요")
-        }   
-    
-        else{
+        }
+
+        else {
             // axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem",{requesterUserId:sessionStorage.getItem("userId"),title:inputs.direct_title,contents:inputs.direct_context,image:getIMG,locationSido:getSido,locationSigungu:getSigungu,periodFrom:changeFormat(startDate, "yyyy-MM-DD"),periodTo:changeFormat(endDate, "yyyy-MM-DD"),bloodType:inputs.direct_bloodtype,bloodMaxCount:directCount,patientName:inputs.direct_patient,hospitalName:inputs.direct_hospital,roomNumber:inputs.direct_room,phoneNumber:inputs.direct_phonenumber})
             // .then(function (response) {
             //     console.log(response);          });
             //     alert("게시글이 작성되었습니다.")
             //     props.addPage("지정헌혈")
-           
-        }
-        console.log("contents",inputs.direct_context)
 
+        }
+        console.log("contents", inputs.direct_context)
+        console.log("name",getIMG)
     }
 
 
-    const getfilename=(value)=>{
+    const getfilename = (value) => {
         // console.log("wow",value)
         setIMG(value)
     }
@@ -121,8 +121,8 @@ function Directed_write(props) {
                                 </input>
                                 <div className="Directed-rewrite-card-data-class">
                                     <div className="Directed-rewrite-calender1">
-                                    <DataPicker locale={ko} selected={startDate} dateFormat="yyyy/MM/dd" minDate={new Date()} onChange={date => setStartDate(date)}></DataPicker> </div><div className="Directed-write-card-wow">~</div>
-                                    <div className="Directed-rewrite-calender2"><DataPicker locale={ko} selected={endDate}dateFormat="yyyy/MM/dd" minDate={startDate} onChange={date => setendDate(date)}></DataPicker></div>
+                                        <DataPicker locale={ko} selected={startDate} dateFormat="yyyy/MM/dd" minDate={new Date()} onChange={date => setStartDate(date)}></DataPicker> </div><div className="Directed-write-card-wow">~</div>
+                                    <div className="Directed-rewrite-calender2"><DataPicker locale={ko} selected={endDate} dateFormat="yyyy/MM/dd" minDate={startDate} onChange={date => setendDate(date)}></DataPicker></div>
                                 </div>
                             </div>
 
@@ -137,24 +137,32 @@ function Directed_write(props) {
                     <div className="Directed-rewrite-footer-container">
                         <div className="Directed-rewrite-footer-upload-container">
                             <div className="Directed-rewrite-footer-upload">
-                                <S3Upload getfilename={getfilename}/>
+                                <S3Upload getfilename={getfilename} />
                             </div>
                         </div>
                         <div className="Directed-rewrite-status-container">
+                            {restatus===false?
                             <div className="Directed-rewrite-status-class">
-                            <div className="Directed-rewrite-status-ongoging">
-                            {restatus===true?<div className="Directed-rewrite-status-ongoging1"><img className="Directed-rewrite-status-img" src={BLOODDROP}/>진행끝</div>:
-                              <div className="Directed-rewrite-status-ongoging1"><img className="Directed-rewrite-status-img" src={BLOODDROP}/> 진행중</div>}
+                                <div className="Directed-rewrite-status-ongoging">
+                                        <img className="Directed-rewrite-status-img" src={BLOODDROP} />진행중
+                                </div>
+                                <div className="Directed-rewrite-status-stop" onClick={() => setRestatus(true)}>
+                                    <img className="Directed-rewrite-status-img" src={BLOODDROP} /> 진행완료
+                                </div>
+                            </div>: <div className="Directed-rewrite-status-class">
+                                <div className="Directed-rewrite-status-ongogingnot" onClick={() => setRestatus(false)}>
+                                        <img className="Directed-rewrite-status-img" src={BLOODDROP} />진행중
+                                </div>
+                                <div className="Directed-rewrite-status-stopnot" >
+                                    <img className="Directed-rewrite-status-img" src={BLOODDROP} /> 진행완료
+                                </div>
                             </div>
-                            <div className="Directed-rewrite-status-stop">
-                            <img className="Directed-rewrite-status-img" src={BLOODDROP}/> 진행완료
-                            </div>
-                            
-                            </div>
+                            }
+                            {console.log(restatus)}
                         </div>
-                 
-                      
-                    
+
+
+
                         <div className="Directed-rewrite-btn-container">
                             <div className="Directed-rewrite-btn-class" onClick={senddata}>
                                 <Common_Button_IMG name={"수정완료"} imgname={WRITEWHITEIMG} ></Common_Button_IMG>

@@ -268,7 +268,7 @@ border: 2px solid#fb4d4e;
 .Directed-rewrite-status-class{
 width: 21%;
 height: 100%;
-    background-color: rgb(160, 95, 95);
+  
     margin: auto;
     font-size: 14px;
 }
@@ -281,17 +281,34 @@ height: 100%;
     cursor: pointer;
 }
 .Directed-rewrite-status-stop{
-    float: left;
+    float: right;
     height: 100%;
     width: 46%;
     background-color: #F6F6F6;
     border-radius: 5px 5px 5px 5px;
-    margin-left: 10%;
-    color:black;
+    color:rgba(0, 0, 0, 0.116);
     cursor: pointer;
 
 }
+.Directed-rewrite-status-ongogingnot{
+  float: left;
+  height: 100%;
+  width: 43%;
+  background-color: #F6F6F6;
+  border-radius: 5px 5px 5px 5px;
+  cursor: pointer;
+  color:rgba(0, 0, 0, 0.116);
+}
+.Directed-rewrite-status-stopnot{
+  float: right;
+  height: 100%;
+  width: 46%;
+  background-color: #fed4d4;
+  border-radius: 5px 5px 5px 5px;
+  color:black;
+  cursor: pointer;
 
+}
 .Directed-rewrite-status-img{
 
     float: left;
