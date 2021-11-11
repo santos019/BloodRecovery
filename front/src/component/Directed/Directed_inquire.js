@@ -149,7 +149,8 @@ const Directed_inquire = (id) => {
                         </div>
                     </div>
                     <div className="Directed-inquire-footer-container">
-                        {getData?.data.requesterUserId === sessionStorage.getItem("userId") ? <div>
+                        {getData?.data.requesterUserId === sessionStorage.getItem("userId") ? getData?.data.completeStatus===false?
+                        <div>
                             <div className="Directed-inquire-footer-mypost">
                                 <div className="Directed-inquire-footer-delete" onClick={deleteData}>
                                     삭제
@@ -158,7 +159,7 @@ const Directed_inquire = (id) => {
                                     수정
                                 </div>
                             </div>
-                        </div> : viewData === true ? <Directed_inquire_default_data id={id}></Directed_inquire_default_data>
+                        </div>:null : viewData === true ? <Directed_inquire_default_data id={id}></Directed_inquire_default_data>
                             : <Directed_inquire_default id={id} getValue={getValue}></Directed_inquire_default>}
 
                         <div className="Directed-inquire-footer-applicant">
