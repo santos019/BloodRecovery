@@ -22,6 +22,7 @@ import { connect } from "react-redux";
 import { addPage } from "../../component/Modalmove/subscribers/action";
 import Board_inquire from "../Board/Board_inquire";
 import Notice_inquire from "../Notice/Notice_inquire";
+import Directed_rewrite from "../Directed/Directed_rewrite";
 var text = "";
 var sendid;
 var num = 0;
@@ -174,6 +175,7 @@ function Main_base(props) {
               ></Directed_inquire>
             ),
             지정헌혈_글쓰기: <Directed_write></Directed_write>,
+            지정헌혈_수정:<Directed_rewrite/>,
             //헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
             헌혈의_집_예약: <Mypage_main></Mypage_main>,
             공지사항: <Notice_main></Notice_main>,

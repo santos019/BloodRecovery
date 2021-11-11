@@ -71,14 +71,14 @@ function Mypage_main(props, getData) {
       {/* {user.point} */}
       {/* <img className="profile-img2" src={otherrank.profile}></img> */}
 
+      <div className="Mypage-list-button" onClick={() => movepage("내 지갑")}>
+        내 지갑
+      </div>
       <div
         className="Mypage-list-button"
         onClick={() => movepage("내가 요청한 기부")}
       >
         내가 요청한 기부
-      </div>
-      <div className="Mypage-list-button" onClick={() => movepage("지정헌혈")}>
-        지정헌혈
       </div>
       <div
         className="Mypage-list-button"
