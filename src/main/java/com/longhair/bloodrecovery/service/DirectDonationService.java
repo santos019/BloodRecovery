@@ -115,6 +115,7 @@ public class DirectDonationService {
                 break;
         }
 
+        Collections.reverse(directDonations);
         List<DirectDonation> vipItems = new ArrayList<>();
         List<DirectDonation> normalItems = new ArrayList<>();
         directDonations.forEach(e -> {
