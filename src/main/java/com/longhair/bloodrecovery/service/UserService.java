@@ -8,13 +8,12 @@ import com.longhair.bloodrecovery.dto.UserInfoDto;
 import com.longhair.bloodrecovery.dto.UserPutDto;
 import com.longhair.bloodrecovery.repository.PointRepository;
 import com.longhair.bloodrecovery.repository.UserRepository;
-import net.bytebuddy.implementation.bind.annotation.RuntimeType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -121,7 +120,7 @@ public class UserService {
         }
         point.setCurrentPoint(crntPoint);
         point.setBreakdown(pointDto.getBreakdown());
-        point.setDate(new Date());
+        point.setDate(LocalDateTime.now());
         user.setPoint(crntPoint);
         user.setLevel(updateLevel(crntPoint));
 

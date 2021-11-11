@@ -5,8 +5,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -19,6 +18,6 @@ public class Point {
     private int plusPoint;
     private int minusPoint;
     private int currentPoint;
-    private Date date;
+    private LocalDateTime date;
     private String breakdown;
 }
