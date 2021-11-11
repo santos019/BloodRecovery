@@ -45,12 +45,14 @@ const Board_inquire = (id) => {
   const deleteData = () => {
     axios
       .delete(
-        // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests/"
-        "http://localhost:8003/requests/" + sessionStorage.getItem("boardId")
+        // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests/requestItem/"
+        "http://localhost:8003//requests/requestItem/" +
+          sessionStorage.getItem("boardId")
       )
 
       .then(function (response) {
         alert("게시글이 삭제되었습니다.");
+        id.addPage("헌혈증_기부");
         console.log("response", response);
       });
   };
@@ -106,26 +108,28 @@ const Board_inquire = (id) => {
     else if (level === 4) return VIP;
   };
 
-  const beaApplicant = () => {
+  const beDonation = () => {
     if (sessionStorage.getItem("userId") == null) {
       alert("로그인 후 기부가 가능합니다!");
     } else {
-      // setContext(!context)
-      id.getValue();
+      axios
+        .post(
+          // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests/requestItem/"
+          "http://localhost:8003/requests/requestItem/" +
+            sessionStorage.getItem("boardId") +
+            "/donation",
+          {
+            userId: sessionStorage.getItem("userId"),
+            giveCount: sessionStorage.getItem("donationCount"),
+          }
+        )
+
+        .then(function (response) {
+          console.log("기부하기", response);
+        });
+
+      // id.getValue();
     }
-
-    // axios
-    //     .post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + id.id + "/applicant", { applicantId: sessionStorage.getItem("userId") })
-    //     // .params(
-    //     //     {
-    //     //         "applicantId":sessionStorage.getItem("userId")
-    //     //     }
-    //     // )
-    //     .then(function (response) {
-
-    //         console.log("response", response)
-
-    //     });
   };
 
   return (
@@ -196,8 +200,7 @@ const Board_inquire = (id) => {
             </div>
           </div>
           <div className="Board-inquire-footer-container">
-            {getData?.data.requesterUserId ===
-            sessionStorage.getItem("userId") ? (
+            {getData?.data.userId === sessionStorage.getItem("userId") ? (
               <div>
                 <div className="Board-inquire-footer-mypost">
                   <div
@@ -215,7 +218,7 @@ const Board_inquire = (id) => {
               <div className="Board-inquire-default-footer-btn-container">
                 <div
                   className="Board-inquire-default-footer-btn-class"
-                  onClick={beaApplicant}
+                  onClick={beDonation}
                 >
                   <Common_Button_IMG
                     name={"기부하기"}
