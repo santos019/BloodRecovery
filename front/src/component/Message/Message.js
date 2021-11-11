@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Message = () => {
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState(null);
     const [messageMode, setMessageMode] = useState("");
 
     useEffect(() => {

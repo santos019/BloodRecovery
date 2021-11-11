@@ -22,7 +22,7 @@ const Header_nav=(props)=>{
                 <div className="Header-nav-Join-class" onClick={()=>sendValue("회원가입")}>
                     마이페이지
                 </div>
-                <div className="Header-nav-Message-class" onClick={()=>setMessageShow(true)}>
+                <div className="Header-nav-Message-class" onClick={Message}>
                     메시지
                 </div>
             </div>
