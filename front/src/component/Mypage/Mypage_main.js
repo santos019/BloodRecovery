@@ -61,6 +61,8 @@ function Mypage_main(props, getData) {
       </div>
 
       <div className="Mypage-main-nickname">{user?.nickname}</div>
+      <div className="Mypage-main-username">{user?.name}</div>
+      <div className="Mypage-main-userid">{user?.userId}</div>
 
       <div className="Mypage-info-change" onClick={() => movepage("정보수정")}>
         내정보수정
@@ -69,14 +71,19 @@ function Mypage_main(props, getData) {
       {/* {user.point} */}
       {/* <img className="profile-img2" src={otherrank.profile}></img> */}
 
-      <div className="Mypage-list-button" onClick={() => movepage("내_지갑")}>
+      <div
+        className="Mypage-bloodpocket-button"
+        onClick={() => movepage("내_지갑")}
+      >
         헌혈증 지갑
       </div>
       <div className="Mypage-list-button" onClick={() => movepage("내가 요청한 기부")}>
         내가 요청한 기부
       </div>
-      <div className="Mypage-list-button" onClick={() => movepage("포인트")}>
+      <div className="Mypage-point-button" onClick={() => movepage("포인트")}>
         {user?.point}
+        <b>P</b>
+        <p>포인트 내역 확인하기</p>
       </div>
 
       <div className="Mypage-withdrawal" onClick={() => movepage("회원탈퇴")}>
