@@ -14,7 +14,7 @@ import {v4 as uuidv4} from 'uuid';
 import Bloodpocket_card from "./Bloodpocket_card";
 import { testff } from "../Common/Function/testff";
 import { S3useF } from "../Common/Function/S3useF";
-function Bloodpocket_main(props, getData) {
+function Bloodpocket_main(on) {
   const ACCESS_KEY = 'U2FsdGVkX19/rPdNSJxV7t5RImb/hC7xyJj59GQE2qZHcYCg+YNLp7DjsZToXjjo';
 const SECRET_ACCESS_KEY = 'U2FsdGVkX1/QSZnZpg510C8WXH6RuDBH6Ge2/l6TlGb0SxzURMhfturuFLYSyzc+cM1Yoqcslv5/B2yToO8l2g==';
 const REGION = "U2FsdGVkX194q5BrIV60z6bMqOomihEY7xSZGcnZtrg=";
@@ -35,13 +35,12 @@ const myBucket = new AWS.S3({
   params: { Bucket: bucket},
   region: region,
 });
-const [selectedFile, setSelectedFile] = useState(null);
-const [showAlert, setShowAlert] = useState(false);
+
 const [end,setend]=useState(false)
-const [filebuffer,setFilebuffer]=useState("")
+
 const [filename,getfilename]=useState("")
 
-  const [getIMG, setIMG] = useState(null);
+
   const [carddata, setCarddata] = useState();
   //내가 가진 헌혈증 카드 조회
   const [card, setCard] = useState();
@@ -76,12 +75,73 @@ const [filename,getfilename]=useState("")
       )
       .then(function (response) {
         setCard(response.data);
-        console.log("값", response.data)
+     
       });
   }, []);
 
 
+const sendinfo=(index)=>{
 
+  if(on.onbtn==="true"){
+    
+    axios
+        .post(
+          "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests/requestItem/" +
+            // "http://localhost:8003/requests/requestItem/"
+            sessionStorage.getItem("boardId") +
+            "/donation",
+          {
+            userId: sessionStorage.getItem("userId"),
+            giveCount: 1,
+            code:card[index].code
+          }
+        )
+        .then(function(res){
+        console.log("코드인가요?",card[index].code)
+        })
+
+        axios
+        .put(
+          "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/mypage/card/" +card[index].id+"/"+
+            // "http://localhost:8003/requests/requestItem/"
+            on.number
+        )
+        .then(function(res){
+         
+        })
+        alert("기부가 완료되었습니다")
+        on.endsg(false)
+  }
+  // else if(on.onbtn==="true1"){
+  //   console.log("lod",card[index])//이거수정
+  //   axios
+  //   .post(
+  //     "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/verify",
+  //     {
+  //       name: sessionStorage.getItem("userId"),
+  //       personalNumber:"111111111"
+  //     }
+  //   )
+  //   .then(function(res){
+  //     if(res.data.result===true){
+
+  //       axios
+  //       .post(
+  //         "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/"+sessionStorage.getItem("directId")+"/apply",
+  //         {
+  //           userId: sessionStorage.getItem("userId"),
+  //           date:card[index].date
+  //         }
+          
+  //       )
+  //       .then(function(res){
+  //         console.log("결과는?")
+  //       })
+  //     }
+  //   })
+  // }
+
+}
 
 
   const onChange = (e) => {
@@ -112,7 +172,7 @@ const [filename,getfilename]=useState("")
       data: formData
   
       , transformResponse: function (data) {
-        console.log("log", JSON.parse(data))
+        console.log("log", JSON.parse(data).date)
         setCarddata(JSON.parse(data))
 
         // axios.post("http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/mypage/card/아이디1", {code:"18",image:null})
@@ -121,12 +181,14 @@ const [filename,getfilename]=useState("")
         // })
         if (JSON.parse(data).code === null) { alert("code가 읽히지않았습니다. 다시 사진을 찍어주세요") }
         else {
+
+          console.log("날짜가있었나요?",JSON.parse(data))
           axios.post("http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/mypage/card/apply", {code:JSON.parse(data).code})
           .then(function (res) {
             console.log("trs",res)//bims 확인, s3이미지 업로드와 카드 등록하기
             if(res.data===true){ //s3이미지 업로드
               var im=uploadFile(img,fileExt)
-              axios.post("http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/mypage/card/아이디1", {code:JSON.parse(data).code,image:im})
+              axios.post("http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/mypage/card/"+sessionStorage.getItem("userId"), {code:JSON.parse(data).code,image:im})
               .then(function(res){
                 console.log("업로드까지 끝")
               })
@@ -150,7 +212,7 @@ const [filename,getfilename]=useState("")
         <div className="Bloodpocket-main-nav-class">
           <Menu_left_nav name={"내 지갑"} imgname={POCKETICON}></Menu_left_nav>
         </div>
-        <img className="Bloodpocket-goback-bntimg-class" onClick={() => props.addPage("마이페이지")} src={GOBACKBTN}></img>
+        <img className="Bloodpocket-goback-bntimg-class" onClick={() => on.addPage("마이페이지")} src={GOBACKBTN}></img>
       </div>
       <div className="Bloodpocket-main-context-container" >
         <div className="Bloodpocket-main-context-card-container">
@@ -164,7 +226,7 @@ const [filename,getfilename]=useState("")
             </div>
           </div>
           {/* {card.map((menu,index)=>(card[index].id))} */}
-          {card?.map((menu, index) => (<div className="Bloodpocket-card-wow"><Bloodpocket_card key={index} getindex={card[index]} ></Bloodpocket_card></div>))}
+          {card?.map((menu, index) => (<div className="Bloodpocket-card-wow" onClick={()=>sendinfo(index)} style={on.onbtn==="true"?{cursor:"pointer"}:null}><Bloodpocket_card key={index} getindex={card[index]} ></Bloodpocket_card></div>))}
         </div>
 {   console.log("filename",filename)}
 

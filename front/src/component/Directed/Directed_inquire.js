@@ -31,8 +31,7 @@ const Directed_inquire = (id) => {
     const getValue = () => {
 
         setViewData(!viewData);
-        console.log("test")
-
+    
 
 
     }
@@ -54,7 +53,7 @@ const Directed_inquire = (id) => {
             .then(function (response) {
 
                 setGetApplicants(response);
-                console.log("기부자목록", response.data)
+               
                 check(response.data)
 
             });
@@ -67,7 +66,7 @@ const Directed_inquire = (id) => {
 
             .then(function (response) {
                 alert("게시글이 삭제되었습니다.")
-                console.log("response", response)
+             
                 id.addPage("지정헌혈")
             });
 
@@ -91,8 +90,7 @@ const Directed_inquire = (id) => {
 
     }
     const check=(resdata)=>{
-        console.log("chch")
-        console.log("00",resdata)
+ 
         for(var i in resdata ){
           
             if(resdata[i].applicantIdentify===sessionStorage.getItem("userId"))
@@ -120,7 +118,7 @@ const Directed_inquire = (id) => {
             <div className="Directed-inquire-nav-container">
                 <div className="Directed-inquire-nav-class">
                     <Menu_left_nav name={"지정헌혈"} imgname={DIRECTEDIMG}></Menu_left_nav>
-                    {console.log(id.id)}
+                  
                 </div>
                 <div className="Directed-inquire-nav-goback">
                     <img className="Directed-inquire-goback-bntimg-class" onClick={() => id.addPage("지정헌혈")} src={GOBACKBTN}></img>
@@ -180,7 +178,7 @@ const Directed_inquire = (id) => {
                                     수정
                                 </div>
                             </div>{ }
-                        </div>:null : viewdata1===false||viewData===true? <Directed_inquire_default_data id={id}></Directed_inquire_default_data>
+                        </div>:null : viewdata1===false||viewData===true? <Directed_inquire_default_data id={getData?.data.requesterUserId}></Directed_inquire_default_data>
                             : <Directed_inquire_default id={id} getValue={getValue} viewdata1={viewdata1}></Directed_inquire_default>}
 
                         <div className="Directed-inquire-footer-applicant">

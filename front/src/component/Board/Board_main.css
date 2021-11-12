@@ -1,5 +1,5 @@
 .Board-main-container {
-  background-color: rgb(129, 129, 179);
+  /* background-color: rgb(129, 129, 179); */
   width: 970px;
   height: 734px;
   margin: auto;
@@ -34,6 +34,7 @@
   padding-top: 1.5%;
   height: 100%;
   float: left;
+  margin-left: 280px;
   /* background-color: chartreuse; */
 }
 

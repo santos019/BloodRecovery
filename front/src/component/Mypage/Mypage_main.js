@@ -32,7 +32,7 @@ function Mypage_main(props, getData) {
     axios
       .get(
         "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/info/" +
-        sessionStorage.getItem("userId")
+          sessionStorage.getItem("userId")
       )
       .then(function (response) {
         setUser(response.data);
@@ -49,7 +49,10 @@ function Mypage_main(props, getData) {
       <div className="Mypage-main-class">
         <div className="Mypage-main-Header-container-class">
           {console.log(props.index)}
-          <Menu_left_nav name={"마이페이지"} imgname={POCKETICON}></Menu_left_nav>
+          <Menu_left_nav
+            name={"마이페이지"}
+            imgname={POCKETICON}
+          ></Menu_left_nav>
         </div>
       </div>
       <div className="Mypage-main-nav-container"></div>
@@ -77,7 +80,10 @@ function Mypage_main(props, getData) {
       >
         헌혈증 지갑
       </div>
-      <div className="Mypage-list-button" onClick={() => movepage("내가 요청한 기부")}>
+      <div
+        className="Mypage-list-button"
+        onClick={() => movepage("나의게시물")}
+      >
         내가 요청한 기부
       </div>
       <div className="Mypage-point-button" onClick={() => movepage("포인트")}>

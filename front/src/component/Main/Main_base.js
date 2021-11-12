@@ -25,10 +25,15 @@ import Board_inquire from "../Board/Board_inquire";
 import Notice_inquire from "../Notice/Notice_inquire";
 import Bloodpocket_card from "../Mypage/Bloodpocket_card";
 import Bloodpocket_main from "../Mypage/Bloodpocket";
-
 import Directed_rewrite from "../Directed/Directed_rewrite";
-
+import Board_rewrite from "../Board/Board_rewrite";
+import Notice_rewrite from "../Notice/Notice_rewrite";
 import Login_find from "../Login/Login_find";
+
+import Mypage_myboard from "../Mypage/Mypage_myboard";
+
+import Message from "../Message/Message";
+
 
 
 
@@ -115,7 +120,7 @@ function Main_base(props) {
           {sessionStorage.getItem("userId") === null ? (
             <Header_nav value={text} getsetValue={getsetValue}></Header_nav>
           ) : (
-            <Header_nav_login logoutsuccess={logoutsuccess}></Header_nav_login>
+            <Header_nav_login logoutsuccess={logoutsuccess} getsetValue={getsetValue}></Header_nav_login>
           )}
           {/*<div className="test1" onClick={() => onChageClick2(getValue)}> emry</div>
                     {console.log("test:"+text+"get:"+getValue)}*/}
@@ -174,6 +179,8 @@ function Main_base(props) {
             헌혈증_기부: <Board_main getsetValue2={getsetValue2}></Board_main>,
             헌혈증요청조회: <Board_inquire />,
             헌혈증_글쓰기: <Board_write></Board_write>,
+            헌혈증_수정: <Board_rewrite />,
+            나의게시물: <Mypage_myboard />,
             지정헌혈: (
               <Directed_main getsetValue2={getsetValue2}></Directed_main>
             ),
@@ -185,23 +192,25 @@ function Main_base(props) {
             ),
             지정헌혈_글쓰기: <Directed_write></Directed_write>,
             지정헌혈_수정: <Directed_rewrite />,
+
             //헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
             헌혈의_집_예약: <Mypage_main></Mypage_main>,
-            공지사항: <Notice_main></Notice_main>,
 
-            //getsetValue3 그대로 복붙해도돼,,,? 안될거같은디
-            // 공지사항조회: (
-            //   <Notice_inquire
-            //     getsetValue3={getsetValue3}
-            //     id={sendid}
-            //   ></Notice_inquire>
-            // ),
+            공지사항: <Notice_main></Notice_main>,
+            공지사항조회: <Notice_inquire></Notice_inquire>,
             공지사항_글쓰기: <Notice_write></Notice_write>,
             내_지갑_카드조회:<Bloodpocket_card/>,
+            공지사항_수정: <Notice_rewrite />,
             내_지갑: <Bloodpocket_main />,
             로그인: <Login_main loginsuccess={loginsuccess}></Login_main>, //.....
+
+
+
+            메시지: <Message/>,
             아이디비밀번호찾기:<Login_find/>,
+
             회원가입: <Join_main></Join_main>,
+
             랭킹: <Rank_main></Rank_main>,
           }[JSON.parse(window.sessionStorage.getItem("last"))]
         }

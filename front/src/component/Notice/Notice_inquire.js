@@ -15,8 +15,9 @@ const Notice_inquire = (id) => {
   useEffect(() => {
     axios
       .get(
-        // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/notice"
-        "http://localhost:8005/" + sessionStorage.getItem("boardId")
+        "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/notice/" +
+          // "http://localhost:8005/"
+          sessionStorage.getItem("boardId")
       )
 
       .then(function (response) {
@@ -28,14 +29,56 @@ const Notice_inquire = (id) => {
   const deleteData = () => {
     axios
       .delete(
-        // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/notice"
-        "http://localhost:8005/" + sessionStorage.getItem("boardId")
+        "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/notice/" +
+          // "http://localhost:8005/"
+          sessionStorage.getItem("boardId")
       )
 
       .then(function (response) {
         alert("게시글이 삭제되었습니다.");
         id.addPage("공지사항");
         // console.log("response", response);
+      });
+  };
+
+  const putPoint = () => {
+    // console.log(sessionStorage.getItem("userId"));
+    axios
+      .put(
+        "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/point",
+        {
+          userId: sessionStorage.getItem("userId"),
+          plusPoint: 5,
+          minusPoint: 0,
+          breakdown: "프로모션 참여 5포인트 추가",
+        }
+      )
+      .then(function (response) {
+        alert("프로모션 참여로 5포인트가 지급되었습니다.");
+        id.addPage("공지사항");
+        // console.log("response", response);
+      });
+  };
+
+  const postPro = () => {
+    // console.log(sessionStorage.getItem("userId"));
+    axios
+      .post(
+        "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8005/" +
+          sessionStorage.getItem("boardId") +
+          "?userId=" +
+          sessionStorage.getItem("userId")
+      )
+      .then(function (response) {
+        if (response.data == true) {
+          {
+            putPoint();
+          }
+        } else {
+          alert("이미 참여한 프로모션입니다.");
+          id.addPage("공지사항");
+          console.log("response", response);
+        }
       });
   };
 
@@ -95,7 +138,25 @@ const Notice_inquire = (id) => {
                 </div>
               </div>
               <div className="Notice-inquire-card-context-class">
-                {getData?.data.contents}
+                <pre className="Notice-inquire-contents">
+                  {getData?.data.contents}{" "}
+                </pre>
+              </div>
+
+              <div className="Notice-inquire-card-context-img-class">
+                <div className="Notice-inquire-card-context-margin">
+                  <a
+                    href={getData?.data.imageUrl}
+                    onClick={postPro}
+                    target="_blank"
+                  >
+                    <img
+                      src={getData?.data.image}
+                      className="Notice-inquire-cardset-img"
+                    />
+                  </a>
+                  {/* 클릭했을때 5포인트 적립. */}
+                </div>
               </div>
             </div>
           </div>
@@ -109,17 +170,21 @@ const Notice_inquire = (id) => {
                   >
                     삭제
                   </div>
-                  <div className="Notice-inquire-footer-repost">수정</div>
+                  <div
+                    className="Notice-inquire-footer-repost"
+                    onClick={() => id.addPage("공지사항_수정")}
+                  >
+                    수정
+                  </div>
                 </div>
               </div>
             ) : null}
 
-            {/* <div className="Notice-inquire-default-footer-container">
+            <div className="Notice-inquire-default-footer-container">
               <div className="Notice-inquire-default-footer-info1-class">
-                소중한 기부 감사합니다 :)
-                <p>=======================================================</p>
+                피로회복 짱
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>

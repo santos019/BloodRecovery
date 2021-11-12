@@ -8,45 +8,62 @@ import GOBACKBTN from "../../Img/DirectedIMG/arrow.png";
 
 import Board_BUTTON_IMG from "../../Img/CARDDONATIONWHITE.png";
 import Common_Button_IMG from "../Common/Button/Common_Button_IMG";
-
+import ReactModal from "react-modal";
 import BLOODDROPIMG from "../../Img/DirectedIMG/blood-drop.png";
 import BRONZE from "../../Img/Grade/4_bronze.png";
 import SIVER from "../../Img/Grade/3_silver.png";
 import GOLD from "../../Img/Grade/2_gold.png";
 import VIP from "../../Img/Grade/1_vip.png";
 import axios from "axios";
-
+import Bloodpocket from "../Mypage/Bloodpocket";
 import { connect, ReactReduxContext } from "react-redux";
 import { addPage } from "../../component/Modalmove/subscribers/action";
 import "./Board_inquire.css";
 
 const Board_inquire = (id) => {
   const [getData, setGetData] = useState();
-
+  const [modalIsOpen, setModalIsOpen] = useState();
+  //새로고침해도 모달창에서 불러온 컴포넌트가 안꺼지게 하는 함수
+  const [modal, setmodal] = useState();
+  const [signal,setsinal]=useState(true);
   const [getDonation, setGetDonation] = useState([]);
-
-  const sendValue = () => {
-    id.getsetValue3();
+  const modal_style1 = {
+    overlay: {
+      position: "fixed",
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      backgroundColor: "rgba(0, 0, 0,0 )",
+    },
+    content: {
+      left: 350,
+      right: 350,
+      top: 80,
+      bottom: 80,
+      zIndex: 0,
+      padding: 10,
+    },
   };
-
   useEffect(() => {
     axios
       .get(
-        // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests/"
-        "http://localhost:8003/requests/" + sessionStorage.getItem("boardId")
+        "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests/" +
+          // "http://localhost:8003/requests/"
+          sessionStorage.getItem("boardId")
       )
 
       .then(function (response) {
         setGetData(response);
-        // console.log("response1", response);
+        console.log("response1", response);
       });
   }, []);
 
   const deleteData = () => {
     axios
       .delete(
-        // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests/requestItem/"
-        "http://localhost:8003//requests/requestItem/" +
+        "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests/requestItem/" +
+          // "http://localhost:8003//requests/requestItem/"
           sessionStorage.getItem("boardId")
       )
 
@@ -60,8 +77,8 @@ const Board_inquire = (id) => {
   useEffect(() => {
     axios
       .get(
-        // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/donation"
-        "http://localhost:8003/requests/requestItem/" +
+        "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests/requestItem/" +
+          // "http://localhost:8003/requests/requestItem/"
           sessionStorage.getItem("boardId") +
           "/donations"
       )
@@ -69,7 +86,7 @@ const Board_inquire = (id) => {
         setGetDonation(response);
         // console.log("response2", response);
       });
-  }, []);
+  }, [getDonation]);
   //실시간 breakdown
 
   const donationlist = (donation) => {
@@ -107,26 +124,17 @@ const Board_inquire = (id) => {
     else if (level === 3) return GOLD;
     else if (level === 4) return VIP;
   };
+///기부하기//////////////////
+  const endsg=()=>{
 
+    setModalIsOpen(false)
+  }
   const beDonation = () => {
+    setModalIsOpen(true)
     if (sessionStorage.getItem("userId") == null) {
       alert("로그인 후 기부가 가능합니다!");
     } else {
-      axios
-        .post(
-          // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests/requestItem/"
-          "http://localhost:8003/requests/requestItem/" +
-            sessionStorage.getItem("boardId") +
-            "/donation",
-          {
-            userId: sessionStorage.getItem("userId"),
-            giveCount: sessionStorage.getItem("donationCount"),
-          }
-        )
-
-        .then(function (response) {
-          console.log("기부하기", response);
-        });
+  
 
       // id.getValue();
     }
@@ -134,6 +142,11 @@ const Board_inquire = (id) => {
 
   return (
     <div className="Board-inquire-container">
+      <ReactModal
+        style={modal_style1}
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+      >  <Bloodpocket onbtn={"true"} number={getData?.data.userId} endsg={endsg}></Bloodpocket>  </ReactModal>
       <div className="Board-inquire-nav-container">
         <div className="Board-inquire-nav-class">
           <Menu_left_nav
@@ -174,8 +187,17 @@ const Board_inquire = (id) => {
                 </div>
               </div>
               <div className="Board-inquire-card-context-class">
-                {getData?.data.contents}
+                <pre>{getData?.data.contents}</pre>
               </div>
+              <div className="Board-inquire-card-context-img-class">
+                <div className="Board-inquire-card-context-margin">
+                  <img
+                    src={getData?.data.image}
+                    className="Board-inquire-cardset-img"
+                  />
+                </div>
+              </div>
+
               <div className="Board-inquire-card-footer-class">
                 <div className="Board-inquire-card-footer-status">
                   <img
@@ -183,15 +205,17 @@ const Board_inquire = (id) => {
                     className="Board-inquire-card-footer-statueIMG"
                   ></img>
                   <div className="Board-inquire-card-footer-statustext">
-                    <div className="Directed-inquire-card-footer-statustext">
+                    <div className="Board-inquire-card-footer-statustext">
                       {/* {writeStatue(getData?.data.completeStatus)} */}
                       {getData?.data.completeStatus === false ? (
-                        <p className="Directed-card-nav-userstatus-p-class">
+                        <p className="Board-card-nav-userstatus-p-class-inquire">
                           {getData?.data.donationCount}/
                           {getData?.data.requestCount}
                         </p>
                       ) : (
-                        <p>완료</p>
+                        <p className="Board-card-nav-userstatus-p-class-inquire2">
+                          완료
+                        </p>
                       )}
                     </div>
                   </div>
@@ -209,26 +233,31 @@ const Board_inquire = (id) => {
                   >
                     삭제
                   </div>
-                  <div className="Board-inquire-footer-repost">수정</div>
+                  <div
+                    className="Board-inquire-footer-repost"
+                    onClick={() => id.addPage("헌혈증_수정")}
+                  >
+                    수정
+                  </div>
                 </div>
               </div>
             ) : null}
 
-            <div className="Board-inquire-default-footer-container">
-              <div className="Board-inquire-default-footer-btn-container">
-                <div
-                  className="Board-inquire-default-footer-btn-class"
-                  onClick={beDonation}
-                >
-                  <Common_Button_IMG
-                    name={"기부하기"}
-                    imgname={Board_BUTTON_IMG}
-                  ></Common_Button_IMG>
-                </div>
+            <div className="Board-inquire-default-footer-btn-container">
+              <div
+                className="Board-inquire-default-footer-btn-class"
+                onClick={beDonation}
+              >
+                <Common_Button_IMG
+                  name={"기부하기"}
+                  imgname={Board_BUTTON_IMG}
+                ></Common_Button_IMG>
               </div>
+            </div>
+
+            <div className="Board-inquire-default-footer-container">
               <div className="Board-inquire-default-footer-info1-class">
                 소중한 기부 감사합니다 :)
-                <p>=======================================================</p>
               </div>
             </div>
 
