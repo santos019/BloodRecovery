@@ -21,7 +21,8 @@ import java.util.*;
 @Service
 @Slf4j
 public class DirectDonationService {
-    private final static String url = "http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/user/";
+    private final static String userUrl = "http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/user/";
+    private final static String messageUrl = "http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/notice/message";
     private final static int plusPoint = 50;
     private final static int minusPoint = 50;
     private final static int vipLevel = 4;
@@ -78,6 +79,7 @@ public class DirectDonationService {
                         changePoint(e.getApplicantIdentify(), 1, 0, "지정헌혈 인증 완료");
                         applicantRepository.save(e);
                         directDonationRepository.save(item);
+                        sendMessage(item, e);
                         log.info("인증 성공");
                         result = true;
                         break;
@@ -170,7 +172,7 @@ public class DirectDonationService {
 
     private boolean changePoint(String userId, int plusCount, int minusCount, String reason){
         RestTemplate rt = new RestTemplate();
-        String location = url + "point";
+        String location = userUrl + "point";
         Map<String, Object> pointMap = new HashMap<>();
         pointMap.put("userId", userId);
         pointMap.put("plusPoint", plusCount * plusPoint);
@@ -182,7 +184,7 @@ public class DirectDonationService {
 
     private Map getUserInfo(String userId){
         RestTemplate rt = new RestTemplate();
-        String location = url + "info/" + userId;
+        String location = userUrl + "info/" + userId;
         return rt.getForObject(location, Map.class);
     }
 
@@ -220,6 +222,22 @@ public class DirectDonationService {
             directDonationRepository.save(item);
             log.info("업데이트 됨");
         }
+    }
+
+    private void sendMessage(DirectDonation directDonation, Applicant applicant){
+        RestTemplate rt = new RestTemplate();
+        Map<String, String> map = new HashMap<>();
+        map.put("producer", applicant.getApplicantIdentify());
+        map.put("consumer", directDonation.getRequesterUserId());
+        map.put("title", "지정헌혈 받았어요!");
+        map.put("contents", applicant.getApplicantNickname() + "님께서 지정헌혈을 완료해주셨습니다!");
+        if(rt.postForObject(messageUrl, map, Map.class).get("id") != null){
+            log.info("메시지가 전송되었습니다.");
+        }
+        else{
+            log.info("메시지가 전송되지 못했습니다.");
+        }
+
     }
 
     @Transactional
