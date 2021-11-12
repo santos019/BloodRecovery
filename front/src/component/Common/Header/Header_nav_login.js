@@ -9,7 +9,6 @@ const Header_nav=(props)=>{
     const logout=()=>{
         sessionStorage.clear();
         props.logoutsuccess()
-
     }
     const [messageShow, setMessageShow] = useState(false);
     return (
@@ -22,7 +21,7 @@ const Header_nav=(props)=>{
                 <div className="Header-nav-Join-class" onClick={()=>sendValue("회원가입")}>
                     마이페이지
                 </div>
-                <div className="Header-nav-Message-class" onClick={Message}>
+                <div className="Header-nav-Message-class" onClick={()=>sendValue("메시지")}>
                     메시지
                 </div>
             </div>
