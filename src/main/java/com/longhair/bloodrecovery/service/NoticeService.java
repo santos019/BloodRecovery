@@ -61,4 +61,21 @@ public class NoticeService {
     public void deleteNotice(Long id){
         noticeRepository.deleteById(id);
     }
+
+    @Transactional
+    public Boolean addProJoinUser(Long id, String userId){
+        Optional<Notice> item = noticeRepository.findById(id);
+        if(item.isPresent()){
+            Notice result = item.get();
+            String users = result.getProJoinUsers();
+            if(users.contains(userId)){
+                return false;
+            }
+            result.setProJoinUsers(users + "," + userId);
+
+            noticeRepository.save(result);
+            return true;
+        }
+        return false;
+    }
 }
