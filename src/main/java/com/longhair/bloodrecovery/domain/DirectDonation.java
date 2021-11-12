@@ -19,8 +19,12 @@ public class DirectDonation {
     private String requesterNickname;
     private Integer requesterLevel;
 
+    @Column(length = 500)
     private String title = "";
+
+    @Column(length = 1000)
     private String contents = "";
+
     private String image = "";
     private LocalDateTime date;
 

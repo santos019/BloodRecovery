@@ -1,8 +1,10 @@
 package com.longhair.bloodrecovery.domain;
 
 import lombok.*;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -13,9 +15,9 @@ public class Applicant {
     private Long id;
 
     private String applicantIdentify;
-
     private String applicantNickname;
-
+    private LocalDateTime date;
+    private LocalDateTime applyDate;
     private Boolean applyStatus = false;
 
     @ManyToOne

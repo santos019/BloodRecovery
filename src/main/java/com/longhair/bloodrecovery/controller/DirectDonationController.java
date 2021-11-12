@@ -64,9 +64,8 @@ public class DirectDonationController {
     }
 
     @PostMapping("/directedItem/{id}/apply")
-    public String postApply(@PathVariable("id") Long id){
-        directDonationService.applyApplicant(new Applicant(), id);
-        return null;
+    public ResponseEntity<Boolean> postApply(@PathVariable("id") Long id, @RequestBody ApplyDto applyDto){
+        return new ResponseEntity<>(directDonationService.applyApplicant(applyDto, id), HttpStatus.OK);
     }
 
 }
