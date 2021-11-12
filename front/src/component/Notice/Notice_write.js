@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import { addPage } from "../../component/Modalmove/subscribers/action";
 import S3Upload from "../Common/Function/S3fileUpload";
 import "./Notice_write.css";
-import BLOODDROP from "../../Img/DirectedIMG/blood-drop.png";
 import Common_Button_IMG from "../../component/Common/Button/Common_Button_IMG";
 import WRITEWHITEIMG from "../../Img/DirectedIMG/WRITE_WHITE.png";
 import axios from "axios";
@@ -17,6 +16,7 @@ function Notice_write(props) {
   const [inputs, setInputs] = useState({
     notice_title: "",
     notice_context: "",
+    notice_imageurl: "",
     notice_date2: "", //date형식으로
   });
 
@@ -31,12 +31,10 @@ function Notice_write(props) {
     setInputs(nextInputs);
     if (name === "notice_title") {
     }
-    console.log(inputs);
+    // console.log(inputs);
   };
 
   const senddata = () => {
-    // console.log("userId:",sessionStorage.getItem("userId"),"title:",inputs.direct_title,"contents:",inputs.direct_context,"image:",getIMG,"locationSido:",getSido,"locationSigungu:",getSigungu,"periodFrom:",changeFormat(startDate, "yyyy-MM-DD"),"periodTo:",changeFormat(endDate, "yyyy-MM-DD"),"bloodType:",inputs.direct_bloodtype,"bloodMaxCount:",directCount,"patientName:",inputs.direct_patient,"hospitalName:",inputs.direct_hospital,"roomNumber:",inputs.direct_room,"phoneNumber:",inputs.direct_phonenumber)
-
     if (inputs.notice_title === "") {
       alert("제목을 넣어주세요");
     } else if (inputs.notice_context === "") {
@@ -44,13 +42,14 @@ function Notice_write(props) {
     } else {
       axios
         .post(
-          // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/notice"
-          "http://localhost:8005",
+          "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/notice",
+          // "http://localhost:8005",
           {
             writerUserId: sessionStorage.getItem("userId"),
             title: inputs.notice_title,
             contents: inputs.notice_context,
             image: getIMG,
+            imageUrl: inputs.notice_imageurl,
           }
         )
         .then(function (response) {
@@ -107,6 +106,14 @@ function Notice_write(props) {
               <div className="Notice-write-footer-upload">
                 <S3Upload getfilename={getfilename} />
               </div>
+            </div>
+
+            <div className="Notice-write-footer-imageurl-container">
+              <input
+                name="notice_imageurl"
+                className="Notice-write-footer-imageurl"
+                onChange={onChange}
+              ></input>
             </div>
 
             <div className="Notice-write-btn-container">

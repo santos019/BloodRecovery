@@ -1,28 +1,29 @@
-
 @font-face {
-  font-family: 'Dongle-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108_2@1.0/Dongle-Regular.woff') format('woff');
+  font-family: "Dongle-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108_2@1.0/Dongle-Regular.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'GowunDodum-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+  font-family: "GowunDodum-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }
 .App {
   text-align: center;
   width: 100vh;
-  
-  
 }
-body{
-  background-image:url("./Img/bgimg.png");
-  background-repeat : no-repeat;
-  background-size : cover;
-  font-family: 'GowunDodum-Regular';
-  
+body {
+  background-image: url("./Img/bgimg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "GowunDodum-Regular";
+}
+pre {
+  font-family: "GowunDodum-Regular";
 }
 .App-logo {
   height: 40vmin;

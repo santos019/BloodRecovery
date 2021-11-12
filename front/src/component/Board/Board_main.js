@@ -7,14 +7,12 @@ import { connect } from "react-redux";
 import { addPage } from "../../component/Modalmove/subscribers/action";
 import axios from "axios";
 import CARDDONATION from "../../Img/CARDDONATION.png";
-import SEARCHICON from "../../Img/searchicon.png";
 import WRITEICON from "../../Img/WRITE.png";
-import { getDefaultLocale } from "react-datepicker";
 
 const Board_main = (props) => {
-  var key1;
-  let form = new FormData();
-  var arrNumber = new Array();
+  // var key1;
+  // let form = new FormData();
+  // var arrNumber = new Array();
   const [getSi, setGetSi] = useState("전체");
   const [getData, setGetdata] = useState([]);
   const [selectStatus, setSelectStatus] = useState(false);
@@ -70,7 +68,10 @@ const Board_main = (props) => {
     if (inputs.direct_main_bloodtype === "") {
       if (getSi === "전체") {
         axios
-          .get("http://localhost:8003?status=" + selectStatus) //status상태만붙여주고
+          .get(
+            "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card?status=" +
+              selectStatus
+          ) //status상태만붙여주고
           .then(function (response) {
             setGetdata(response.data);
 
@@ -78,7 +79,9 @@ const Board_main = (props) => {
           });
       } else {
         axios
-          .get("http://localhost:8003?status=") //status상태만붙여주고, 시도 붙여주기
+          .get(
+            "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card?status="
+          )
           .then(function (response) {
             setGetdata(response.data);
 
@@ -88,15 +91,15 @@ const Board_main = (props) => {
     }
   }, [selectStatus]);
 
-  const newdata = () => {
-    for (var i = 0; i < getData.length; i++) {
-      for (var key in getData[i].length) {
-        getData[i][i] = 0;
-      }
-    }
-  };
+  // const newdata = () => {
+  //   for (var i = 0; i < getData.length; i++) {
+  //     for (var key in getData[i].length) {
+  //       getData[i][i] = 0;
+  //     }
+  //   }
+  // };
 
-  const movepage = (text) => {};
+  // const movepage = (text) => {};
 
   return (
     <div className="Board-main-container">
@@ -133,7 +136,7 @@ const Board_main = (props) => {
             {console.log("index", index)}
           </Board_card>
         ))}
-        {console.log(getData)}
+        {/* {console.log(getData)} */}
       </div>
     </div>
   );

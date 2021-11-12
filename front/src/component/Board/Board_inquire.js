@@ -25,15 +25,12 @@ const Board_inquire = (id) => {
 
   const [getDonation, setGetDonation] = useState([]);
 
-  const sendValue = () => {
-    id.getsetValue3();
-  };
-
   useEffect(() => {
     axios
       .get(
-        // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests/"
-        "http://localhost:8003/requests/" + sessionStorage.getItem("boardId")
+        "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests/" +
+          // "http://localhost:8003/requests/"
+          sessionStorage.getItem("boardId")
       )
 
       .then(function (response) {
@@ -45,8 +42,8 @@ const Board_inquire = (id) => {
   const deleteData = () => {
     axios
       .delete(
-        // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests/requestItem/"
-        "http://localhost:8003//requests/requestItem/" +
+        "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests/requestItem/" +
+          // "http://localhost:8003//requests/requestItem/"
           sessionStorage.getItem("boardId")
       )
 
@@ -60,8 +57,8 @@ const Board_inquire = (id) => {
   useEffect(() => {
     axios
       .get(
-        // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/donation"
-        "http://localhost:8003/requests/requestItem/" +
+        "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests/requestItem/" +
+          // "http://localhost:8003/requests/requestItem/"
           sessionStorage.getItem("boardId") +
           "/donations"
       )
@@ -69,7 +66,7 @@ const Board_inquire = (id) => {
         setGetDonation(response);
         // console.log("response2", response);
       });
-  }, []);
+  }, [getDonation]);
   //실시간 breakdown
 
   const donationlist = (donation) => {
@@ -114,8 +111,8 @@ const Board_inquire = (id) => {
     } else {
       axios
         .post(
-          // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests/requestItem/"
-          "http://localhost:8003/requests/requestItem/" +
+          "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests/requestItem/" +
+            // "http://localhost:8003/requests/requestItem/"
             sessionStorage.getItem("boardId") +
             "/donation",
           {
@@ -125,7 +122,7 @@ const Board_inquire = (id) => {
         )
 
         .then(function (response) {
-          console.log("기부하기", response);
+          // console.log("기부하기", response);
         });
 
       // id.getValue();
@@ -174,8 +171,17 @@ const Board_inquire = (id) => {
                 </div>
               </div>
               <div className="Board-inquire-card-context-class">
-                {getData?.data.contents}
+                <pre>{getData?.data.contents}</pre>
               </div>
+              <div className="Board-inquire-card-context-img-class">
+                <div className="Board-inquire-card-context-margin">
+                  <img
+                    src={getData?.data.image}
+                    className="Board-inquire-cardset-img"
+                  />
+                </div>
+              </div>
+
               <div className="Board-inquire-card-footer-class">
                 <div className="Board-inquire-card-footer-status">
                   <img
@@ -183,15 +189,17 @@ const Board_inquire = (id) => {
                     className="Board-inquire-card-footer-statueIMG"
                   ></img>
                   <div className="Board-inquire-card-footer-statustext">
-                    <div className="Directed-inquire-card-footer-statustext">
+                    <div className="Board-inquire-card-footer-statustext">
                       {/* {writeStatue(getData?.data.completeStatus)} */}
                       {getData?.data.completeStatus === false ? (
-                        <p className="Directed-card-nav-userstatus-p-class">
+                        <p className="Board-card-nav-userstatus-p-class-inquire">
                           {getData?.data.donationCount}/
                           {getData?.data.requestCount}
                         </p>
                       ) : (
-                        <p>완료</p>
+                        <p className="Board-card-nav-userstatus-p-class-inquire2">
+                          완료
+                        </p>
                       )}
                     </div>
                   </div>
@@ -219,21 +227,21 @@ const Board_inquire = (id) => {
               </div>
             ) : null}
 
-            <div className="Board-inquire-default-footer-container">
-              <div className="Board-inquire-default-footer-btn-container">
-                <div
-                  className="Board-inquire-default-footer-btn-class"
-                  onClick={beDonation}
-                >
-                  <Common_Button_IMG
-                    name={"기부하기"}
-                    imgname={Board_BUTTON_IMG}
-                  ></Common_Button_IMG>
-                </div>
+            <div className="Board-inquire-default-footer-btn-container">
+              <div
+                className="Board-inquire-default-footer-btn-class"
+                onClick={beDonation}
+              >
+                <Common_Button_IMG
+                  name={"기부하기"}
+                  imgname={Board_BUTTON_IMG}
+                ></Common_Button_IMG>
               </div>
+            </div>
+
+            <div className="Board-inquire-default-footer-container">
               <div className="Board-inquire-default-footer-info1-class">
                 소중한 기부 감사합니다 :)
-                <p>=======================================================</p>
               </div>
             </div>
 

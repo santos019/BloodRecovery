@@ -39,8 +39,6 @@ function Board_write(props) {
   };
 
   const senddata = () => {
-    // console.log("userId:",sessionStorage.getItem("userId"),"title:",inputs.direct_title,"contents:",inputs.direct_context,"image:",getIMG,"locationSido:",getSido,"locationSigungu:",getSigungu,"periodFrom:",changeFormat(startDate, "yyyy-MM-DD"),"periodTo:",changeFormat(endDate, "yyyy-MM-DD"),"bloodType:",inputs.direct_bloodtype,"bloodMaxCount:",directCount,"patientName:",inputs.direct_patient,"hospitalName:",inputs.direct_hospital,"roomNumber:",inputs.direct_room,"phoneNumber:",inputs.direct_phonenumber)
-
     if (inputs.request_title === "") {
       alert("제목을 넣어주세요");
     } else if (inputs.request_context === "") {
@@ -48,8 +46,8 @@ function Board_write(props) {
     } else {
       axios
         .post(
-          // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests/requestItem"
-          "http://localhost:8003/requests/requestItem",
+          "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/card/requests/requestItem",
+          // "http://localhost:8003/requests/requestItem",
           {
             userId: sessionStorage.getItem("userId"),
             title: inputs.request_title,
