@@ -22,6 +22,7 @@ import java.util.*;
 @Slf4j
 public class DirectDonationService {
     private final static String url = "http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/user/";
+    private final static int plusPoint = 50;
     private final static int minusPoint = 50;
     private final static int vipLevel = 4;
 
@@ -40,6 +41,7 @@ public class DirectDonationService {
                 Map map = getUserInfo(applicant.getApplicantIdentify());
                 applicant.setApplicantNickname(map.get("nickname").toString());
                 applicant.setDirectDonation(item.get());
+                applicant.setDate(LocalDateTime.now());
                 applicant.setApplyStatus(false);
                 item.get().getApplicants().add(applicant);
                 directDonationRepository.save(item.get());
@@ -56,28 +58,42 @@ public class DirectDonationService {
         return list;
     }
 
-    public void applyApplicant(Applicant applicant, Long id){
-        boolean result = true;
+    @Transactional
+    public Boolean applyApplicant(ApplyDto applyDto, Long id){
+        boolean result = false;
         Optional<DirectDonation> directDonation = directDonationRepository.findById(id);
         if(directDonation.isPresent()){
             DirectDonation item = directDonation.get();
-            //TODO 혈액증서 인증
-            //result = 인증 API 사용.
-            if(result){     // 인증 완료
-                log.info("인증 성공");
-                if(item.getBloodCurrentCount() < item.getBloodMaxCount()){
-                    item.setBloodCurrentCount(item.getBloodCurrentCount() + 1);
-                    item.getApplicants().add(applicant);
-                    applicantRepository.save(applicant);
-                    directDonationRepository.save(item);
-                }
-                else{
-                    log.info("이미 꽉찬 신청글입니다.");
+            // 인증할 헌혈증의 날짜가 요청의 기간 안인지와 요청한 헌혈증의 개수가 다 채워지지 않았는지 확인
+            if(applyDto.getDate().isAfter(item.getPeriodFrom()) &&
+                    applyDto.getDate().isBefore(item.getPeriodTo()) &&
+                    !item.getCompleteStatus()){
+                for(Applicant e : item.getApplicants()) {       // 신청자들중에서 인증을 요청한 신청자가 있는지 확인
+                    if (e.getApplicantIdentify().equals(applyDto.getUserId())) {
+                        item.setBloodCurrentCount(item.getBloodCurrentCount() + 1);
+                        checkDirect(item);
+                        item.getApplicants().add(e);
+                        e.setApplyStatus(true);
+                        e.setApplyDate(LocalDateTime.now());
+                        changePoint(e.getApplicantIdentify(), 1, 0, "지정헌혈 인증 완료");
+                        applicantRepository.save(e);
+                        directDonationRepository.save(item);
+                        log.info("인증 성공");
+                        result = true;
+                        break;
+                    }
                 }
             }
             else{           // 인증 실패
                 log.info("인증 실패");
             }
+        }
+        return result;
+    }
+
+    private void checkDirect(DirectDonation directDonation){
+        if (directDonation.getBloodMaxCount() <= directDonation.getBloodCurrentCount()){
+            directDonation.setCompleteStatus(true);
         }
     }
 
@@ -157,13 +173,9 @@ public class DirectDonationService {
         String location = url + "point";
         Map<String, Object> pointMap = new HashMap<>();
         pointMap.put("userId", userId);
-        pointMap.put("plusPoint", plusCount * minusPoint);
-        //TODO
-        //지정헌혈 헌혈 종류 상관없이 개당 50포인트 차감
+        pointMap.put("plusPoint", plusCount * plusPoint);
         pointMap.put("minusPoint", minusCount * minusPoint);
         pointMap.put("breakdown", reason);
-        log.info(location);
-        log.info(pointMap.toString());
         ResponseEntity<Map> result = rt.exchange(location, HttpMethod.PUT, new HttpEntity<>(pointMap), Map.class);
         return Boolean.parseBoolean(result.getBody().get("result").toString());
     }
