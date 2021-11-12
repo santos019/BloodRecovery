@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 @Service
 public class UserService {
@@ -160,7 +161,9 @@ public class UserService {
 
     @Transactional
     public List<Point> getPoint(String userId){
-        return pointRepository.findAllByUserId(userId);
+        List<Point> result = pointRepository.findAllByUserId(userId);
+        Collections.reverse(result);
+        return result;
     }
 
     @Transactional
