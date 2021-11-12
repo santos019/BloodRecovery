@@ -19,6 +19,10 @@ public class DirectDonationController {
     @Autowired
     DirectDonationService directDonationService;
 
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<DirectDonationSimpleDto>> getUserDirecteds(@PathVariable("userId")String userId){
+        return new ResponseEntity<>(directDonationService.findUserDirecteds(userId), HttpStatus.OK);
+    }
     @GetMapping("")
     public ResponseEntity<List<DirectDonationSimpleDto>> getDirecteds(SearchData searchData){
         return new ResponseEntity<>(directDonationService.findDirectDonationAll(searchData), HttpStatus.OK);

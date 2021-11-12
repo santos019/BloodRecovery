@@ -215,4 +215,15 @@ public class DirectDonationService {
         int num = directDonation.getBloodMaxCount() - directDonation.getBloodCurrentCount();
         changePoint(directDonation.getRequesterUserId(), num, 0, "완료 상태 변경으로 인한 캐쉬백");
     }
+
+    @Transactional(readOnly = true)
+    public List<DirectDonationSimpleDto> findUserDirecteds(String userId){
+        List<DirectDonationSimpleDto> result = new ArrayList<>();
+        List<DirectDonation> items = directDonationRepository.findDirectDonationsByRequesterUserId(userId);
+        if(items == null){
+            return result;
+        }
+        items.forEach(e -> result.add(new DirectDonationSimpleDto(e)));
+        return result;
+    }
 }
