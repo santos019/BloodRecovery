@@ -22,6 +22,7 @@ const Directed_inquire = (id) => {
     const [getData, setGetData] = useState();
     const [viewData, setViewData] = useState(false);
     const [getApplicants, setGetApplicants] = useState();
+    const [viewdata1,setviewdata1]=useState(true);
     const sendValue = () => {
         id.getsetValue3()
 
@@ -42,7 +43,6 @@ const Directed_inquire = (id) => {
             .then(function (response) {
 
                 setGetData(response);
-                console.log("response1", response)
 
             });
 
@@ -54,11 +54,12 @@ const Directed_inquire = (id) => {
             .then(function (response) {
 
                 setGetApplicants(response);
-                console.log("기부자목록", response)
+                console.log("기부자목록", response.data)
+                check(response.data)
 
             });
 
-    }, []);
+    }, [viewdata1]);
     const deleteData = () => {
 
         axios
@@ -88,6 +89,21 @@ const Directed_inquire = (id) => {
         }
         return redate;
 
+    }
+    const check=(resdata)=>{
+        console.log("chch")
+        console.log("00",resdata)
+        for(var i in resdata ){
+          
+            if(resdata[i].applicantIdentify===sessionStorage.getItem("userId"))
+            {
+        
+                setviewdata1(false)
+                break;
+            }
+            else setviewdata1(true)
+
+        }
     }
     const levelIMG = (level) => {
 
@@ -131,7 +147,7 @@ const Directed_inquire = (id) => {
                                     {getData?.data.bloodType}
                                 </div>
                                 <div className="Directed-inquire-card-writer-container">
-                                    <img src={levelIMG(getData?.data.requesterLevel)} className="Directed-inquire-card-writer-icon"></img>
+                                    <img src={levelIMG(getData?.data.requesterLevel)} className="Directed-inquire-card-writer-icon" ></img>
                                     <div className="Directed-inquire-card-writername-class">
                                         {getData?.data.requesterNickname}
                                     </div>
@@ -163,12 +179,12 @@ const Directed_inquire = (id) => {
                                 <div className="Directed-inquire-footer-repost" onClick={()=>id.addPage("지정헌혈_수정")}>
                                     수정
                                 </div>
-                            </div>
-                        </div>:null : viewData === true ? <Directed_inquire_default_data id={id}></Directed_inquire_default_data>
-                            : <Directed_inquire_default id={id} getValue={getValue}></Directed_inquire_default>}
+                            </div>{ }
+                        </div>:null : viewdata1===false||viewData===true? <Directed_inquire_default_data id={id}></Directed_inquire_default_data>
+                            : <Directed_inquire_default id={id} getValue={getValue} viewdata1={viewdata1}></Directed_inquire_default>}
 
                         <div className="Directed-inquire-footer-applicant">
-                            {getApplicants?.data.map((menu,index)=>(getApplicants?.data[index].applyStatus===false?<div className="Directed-inquire-footer-appname">{getApplicants?.data[index].applicantNickname+"님이 지정헌혈을 예정중이십니다."}</div>
+                            {getApplicants?.data.map((menu,index)=>(getApplicants?.data[index].applyStatus===false?<div className="Directed-inquire-footer-appname">{getApplicants?.data[index].applicantNickname+"님 지정헌혈 예정입니다."}</div>
                             :<div className="Directed-inquire-footer-appname">{getApplicants?.data[index].applicantNickname+"님이 지정헌혈을 완료하셨습니다!."}</div>))}
                         </div>
                     </div>
