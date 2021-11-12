@@ -5,6 +5,7 @@ import blood from '../../Img/blood.png';
 import Common_Button from "../Common/Button/Common_Button";
 import axios from "axios";
 function Login_find() {
+    const [passwordCheck,setPasswordCheck]=useState(false)
     const [check,setcheck]=useState(false)
     const [inputs, setInputs] = useState({
         find_name: '',
@@ -16,7 +17,7 @@ function Login_find() {
         findps_id:'',
         findps_password:''
     })
-   
+    var passwordEXP=/^[a-zA-Z0-9~!@#$%^&*()_]{8,16}$/;
     const onChange=(e)=>{
         const { name, value } = e.target   
         const nextInputs = {            
@@ -28,6 +29,7 @@ function Login_find() {
                  setInputs(nextInputs)  
                  
                  console.log(inputs)
+               
  
     }   
     const onChange2=(e)=>{
@@ -41,6 +43,10 @@ function Login_find() {
             setInputsPassword(nextInputs2)  
                  
                  console.log(inputsPassword)
+                 if(name==="findps_password")
+                 {
+                    setPasswordCheck(passwordEXP.test(e.target.value))
+                 }
  
     }   
     const senddata=()=>{
@@ -54,35 +60,39 @@ function Login_find() {
             axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/idFind",{name:inputs.find_name,personalNumber:inputs.find_personal})
             .then(function(res){
                 console.log("비밀번호",res)
+                if(res.data!=="")
                 alert("찾으신 아이디는 "+res.data+" 입니다.")
-
+                else{
+                    alert("해당 정보가 없습니다.")
+                }
             })
         }
     }
     const senddata1=()=>{
-        var i =0;
+    
 
         if(inputsPassword.findps_name===""){alert("성명을 입력해주세요")}
         else if(inputsPassword.findps_personal===""){alert("주민등록번호를 입력해주세요")}
         else if(inputsPassword.findps_id===""){alert("아이디를 입력해주세요")}
+        else if(passwordCheck===false){alert("비밀번호 양식을 지켜주세요")}
         //else if(인증안했을떄)
         else{
 
             axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/idFind",{name:inputsPassword.findps_name,personalNumber:inputsPassword.findps_personal})
             .then(function(res){
-                console.log("다음단계",res)
                 
                 if(res.data===inputsPassword.findps_id){
-                    axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/pwReset",{userId:inputsPassword.findps_id,password:inputs.findps_password})
+                    axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/pwReset",{userId:inputsPassword.findps_id,password:inputsPassword.findps_password})
                     .then(function(res){
-                        console.log("ㅎㅎ",res)
                         alert("비밀번호가 변경되었습니다.")
                         
                     })
 
                 }
+                else {alert("정보를 다시 입력해주세요")}
                 
             })
+            console.log(inputsPassword)
             
         }
 
