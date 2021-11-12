@@ -7,6 +7,7 @@ import axios from "axios";
 function Login_find() {
     const [passwordCheck,setPasswordCheck]=useState(false)
     const [check,setcheck]=useState(false)
+    const [checkps,setcheckps]=useState(false)
     const [inputs, setInputs] = useState({
         find_name: '',
         find_personal:''
@@ -29,7 +30,9 @@ function Login_find() {
                  setInputs(nextInputs)  
                  
                  console.log(inputs)
-               
+                if(name==="find_personal"){
+                    setcheck(false)
+                 }
  
     }   
     const onChange2=(e)=>{
@@ -47,6 +50,9 @@ function Login_find() {
                  {
                     setPasswordCheck(passwordEXP.test(e.target.value))
                  }
+                 else if(name==="findps_personal"){
+                    setcheckps(false)
+                 }
  
     }   
     const senddata=()=>{
@@ -54,7 +60,7 @@ function Login_find() {
 
         if(inputs.find_name===""){alert("성명을 입력해주세요")}
         else if(inputs.find_personal===""){alert("주민등록번호를 입력해주세요")}
-        //else if(인증안했을떄)
+        else if(check===false){alert("실명인증을 해주세요")}
         else{
 
             axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/idFind",{name:inputs.find_name,personalNumber:inputs.find_personal})
@@ -74,6 +80,7 @@ function Login_find() {
         if(inputsPassword.findps_name===""){alert("성명을 입력해주세요")}
         else if(inputsPassword.findps_personal===""){alert("주민등록번호를 입력해주세요")}
         else if(inputsPassword.findps_id===""){alert("아이디를 입력해주세요")}
+        else if(checkps===false){alert("실명인증을 해주세요")}
         else if(passwordCheck===false){alert("비밀번호 양식을 지켜주세요")}
         //else if(인증안했을떄)
         else{
@@ -107,6 +114,26 @@ function Login_find() {
         // }
         // else{alert("오류")}
     }
+    const personalcheck=(text)=>{
+        
+
+        if(text==="id")
+        {axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/verify",{name:inputs.find_name,personalNumber:inputs.find_personal})
+        .then(function(res){
+           if(res.data.result===true){alert("실명인증이 완료되었습니다.")}
+            {setcheck(true)}
+        })
+         }
+         else if(text==="password")
+         {axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/verify",{name:inputsPassword.findps_name,personalNumber:inputsPassword.findps_personal})
+         .then(function(res){
+            if(res.data.result===true){alert("실명인증이 완료되었습니다.")}
+             {setcheckps(true)}
+         })
+
+         }
+
+    }
 
     return (
 
@@ -131,7 +158,7 @@ function Login_find() {
 
                             <input className="Login-find-input" name="find_personal" onChange={onChange}></input>
                             <div className="Login-find-register-class">
-                                <div className="Login-find-register-name-class">
+                                <div className="Login-find-register-name-class" onClick={()=>personalcheck("id")}>
                                     인증
                                 </div>
                             </div>
@@ -163,7 +190,7 @@ function Login_find() {
 
                             <input className="Login-find2-input" name="findps_personal" onChange={onChange2}></input>
                             <div className="Login-find-register-class">
-                                <div className="Login-find-register-name-class">
+                                <div className="Login-find-register-name-class"onClick={()=>personalcheck("password")}>
                                     인증
                                 </div>
                             </div>

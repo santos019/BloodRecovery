@@ -62,6 +62,25 @@
   text-align: center;
   font-size: 25px;
 }
+.Mypage-main-username {
+  background-color: #3ff0ac;
+  margin: auto;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  font-size: 15px;
+  border: 2px solid #fb4d4e;
+}
+.Mypage-main-userid {
+  background-color: #84f84f;
+  margin: auto;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  font-size: 15px;
+  border: 2px solid #fb4d4e;
+}
+
 .Mypage-info-change {
   background-color: #2543ec;
   margin: auto;
@@ -77,6 +96,7 @@
   height: 30px;
   text-align: center;
   font-size: 15px;
+  float: right;
 }
 
 .Mypage-list-container-class {
@@ -101,4 +121,37 @@
   border: 2px solid #fb4d4e;
   margin: auto;
   margin-bottom: 2%;
+  font-size: 25px;
+  text-align: center;
+}
+.Mypage-bloodpocket-button {
+  width: 200px;
+  height: 80px;
+  background-color: bisque;
+  border-radius: 12px 12px 12px 12px;
+  border: 2px solid #fb4d4e;
+  margin: auto;
+  margin-bottom: 2%;
+  font-size: 25px;
+  text-align: center;
+}
+.Mypage-point-button {
+  width: 200px;
+  height: 80px;
+  background-color: bisque;
+  border-radius: 12px 12px 12px 12px;
+  border: 2px solid #fb4d4e;
+  margin: auto;
+  margin-bottom: 2%;
+  font-size: 40px;
+  text-align: center;
+}
+
+.Mypage-point-button b {
+  color: #ff0000;
+}
+.Mypage-point-button p {
+  margin: 0px;
+  color: #ff0000;
+  font-size: 15px;
 }
