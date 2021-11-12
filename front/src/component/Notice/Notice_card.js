@@ -50,7 +50,7 @@ const Notice_card = (getData) => {
           </div>
         </div>
 
-        {console.log(getData.getData?.id)}
+        {/* {console.log(getData.getData?.id)} */}
       </div>
     </div>
   );
