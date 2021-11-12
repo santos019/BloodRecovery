@@ -82,6 +82,7 @@ const handleFileInput = (e) => {
     }
     
     setProgress(0);
+    console.log("wowwer",file)
     setSelectedFile(e.target.files[0]);
   }
 
