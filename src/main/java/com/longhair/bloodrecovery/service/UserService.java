@@ -116,12 +116,18 @@ public class UserService {
     @Transactional
     public boolean changePoint(PointDto pointDto){
         User user = userRepository.findUserByUserId(pointDto.getUserId());
+        if(user == null){                   // 잘못된 접근(유저 정보가 틀림)
+            return false;
+        }
+        if(user.getLevel() == 0){           // 관리자로 접근(관리자는 포인트 변환이 안됨)
+            return false;
+        }
         Point point = new Point();
         point.setUserId(pointDto.getUserId());
         point.setPlusPoint(pointDto.getPlusPoint());
         point.setMinusPoint(pointDto.getMinusPoint());
-        int crntPoint = user.getPoint() + point.getPlusPoint() - point.getMinusPoint();
-        if(crntPoint < 0){
+        int crntPoint = user.getPoint() + point.getPlusPoint() - point.getMinusPoint(); // 현재 포인트 계산
+        if(crntPoint < 0){                  // 차감될 포인트가 모자라면 안됨
             return false;
         }
         point.setCurrentPoint(crntPoint);
