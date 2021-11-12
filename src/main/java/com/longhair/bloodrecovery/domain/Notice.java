@@ -18,16 +18,16 @@ public class Notice {
     private String writerNickname;
     private int writerLevel;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(length = 500)
     private String title;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(length = 1000)
     private String contents;
 
     private String image;
     private String imageUrl;
     private LocalDateTime date;
 
-    @Column(columnDefinition = "TEXT")
-    private String proJoinUsers;
+    @OneToMany
+    private List<Promotion> proJoinUsers = new ArrayList<>();
 }
