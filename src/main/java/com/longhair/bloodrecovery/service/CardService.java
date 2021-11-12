@@ -101,12 +101,12 @@ public class CardService {
         //TODO
         //BIMS 인증
         boolean result = false;
-        RestTemplate rt = new RestTemplate();
-        Map item = rt.getForObject(url + cardApplyDto.getUserId(), Map.class);
-        if(item.get("name").equals(cardApplyDto.getName())){
+        //RestTemplate rt = new RestTemplate();
+        //Map item = rt.getForObject(url + cardApplyDto.getUserId(), Map.class);
+        //if(item.get("name").equals(cardApplyDto.getName())){
             //BIMS 인증하기
             result = true;
-        }
+        //}
         return result;
     }
 }
