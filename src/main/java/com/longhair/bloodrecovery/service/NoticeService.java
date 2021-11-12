@@ -1,8 +1,10 @@
 package com.longhair.bloodrecovery.service;
 
 import com.longhair.bloodrecovery.domain.Notice;
+import com.longhair.bloodrecovery.domain.Promotion;
 import com.longhair.bloodrecovery.dto.NoticeDto;
 import com.longhair.bloodrecovery.repository.NoticeRepository;
+import com.longhair.bloodrecovery.repository.PromotionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +19,9 @@ public class NoticeService {
 
     @Autowired
     NoticeRepository noticeRepository;
+
+    @Autowired
+    PromotionRepository promotionRepository;
 
     @Transactional(readOnly = true)
     public List<NoticeDto> getNoticeList(){
@@ -67,12 +72,17 @@ public class NoticeService {
         Optional<Notice> item = noticeRepository.findById(id);
         if(item.isPresent()){
             Notice result = item.get();
-            String users = result.getProJoinUsers();
-            if(users.contains(userId)){
-                return false;
+            for(Promotion e : result.getProJoinUsers()){
+                if(e.getUserId().equals(userId)){
+                    return false;
+                }
             }
-            result.setProJoinUsers(users + "," + userId);
+            Promotion promotion = new Promotion();
+            promotion.setUserId(userId);
+            promotion.setDate(LocalDateTime.now());
+            result.getProJoinUsers().add(promotion);
 
+            promotionRepository.save(promotion);
             noticeRepository.save(result);
             return true;
         }
