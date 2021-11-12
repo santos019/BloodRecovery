@@ -28,7 +28,7 @@ import Directed_rewrite from "../Directed/Directed_rewrite";
 import Board_rewrite from "../Board/Board_rewrite";
 import Notice_rewrite from "../Notice/Notice_rewrite";
 import Login_find from "../Login/Login_find";
-import Mypage_myboard from "../Mypage/Mypage_myboard";
+import Mypage_myboard from "../Mypage/Mypage_myboard_main";
 
 var text = "";
 var sendid;
