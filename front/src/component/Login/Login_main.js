@@ -15,8 +15,8 @@ const Login_main=(props)=>{
 
   const [inputs, setInputs] = useState({
 
-    // loin_id:'',
-    // loin_password:''
+    loin_id:'',
+    loin_password:''
   })
 
 
@@ -26,10 +26,9 @@ const Login_main=(props)=>{
   const onSendClick = () => {
 
 
-    console.log("id", loginId, "password", loginPassword);
     console.log(inputs);
     axios
-      .post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/login", JSON.stringify(inputs), {
+      .post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/login", {userId:inputs.loin_id,password:inputs.loin_password}, {
         headers: {
           "Content-Type": `application/json`,
         },
@@ -65,14 +64,7 @@ const Login_main=(props)=>{
     setInputs(nextInputs)
 
     console.log(inputs)
-    if (name === "id") {
-
-      setLoginid(e.target.value)
-    }
-    else if (name === "password") {
-
-      setLoginPassword(e.target.value)
-    }
+  
 
   }
 
@@ -87,12 +79,12 @@ const Login_main=(props)=>{
         <div className="Login-main-input-id-class">
           <img className="Login-main-idimg-class" src={IDIMG} />
 
-          <input className="Login-main-input-box-class" type="text1" name="id" onChange={onChange} >
+          <input className="Login-main-input-box-class" type="text1" name="loin_id" onChange={onChange} >
           </input>
         </div>
         <div className="Login-main-input-password-class">
           <img className="Login-main-idimg-class" src={PASSIMG} />
-          <input type="text1" className="Login-main-input-box-class" name="password" onChange={onChange}>
+          <input type="text1" className="Login-main-input-box-class" name="loin_password" onChange={onChange}>
           </input>
         </div>
       </div>
