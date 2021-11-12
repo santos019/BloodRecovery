@@ -24,11 +24,13 @@ import { addPage } from "../../component/Modalmove/subscribers/action";
 import Board_inquire from "../Board/Board_inquire";
 import Notice_inquire from "../Notice/Notice_inquire";
 import Bloodpocket_main from "../Mypage/Bloodpocket";
+import Point_main from "../Mypage/Point_main";
 import Directed_rewrite from "../Directed/Directed_rewrite";
 import Board_rewrite from "../Board/Board_rewrite";
 import Notice_rewrite from "../Notice/Notice_rewrite";
 import Login_find from "../Login/Login_find";
 import Mypage_myboard from "../Mypage/Mypage_myboard_main";
+import Message from "../Message/Message";
 
 var text = "";
 var sendid;
@@ -113,7 +115,10 @@ function Main_base(props) {
           {sessionStorage.getItem("userId") === null ? (
             <Header_nav value={text} getsetValue={getsetValue}></Header_nav>
           ) : (
-            <Header_nav_login logoutsuccess={logoutsuccess}></Header_nav_login>
+            <Header_nav_login
+              logoutsuccess={logoutsuccess}
+              getsetValue={getsetValue}
+            ></Header_nav_login>
           )}
           {/*<div className="test1" onClick={() => onChageClick2(getValue)}> emry</div>
                     {console.log("test:"+text+"get:"+getValue)}*/}
@@ -195,7 +200,9 @@ function Main_base(props) {
             공지사항_수정: <Notice_rewrite />,
 
             내_지갑: <Bloodpocket_main />,
+            포인트: <Point_main />,
             로그인: <Login_main loginsuccess={loginsuccess}></Login_main>, //.....
+            메시지: <Message />,
             아이디비밀번호찾기: <Login_find />,
             회원가입: <Join_main></Join_main>,
 
