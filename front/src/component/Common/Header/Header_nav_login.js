@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import "./Header_nav.css";
-import Message from "../../Message/Message";
 
 const Header_nav=(props)=>{
     const sendValue=(text)=>{
-                 props.getsetValue(text);
-             }
+        props.getsetValue(text);
+    }
     const logout=()=>{
         sessionStorage.clear();
         props.logoutsuccess()
     }
-    const [messageShow, setMessageShow] = useState(false);
     return (
-
         <div className="Header-nav-class">
             <div className="Header-nav-list-class">
                 <div className="Header-nav-Login-class" onClick={logout}>

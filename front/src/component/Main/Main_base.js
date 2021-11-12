@@ -29,6 +29,7 @@ import Bloodpocket_main from "../Mypage/Bloodpocket";
 import Directed_rewrite from "../Directed/Directed_rewrite";
 
 import Login_find from "../Login/Login_find";
+import Message from "../Message/Message";
 
 
 
@@ -115,7 +116,7 @@ function Main_base(props) {
           {sessionStorage.getItem("userId") === null ? (
             <Header_nav value={text} getsetValue={getsetValue}></Header_nav>
           ) : (
-            <Header_nav_login logoutsuccess={logoutsuccess}></Header_nav_login>
+            <Header_nav_login logoutsuccess={logoutsuccess} getsetValue={getsetValue}></Header_nav_login>
           )}
           {/*<div className="test1" onClick={() => onChageClick2(getValue)}> emry</div>
                     {console.log("test:"+text+"get:"+getValue)}*/}
@@ -200,6 +201,7 @@ function Main_base(props) {
 
             내_지갑: <Bloodpocket_main />,
             로그인: <Login_main loginsuccess={loginsuccess}></Login_main>, //.....
+            메시지: <Message/>,
             아이디비밀번호찾기:<Login_find/>,
             회원가입: <Join_main></Join_main>,
             랭킹: <Rank_main></Rank_main>,
