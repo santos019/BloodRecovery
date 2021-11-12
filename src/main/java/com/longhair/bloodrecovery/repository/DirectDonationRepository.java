@@ -15,5 +15,5 @@ public interface DirectDonationRepository extends JpaRepository<DirectDonation, 
     List<DirectDonation> findDirectDonationsByBloodTypeAndLocationSidoAndLocationSigungu(String bloodType, String sido, String sigungu);
     List<DirectDonation> findDirectDonationsByCompleteStatusAndLocationSidoAndLocationSigungu(boolean completeStatus, String sido, String sigungu);
     List<DirectDonation> findDirectDonationsByBloodTypeAndCompleteStatusAndLocationSidoAndLocationSigungu(String bloodType, boolean completeStatus, String sido, String sigungu);
-
+    List<DirectDonation> findDirectDonationsByRequesterUserId(String userId);
 }
