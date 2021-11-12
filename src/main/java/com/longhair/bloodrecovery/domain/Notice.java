@@ -2,10 +2,10 @@ package com.longhair.bloodrecovery.domain;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -17,9 +17,17 @@ public class Notice {
     private String writerUserId;
     private String writerNickname;
     private int writerLevel;
+
+    @Column(columnDefinition = "TEXT")
     private String title;
+
+    @Column(columnDefinition = "TEXT")
     private String contents;
+
     private String image;
     private String imageUrl;
     private LocalDateTime date;
+
+    @Column(columnDefinition = "TEXT")
+    private String proJoinUsers;
 }

@@ -2,6 +2,7 @@ package com.longhair.bloodrecovery.domain;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,7 +18,10 @@ public class Message {
     private String producer;
     private String consumer;
     private String title;
+
+    @Column(columnDefinition = "TEXT")
     private String contents;
+
     private LocalDateTime date;
     private boolean read;
 }

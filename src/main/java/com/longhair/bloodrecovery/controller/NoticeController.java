@@ -41,4 +41,9 @@ public class NoticeController {
     public void deleteNotice(@PathVariable("id")Long id){
         noticeService.deleteNotice(id);
     }
+
+    @PostMapping("/{id}")
+    public ResponseEntity<Boolean> addProJoinUser(@PathVariable("id")Long id, @RequestParam("userId")String userId){
+        return new ResponseEntity<>(noticeService.addProJoinUser(id, userId), HttpStatus.OK);
+    }
 }
