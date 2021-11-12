@@ -192,7 +192,7 @@ function Main_base(props) {
             지정헌혈_수정: <Directed_rewrite />,
 
             //헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
-            헌혈의_집_예약: <Mypage_main></Mypage_main>,
+            마이페이지: <Mypage_main></Mypage_main>,
 
             공지사항: <Notice_main></Notice_main>,
             공지사항조회: <Notice_inquire></Notice_inquire>,
