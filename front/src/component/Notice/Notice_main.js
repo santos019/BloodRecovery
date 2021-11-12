@@ -19,8 +19,8 @@ const Notice_main = (props) => {
   useEffect(() => {
     axios
       .get(
-        // "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/notice"
-        "http://localhost:8005"
+        "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/notice"
+        // "http://localhost:8005"
       )
       // "id": 1,
       // "writerUserId": "admin",
@@ -74,10 +74,10 @@ const Notice_main = (props) => {
             key={index}
             getsetValue3={getsetValue2}
           >
-            {console.log("index", index)}
+            {/* {console.log("index", index)} */}
           </Notice_card>
         ))}
-        {console.log(getData)}
+        {/* {console.log(getData)} */}
       </div>
     </div>
   );

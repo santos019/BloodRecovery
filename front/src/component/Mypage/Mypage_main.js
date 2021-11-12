@@ -79,7 +79,7 @@ function Mypage_main(props, getData) {
       </div>
       <div
         className="Mypage-list-button"
-        onClick={() => movepage("내가 요청한 기부")}
+        onClick={() => movepage("나의게시물")}
       >
         내가 요청한 기부
       </div>
