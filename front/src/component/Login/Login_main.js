@@ -39,7 +39,7 @@ const Login_main=(props)=>{
 
         if (res.data.result === true) {
           alert("로그인성공")
-          sessionStorage.setItem("userId",loginId)
+          sessionStorage.setItem("userId",inputs.loin_id)
           console.log(sessionStorage.getItem("userId"))
           sendValue("성공")
 
