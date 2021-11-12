@@ -19,7 +19,7 @@ public class Message {
     private String consumer;
     private String title;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(length = 1000)
     private String contents;
 
     private LocalDateTime date;
