@@ -68,9 +68,10 @@ public class UserService {
 
     @Transactional
     public String searchId(String name, String personalNumber){
-        String result = userRepository.findUserByNameAndPersonalNumber(name, personalNumber).getUserId();
-        if(result == null){
-            result = "";
+        String result = "";
+        User item = userRepository.findUserByNameAndPersonalNumber(name, personalNumber);
+        if(item != null){
+            result = item.getUserId();
         }
         return result;
     }
@@ -78,8 +79,12 @@ public class UserService {
     @Transactional
     public boolean resetPassword(String userId, String password){
         User user = userRepository.findUserByUserId(userId);
+        if(user == null){
+            return false;
+        }
         user.setPassword(password);
-        return userRepository.save(user) != null;
+        userRepository.save(user);
+        return true;
     }
 
     @Transactional
