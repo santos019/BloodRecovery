@@ -53,11 +53,6 @@
   /* background-color: aqua; */
   float: left;
 }
-.Board-card-nav-userstatus-p-class {
-  float: left;
-  font-size: 11px;
-  /* background-color: bisque; */
-}
 .Board-card-content-container {
   float: left;
   width: 80%;
@@ -85,42 +80,6 @@
   font-size: 15px;
   text-align: center;
 }
-.Board-card-footer-locaion-container {
-  width: 7%;
-  height: 100%;
-  /* background-color: brown; */
-  float: left;
-}
-.Board-card-footer-locationiconimg {
-  margin-top: 60%;
-  width: 100%;
-  height: 50%;
-  /* background-color: antiquewhite; */
-}
-
-.Board-card-footer-locationname {
-  float: left;
-  width: 25%;
-  height: 70%;
-  margin-bottom: 20%;
-  /* background-color: aliceblue; */
-}
-.Board-card-footer-locationname-si {
-  float: left;
-  width: 50%;
-
-  /* background-color: blue; */
-  margin-left: 5%;
-  margin-right: 10%;
-  margin-bottom: 70%;
-  font-size: 14px;
-}
-.Board-card-footer-locationname-gu {
-  float: left;
-  width: 30%;
-  /* background-color: aquamarine; */
-  font-size: 14px;
-}
 .Board-card-footer-bloodtype-container {
   float: left;
   width: 30%;
@@ -133,8 +92,6 @@
   margin: auto;
   margin-top: 0%;
   border: none;
-
-  background-color: #fed4d4;
   border-radius: 8px 8px 8px 8px;
 }
 .Board-card-footer-bloodtype-p-class {
@@ -161,7 +118,18 @@
   margin-left: 20%;
 }
 .Board-card-footer-date-p-class {
-  font-size: 12px;
+  font-size: 14px;
   margin-left: 0%;
   margin-top: 13%;
+}
+.Board-card-nav-userstatus-p-class {
+  font-size: 15px;
+  /* background-color: #ff2d2d; */
+  padding-top: 15%;
+}
+.Board-card-nav-userstatus-p-class2 {
+  /* background-color: #941515; */
+  /* margin-top: -10%; */
+  padding-top: 11%;
+  font-size: 16px;
 }

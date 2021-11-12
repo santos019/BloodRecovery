@@ -58,7 +58,7 @@
   border: 2px solid #fb4d4e;
   border-radius: 50px 50px 50px 50px;
 }
-.Dircected-write-card-total {
+.Board-write-card-total {
   margin: auto;
   width: 90%;
 }
@@ -134,69 +134,7 @@
   height: 170px;
   background-color: #fb4d4e;
 }
-/*//////////////////////////////////////////*/
-.react-datepicker__navigation {
-  background-color: aqua;
-}
-.react-datepicker__navigation--next {
-  background-color: #e6c4c4;
-  width: 60px;
-  border-radius: 10px 10px 10px 10px;
-  font-size: 10px;
-  margin-left: 25px;
-  border: 2px solid#fb4d4e;
-}
 
-.react-datepicker__navigation--previous {
-  background-color: #e6c4c4;
-  width: 60px;
-  border-radius: 10px 10px 10px 10px;
-  font-size: 10px;
-  margin-left: 30px;
-  border: 2px solid#fb4d4e;
-}
-.react-datepicker__month-container {
-  width: 200px;
-  height: 190px;
-  background-color: #e0c3c3;
-  border-radius: 15px 15px 15px 15px;
-}
-.react-datepicker__month {
-  width: 90%;
-  margin: auto;
-  height: 100%;
-}
-.react-datepicker__day-names {
-  /*su Mo tu we th fr sa*/
-  background-color: rgb(57, 100, 100);
-  width: 100%;
-  display: flex;
-  text-align: center;
-}
-.react-datepicker__day-name {
-  background-color: antiquewhite;
-  width: 100%;
-}
-.react-datepicker__week {
-  background-color: aliceblue;
-  width: 100%;
-  display: flex;
-}
-
-.react-datepicker__header {
-  width: 90%;
-  margin: auto;
-}
-div[class^="react-datepicker__day react-datepicker__day--"] {
-  background-color: rgb(236, 191, 214);
-  width: 100%;
-  text-align: center;
-}
-.react-datepicker__input-container {
-  float: left;
-  background-color: #fb4d4e;
-  width: 40%;
-}
 input[type="text"] {
   /* background-color: rgb(0, 4, 255); */
   width: 100%;
@@ -212,9 +150,7 @@ input[type="text"] {
   float: left;
   margin-left: 3%;
 }
-.react-datepicker__current-month {
-  text-align: center;
-}
+
 .Board-write-footer-upload-container {
   width: 100%;
 
@@ -255,18 +191,18 @@ input[type="text"] {
   text-align: center;
   font-size: 16px;
 }
-.Board_countdown {
+.Request_countdown {
   width: 30%;
   background-color: #fb4d4e;
   float: left;
   cursor: pointer;
 }
-.Board_count {
+.Request_count {
   width: 40%;
   background-color: #883939;
   float: left;
 }
-.Board_countup {
+.Request_countup {
   width: 30%;
   background-color: #398588;
   float: left;
@@ -356,14 +292,7 @@ input[type="text"] {
   text-align: right;
   float: left;
 }
-.direct-patientname,
-.direct-hopitalname,
-.direct-roomnumber,
-.direct-phonenumber {
-  background-color: #239115;
-  width: 60%;
-  float: left;
-}
+
 .Board-write-btn-container {
   width: 100%;
   height: 25%;

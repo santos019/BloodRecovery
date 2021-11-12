@@ -147,7 +147,7 @@ const nicknameoverlap=()=>{
 }
 
 const valueCheck=()=>{
-    var alert_blank=0;
+
 // 1은 동의체크
 // 2는 빈칸/유효성 체크
 // 3은 닉네임 중복확인체크
@@ -187,9 +187,12 @@ console.log(personalNumber);
     }
     else{   //alert_blank=7;
         
-        //  axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/user/register")
+        axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/register",{userId:join_nickname,password:join_password,name:join_name,nickname:join_nickname,personalNumber:personalNumber})
+        .then(function (response) {
+            console.log(response);          });
+        
         alert("회원가입이 완료되었습니다")
-        //props.addPage("로그인")
+        props.addPage("로그인")
 
 
     }
@@ -203,7 +206,7 @@ console.log(personalNumber);
     nameCheck,
     resister1Check,
     resister2Check)
-    alert_blank=0;
+  
    
 }
     return (

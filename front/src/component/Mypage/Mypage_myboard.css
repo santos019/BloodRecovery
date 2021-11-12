@@ -1,0 +1,135 @@
+.Mypage-myboard-container {
+  width: 40%;
+  height: 100%;
+  /* background-color: lightpink; */
+  border: solid 2px #fb4d4e;
+  border-radius: 30px 30px 30px 30px;
+  float: left;
+
+  margin-left: 6%;
+  margin-top: 3%;
+  cursor: pointer;
+}
+.Mypage-myboard-nav-container {
+  margin-top: 2%;
+  width: 90%;
+  height: 25%;
+  margin-left: 5%;
+  margin-right: 5%;
+  /* background-color: rgba(0, 255, 255, 0.103); */
+  float: left;
+}
+.Mypage-myboard-nav-usericon-class {
+  width: 10%;
+
+  height: 100%;
+  /* background-color: burlywood; */
+  float: left;
+}
+.Mypage-myboard-nav-username-class {
+  float: left;
+  /* background-color: cadetblue; */
+  height: 100%;
+  width: 60%;
+  margin-left: 2%;
+}
+.Mypage-myboard-nav-userstatus-container {
+  float: left;
+  width: 27%;
+  height: 100%;
+  /* background-color: darkgreen; */
+}
+.Mypage-myboard-nav-userstatus-class {
+  width: 80%;
+  height: 80%;
+  margin-top: 10%;
+  margin-left: 5%;
+  background-color: #fed4d4;
+  border-radius: 8px 8px 8px 8px;
+}
+.Mypage-myboard-nav-userstatus-icon {
+  margin-top: 13%;
+  width: 40%;
+  /* background-color: aqua; */
+  float: left;
+}
+.Mypage-myboard-content-container {
+  float: left;
+  width: 80%;
+  height: 50%;
+  margin-left: 10%;
+  margin-right: 10%;
+  /* background-color: darksalmon; */
+}
+.Mypage-myboard-footer-container {
+  float: left;
+  width: 90%;
+  height: 23%;
+  margin-left: 5%;
+  margin-right: 5%;
+  /* background-color: rgba(0, 255, 255, 0.418); */
+}
+.Mypage-img-userimg {
+  width: 100%;
+  float: left;
+  /* background-color: aliceblue; */
+
+  margin-top: 50%;
+}
+.Mypage-myboard-content-class {
+  font-size: 15px;
+  text-align: center;
+}
+.Mypage-myboard-footer-bloodtype-container {
+  float: left;
+  width: 30%;
+  height: 100%;
+  /* background-color: blueviolet; */
+}
+.Mypage-myboard-footer-bloodtype-class {
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  margin-top: 0%;
+  border: none;
+  border-radius: 8px 8px 8px 8px;
+}
+.Mypage-myboard-footer-bloodtype-p-class {
+  font-size: 15px;
+  width: 80%;
+  height: 95%;
+  margin: auto;
+  padding-top: 10%;
+  text-align: center;
+  color: #ff2d2d;
+  /* background-color: aliceblue; */
+}
+.Mypage-myboard-footer-date-container {
+  float: left;
+  width: 38%;
+  height: 100%;
+  /* background-color: blue; */
+}
+.Mypage-myboard-footer-date-class {
+  float: left;
+  width: 80%;
+  height: 100%;
+  /* background-color: #fb4d4e; */
+  margin-left: 20%;
+}
+.Mypage-myboard-footer-date-p-class {
+  font-size: 14px;
+  margin-left: 0%;
+  margin-top: 13%;
+}
+.Mypage-myboard-nav-userstatus-p-class {
+  font-size: 15px;
+  /* background-color: #ff2d2d; */
+  padding-top: 15%;
+}
+.Mypage-myboard-nav-userstatus-p-class2 {
+  /* background-color: #941515; */
+  /* margin-top: -10%; */
+  padding-top: 11%;
+  font-size: 16px;
+}

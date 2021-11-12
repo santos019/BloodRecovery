@@ -6,18 +6,18 @@ import axios from "axios";
 import './Directed_inquire_default.css';
 const Directed_inquire_default = (id) => {
 
-
+//신청하는api
     const beaApplicant = () => {
         if (sessionStorage.getItem("userId") == null) {
             alert("로그인해주세요")
         }
         else {
             axios
-            .get("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + sessionStorage.getItem("directId")+"/applicant")
+            .post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + sessionStorage.getItem("directId")+"/applicant",{applicantIdentify:sessionStorage.getItem("userId")})
 
             .then(function (response) {
 
-                console.log("response1", response)
+                console.log("신청하기", response)
 
             });
 
