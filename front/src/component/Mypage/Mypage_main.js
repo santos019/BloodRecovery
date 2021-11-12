@@ -32,11 +32,11 @@ function Mypage_main(props, getData) {
     axios
       .get(
         "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/info/" +
-        sessionStorage.getItem("userId")
+          sessionStorage.getItem("userId")
       )
       .then(function (response) {
         setUser(response.data);
-        console.log("rr", user);
+        console.log("rr", sessionStorage.getItem("userId"));
       });
   }, []);
 
@@ -49,35 +49,38 @@ function Mypage_main(props, getData) {
       <div className="Mypage-main-class">
         <div className="Mypage-main-Header-container-class">
           {console.log(props.index)}
-          <Menu_left_nav name={"마이페이지"} imgname={POCKETICON}></Menu_left_nav>
+          <Menu_left_nav
+            name={"마이페이지"}
+            imgname={POCKETICON}
+          ></Menu_left_nav>
         </div>
       </div>
       <div className="Mypage-main-nav-container"></div>
-
-      <div className="Mypage-main-profile">{user?.profile}</div>
-
+      <div className="Mypage-main-profile">
+        <img className="Mypage-main-profileimg" src={user?.profile}></img>
+      </div>
       <div className="Mypage-usericon-class">
         {gradefunction(getData.getData?.requesterLevel)}
       </div>
-
       <div className="Mypage-main-nickname">{user?.nickname}</div>
+      <div className="Mypage-main-nav2"></div>
       <div className="Mypage-main-username">{user?.name}</div>
       <div className="Mypage-main-userid">{user?.userId}</div>
-
       <div className="Mypage-info-change" onClick={() => movepage("정보수정")}>
         내정보수정
       </div>
-
       {/* {user.point} */}
       {/* <img className="profile-img2" src={otherrank.profile}></img> */}
-
       <div
         className="Mypage-bloodpocket-button"
         onClick={() => movepage("내_지갑")}
       >
         헌혈증 지갑
       </div>
-      <div className="Mypage-list-button" onClick={() => movepage("내가 요청한 기부")}>
+      <div
+        className="Mypage-list-button"
+        onClick={() => movepage("내가 요청한 기부")}
+      >
         내가 요청한 기부
       </div>
       <div className="Mypage-point-button" onClick={() => movepage("포인트")}>
@@ -85,7 +88,6 @@ function Mypage_main(props, getData) {
         <b>P</b>
         <p>포인트 내역 확인하기</p>
       </div>
-
       <div className="Mypage-withdrawal" onClick={() => movepage("회원탈퇴")}>
         회원탈퇴
       </div>

@@ -5,16 +5,24 @@
   width: 970px;
   height: 734px;
   margin: auto;
-  background-color: #349fdd;
+
+  /* background-color: #349fdd; */
 }
 .Mypage-main-nav-container {
   float: left;
   height: 1%;
   width: 100%;
+  margin-bottom: 3%;
 
   border-bottom: solid 4px #fb4d4e;
 }
-
+.Mypage-main-nav2 {
+  float: left;
+  width: 100%;
+  border-bottom: solid 2px #fb4d4e;
+  margin-top: 1%;
+  margin-bottom: 3%;
+}
 .Mypage-main-Header-container-class {
   float: left;
   width: 100vw;
@@ -37,7 +45,7 @@
   margin-left: 43%;
   padding-top: 5px;
   float: left;
-  background-color: rgb(217, 250, 99);
+  /* background-color: rgb(217, 250, 99); */
 }
 .Mypage-img-userimg {
   /* background-color: blue; */
@@ -48,55 +56,71 @@
   height: 150px;
   border-radius: 100%;
   border: 2px solid #000000;
-  background-color: rgb(0, 255, 21);
+  /* background-color: rgb(0, 255, 21); */
   overflow: hidden;
-
-  margin-top: 30px;
   margin: auto;
 }
 .Mypage-main-nickname {
-  background-color: #ec25ba;
+  margin-top: 4px;
   margin: auto;
   width: 150px;
   height: 50px;
   text-align: center;
-  font-size: 25px;
+  font-size: 30px;
+  /* background-color: brown; */
 }
 .Mypage-main-username {
-  background-color: #3ff0ac;
   margin: auto;
   width: 100px;
   height: 30px;
   text-align: center;
   font-size: 15px;
-  border: 2px solid #fb4d4e;
+  border: 3px solid #fb4d4e;
+  margin-bottom: 8px;
+  margin-top: 4%;
+  box-shadow: 3px 3px grey;
 }
 .Mypage-main-userid {
-  background-color: #84f84f;
   margin: auto;
   width: 100px;
   height: 30px;
   text-align: center;
   font-size: 15px;
-  border: 2px solid #fb4d4e;
+  border: 3px solid #fb4d4e;
+  margin-bottom: 8px;
+  box-shadow: 3px 3px grey;
+}
+.Mypage-main-profileimg {
+  width: 150px;
+  height: 150px;
+}
+.Mypage-info-change {
+  /* background-color: #2543ec; */
+  border: 3px solid #4d84fb;
+  margin: auto;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  font-size: 15px;
+  margin-bottom: 3%;
+  box-shadow: 3px 3px grey;
+}
+.Mypage-info-change:hover {
+  background-color: #cfdce4d5;
 }
 
-.Mypage-info-change {
-  background-color: #2543ec;
-  margin: auto;
-  width: 100px;
-  height: 30px;
-  text-align: center;
-  font-size: 15px;
-}
 .Mypage-withdrawal {
-  background-color: #757785;
+  border: 3px solid grey;
   margin: auto;
   width: 100px;
   height: 30px;
   text-align: center;
   font-size: 15px;
   float: right;
+  box-shadow: 3px 3px grey;
+}
+.Mypage-withdrawal:hover {
+  background-color: #cfdce4d5;
 }
 
 .Mypage-list-container-class {
@@ -115,38 +139,50 @@
 }
 .Mypage-list-button {
   width: 200px;
-  height: 80px;
-  background-color: bisque;
+  /* height: 80px; */
+  /* background-color: bisque; */
   border-radius: 12px 12px 12px 12px;
-  border: 2px solid #fb4d4e;
+  border: 4px solid #fb4d4e;
   margin: auto;
   margin-bottom: 2%;
   font-size: 25px;
   text-align: center;
+  padding: 25px 0px;
 }
+.Mypage-list-button:hover {
+  background-color: #cfdce4d5;
+}
+
 .Mypage-bloodpocket-button {
   width: 200px;
-  height: 80px;
-  background-color: bisque;
+  /* height: 80px; */
   border-radius: 12px 12px 12px 12px;
-  border: 2px solid #fb4d4e;
+  border: 4px solid #fb4d4e;
   margin: auto;
   margin-bottom: 2%;
+  /* margin-top: 50%; */
+  /* padding-top: 30%; */
   font-size: 25px;
   text-align: center;
+  padding: 25px 0px;
+}
+
+.Mypage-bloodpocket-button:hover {
+  background-color: #cfdce4d5;
 }
 .Mypage-point-button {
   width: 200px;
-  height: 80px;
-  background-color: bisque;
+  height: 83px;
   border-radius: 12px 12px 12px 12px;
-  border: 2px solid #fb4d4e;
+  border: 4px solid #fb4d4e;
   margin: auto;
   margin-bottom: 2%;
   font-size: 40px;
   text-align: center;
 }
-
+.Mypage-point-button:hover {
+  background-color: #cfdce4d5;
+}
 .Mypage-point-button b {
   color: #ff0000;
 }
