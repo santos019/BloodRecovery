@@ -24,7 +24,8 @@ public class DonationService {
     private final DonationRepository donationRepository;
     private final CardDonationRepository cardDonationRepository;
 
-    private final static String url = "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/";
+    private final static String userUrl = "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/";
+    private final static String messageUrl = "http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/notice/message";
 
     //기부자 목록 조회 => 기부 요청글 밑에 출력
     public List<Donation> findList(Long id) {
@@ -43,13 +44,13 @@ public class DonationService {
 
         // User 불러오기
         RestTemplate rt = new RestTemplate();
-        String location = url + "info/" + donation.getUserId();
+        String location = userUrl + "info/" + donation.getUserId();
         Map map = rt.getForObject(location, Map.class);
         savedonation.setNickname(map.get("nickname").toString());
         savedonation.setPoint(Integer.parseInt(map.get("point").toString()));
 
         //기부자 포인트 추가하기
-        location = url + "point";
+        location = userUrl + "point";
         Map<String, Object> pointMap = new HashMap<>();
         pointMap.put("userId", donation.getUserId());
         pointMap.put("plusPoint", 50); //헌혈증 기부로 50포인트 추가
@@ -71,6 +72,8 @@ public class DonationService {
             cardRequest.setCompleteStatus(true);
         }//요청개수를 다 채우면 완료상태를 true로 변경
 
+        //메시지 보내기
+        sendMessage(cardRequest, donation);
 
         //기부 정보 저장
         Donation saveDonation = donationRepository.save(savedonation);
@@ -79,5 +82,15 @@ public class DonationService {
         return saveDonation;
     }
 
+    private void sendMessage(CardRequest cardRequest, Donation donation){
+        RestTemplate rt = new RestTemplate();
+        Map<String, String> map = new HashMap<>();
+        map.put("producer", donation.getUserId());
+        map.put("consumer", cardRequest.getUserId());
+        map.put("title", "헌혈증을 기부 받았어요!");
+        map.put("contents", donation.getNickname() + "님께서 헌혈증을 기부해주셨습니다!");
+
+        rt.postForObject(messageUrl, map, Map.class);
+    }
 
 }

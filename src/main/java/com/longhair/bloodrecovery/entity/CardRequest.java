@@ -26,8 +26,12 @@ public class CardRequest {
     private Integer level; //요청자 등급
     private Integer point; //요청자 포인트
 
+    @Column(length = 500)
     private String title; //요청글 제목
+
+    @Column(length = 1000)
     private String contents; //요청글 내용
+
     private String image; //요청글에 첨부하는 이미지 주소
     private int requestCount; //요청한 헌혈증 개수
     private int donationCount; //기부받은 헌혈증 개수

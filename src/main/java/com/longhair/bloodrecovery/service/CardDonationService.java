@@ -27,7 +27,7 @@ public class CardDonationService {
     private final DonationRepository donationRepository;
     private final static int vipLevel = 4;
 
-    private final static String url = "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/";
+    private final static String userUrl = "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/";
 
     //기부 요청글 전체 조회 (필터링 포함)
     public List<CardRequestSimpleDto> findCardRequestAll(SearchData searchData){
@@ -83,7 +83,7 @@ public class CardDonationService {
     public CardRequest saveCardRequest(CardRequest cardRequest){
 
         RestTemplate rt = new RestTemplate();
-        String location = url + "point";
+        String location = userUrl + "point";
         Map<String, Object> pointMap = new HashMap<>();
         pointMap.put("userId", cardRequest.getUserId());
 //        pointMap.put("plusPoint", (cardRequest.getRequestCount() - cardRequest.getDonationCount()) * 50);
@@ -97,7 +97,7 @@ public class CardDonationService {
             return new CardRequest();
         }
 
-        location = url + "info/" + cardRequest.getUserId();
+        location = userUrl + "info/" + cardRequest.getUserId();
         Map map = rt.getForObject(location, Map.class);
         cardRequest.setNickname(map.get("nickname").toString());
         cardRequest.setLevel(Integer.parseInt(map.get("level").toString()));
@@ -120,7 +120,7 @@ public class CardDonationService {
 
         //삭제했을 경우 포인트 캐쉬백
         RestTemplate rt = new RestTemplate();
-        String location = url + "point";
+        String location = userUrl + "point";
 
         Map<String, Object> pointMap = new HashMap<>();
         pointMap.put("userId", cardRequest.getUserId());
@@ -148,7 +148,7 @@ public class CardDonationService {
             if (cardRequestUpdateDto.getCompleteStatus() == true){
                 //상태가 변경될 경우 포인트 캐쉬백
                 RestTemplate rt = new RestTemplate();
-                String location = url + "point";
+                String location = userUrl + "point";
 
                 Map<String, Object> pointMap = new HashMap<>();
                 pointMap.put("userId", cardRequest.getUserId());
