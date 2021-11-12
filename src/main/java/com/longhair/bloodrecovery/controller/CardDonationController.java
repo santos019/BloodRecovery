@@ -33,6 +33,13 @@ public class CardDonationController {
         return new ResponseEntity<>(cardDonationService.findCardRequestAll(searchData), HttpStatus.OK);
     }
 
+    //기부 요청글 내가 쓴 글 조회
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<CardRequest>> myboard(@PathVariable("userId") String userId){
+        return new ResponseEntity<>(cardDonationService.myboard(userId), HttpStatus.OK);
+    }
+
+
     //기부 특정 요청글 조회
     @GetMapping("/requests/{id}")
     public CardRequest cardRequest(@PathVariable("id") Long id) {

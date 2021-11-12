@@ -65,11 +65,19 @@ public class CardDonationService {
 
     }
 
+    //기부 요청글 내가 쓴 글 조회
+    public List<CardRequest> myboard(String userId) {
+        List<CardRequest> opt = cardDonationRepository.findByUserId(userId);
+        return opt;
+    }
+
+
     //기부 특정 요청글 조회
     public CardRequest findById(Long id) {
         Optional<CardRequest> opt = cardDonationRepository.findById(id);
         return opt.get();
     }
+
 
     //기부 요청글 등록
     public CardRequest saveCardRequest(CardRequest cardRequest){
@@ -153,4 +161,7 @@ public class CardDonationService {
             System.out.println("업데이트 완료");
         }
     }
+
+
+
 }
