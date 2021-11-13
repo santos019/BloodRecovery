@@ -187,7 +187,7 @@ console.log(personalNumber);
     }
     else{   //alert_blank=7;
         
-        axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/register",{userId:join_nickname,password:join_password,name:join_name,nickname:join_nickname,personalNumber:personalNumber})
+        axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/register",{userId:join_id,password:join_password,name:join_name,nickname:join_nickname,personalNumber:personalNumber})
         .then(function (response) {
             console.log(response);          });
         
