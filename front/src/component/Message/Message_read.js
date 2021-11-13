@@ -39,16 +39,17 @@ const Message_read = (props) => {
 
 }
 
-const mapStateToProps = (state) => {
-    return {
-        page: state.page
+// const mapStateToProps = (state) => {
+//     return {
+//         page: state.page
 
-    }
-}
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addPage: (text) => dispatch(addPage(text))
-    }
-}
+//     }
+// }
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         addPage: (text) => dispatch(addPage(text))
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Message_read);
+// export default connect(mapStateToProps, mapDispatchToProps)(Message_read);
+export default Message_read;
