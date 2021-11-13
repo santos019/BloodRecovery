@@ -3,8 +3,11 @@ import axios from "axios";
 import "./Point_main.css";
 import POINTICON from "../../Img/point.png";
 import Menu_left_nav from "../Common/Header/Menu_left_nav";
-import { addPage } from "../Modalmove/subscribers/action";
-import { connect } from "react-redux";
+// import { addPage } from "../Modalmove/subscribers/action";
+// import { connect } from "react-redux";
+import GOBACKBTN from "../../Img/DirectedIMG/arrow.png";
+import { connect, ReactReduxContext } from "react-redux";
+import { addPage } from "../../component/Modalmove/subscribers/action";
 
 //날짜 T이후로 쪼개는거
 const dividedate = (inputdate) => {
@@ -53,6 +56,14 @@ function Point_main(props, getData) {
             imgname={POINTICON}
           ></Menu_left_nav>
         </div>
+
+        <div className="Board-inquire-nav-goback">
+          <img
+            className="Board-inquire-goback-bntimg-class"
+            onClick={() => props.addPage("마이페이지")}
+            src={GOBACKBTN}
+          ></img>
+        </div>
       </div>
 
       <div className="Point-main-nav-container"></div>
@@ -89,4 +100,15 @@ function Point_main(props, getData) {
     </div>
   );
 }
-export default Point_main;
+
+const mapStateToProps = (state) => {
+  return {
+    page: state.page,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addPage: (text) => dispatch(addPage(text)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Point_main);
