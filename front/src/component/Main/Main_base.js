@@ -11,7 +11,7 @@ import Join_main from "../Join/Join_main";
 import Login_main from "../Login/Login_main";
 import Notice_main from "../Notice/Notice_main";
 import Rank_main from "../Rank/Rank_main";
-import Bloodhouse_main from "../Bloodhouse/Bloodhouse_main";
+// import Bloodhouse_main from "../Bloodhouse/Bloodhouse_main";
 import Header_nav_login from "../Common/Header/Header_nav_login";
 import Directed_write from "../Directed/Directed_write";
 import Board_write from "../Board/Board_write";
@@ -198,7 +198,7 @@ function Main_base(props) {
             공지사항: <Notice_main></Notice_main>,
             공지사항조회: <Notice_inquire></Notice_inquire>,
             공지사항_글쓰기: <Notice_write></Notice_write>,
-            내_지갑_카드조회:<Bloodpocket_card/>,
+            내_지갑_카드조회: <Bloodpocket_card />,
             공지사항_수정: <Notice_rewrite />,
             내_지갑: <Bloodpocket_main />,
             포인트: <Point_main />,
