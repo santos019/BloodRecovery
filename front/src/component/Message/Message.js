@@ -20,7 +20,13 @@ const Message = (props) => {
         axios
             .delete("http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/notice/message/" +
                 mode + sessionStorage.getItem("userId"));
-        console.log(mode, "로 delete 실행")
+        console.log(mode, "로 delete 실행");
+        if(mode === ""){
+            alert("메시지 전체가 삭제되었습니다.");
+        }
+        else{
+            alert("읽은 메시지가 삭제되었습니다.");
+        }
     };
 
     return(
