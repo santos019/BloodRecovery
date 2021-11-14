@@ -34,13 +34,13 @@ public class DirectDonationService {
     private ApplicantRepository applicantRepository;
 
     @Transactional
-    public ApplicantDto saveApplicant(Applicant applicant, Long id){
+    public ApplicantDto saveApplicant(Applicant applicant, Long id) {
         ApplicantDto result = null;
         Optional<DirectDonation> item = directDonationRepository.findById(id);
-        Optional<Applicant> flag = applicantRepository.findApplicantByApplicantIdentifyAndApplyStatus(applicant.getApplicantIdentify(), true);
-        if(item.isPresent() && flag.isEmpty()){
+        Optional<Applicant> flag = applicantRepository.findApplicantByApplicantIdentifyAndApplyStatus(applicant.getApplicantIdentify(), false);
+        if(item.isPresent() && flag.isEmpty()) {
             LocalDateTime date = LocalDateTime.now();
-            if(item.get().getPeriodTo().isAfter(date)){
+            if(item.get().getPeriodTo().isAfter(date)) {
                 Map map = getUserInfo(applicant.getApplicantIdentify());
                 applicant.setApplicantNickname(map.get("nickname").toString());
                 applicant.setDirectDonation(item.get());
@@ -71,7 +71,7 @@ public class DirectDonationService {
             // 인증할 헌혈증의 날짜가 요청의 기간 안인지와 요청한 헌혈증의 개수가 다 채워지지 않았는지 확인
             if(applyDto.getDate().isAfter(item.getPeriodFrom()) &&
                     applyDto.getDate().isBefore(item.getPeriodTo()) &&
-                    !item.getCompleteStatus()){
+                    !item.getCompleteStatus()) {
                 log.info("apply 1단계 통과");
                 for(Applicant e : item.getApplicants()) {       // 신청자들중에서 인증을 요청한 신청자가 있는지 확인
                     if (e.getApplicantIdentify().equals(applyDto.getUserId())) {
