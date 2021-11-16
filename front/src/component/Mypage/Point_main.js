@@ -55,14 +55,14 @@ function Point_main(props, getData) {
             name={"포인트 내역"}
             imgname={POINTICON}
           ></Menu_left_nav>
-        </div>
 
-        <div className="Board-inquire-nav-goback">
-          <img
-            className="Board-inquire-goback-bntimg-class"
-            onClick={() => props.addPage("마이페이지")}
-            src={GOBACKBTN}
-          ></img>
+          <div className="Point-nav-goback">
+            <img
+              className="Point-goback-bntimg-class"
+              onClick={() => props.addPage("마이페이지")}
+              src={GOBACKBTN}
+            ></img>
+          </div>
         </div>
       </div>
 

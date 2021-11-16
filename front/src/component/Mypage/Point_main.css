@@ -37,7 +37,7 @@
 }
 .Point-main-Header-container-class {
   float: left;
-  width: 100%;
+  width: 970px;
   height: 100%;
   /* background-color: rgb(197, 228, 61); */
 }
@@ -96,11 +96,10 @@
   width: 40px;
   height: 40px;
   float: left;
-  background-color: blueviolet;
 }
 .Point-nav-goback {
   width: 8%;
   height: 100%;
-  background-color: coral;
-  float: left;
+
+  float: right;
 }
