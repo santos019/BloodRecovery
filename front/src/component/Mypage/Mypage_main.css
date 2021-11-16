@@ -17,8 +17,8 @@
   border-bottom: solid 4px #fb4d4e;
 }
 .Mypage-main-nav2 {
-  float: left;
-  width: 100%;
+  margin: auto;
+  width: 35%;
   border-bottom: solid 2px #fb4d4e;
   margin-top: 1%;
   margin-bottom: 3%;

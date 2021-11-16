@@ -11,7 +11,7 @@ import Join_main from "../Join/Join_main";
 import Login_main from "../Login/Login_main";
 import Notice_main from "../Notice/Notice_main";
 import Rank_main from "../Rank/Rank_main";
-// import Bloodhouse_main from "../Bloodhouse/Bloodhouse_main";
+import Bloodhouse_main from "../Bloodhouse/Bloodhouse_main";
 import Header_nav_login from "../Common/Header/Header_nav_login";
 import Directed_write from "../Directed/Directed_write";
 import Board_write from "../Board/Board_write";
@@ -195,7 +195,7 @@ function Main_base(props) {
             지정헌혈_글쓰기: <Directed_write></Directed_write>,
             지정헌혈_수정: <Directed_rewrite />,
 
-            //헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
+            헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
             마이페이지: <Mypage_main></Mypage_main>,
 
             공지사항: <Notice_main></Notice_main>,
