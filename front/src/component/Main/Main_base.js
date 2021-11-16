@@ -11,7 +11,7 @@ import Join_main from "../Join/Join_main";
 import Login_main from "../Login/Login_main";
 import Notice_main from "../Notice/Notice_main";
 import Rank_main from "../Rank/Rank_main";
-// import Bloodhouse_main from "../Bloodhouse/Bloodhouse_main";
+import Bloodhouse_main from "../Bloodhouse/Bloodhouse_main";
 import Header_nav_login from "../Common/Header/Header_nav_login";
 import Directed_write from "../Directed/Directed_write";
 import Board_write from "../Board/Board_write";
@@ -32,6 +32,8 @@ import Notice_rewrite from "../Notice/Notice_rewrite";
 import Login_find from "../Login/Login_find";
 import Mypage_myboard from "../Mypage/Mypage_myboard_main";
 import Message from "../Message/Message";
+import Message_read from "../Message/Message_read";
+
 
 var text = "";
 var sendid;
@@ -192,7 +194,7 @@ function Main_base(props) {
             지정헌혈_글쓰기: <Directed_write></Directed_write>,
             지정헌혈_수정: <Directed_rewrite />,
 
-            //헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
+            헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
             마이페이지: <Mypage_main></Mypage_main>,
 
             공지사항: <Notice_main></Notice_main>,
@@ -204,6 +206,7 @@ function Main_base(props) {
             포인트: <Point_main />,
             로그인: <Login_main loginsuccess={loginsuccess}></Login_main>, //.....
             메시지: <Message />,
+            메시지상세조회: <Message_read />,
             아이디비밀번호찾기: <Login_find />,
             회원가입: <Join_main></Join_main>,
 

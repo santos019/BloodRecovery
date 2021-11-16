@@ -4,17 +4,12 @@ import ReactModal from "react-modal";
 import Main_Button from "../Common/Button/Main_Button";
 import UseLocalHook from "../Common/Function/UseLocalHook";
 import ReactDatePicker from "react-datepicker";
-import Bloodhouse_footer from "./Bloodhouse_footer";
 
 import Calendar from "react-calendar";
 import "./Bloodhouse_main.css";
 
-function Bloodhouse_main() {
+function Bloodhouse_main(props) {
   const [date, setDate] = useState(new Date());
-
-  const onDateChange = (date) => {
-    console.log(date);
-  };
 
   return (
     <div className="Bloodhouse_main_container">
@@ -32,7 +27,7 @@ function Bloodhouse_main() {
           <div className="Bloodhouse_content_when_container">
             <p className="Bloodhouse_content_text">예약 날짜 선택</p>
             <div className="Bloodhouse_content_calendar_class">
-              <Calendar onChange={onDateChange} value={setDate} />
+              <Calendar onChange={setDate} value={date} />
             </div>
             <div className="Bloodhouse_content_time_class">시간 부분</div>
           </div>
