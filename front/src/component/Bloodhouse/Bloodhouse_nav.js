@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Menu_nav_text from "../Common/Header/Menu_nav_text";
-import "./Bloodhouse_nav.css";
 
 function Bloodhouse_nav (){
     return(

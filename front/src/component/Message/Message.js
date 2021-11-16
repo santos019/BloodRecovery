@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Message_card from './Message_card';
 import './Message.css';
+import Menu_left_nav from '../Common/Header/Menu_left_nav';
+import DIRECTEDIMG from '../../Img/DIRECTEDIMG.png';
 
 const Message = (props) => {
     const [messages, setMessages] = useState([]);
@@ -20,22 +22,29 @@ const Message = (props) => {
         axios
             .delete("http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/notice/message/" +
                 mode + sessionStorage.getItem("userId"));
-        console.log(mode, "로 delete 실행")
+        console.log(mode, "로 delete 실행");
+        if(mode === ""){
+            alert("메시지 전체가 삭제되었습니다.");
+        }
+        else{
+            alert("읽은 메시지가 삭제되었습니다.");
+        }
     };
 
     return(
         <div className="Message-main-container">
             <div className="Message-main-nav-container">
                 <div className="Message-main-nav-class">
-                    <div className="Message-main-nav-button-container">
-                        <button className="Message-main-nav-button-show" onClick={()=>setMessageMode("")}>전체 메시지</button>
-                        <button className="Message-main-nav-button-show" onClick={()=>setMessageMode("read/")}>읽은 메시지</button>
-                        <button className="Message-main-nav-button-show" onClick={()=>setMessageMode("unread/")}>안읽은 메시지</button>
-                        <button className="Message-main-nav-button-delete" onClick={()=>deleteMesssage("")}>전체 삭제</button>
-                        <button className="Message-main-nav-button-delete" onClick={()=>deleteMesssage("read/")}>읽은 메시지 삭제</button>
-                    </div>
+                    <Menu_left_nav name={"지정헌혈"} imgname={DIRECTEDIMG}></Menu_left_nav>
                 </div>
             </div>
+            <div className="Message-main-button-container">
+                        <button className="Message-main-button-show" onClick={()=>setMessageMode("")}>전체 메시지</button>
+                        <button className="Message-main-button-show" onClick={()=>setMessageMode("read/")}>읽은 메시지</button>
+                        <button className="Message-main-button-show" onClick={()=>setMessageMode("unread/")}>안읽은 메시지</button>
+                        <button className="Message-main-button-delete" onClick={()=>deleteMesssage("")}>전체 삭제</button>
+                        <button className="Message-main-button-delete" onClick={()=>deleteMesssage("read/")}>읽은 메시지 삭제</button>
+                    </div>
             <div className="Message-main-cardmain-container">
                 {messages.map((menu, index) => (<Message_card getData={messages[index]} key={index}></Message_card>))}
             </div>
