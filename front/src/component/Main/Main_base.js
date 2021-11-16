@@ -26,6 +26,7 @@ import Notice_inquire from "../Notice/Notice_inquire";
 import Bloodpocket_card from "../Mypage/Bloodpocket_card";
 import Bloodpocket_main from "../Mypage/Bloodpocket";
 import Point_main from "../Mypage/Point_main";
+import Change_info from "../Mypage/Change_info";
 import Directed_rewrite from "../Directed/Directed_rewrite";
 import Board_rewrite from "../Board/Board_rewrite";
 import Notice_rewrite from "../Notice/Notice_rewrite";
@@ -204,6 +205,7 @@ function Main_base(props) {
             공지사항_수정: <Notice_rewrite />,
             내_지갑: <Bloodpocket_main />,
             포인트: <Point_main />,
+            내정보수정: <Change_info />,
             로그인: <Login_main loginsuccess={loginsuccess}></Login_main>, //.....
             메시지: <Message />,
             메시지상세조회: <Message_read />,

@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import "./Mypage_main.css";
+import "./Change_info.css";
 import BRONZE from "../../Img/Grade/4_bronze.png";
 import SIVER from "../../Img/Grade/3_silver.png";
 import GOLD from "../../Img/Grade/2_gold.png";
 import VIP from "../../Img/Grade/1_vip.png";
-import Main_Button from "../Common/Button/Main_Button";
-import { addPage } from "../../component/Modalmove/subscribers/action";
-import { connect } from "react-redux";
-import Menu_nav_text from "../Common/Header/Menu_left_nav";
+import POINTICON from "../../Img/point.png";
 import Menu_left_nav from "../Common/Header/Menu_left_nav";
+// import { addPage } from "../Modalmove/subscribers/action";
+// import { connect } from "react-redux";
+import GOBACKBTN from "../../Img/DirectedIMG/arrow.png";
+import { connect, ReactReduxContext } from "react-redux";
+import { addPage } from "../../component/Modalmove/subscribers/action";
 
-import POCKETICON from "../../Img/pocket.png";
+import BLOODICON from "../../Img/광기1.png";
+import BLOODGIF from "../../Img/광기움짤.gif";
 const gradefunction = (Grade) => {
   if (Grade === 1)
     //BRONZE 예정
@@ -26,7 +29,7 @@ const gradefunction = (Grade) => {
   else return <img className="Mypage-img-userimg" src={VIP}></img>;
 };
 
-function Mypage_main(props, getData) {
+function Change_info(props, getData) {
   const [user, setUser] = useState();
   useEffect(() => {
     axios
@@ -44,14 +47,16 @@ function Mypage_main(props, getData) {
     props.addPage(text);
   }
 
+  // function () {
   return (
     <div className="Mypage-main-container-class">
       <div className="Mypage-main-class">
         <div className="Mypage-main-Header-container-class">
-          {console.log(props.index)}
+          {/* {console.log(props.index)} */}
           <Menu_left_nav
-            name={"마이페이지"}
-            imgname={POCKETICON}
+            name={"내정보수정"}
+            imgname={BLOODICON}
+            // imgname={BLOODGIF}
           ></Menu_left_nav>
         </div>
       </div>
@@ -59,6 +64,7 @@ function Mypage_main(props, getData) {
       <div className="Mypage-main-profile">
         <img className="Mypage-main-profileimg" src={user?.profile}></img>
       </div>
+
       <div className="Mypage-usericon-class">
         {gradefunction(getData.getData?.requesterLevel)}
       </div>
@@ -66,34 +72,6 @@ function Mypage_main(props, getData) {
       <div className="Mypage-main-nav2"></div>
       <div className="Mypage-main-username">{user?.name}</div>
       <div className="Mypage-main-userid">{user?.userId}</div>
-      <div
-        className="Mypage-info-change"
-        onClick={() => movepage("내정보수정")}
-      >
-        내정보수정
-      </div>
-      {/* {user.point} */}
-      {/* <img className="profile-img2" src={otherrank.profile}></img> */}
-      <div
-        className="Mypage-bloodpocket-button"
-        onClick={() => movepage("내_지갑")}
-      >
-        헌혈증 지갑
-      </div>
-      <div
-        className="Mypage-list-button"
-        onClick={() => movepage("나의게시물")}
-      >
-        내가 요청한 기부
-      </div>
-      <div className="Mypage-point-button" onClick={() => movepage("포인트")}>
-        {user?.point}
-        <b>P</b>
-        <p>포인트 내역 확인하기</p>
-      </div>
-      <div className="Mypage-withdrawal" onClick={() => movepage("회원탈퇴")}>
-        회원탈퇴
-      </div>
     </div>
   );
 }
@@ -101,7 +79,6 @@ function Mypage_main(props, getData) {
 const mapStateToProps = (state) => {
   return {
     page: state.page,
-    index: state.index,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -110,4 +87,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Mypage_main);
+export default connect(mapStateToProps, mapDispatchToProps)(Change_info);
