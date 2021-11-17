@@ -1,0 +1,18 @@
+.Change-info-class {
+  width: 100vh;
+}
+.Change-info-container-class {
+  width: 970px;
+  height: 734px;
+  margin: auto;
+
+  /* background-color: #349fdd; */
+}
+.Change-info-nav-container {
+  float: left;
+  height: 1%;
+  width: 100%;
+  margin-bottom: 3%;
+
+  border-bottom: solid 4px #fb4d4e;
+}
