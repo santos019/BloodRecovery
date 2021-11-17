@@ -148,8 +148,7 @@ function Directed_write(props) {
                                 </input>
                                 <div className="Directed-write-card-data-class">
                                     <div className="Directed-write-calender1">
-                                        {/* //minDate={new Date()} */}
-                                    <DataPicker locale={ko} selected={startDate} dateFormat="yyyy/MM/dd"  onChange={date => setStartDate(date)}></DataPicker> </div><div className="Directed-write-card-wow">~</div>
+                                    <DataPicker locale={ko} selected={startDate} dateFormat="yyyy/MM/dd" minDate={new Date()} onChange={date => setStartDate(date)}></DataPicker> </div><div className="Directed-write-card-wow">~</div>
                                     <div className="Directed-write-calender2"><DataPicker locale={ko} selected={endDate}dateFormat="yyyy/MM/dd" minDate={startDate} onChange={date => setendDate(date)}></DataPicker></div>
                                 </div>
                             </div>
