@@ -21,10 +21,15 @@ const Login_main = (props) => {
   };
   const onSendClick = () => {
     console.log(inputs);
+    const CryptoJS = require("crypto-js");
+    const encPassword = CryptoJS.AES.encrypt(
+      inputs.loin_password,
+      "longhair"
+    ).toString();
     axios
       .post(
         "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/login",
-        { userId: inputs.loin_id, password: inputs.loin_password },
+        { userId: inputs.loin_id, password: encPassword },
         {
           headers: {
             "Content-Type": `application/json`,
@@ -77,7 +82,7 @@ const Login_main = (props) => {
         <div className="Login-main-input-password-class">
           <img className="Login-main-idimg-class" src={PASSIMG} />
           <input
-            type="text1"
+            type="password"
             className="Login-main-input-box-class"
             name="loin_password"
             onChange={onChange}

@@ -19,7 +19,10 @@
   /* background-color: rgba(0, 255, 255, 0.103); */
   float: left;
 }
-.Message-card-nav-username-class {
+.Message-card-nav-producer-container {
+  /* background-color: rgba(255, 166, 0, 0.849); */
+}
+.Message-card-nav-producer-class {
   float: left;
   /* background-color: cadetblue; */
   height: 100%;
@@ -34,6 +37,14 @@
   margin-right: 10%;
   /* background-color: darksalmon; */
 }
+.Message-card-title-container {
+  /* background-color: rgba(0, 255, 255, 0.753); */
+}
+.Message-card-title-class {
+  font-size: 15px;
+  text-align: center;
+  /* background-color: rgba(0, 255, 64, 0.226); */
+}
 .Message-card-footer-container {
   float: left;
   width: 90%;
@@ -42,27 +53,17 @@
   margin-right: 5%;
   /* background-color: rgba(0, 255, 255, 0.418); */
 }
-.Message-card-content-class {
-  font-size: 15px;
-  text-align: center;
-}
-.Message-card-footer-locaion-container {
-  width: 7%;
-  height: 100%;
-  /* background-color: brown; */
-  float: left;
-}
 .Message-card-footer-date-container {
   float: left;
   width: 38%;
   height: 100%;
-  /* background-color: blue; */
+  /* background-color: blue;   */
 }
 .Message-card-footer-date-class {
   float: left;
   width: 80%;
   height: 100%;
-  /* background-color: #fb4d4e; */
+  background-color: #fb4d4e;
   margin-left: 20%;
 }
 .Message-card-footer-date-p-class {

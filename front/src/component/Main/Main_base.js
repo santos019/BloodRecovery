@@ -11,7 +11,7 @@ import Join_main from "../Join/Join_main";
 import Login_main from "../Login/Login_main";
 import Notice_main from "../Notice/Notice_main";
 import Rank_main from "../Rank/Rank_main";
-// import Bloodhouse_main from "../Bloodhouse/Bloodhouse_main";
+import Bloodhouse_main from "../Bloodhouse/Bloodhouse_main";
 import Header_nav_login from "../Common/Header/Header_nav_login";
 import Directed_write from "../Directed/Directed_write";
 import Board_write from "../Board/Board_write";
@@ -26,6 +26,7 @@ import Notice_inquire from "../Notice/Notice_inquire";
 import Bloodpocket_card from "../Mypage/Bloodpocket_card";
 import Bloodpocket_main from "../Mypage/Bloodpocket";
 import Point_main from "../Mypage/Point_main";
+import Change_info from "../Mypage/Change_info";
 import Directed_rewrite from "../Directed/Directed_rewrite";
 import Board_rewrite from "../Board/Board_rewrite";
 import Notice_rewrite from "../Notice/Notice_rewrite";
@@ -194,7 +195,7 @@ function Main_base(props) {
             지정헌혈_글쓰기: <Directed_write></Directed_write>,
             지정헌혈_수정: <Directed_rewrite />,
 
-            //헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
+            헌혈의_집_예약: <Bloodhouse_main></Bloodhouse_main>,
             마이페이지: <Mypage_main></Mypage_main>,
 
             공지사항: <Notice_main></Notice_main>,
@@ -204,6 +205,7 @@ function Main_base(props) {
             공지사항_수정: <Notice_rewrite />,
             내_지갑: <Bloodpocket_main />,
             포인트: <Point_main />,
+            내정보수정: <Change_info />,
             로그인: <Login_main loginsuccess={loginsuccess}></Login_main>, //.....
             메시지: <Message />,
             메시지상세조회: <Message_read />,

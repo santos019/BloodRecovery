@@ -17,8 +17,8 @@
   border-bottom: solid 4px #fb4d4e;
 }
 .Mypage-main-nav2 {
-  float: left;
-  width: 100%;
+  margin: auto;
+  width: 35%;
   border-bottom: solid 2px #fb4d4e;
   margin-top: 1%;
   margin-bottom: 3%;
@@ -40,16 +40,16 @@
   /* background-color: rgb(0, 255, 21); */
 }
 .Mypage-usericon-class {
-  width: 40px;
+  width: 42px;
   height: 40px;
-  margin-left: 43%;
-  padding-top: 5px;
+  margin-left: 40%;
+
   float: left;
   /* background-color: rgb(217, 250, 99); */
 }
 .Mypage-img-userimg {
   /* background-color: blue; */
-  width: 40px;
+  padding-bottom: 10%;
 }
 .Mypage-main-profile {
   width: 150px;
@@ -63,10 +63,11 @@
 .Mypage-main-nickname {
   margin-top: 4px;
   margin: auto;
-  width: 150px;
+  width: 130px;
   height: 50px;
   text-align: center;
   font-size: 30px;
+  padding-top: 2%;
   /* background-color: brown; */
 }
 .Mypage-main-username {
@@ -78,7 +79,7 @@
   border: 3px solid #fb4d4e;
   margin-bottom: 8px;
   margin-top: 4%;
-  box-shadow: 3px 3px grey;
+  /* box-shadow: 3px 3px grey; */
 }
 .Mypage-main-userid {
   margin: auto;
@@ -88,7 +89,7 @@
   font-size: 15px;
   border: 3px solid #fb4d4e;
   margin-bottom: 8px;
-  box-shadow: 3px 3px grey;
+  /* box-shadow: 3px 3px grey; */
 }
 .Mypage-main-profileimg {
   width: 150px;
@@ -103,7 +104,7 @@
   text-align: center;
   font-size: 15px;
   margin-bottom: 3%;
-  box-shadow: 3px 3px grey;
+  /* box-shadow: 3px 3px grey; */
 }
 .Mypage-info-change:hover {
   background-color: #cfdce4d5;
@@ -117,7 +118,7 @@
   text-align: center;
   font-size: 15px;
   float: right;
-  box-shadow: 3px 3px grey;
+  /* box-shadow: 3px 3px grey; */
 }
 .Mypage-withdrawal:hover {
   background-color: #cfdce4d5;
