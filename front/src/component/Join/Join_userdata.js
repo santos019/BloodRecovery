@@ -26,7 +26,7 @@ const [inputs, setInputs] = useState({
     join_register1:'',
     join_register2:''
 })
-var nicknameEXP= /^[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9_]{5,20}$/;
+var nicknameEXP= /^[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9_]{2,20}$/;
 var idEXP=/^[a-zA-Z0-9_]{5,20}$/;
 var passwordEXP=/^[a-zA-Z0-9~!@#$%^&*()_]{8,16}$/;
 var nameEXP=/^[ㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/; 
