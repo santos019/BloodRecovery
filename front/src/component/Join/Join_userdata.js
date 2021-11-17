@@ -9,43 +9,36 @@ const Join_userdata = (props) => {
   const [btnnickname, setBtnNickname] = useState(false);
   const [btnid, setBtnid] = useState(false);
 
-  const [agreement, setAgreement] = useState(false);
-  const [nicknameCheck, setNicknameCheck] = useState(false);
-  const [idCheck, setIdCheck] = useState(false);
-  const [passwordCheck, setPasswordCheck] = useState(false);
-  const [passwordconfirmCheck, setPasswordconfirmCheck] = useState(false);
-  const [nameCheck, setNameCheck] = useState(false);
-  const [resister1Check, setResister1Check] = useState(false);
-  const [resister2Check, setResister2Check] = useState(false);
-  const [inputs, setInputs] = useState({
-    join_nickname: "",
-    join_id: "",
-    join_password: "",
-    join_passwordconfirm: "",
-    join_name: "",
-    join_register1: "",
-    join_register2: "",
-  });
-  var nicknameEXP = /^[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9_]{2,20}$/;
-  var idEXP = /^[a-zA-Z0-9_]{5,20}$/;
-  var passwordEXP = /^[a-zA-Z0-9~!@#$%^&*()_]{8,16}$/;
-  var nameEXP = /^[ㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
-  var register1EXP = /^[0-9]{6}$/;
-  var register2EXP = /^[0-9]{7}$/;
-  var encPassword = "";
-  var encRegister = "";
-  // var chenckarry =[0,0,0,0,0,0,0]//밑의순서대로임
-  // var chenkname=["닉네임","아이디","비밀번호","비밀번호 확인","성명","주민등록번호","주민등록번호"]
-  const {
-    join_nickname,
-    join_id,
-    join_password,
-    join_passwordconfirm,
-    join_name,
-    join_register1,
-    join_register2,
-  } = inputs;
-  const join_agreement = false;
+
+const [agreement,setAgreement]=useState(false)
+const [nicknameCheck,setNicknameCheck]=useState(false)
+const [idCheck,setIdCheck]=useState(false)
+const [passwordCheck,setPasswordCheck]=useState(false)
+const [passwordconfirmCheck,setPasswordconfirmCheck]=useState(false)
+const [nameCheck,setNameCheck]=useState(false)
+const [resister1Check,setResister1Check]=useState(false)
+const [resister2Check,setResister2Check]=useState(false)
+const [inputs, setInputs] = useState({  
+    join_nickname: '',
+    join_id:'',
+    join_password:'',
+    join_passwordconfirm:'',
+    join_name:'',
+    join_register1:'',
+    join_register2:''
+})
+var nicknameEXP= /^[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9_]{2,20}$/;
+var idEXP=/^[a-zA-Z0-9_]{5,20}$/;
+var passwordEXP=/^[a-zA-Z0-9~!@#$%^&*()_]{8,16}$/;
+var nameEXP=/^[ㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/; 
+var register1EXP=/^[0-9]{6}$/
+var register2EXP=/^[0-9]{7}$/
+// var chenckarry =[0,0,0,0,0,0,0]//밑의순서대로임
+// var chenkname=["닉네임","아이디","비밀번호","비밀번호 확인","성명","주민등록번호","주민등록번호"]
+const {join_nickname, join_id,join_password, join_passwordconfirm,join_name,join_register1,join_register2  } = inputs   
+const join_agreement=false;
+const onChange1=(e)=>{
+
   const onChange1 = (e) => {
     setAgreement(!agreement);
   };
@@ -58,6 +51,7 @@ const Join_userdata = (props) => {
     };
     //만든 변수를 seInput으로 변경해준다.
     setInputs(nextInputs);
+
 
     console.log(inputs);
     if (name === "join_nickname") {

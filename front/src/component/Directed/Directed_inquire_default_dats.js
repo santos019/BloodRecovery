@@ -10,47 +10,28 @@ import Bloodpocket from "../Mypage/Bloodpocket";
 const Directed_inquire_default_data=(id)=>{
 const [getData,setGetData]=useState();
 const [filename,getfilename]=useState("")
-const ACCESS_KEY = 'U2FsdGVkX19/rPdNSJxV7t5RImb/hC7xyJj59GQE2qZHcYCg+YNLp7DjsZToXjjo';
-const SECRET_ACCESS_KEY = 'U2FsdGVkX1/QSZnZpg510C8WXH6RuDBH6Ge2/l6TlGb0SxzURMhfturuFLYSyzc+cM1Yoqcslv5/B2yToO8l2g==';
-const REGION = "U2FsdGVkX194q5BrIV60z6bMqOomihEY7xSZGcnZtrg=";
-const S3_BUCKET = 'U2FsdGVkX1/le6BQQXav/Is2yrSyZxJ/oNDzfBSEFx0=';
+
+const lysein = 'U2FsdGVkX18jdsJLZTbKu8q6u5ElnD61jI+BZ8ULufIazll6ygQAqjNSPTNaPC1zeWo0r1UytTb4mjW42Vb/lQ==';
+const geinbge = 'U2FsdGVkX1+w8ZdQnSFY13vz6GGRARaom3sjreiL0IPwzqB2E34+HHTwIfa61vvp';
+const fsesgs = "U2FsdGVkX194q5BrIV60z6bMqOomihEY7xSZGcnZtrg=";
+const gnkesg = 'U2FsdGVkX1/le6BQQXav/Is2yrSyZxJ/oNDzfBSEFx0=';
 
 const CryptoJS = require('crypto-js');
-const access = CryptoJS.AES.decrypt(ACCESS_KEY, 'longhair').toString(CryptoJS.enc.Utf8);
-const secret = CryptoJS.AES.decrypt(SECRET_ACCESS_KEY, 'longhair').toString(CryptoJS.enc.Utf8);
-const region = CryptoJS.AES.decrypt(REGION, 'longhair').toString(CryptoJS.enc.Utf8);
-const bucket = CryptoJS.AES.decrypt(S3_BUCKET, 'longhair').toString(CryptoJS.enc.Utf8);
+const gmbien = CryptoJS.AES.decrypt(geinbge, 'longhair').toString(CryptoJS.enc.Utf8);
+const nsigh = CryptoJS.AES.decrypt(lysein, 'longhair').toString(CryptoJS.enc.Utf8);
+const qwren = CryptoJS.AES.decrypt(fsesgs, 'longhair').toString(CryptoJS.enc.Utf8);
+const ihtnw = CryptoJS.AES.decrypt(gnkesg, 'longhair').toString(CryptoJS.enc.Utf8);
 
 AWS.config.update({
-  accessKeyId: access,
-  secretAccessKey: secret
+  accessKeyId: gmbien,
+  secretAccessKey: nsigh
 });
 
 const myBucket = new AWS.S3({
-  params: { Bucket: bucket},
-  region: region,
+  params: { Bucket: ihtnw},
+  region: qwren,
 });
 
-// const [modalIsOpen, setModalIsOpen] = useState(false);
-// const [modal, setmodal] = useState();
-// const modal_style1 = {
-//     overlay: {
-//       position: "fixed",
-//       top: 0,
-//       bottom: 0,
-//       left: 0,
-//       right: 0,
-//       backgroundColor: "rgba(0, 0, 0,0 )",
-//     },
-//     content: {
-//       left: 350,
-//       right: 350,
-//       top: 80,
-//       bottom: 80,
-//       zIndex: 0,
-//       padding: 10,
-//     },
-//   };
 
 
     useEffect(() => {
@@ -66,17 +47,12 @@ const myBucket = new AWS.S3({
             });
 
     }, []);
-// const btnon=()=>{
-//     console.log("?",id.id)
-//     setModalIsOpen(true)
-   
-    
-// }
+
 const uploadFile = (file1,pp) => {
     const profile_params = {
       ACL: 'public-read',
       Body: file1,
-      Bucket: bucket,
+      Bucket: ihtnw,
       Key: "profile/" + uuidv4() + "." + pp
     };
   
@@ -126,22 +102,39 @@ const onChange = (e) => {
                     data: formData         
                     , transformResponse: function (data) {
                       console.log("log", JSON.parse(data).date)
-                      var senddate=""
-                      for(var i=0; i<10 ;i++)
-                      //for(var i in JSON.parse(data).date)
-                      {
-                          if(JSON.parse(data).date[i]===".")
-                          {
-                            senddate= senddate+ "-"
-                          }
-                          else if(JSON.parse(data).date[i]===" ")
-                          {
-                            senddate= senddate+ "0"
-                          }
-                          else
-                          senddate= senddate+ JSON.parse(data).date[i]
-                      }
-                      senddate=senddate+"T00:00:00Z"
+                      // var senddate=""
+                      // for(var i=0; i<JSON.parse(data).date.length ;i++)
+                      // {
+                      //     if(JSON.parse(data).date[i]===".")
+                      //     {
+                      //       senddate= senddate+ "-"
+                      //     }
+                      //     else if(JSON.parse(data).date[i]!==" ")
+                      //     {
+                      //       senddate= senddate+ JSON.parse(data).date[i]
+                      //     }      
+                          
+                      // }
+                  var finaldate=JSON.parse(data).date.split('.');
+                  console.log(finaldate[1])
+                  var senddate =finaldate[0]+'-'
+                  if(finaldate[1].length>2)
+                  {
+                    senddate=senddate+finaldate[1][1]+finaldate[1][2]+'-';
+                  }
+                  else{
+
+                    senddate=senddate+'0'+finaldate[1][1]+'-';
+                  }
+                  if(finaldate[2].length>2){
+
+                    senddate=senddate+finaldate[2][1]+finaldate[2][2];
+                  }
+                  else{
+                    senddate=senddate+'0'+filename[2][1]
+                  }
+
+                      senddate=senddate+"T00:00:02Z"
                       console.log("senddate",senddate);
                     axios
                     .post(
@@ -152,12 +145,14 @@ const onChange = (e) => {
                                 }
                         )
                         .then(function(res){
+                          console.log("directid",sessionStorage.getItem("directId"))
                             console.log("과연결과는?",res.data);
-                            if(res.data===false)//true로바꿔줘야함
+                            if(res.data===true)//true로바꿔줘야함
                             {
-                                var im=uploadFile(img,fileExt)
+                                var im=uploadFile(img,fileExt)//s3버킷에올라가는거
                                 axios.post("http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/mypage/card/"+sessionStorage.getItem("userId"), {code:JSON.parse(data).code,image:im})
                                 .then(function(res){
+                                  alert("인증이 완료되었습니다.")
                                   console.log("업로드까지 끝")
                                 })
                             }
@@ -234,7 +229,7 @@ const onChange = (e) => {
             </div>
             <div className="Directed-inquire-default-info-container">
                 <div className="Directed-inqire-default-info">
-                    요청 기간 이내에 지정헌혈 인증을 완료해주세요.
+                신청이 완료되었습니다. 기간내에 인증을 완료해주세요. <br/>3번 이상 미인증시 패널티가 부여됩니다.
                 </div>
             </div>
         </div>
