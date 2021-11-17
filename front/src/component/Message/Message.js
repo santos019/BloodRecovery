@@ -21,6 +21,7 @@ const Message = (props) => {
       });
   }, [messageMode]);
 
+
   const deleteMesssage = (mode) => {
     axios.delete(
       "http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/notice/message/" +
@@ -34,6 +35,7 @@ const Message = (props) => {
       alert("읽은 메시지가 삭제되었습니다.");
     }
   };
+
 
   return (
     <div className="Message-main-container">
