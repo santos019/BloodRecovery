@@ -77,7 +77,7 @@ const Login_main = (props) => {
         <div className="Login-main-input-password-class">
           <img className="Login-main-idimg-class" src={PASSIMG} />
           <input
-            type="text1"
+            type="password"
             className="Login-main-input-box-class"
             name="loin_password"
             onChange={onChange}

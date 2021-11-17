@@ -15,28 +15,28 @@ import Bloodpocket_card from "./Bloodpocket_card";
 import { testff } from "../Common/Function/testff";
 import { S3useF } from "../Common/Function/S3useF";
 function Bloodpocket_main(on) {
-  const ACCESS_KEY = 'U2FsdGVkX19/rPdNSJxV7t5RImb/hC7xyJj59GQE2qZHcYCg+YNLp7DjsZToXjjo';
-const SECRET_ACCESS_KEY = 'U2FsdGVkX1/QSZnZpg510C8WXH6RuDBH6Ge2/l6TlGb0SxzURMhfturuFLYSyzc+cM1Yoqcslv5/B2yToO8l2g==';
-const REGION = "U2FsdGVkX194q5BrIV60z6bMqOomihEY7xSZGcnZtrg=";
-const S3_BUCKET = 'U2FsdGVkX1/le6BQQXav/Is2yrSyZxJ/oNDzfBSEFx0=';
+  const lysein = 'U2FsdGVkX18jdsJLZTbKu8q6u5ElnD61jI+BZ8ULufIazll6ygQAqjNSPTNaPC1zeWo0r1UytTb4mjW42Vb/lQ==';
+  const geinbge = 'U2FsdGVkX1+w8ZdQnSFY13vz6GGRARaom3sjreiL0IPwzqB2E34+HHTwIfa61vvp';
+  const fsesgs = "U2FsdGVkX194q5BrIV60z6bMqOomihEY7xSZGcnZtrg=";
+  const gnkesg = 'U2FsdGVkX1/le6BQQXav/Is2yrSyZxJ/oNDzfBSEFx0=';
 
 const CryptoJS = require('crypto-js');
-const access = CryptoJS.AES.decrypt(ACCESS_KEY, 'longhair').toString(CryptoJS.enc.Utf8);
-const secret = CryptoJS.AES.decrypt(SECRET_ACCESS_KEY, 'longhair').toString(CryptoJS.enc.Utf8);
-const region = CryptoJS.AES.decrypt(REGION, 'longhair').toString(CryptoJS.enc.Utf8);
-const bucket = CryptoJS.AES.decrypt(S3_BUCKET, 'longhair').toString(CryptoJS.enc.Utf8);
+const gmbien = CryptoJS.AES.decrypt(geinbge, 'longhair').toString(CryptoJS.enc.Utf8);
+const nsigh = CryptoJS.AES.decrypt(lysein, 'longhair').toString(CryptoJS.enc.Utf8);
+const qwren = CryptoJS.AES.decrypt(fsesgs, 'longhair').toString(CryptoJS.enc.Utf8);
+const ihtnw = CryptoJS.AES.decrypt(gnkesg, 'longhair').toString(CryptoJS.enc.Utf8);
 
 AWS.config.update({
-  accessKeyId: access,
-  secretAccessKey: secret
+  accessKeyId: gmbien,
+  secretAccessKey: nsigh
 });
 
 const myBucket = new AWS.S3({
-  params: { Bucket: bucket},
-  region: region,
+  params: { Bucket: ihtnw},
+  region: qwren,
 });
 
-const [end,setend]=useState(false)
+
 
 const [filename,getfilename]=useState("")
 
@@ -49,7 +49,7 @@ const [filename,getfilename]=useState("")
     const profile_params = {
       ACL: 'public-read',
       Body: file1,
-      Bucket: bucket,
+      Bucket: ihtnw,
       Key: "profile/" + uuidv4() + "." + pp
     };
   
@@ -63,7 +63,7 @@ const [filename,getfilename]=useState("")
       console.log("data",data);
   })
   
-      setend(true)
+
     return("https://bloodrecovery.s3.us-east-2.amazonaws.com/"+profile_params.Key)
   }
 
@@ -191,6 +191,7 @@ const sendinfo=(index)=>{
               axios.post("http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/mypage/card/"+sessionStorage.getItem("userId"), {code:JSON.parse(data).code,image:im})
               .then(function(res){
                 console.log("업로드까지 끝")
+                alert("헌혈증 등록이 완료되었습니다.")
               })
             }
             else{alert("BIMS 조회 결과, 해당 정보가 없습니다.")}
@@ -228,7 +229,7 @@ const sendinfo=(index)=>{
           {/* {card.map((menu,index)=>(card[index].id))} */}
           {card?.map((menu, index) => (<div className="Bloodpocket-card-wow" onClick={()=>sendinfo(index)} style={on.onbtn==="true"?{cursor:"pointer"}:null}><Bloodpocket_card key={index} getindex={card[index]} ></Bloodpocket_card></div>))}
         </div>
-{   console.log("filename",filename)}
+
 
 
       </div>
