@@ -33,12 +33,6 @@ const [showAlert, setShowAlert] = useState(false);
 const [end,setend]=useState(false)
 const [filebuffer,setFilebuffer]=useState("")
 
-
-console.log("gmbien",gmbien);
-console.log("nsigh",nsigh);
-console.log("qwren",qwren);
-console.log("ihtnw",ihtnw);
-
 const uploadFile = (file) => {
   const profile_params = {
     ACL: 'public-read',
@@ -73,8 +67,8 @@ const uploadFile = (file) => {
 })
 
     setend(true)
-
-  }
+  
+}
 
 
 
