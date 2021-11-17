@@ -4,17 +4,30 @@
   width: 970px;
   height: 734px;
   margin: auto;
-  background-color: aqua;
+ 
 }
 .Mypage-myboard-nav-container{
 
   width: 100%;
   height: 8%;
-  background-color: azure;
+
   border-bottom: solid 4px #fb4d4e;
 }
+.Mypage-myboard-board-titleimg{
+  width: 10%;
+  margin-top: 2%;
+  margin-left: 5%;
+  height: 7%;
+}
+.Mypage-myboard-board-title{
+  font-size: 27px;
+  width: 84%;
+  height: 5%;
+  margin-top: 2%;
+  float: right;
+margin-left: 1%;
 
-
+}
 .Mypage-myboard-nav-class{
   margin-left: 3%;
   margin-top: 1%;
@@ -26,27 +39,26 @@
   width: 90%;
   margin: auto;
   height: 92%;
-  background-color: bisque;
+ 
 }
 .Mypage-myboard-board-container{
-  width: 50%;
+  width: 49%;
   height: 100%;
-  background-color: darkkhaki;
   float: left;
+  border-right: 2px dotted black;
 }
 .Mypage-myboard-direct-container{
   width: 50%;
   height: 100%;
-  background-color: darkgreen;
   float: left;
 }
 .Mypage-myboard-board-cardarea{
   width: 100%;
   height: 35%;
-  background-color: antiquewhite;
+
 }
 .Mypage-myboard-direct-cardarea{
   width: 100%;
   height: 35%;
-  background-color: rgb(230, 130, 0);
+
 }
