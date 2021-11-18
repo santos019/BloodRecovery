@@ -33,17 +33,12 @@ const gradefunction = (Grade) => {
 };
 
 function Change_info(props, getData) {
-  var nicknameEXP = /^[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9_-]{2,20}$/;
-
   const [user, setUser] = useState();
   const [getIMG, setIMG] = useState(null);
   const [inputs, setInputs] = useState({
-    join_nickname: "",
     nickname: "",
     profile: "",
   });
-  const [nicknameCheck, setNicknameCheck] = useState(false);
-  const { join_nickname } = inputs;
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -56,11 +51,6 @@ function Change_info(props, getData) {
     setInputs(nextInputs);
     console.log(inputs);
   };
-
-  if (name === "join_nickname") {
-    console.log("닉네임 유효성", nicknameEXP.test(e.target.value));
-    setNicknameCheck(nicknameEXP.test(e.target.value));
-  }
 
   const getfilename = (value) => {
     // console.log("wow",value)
@@ -95,27 +85,9 @@ function Change_info(props, getData) {
     alert("개인정보가 수정되었습니다.");
   };
 
-  const nicknameoverlap = () => {
-    if (nicknameEXP.test(join_nickname) === false) {
-      alert("닉네임 양식에 맞춰 입력해주세요.");
-    } else if (nicknameEXP.test(join_nickname) === true) {
-      axios
-        .get(
-          "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/nicknameCheck/" +
-            join_nickname
-        )
-        .then(function (res) {
-          //false면 가입불가능 true면 가입가능
-          console.log(res.data.result);
-          if (res.data.result === true) {
-            alert("사용가능한 닉네임입니다.");
-            setBtnNickname(nicknameEXP.test(join_nickname));
-          }
-        });
-    }
-
-    console.log("아이디 유효성", idEXP.test(join_nickname));
-  };
+  // function movepage(text) {
+  //   props.addPage(text);
+  // }
 
   // function () {
   return (
@@ -136,35 +108,33 @@ function Change_info(props, getData) {
         </div>
       </div>
       <div className="Change-info-profilecontainer">
-      <div className="Change-info-profile">
-        <img className="Mypage-main-profileimg" src={user?.profile}></img>
-      </div>
-      <div className="Mypage-profile-footer-upload">
-        <S3Upload getfilename={getfilename} />
-      </div>
-
-      <div className="Mypage-usericon-class">{gradefunction(user?.level)}</div>
-      <div className="Mypage-main-nickname">{user?.nickname}</div>
-      <div className="nickname-change">
-        <div>
-          변경 할 닉네임:
-          <input
-            name="nickname"
-            className="Mypage-rewrite-card-title-class"
-            value={inputs.nickname}
-            onChange={onChange}
-          ></input>
+        <div className="Change-info-profile">
+          <img className="Mypage-main-profileimg" src={user?.profile}></img>
+        </div>
+        <div className="Mypage-profile-footer-upload">
+          <S3Upload getfilename={getfilename} />
         </div>
 
-        <div className="Join-userdata-button-class1" onClick={nicknameoverlap}>
-          <Common_Button name={"중복확인"}></Common_Button>
+        <div className="Mypage-usericon-class">
+          {gradefunction(user?.level)}
         </div>
-      </div>
+        <div className="Mypage-main-nickname">{user?.nickname}</div>
+        <div className="nickname-change">
+          <div>
+            변경 할 닉네임:
+            <input
+              name="nickname"
+              className="Mypage-rewrite-card-title-class"
+              value={inputs.nickname}
+              onChange={onChange}
+            ></input>
+          </div>
+        </div>
 
-      <div className="Mypage-main-nav2"></div>
-      {/* <div className="Mypage-main-username">{user?.name}</div>
+        <div className="Mypage-main-nav2"></div>
+        {/* <div className="Mypage-main-username">{user?.name}</div>
       <div className="Mypage-main-userid">{user?.userId}</div> */}
-</div>
+      </div>
       <div className="Change-info-footer-container">
         <div className="Mypage-rewrite-btn-container">
           <div className="Mypage-rewrite-btn-class" onClick={senddata}>
@@ -175,7 +145,6 @@ function Change_info(props, getData) {
           </div>
         </div>
       </div>
-      
     </div>
   );
 }
