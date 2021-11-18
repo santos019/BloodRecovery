@@ -108,31 +108,33 @@ function Change_info(props, getData) {
         </div>
       </div>
       <div className="Change-info-profilecontainer">
-      <div className="Change-info-profile">
-        <img className="Mypage-main-profileimg" src={user?.profile}></img>
-      </div>
-      <div className="Mypage-profile-footer-upload">
-        <S3Upload getfilename={getfilename} />
-      </div>
-
-      <div className="Mypage-usericon-class">{gradefunction(user?.level)}</div>
-      <div className="Mypage-main-nickname">{user?.nickname}</div>
-      <div className="nickname-change">
-        <div>
-          변경 할 닉네임:
-          <input
-            name="nickname"
-            className="Mypage-rewrite-card-title-class"
-            value={inputs.nickname}
-            onChange={onChange}
-          ></input>
+        <div className="Change-info-profile">
+          <img className="Mypage-main-profileimg" src={user?.profile}></img>
         </div>
-      </div>
+        <div className="Mypage-profile-footer-upload">
+          <S3Upload getfilename={getfilename} />
+        </div>
 
-      <div className="Mypage-main-nav2"></div>
-      {/* <div className="Mypage-main-username">{user?.name}</div>
+        <div className="Mypage-usericon-class">
+          {gradefunction(user?.level)}
+        </div>
+        <div className="Mypage-main-nickname">{user?.nickname}</div>
+        <div className="nickname-change">
+          <div>
+            변경 할 닉네임:
+            <input
+              name="nickname"
+              className="Mypage-rewrite-card-title-class"
+              value={inputs.nickname}
+              onChange={onChange}
+            ></input>
+          </div>
+        </div>
+
+        <div className="Mypage-main-nav2"></div>
+        {/* <div className="Mypage-main-username">{user?.name}</div>
       <div className="Mypage-main-userid">{user?.userId}</div> */}
-</div>
+      </div>
       <div className="Change-info-footer-container">
         <div className="Mypage-rewrite-btn-container">
           <div className="Mypage-rewrite-btn-class" onClick={senddata}>
@@ -143,7 +145,6 @@ function Change_info(props, getData) {
           </div>
         </div>
       </div>
-      
     </div>
   );
 }
