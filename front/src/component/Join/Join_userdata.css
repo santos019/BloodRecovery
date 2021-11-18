@@ -4,7 +4,8 @@
     /* background-color: blueviolet; */
     /* margin-left: 30%; */
     margin-top: 2%;
-
+    height: 300px;
+    
     /* text-align:center */
     
 }
@@ -12,24 +13,34 @@
     float: left;
      /*background-color: rgb(136, 27, 112);*/ 
    width: 100%;
-   height: 80%;
+  
    margin: auto;
 }
 .Join-userdata-nickname-text-class{
     float: left;
-/*     background-color: blanchedalmond; */
+
     /*버튼과의간격...*/
  margin-right: 0%;
- width: 60%;
+ width: 90%;
+ /* background-color: cadetblue; */
 
+}
+.Join-userdata-button-class1{
+      width: 7em; 
+    height: 2.0em;
+    float: right;
+    margin-top: -30px;
+    margin-right: 11px;
+    font-size: 0.7em;
+    text-align: center;
 }
 .Join-userdata-button-class{
    
      width: 7em; 
     height: 2.0em;
-    float: left;
-
-    margin-top: 1%;
+    float: right;
+    margin-top: -30px;
+    margin-right: 50px;
     font-size: 0.7em;
     text-align: center;
 /*     background-color: aquamarine; */
@@ -38,15 +49,64 @@
     width: 100%;
     background-color: brown;
 } */
+.Join-usesrdata-id-class{
+   
+    float:left;
+    width: 100%;
+
+}
 .Join-userdata-notice-class{
 
     font-size: 1px;
-    /*background-color: blue;*/
+  
     color: rgb(133, 134, 134);
-    width: 400px; 
+    width: 200px; 
     margin-top: 6px;
     margin-left: 85%;
 
+}
+.Join-userdata-notice2-class{
+    font-size: 1px;
+   
+    margin-left: 85%;
+    width: 200px; 
+    margin-top: 8px;
+
+  
+}
+
+.Join-userdata-notice3-class{
+
+    font-size: 1px;
+    margin-top: 6px;
+ 
+    width: 200px;
+    float: left;
+    margin-left: 350px;
+    margin-top: -30px;
+  
+}
+.Join-userdata-notice4-class{
+
+    font-size: 1px;
+    margin-top: 6px;
+  
+    width: 200px;
+    float: left;
+    margin-left: 350px;
+    margin-top: -30px;
+  
+}
+.Join-userdata-notice5-class{
+
+    font-size: 1px;
+    margin-top: 6px;
+  
+    width: 200px;
+    float: left;
+    margin-left: 350px;
+    margin-top: -30px;
+  
 }
 input[type= text1] :not(.Directed-main-input){
     margin-left: 2px;
@@ -65,7 +125,7 @@ input:focus {outline:none;}
     padding: 5px 10px 10px 10px;
     /* background-color: blue; */
     /* width: 70%; */
-    /* width: 200px; */
+    width: 220px;
 }
 .Textbox-name-class{
     width: 400px;
