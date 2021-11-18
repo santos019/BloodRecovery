@@ -200,7 +200,7 @@ function Bloodpocket_main(on) {
                     console.log("업로드까지 끝");
                   });
               } else {
-                alert("BIMS 조회 결과, 해당 정보가 없습니다.");
+                alert("잘못된 헌혈증입니다.");
               }
             });
         }
