@@ -35,12 +35,10 @@ import Mypage_myboard from "../Mypage/Mypage_myboard_main";
 import Message from "../Message/Message";
 import Message_read from "../Message/Message_read";
 
-
 var text = "";
 var sendid;
 
 function Main_base(props) {
-
   const modal_style = {
     overlay: {
       position: "fixed",
