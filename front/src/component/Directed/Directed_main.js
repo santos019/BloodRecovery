@@ -179,13 +179,7 @@ const Directed_main = (props) => {
                 } */}
         {
           //워닝이뜨기떄문에 key값설정해야함
-          getData.map((menu, index) => (
-            <Directed_card
-              getData={getData[index]}
-              key={index}
-              getsetValue3={getsetValue2}
-            ></Directed_card>
-          ))
+          getData.map((menu, index) => (<Directed_card getData={getData[index]} key={index} getsetValue3={getsetValue2}></Directed_card>))
         }
       </div>
     </div>
