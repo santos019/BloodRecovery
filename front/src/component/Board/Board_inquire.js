@@ -158,7 +158,7 @@ const Board_inquire = (id) => {
         <div className="Board-inquire-nav-goback">
           <img
             className="Board-inquire-goback-bntimg-class"
-            onClick={() => id.addPage("헌혈증_기부")}
+            onClick={() => id.addPage(sessionStorage.getItem("lastbefore"))}
             src={GOBACKBTN}
           ></img>
         </div>

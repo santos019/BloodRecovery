@@ -38,9 +38,9 @@ import Message_read from "../Message/Message_read";
 
 var text = "";
 var sendid;
-var num = 0;
+
 function Main_base(props) {
-  var tmp;
+
   const modal_style = {
     overlay: {
       position: "fixed",
@@ -112,10 +112,7 @@ function Main_base(props) {
   return (
     <div className="Main-base-class">
       <div className="Main-base-Header-container-class">
-        {console.log(props.index)}
-        {console.log("last", JSON.parse(window.sessionStorage.getItem("last")))}
         <div className="Main-base-Header-class">
-          {console.log("main", sessionStorage.getItem("userid"))}
           {sessionStorage.getItem("userId") === null ? (
             <Header_nav value={text} getsetValue={getsetValue}></Header_nav>
           ) : (
