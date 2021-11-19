@@ -91,6 +91,7 @@ function Board_write(props) {
           console.log(response);
         });
       alert("게시글이 수정되었습니다.");
+      props.addPage("헌혈증_기부");
     }
   };
 

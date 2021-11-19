@@ -174,9 +174,9 @@ const Board_inquire = (id) => {
                   </div>
                 </div>
               </div>
-              <div className="Board-inquire-card-context-class">
-                <pre>{getData?.data.contents}</pre>
-              </div>
+              <pre className="Board-inquire-card-context-class">
+                {getData?.data.contents}
+              </pre>
               <div className="Board-inquire-card-context-img-class">
                 <div className="Board-inquire-card-context-margin">
                   <img
