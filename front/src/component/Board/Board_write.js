@@ -21,7 +21,6 @@ function Board_write(props) {
   const [inputs, setInputs] = useState({
     request_title: "",
     request_context: "",
-    request_date2: "", //date형식으로
   });
 
   const onChange = (e) => {
@@ -38,11 +37,21 @@ function Board_write(props) {
     console.log(inputs);
   };
 
+  const countClick = (text) => {
+    if (text === "countdown" && requestCount > 0) {
+      setRequestCount(requestCount - 1);
+    } else if (text === "countup" && requestCount < 10) {
+      setRequestCount(requestCount + 1);
+    }
+  };
+
   const senddata = () => {
     if (inputs.request_title === "") {
       alert("제목을 넣어주세요");
     } else if (inputs.request_context === "") {
       alert("내용을 넣어주세요");
+    } else if (requestCount === 0) {
+      alert("기부받을 헌혈증 개수를 정해주세요.");
     } else {
       axios
         .post(
@@ -61,14 +70,6 @@ function Board_write(props) {
         });
       alert("게시글이 작성되었습니다.");
       props.addPage("헌혈증_기부");
-    }
-  };
-
-  const countClick = (text) => {
-    if (text === "countdown" && requestCount > 0) {
-      setRequestCount(requestCount - 1);
-    } else if (text === "countup" && requestCount < 10) {
-      setRequestCount(requestCount + 1);
     }
   };
 
