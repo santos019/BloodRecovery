@@ -3,13 +3,14 @@ import "./Directed_inquire_default_data.css";
 import Common_Button_IMG from "../Common/Button/Common_Button_IMG";
 import DIRECTED_BUTTON_IMG from "../../Img/DirectedIMG/DIRECTEDIMGWHITE.png";
 import axios from "axios";
-import ReactModal from "react-modal";
 import AWS from "aws-sdk";
 import { v4 as uuidv4 } from "uuid";
-import Bloodpocket from "../Mypage/Bloodpocket";
+import * as successAlert from "../Common/MakeAlert/successAlert.js"
+
 const Directed_inquire_default_data = (id) => {
   const [getData, setGetData] = useState();
   const [filename, getfilename] = useState("");
+  const [rerender,setrerender]=useState(false);
   const lysein =
     "U2FsdGVkX18jdsJLZTbKu8q6u5ElnD61jI+BZ8ULufIazll6ygQAqjNSPTNaPC1zeWo0r1UytTb4mjW42Vb/lQ==";
   const geinbge =
@@ -54,7 +55,7 @@ const Directed_inquire_default_data = (id) => {
       .then(function (response) {
         setGetData(response);
       });
-  }, []);
+  }, [getData]);
  
   const uploadFile = (file1, pp) => {
     const profile_params = {
@@ -65,7 +66,7 @@ const Directed_inquire_default_data = (id) => {
     };
 
     myBucket.putObject(profile_params, (err, data) => {
-      alert("complete");
+      successAlert.successAlert("이미지 업로드가 완료되었습니다.");
       getfilename(
         "https://bloodrecovery.s3.us-east-2.amazonaws.com/" + profile_params.Key
       );
@@ -151,45 +152,48 @@ const Directed_inquire_default_data = (id) => {
             url: "http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/mypage/card/ocr",
             data: formData,
             transformResponse: function (data) {
-              console.log("log", JSON.parse(data).date);
-
-              var beforedate=JSON.parse(data).date
-              var finaldate=""
-              for(var i=0; i<beforedate.length;i++)
-              {
-                if(beforedate[i]===" ")
-                {
-                  continue;
-                }
-                else
-                finaldate=finaldate+beforedate[i]
-              }
+            
+              console.log("con",JSON.parse(data))
+            //   if(JSON.parse(data).date===""){
+            //     successAlert.errorAlert("헌혈증을 다시 인식해주세요.");
+            //   }
+            //   var beforedate=JSON.parse(data).date
+            //   var finaldate=""
+            //   for(var i=0; i<beforedate.length;i++)
+            //   {
+            //     if(beforedate[i]===" ")
+            //     {
+            //       continue;
+            //     }
+            //     else
+            //     finaldate=finaldate+beforedate[i]
+            //   }
            
-             beforedate=finaldate.split('.');
-             console.log(beforedate[0])
-             console.log(beforedate[1])
-             console.log(beforedate[2])
-             console.log("dd",finaldate)
+            //  beforedate=finaldate.split('.');
+    
+            //   console.log(beforedate[0])
+            //   console.log(beforedate[1])
+            //   console.log(beforedate[2])
+            //   var senddate =beforedate[0]+'-'
+            //   if(beforedate[1]?.length>=2)
+            //   {
+            //     senddate=senddate+beforedate[1][0]+beforedate[1][1]+'-';
+            //   }
+            //   else{
 
-              var senddate =beforedate[0]+'-'
-              if(beforedate[1].length>=2)
-              {
-                senddate=senddate+beforedate[1][0]+beforedate[1][1]+'-';
-              }
-              else{
+            //     senddate=senddate+'0'+beforedate[1][0]+'-';
+            //   }
+            //   if(beforedate[2].length>=2){
 
-                senddate=senddate+'0'+beforedate[1][0]+'-';
-              }
-              if(beforedate[2].length>=2){
-
-                senddate=senddate+beforedate[2][0]+beforedate[2][1];
-              }
-              else{
-                senddate=senddate+'0'+beforedate[2][0]
-              }
-
+            //     senddate=senddate+beforedate[2][0]+beforedate[2][1];
+            //   }
+            //   else{
+            //     senddate=senddate+'0'+beforedate[2][0]
+            //   }
+                  var senddate=JSON.parse(data).date;
                   senddate=senddate+"T00:00:02Z"
-              console.log("senddate", senddate);
+                  console.log(senddate)
+                  console.log(JSON.parse(data).code)
               axios
                 .post(
                   "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" +
@@ -198,11 +202,17 @@ const Directed_inquire_default_data = (id) => {
                   {
                     userId: sessionStorage.getItem("userId"),
                     date: senddate,
+                    code:JSON.parse(data).code
                   }
                 )
+                .catch(function(err){
+
+                  successAlert.errorAlert("헌혈증 인식을 실패했습니다. \n다시 인증해주세요")
+                })
                 .then(function (res) {
-                  console.log("과연결과는?", res.data);
-                  if (res.data === true) {
+               
+                  if (res?.data === true) {
+
                     //true로바꿔줘야함
                     var im = uploadFile(file2, fileExt);
                     axios
@@ -212,18 +222,23 @@ const Directed_inquire_default_data = (id) => {
                         { code: JSON.parse(data).code, image: im }
                       )
                       .then(function (res) {
-                        alert("인증이 완료되었습니다.")
-                        console.log("업로드까지 끝");
+                        successAlert.successAlert("인증이 완료되었습니다.")
+                        
                       });
                   } else {
-                    alert("잘못된 인증입니다.");
+                    successAlert.errorAlert("잘못된 인증입니다.");
+                   
                   }
                 });
-            },
+               
+            },//여기
+
+
           });
 
        
         }
+        setrerender(!rerender)
       });
    
              

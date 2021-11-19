@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { withRouter } from "react-router";
 import Menu_left_nav from "../Common/Header/Menu_left_nav";
 import CARDDONATION from "../../Img/CARDDONATION.png";
 import GOBACKBTN from "../../Img/DirectedIMG/arrow.png";
@@ -8,7 +7,7 @@ import axios from "axios";
 import { connect, ReactReduxContext } from "react-redux";
 import { addPage } from "../../component/Modalmove/subscribers/action";
 import "./Notice_inquire.css";
-
+import * as successAlert from "../Common/MakeAlert/successAlert.js"
 const Notice_inquire = (id) => {
   const [getData, setGetData] = useState();
 
@@ -35,7 +34,7 @@ const Notice_inquire = (id) => {
       )
 
       .then(function (response) {
-        alert("게시글이 삭제되었습니다.");
+        successAlert.successAlert("게시글이 삭제되었습니다.");
         id.addPage("공지사항");
         // console.log("response", response);
       });
@@ -54,7 +53,7 @@ const Notice_inquire = (id) => {
         }
       )
       .then(function (response) {
-        alert("프로모션 참여로 5포인트가 지급되었습니다.");
+        successAlert.successAlert("프로모션 참여로 5포인트가 지급되었습니다.");
         id.addPage("공지사항");
         // console.log("response", response);
       });
@@ -75,9 +74,9 @@ const Notice_inquire = (id) => {
             putPoint();
           }
         } else {
-          alert("이미 참여한 프로모션입니다.");
+          successAlert.errorAlert("이미 참여한 프로모션입니다.");
           id.addPage("공지사항");
-          console.log("response", response);
+         
         }
       });
   };

@@ -13,7 +13,7 @@ import Directed_inquire_default_data from "./Directed_inquire_default_dats";
 import { connect } from "react-redux";
 import { addPage } from "../../component/Modalmove/subscribers/action";
 import "./Directed_inquire.css";
-
+import * as successAlert from "../Common/MakeAlert/successAlert.js"
 const Directed_inquire = (id) => {
   const [getData, setGetData] = useState();
   const [viewData, setViewData] = useState(false);
@@ -31,7 +31,7 @@ const Directed_inquire = (id) => {
 
       .then(function (response) {
         setGetData(response);
-        console.log(response.data.completeStatus);
+  
       });
   }, []);
   useEffect(() => {
@@ -55,7 +55,7 @@ const Directed_inquire = (id) => {
       )
 
       .then(function (response) {
-        alert("게시글이 삭제되었습니다.");
+        successAlert.successAlert("게시글이 삭제되었습니다.");
 
         id.addPage("지정헌혈");
       });
@@ -173,7 +173,7 @@ const Directed_inquire = (id) => {
                 </div>
               </div>
               <pre className="Directed-inquire-card-context-class">
-                <pre>{getData?.data.contents}</pre>
+                <pre className="Directed-inquire-card-context-classpre">{getData?.data.contents}</pre>
               </pre>
               <div className="Directed-inquire-card-context-img-class">
                 <div className="Directed-inquire-card-context-margin">
