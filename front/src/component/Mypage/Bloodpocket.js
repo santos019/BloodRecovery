@@ -194,7 +194,7 @@ function Bloodpocket_main(on) {
               dataURI = canvas.toDataURL("image/jpeg");
               
               //썸네일 이미지 보여주기
-              document.querySelector('#thumbnail').src = dataURI;
+              // document.querySelector('#thumbnail').src = dataURI;
               var file2 = dataURLtoFile(dataURI,'file');
               const formData = new FormData();
     formData.append("file", file2);
