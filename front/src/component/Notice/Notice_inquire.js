@@ -7,7 +7,7 @@ import axios from "axios";
 import { connect, ReactReduxContext } from "react-redux";
 import { addPage } from "../../component/Modalmove/subscribers/action";
 import "./Notice_inquire.css";
-import * as successAlert from "../Common/MakeAlert/successAlert.js"
+import * as successAlert from "../Common/MakeAlert/successAlert.js";
 const Notice_inquire = (id) => {
   const [getData, setGetData] = useState();
 
@@ -69,14 +69,15 @@ const Notice_inquire = (id) => {
           sessionStorage.getItem("userId")
       )
       .then(function (response) {
-        if (response.data == true) {
+        if (sessionStorage.getItem("userId") === null) {
+          successAlert.errorAlert("로그인 후 참여가능합니다.");
+        } else if (response.data == true) {
           {
             putPoint();
           }
         } else {
           successAlert.errorAlert("이미 참여한 프로모션입니다.");
           id.addPage("공지사항");
-         
         }
       });
   };
