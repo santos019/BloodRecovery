@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
@@ -6,8 +5,9 @@ import { addPage } from "../Modalmove/subscribers/action";
 import "./Message_read.css";
 import Menu_left_nav from "../Common/Header/Menu_left_nav";
 import MESSAGEIMG from "../../Img/message.png";
+import GOBACKBTN from "../../Img/DirectedIMG/arrow.png";
 
-const Message_read = (props) => {
+const Message_read = (id) => {
   const [consumer, setConsumer] = useState("");
   const [producer, setProducer] = useState("");
   const [contents, setContents] = useState("");
@@ -47,8 +47,14 @@ const Message_read = (props) => {
             imgname={MESSAGEIMG}
           ></Menu_left_nav>
         </div>
+        <div className="Message-read-nav-goback">
+          <img
+            className="Message-read-goback-bntimg-class"
+            onClick={() => id.addPage(sessionStorage.getItem("lastbefore"))}
+            src={GOBACKBTN}
+          ></img>
+        </div>
       </div>
-      <div className="Mypage-main-nav-container"></div>
 
       <div className="Message-read-contents-container">
         <div className="Message-read-contents-title-container">
@@ -107,4 +113,3 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(Message_read);
 // export default Message_read;
-
