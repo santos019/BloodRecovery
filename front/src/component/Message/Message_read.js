@@ -6,7 +6,7 @@ import { addPage } from "../Modalmove/subscribers/action";
 import "./Message_read.css";
 import Menu_left_nav from "../Common/Header/Menu_left_nav";
 import MESSAGEIMG from "../../Img/message.png";
-
+import * as successAlert from "../Common/MakeAlert/successAlert.js"
 const Message_read = (props) => {
   const [consumer, setConsumer] = useState("");
   const [producer, setProducer] = useState("");
@@ -21,7 +21,7 @@ const Message_read = (props) => {
           sessionStorage.getItem("messageId")
       )
       .then(function (response) {
-        console.log(response.data);
+        
         setConsumer(response.data.consumer);
         setProducer(response.data.producer);
         setContents(response.data.contents);
@@ -35,7 +35,7 @@ const Message_read = (props) => {
       "http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/notice/message/one/" +
         +sessionStorage.getItem("messageId")
     );
-    alert("메시지가 삭제되었습니다.");
+    successAlert.successAlert("메시지가 삭제되었습니다.");
   };
 
   return (

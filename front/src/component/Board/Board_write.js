@@ -10,6 +10,7 @@ import BLOODDROP from "../../Img/DirectedIMG/blood-drop.png";
 import Common_Button_IMG from "../../component/Common/Button/Common_Button_IMG";
 import WRITEWHITEIMG from "../../Img/DirectedIMG/WRITE_WHITE.png";
 import axios from "axios";
+import * as successAlert from "../Common/MakeAlert/successAlert.js"
 // import Board_write_select from "./Board_write_select";
 // import Directed_write_select from "./Directed_write_select";
 
@@ -40,9 +41,9 @@ function Board_write(props) {
 
   const senddata = () => {
     if (inputs.request_title === "") {
-      alert("제목을 넣어주세요");
+      successAlert.errorAlert("제목을 넣어주세요");
     } else if (inputs.request_context === "") {
-      alert("내용을 넣어주세요");
+      successAlert.errorAlert("내용을 넣어주세요");
     } else {
       axios
         .post(
@@ -59,7 +60,7 @@ function Board_write(props) {
         .then(function (response) {
           console.log(response);
         });
-      alert("게시글이 작성되었습니다.");
+        successAlert.successAlert("게시글이 작성되었습니다.");
       props.addPage("헌혈증_기부");
     }
   };

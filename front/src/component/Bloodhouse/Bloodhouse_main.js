@@ -4,6 +4,7 @@ import BLOODHOUSEIMG from "../../Img/BloodhouseIMG/bloodhouse.png"
 import Calendar from "react-calendar";
 import "./Bloodhouse_main.css";
 import Commonbtn from "../Common/Button/Common_Button_IMG"
+import * as successAlert from "../Common/MakeAlert/successAlert.js"
 // import 'react-calendar/dist/Calendar.css';
 function Bloodhouse_main(props) {
 const [checkbtn,setcheckbtn]=useState("0900")
@@ -26,8 +27,7 @@ const [inputs, setInputs] = useState({
     }
     //만든 변수를 seInput으로 변경해준다.
     setInputs(nextInputs)
-    console.log(inputs.bloodhousename)
-
+  
     
   }
   const senddata=()=>{
@@ -35,9 +35,9 @@ const [inputs, setInputs] = useState({
 
     if(inputs.bloodhousename==="")
     {
-      alert("헌혈의 집 이름을 입력해주세요")
+      successAlert.errorAlert("헌혈의 집 이름을 입력해주세요")
     }
-    else alert("예약이 완료되었습니다.")
+    else successAlert.successAlert("예약이 완료되었습니다.")
   }
   const [date, setDate] = useState(new Date());
 

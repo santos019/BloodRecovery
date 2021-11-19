@@ -13,7 +13,7 @@ import Directed_inquire_default_data from "./Directed_inquire_default_dats";
 import { connect } from 'react-redux'
 import { addPage } from '../../component/Modalmove/subscribers/action'
 import './Directed_inquire.css';
-
+import * as successAlert from "../Common/MakeAlert/successAlert.js"
 
 const Directed_inquire = (id) => {
     const [getData, setGetData] = useState();
@@ -36,7 +36,7 @@ const Directed_inquire = (id) => {
             .then(function (response) {
 
                 setGetData(response);
-                console.log(response.data.completeStatus)
+          
 
             });
 
@@ -59,7 +59,7 @@ const Directed_inquire = (id) => {
             .delete("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" + sessionStorage.getItem("directId"))
 
             .then(function (response) {
-                alert("게시글이 삭제되었습니다.")
+                successAlert.successAlert("게시글이 삭제되었습니다.")
              
                 id.addPage("지정헌혈")
             });
@@ -171,7 +171,7 @@ else{        if(viewdata1==="3"){//신청자명단에없으면
                                 </div>
                             </div>
                             <div className="Directed-inquire-card-context-class">
-                                {getData?.data.contents}
+                               <pre className="Directed-inquire-card-context-classpre">{getData?.data.contents}</pre>
                             </div>
                             <div className="Directed-inquire-card-context-img-class">
                                 <div className="Directed-inquire-card-context-margin">

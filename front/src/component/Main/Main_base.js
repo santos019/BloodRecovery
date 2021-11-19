@@ -82,6 +82,8 @@ function Main_base(props) {
     setmodal("지정헌혈");
   };
 
+
+
   const logoutsuccess = () => {
     //로그인수정 중복된값을 넣어서 새로 렌더링이안되었던거같음
  
@@ -110,6 +112,7 @@ function Main_base(props) {
   }
 
   return (
+    
     <div className="Main-base-class">
       <div className="Main-base-Header-container-class">
         <div className="Main-base-Header-class">

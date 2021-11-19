@@ -16,6 +16,7 @@ import Directed_write_select from "./Directed_write_select";
 import axios from "axios";
 import moment from "moment";
 import 'react-datepicker/dist/react-datepicker.css';
+import * as successAlert from "../Common/MakeAlert/successAlert.js"
 
 
 function Directed_write(props) {
@@ -70,33 +71,33 @@ function Directed_write(props) {
         // setStartDate(changeFormat(startDate, "yyyy-MM-DD"))
         // setendDate(changeFormat(endDate, "yyyy-MM-DD"))
         if(inputs.direct_title===""){
-            alert("제목을 넣어주세요")
+            successAlert.errorAlert("제목을 넣어주세요")
         }
         else if(inputs.direct_context===""){
-            alert("내용을 넣어주세요")
+            successAlert.errorAlert("내용을 넣어주세요")
         }
         else if(inputs.direct_bloodtype===""){
-            alert("내용을 넣어주세요")
+            successAlert.errorAlert("내용을 넣어주세요")
         }
         else if(inputs.direct_patient===""){
-            alert("내용을 넣어주세요")
+            successAlert.errorAlert("내용을 넣어주세요")
         }
         else if(inputs.direct_hospital===""){
-            alert("내용을 넣어주세요")
+            successAlert.errorAlert("내용을 넣어주세요")
         }
         else if(inputs.direct_room===""){
-            alert("내용을 넣어주세요")
+            successAlert.errorAlert("내용을 넣어주세요")
         }
         else if(inputs.direct_phonenumber===""){
-            alert("내용을 넣어주세요")
+            successAlert.errorAlert("내용을 넣어주세요")
         }
         else{
             axios.post("http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem",{requesterUserId:sessionStorage.getItem("userId"),title:inputs.direct_title,
             contents:inputs.direct_context,image:getIMG,locationSido:getSido,locationSigungu:getSigungu,
             periodFrom:changeFormat(startDate, "yyyy-MM-DDT00:00:00"),periodTo:changeFormat(endDate, "yyyy-MM-DDT23:59:59"),bloodType:inputs.direct_bloodtype,bloodMaxCount:directCount,patientName:inputs.direct_patient,hospitalName:inputs.direct_hospital,roomNumber:inputs.direct_room,phoneNumber:inputs.direct_phonenumber})
             .then(function (response) {
-                console.log(response);          });
-                alert("게시글이 작성되었습니다.")
+                       });
+                successAlert.successAlert("게시글이 작성되었습니다.")
                 props.addPage("지정헌혈")
            
         }

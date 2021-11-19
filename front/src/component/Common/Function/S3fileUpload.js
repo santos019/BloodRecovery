@@ -66,7 +66,7 @@ function S3Upload(props) {
     //   })
 
     myBucket.putObject(profile_params, (err, data) => {
-      alert("complete");
+      alert("이미지 업로드가 완료되었습니다.");
       props.getfilename(
         "https://bloodrecovery.s3.us-east-2.amazonaws.com/" + profile_params.Key
       );
@@ -85,8 +85,8 @@ function S3Upload(props) {
     setFilebuffer(fileExt);
     if (
       fileExt.toLowerCase() === "png" ||
-      fileExt.toLowerCase === "jpeg" ||
-      fileExt.toLowerCase === "jpg"
+      fileExt.toLowerCase() === "jpeg" ||
+      fileExt.toLowerCase()=== "jpg"
     ) {
       setProgress(0);
       console.log("wowwer", file);

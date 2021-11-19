@@ -1,18 +1,15 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState} from "react";
 import axios from "axios";
 import "./Bloodpocket.css";
 import GOBACKBTN from "../../Img/DirectedIMG/arrow.png";
 import { addPage } from "../../component/Modalmove/subscribers/action";
 import { connect } from "react-redux";
-import Menu_nav_text from "../Common/Header/Menu_left_nav";
 import Menu_left_nav from "../Common/Header/Menu_left_nav";
 import POCKETICON from "../../Img/pocket.png";
-import DIRECTED_BUTTON_IMG from "../../Img/DirectedIMG/DIRECTEDIMGWHITE.png";
-import Common_Button_IMG from "../Common/Button/Common_Button_IMG";
 import AWS from "aws-sdk";
 import { v4 as uuidv4 } from "uuid";
 import Bloodpocket_card from "./Bloodpocket_card";
-
+import * as successAlert from "../Common/MakeAlert/successAlert.js"
 function Bloodpocket_main(on) {
   const lysein =
     "U2FsdGVkX18jdsJLZTbKu8q6u5ElnD61jI+BZ8ULufIazll6ygQAqjNSPTNaPC1zeWo0r1UytTb4mjW42Vb/lQ==";
@@ -62,7 +59,7 @@ function Bloodpocket_main(on) {
     };
 
     myBucket.putObject(profile_params, (err, data) => {
-      alert("complete");
+      successAlert.successAlert("이미지 업로드가 완료되었습니다.");
       getfilename(
         "https://bloodrecovery.s3.us-east-2.amazonaws.com/" + profile_params.Key
       );
@@ -103,7 +100,7 @@ function Bloodpocket_main(on) {
           }
         )
         .then(function (res) {
-          console.log("코드인가요?", card[index].code);
+        
         });
 
       axios
@@ -115,7 +112,7 @@ function Bloodpocket_main(on) {
             on.number
         )
         .then(function (res) {});
-      alert("기부가 완료되었습니다");
+        successAlert.successAlert("기부가 완료되었습니다");
       on.endsg(false);
     }
     // else if(on.onbtn==="true1"){
@@ -222,16 +219,16 @@ function Bloodpocket_main(on) {
         //   console.log("업로드까지 끝")
         // })
         if (JSON.parse(data).code === null) {
-          alert("code가 읽히지않았습니다. 다시 사진을 찍어주세요");
+          successAlert.errorAlert("code가 읽히지않았습니다. 다시 사진을 찍어주세요");
         } else {
-          console.log("날짜가있었나요?", JSON.parse(data));
+         
           axios
             .post(
               "http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/mypage/card/apply",
               { code: JSON.parse(data).code }
             )
             .then(function (res) {
-              console.log("trs", res); //bims 확인, s3이미지 업로드와 카드 등록하기
+             
               if (res.data === true) {
                 //s3이미지 업로드
                 var im = uploadFile(file2, fileExt);
@@ -242,16 +239,16 @@ function Bloodpocket_main(on) {
                     { code: JSON.parse(data).code, image: im }
                   )
                   .then(function (res) {
-                    console.log("업로드까지 끝");
+                  
                   });
               } else {
-                alert("잘못된 헌혈증입니다.");
+                successAlert.errorAlert("잘못된 헌혈증입니다.");
               }
             });
         }
       },
     });
-              console.log("gb",file2)
+          
           };
        
           // 
@@ -368,7 +365,7 @@ function Bloodpocket_main(on) {
             </div>
           ))}
         </div>
-        {console.log("filename", filename)}
+    
       </div>
       <div className="Bloodpocket-footer-container">
         <div className="Bloodpocket-footer-btn-container"></div>

@@ -3,10 +3,10 @@ import "./Directed_inquire_default_data.css";
 import Common_Button_IMG from "../Common/Button/Common_Button_IMG";
 import DIRECTED_BUTTON_IMG from "../../Img/DirectedIMG/DIRECTEDIMGWHITE.png";
 import axios from "axios";
-import ReactModal from "react-modal";
 import AWS from "aws-sdk";
 import { v4 as uuidv4 } from "uuid";
-import Bloodpocket from "../Mypage/Bloodpocket";
+import * as successAlert from "../Common/MakeAlert/successAlert.js"
+
 const Directed_inquire_default_data = (id) => {
   const [getData, setGetData] = useState();
   const [filename, getfilename] = useState("");
@@ -65,7 +65,7 @@ const Directed_inquire_default_data = (id) => {
     };
 
     myBucket.putObject(profile_params, (err, data) => {
-      alert("complete");
+      successAlert.successAlert("이미지 업로드가 완료되었습니다.");
       getfilename(
         "https://bloodrecovery.s3.us-east-2.amazonaws.com/" + profile_params.Key
       );
@@ -151,7 +151,7 @@ const Directed_inquire_default_data = (id) => {
             url: "http://BloodRecovery-LB-1423483073.us-east-2.elb.amazonaws.com:8000/mypage/card/ocr",
             data: formData,
             transformResponse: function (data) {
-              console.log("log", JSON.parse(data).date);
+            
 
               var beforedate=JSON.parse(data).date
               var finaldate=""
@@ -166,10 +166,7 @@ const Directed_inquire_default_data = (id) => {
               }
            
              beforedate=finaldate.split('.');
-             console.log(beforedate[0])
-             console.log(beforedate[1])
-             console.log(beforedate[2])
-             console.log("dd",finaldate)
+    
 
               var senddate =beforedate[0]+'-'
               if(beforedate[1].length>=2)
@@ -189,7 +186,7 @@ const Directed_inquire_default_data = (id) => {
               }
 
                   senddate=senddate+"T00:00:02Z"
-              console.log("senddate", senddate);
+            
               axios
                 .post(
                   "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" +
@@ -201,7 +198,7 @@ const Directed_inquire_default_data = (id) => {
                   }
                 )
                 .then(function (res) {
-                  console.log("과연결과는?", res.data);
+               
                   if (res.data === true) {
                     //true로바꿔줘야함
                     var im = uploadFile(file2, fileExt);
@@ -212,11 +209,11 @@ const Directed_inquire_default_data = (id) => {
                         { code: JSON.parse(data).code, image: im }
                       )
                       .then(function (res) {
-                        alert("인증이 완료되었습니다.")
-                        console.log("업로드까지 끝");
+                        successAlert.successAlert("인증이 완료되었습니다.")
+                     
                       });
                   } else {
-                    alert("잘못된 인증입니다.");
+                    successAlert.errorAlert("잘못된 인증입니다.");
                   }
                 });
             },
