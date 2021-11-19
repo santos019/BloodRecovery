@@ -22,9 +22,9 @@ const Directed_inquire_default = (id) => {
                 console.log("신청하기", response)
                 if(response.data.applicantIdentify===sessionStorage.getItem("userId"))
                 {
-                    successAlert.successAlert("신청이 완료되었습니다. 기간내에 인증을 완료해주세요. \n3번 이상 미인증시 패널티가 부여됩니다.")
+                    successAlert.successAlert("신청이 완료되었습니다. 기간내에 인증을 완료해주세요.\n3번 이상 미인증시 패널티가 부여됩니다.")
                 }
-                else successAlert.errorAlert("신청은 한 게시물만 가능합니다. 먼저 신청한 지정헌혈 인증을 완료해주세요.")
+                else successAlert.errorAlert("신청은 한 게시물만 가능합니다.\n먼저 신청한 지정헌혈 인증을 완료해주세요.")
             });
 
             id.getValue();

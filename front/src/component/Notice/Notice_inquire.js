@@ -138,7 +138,7 @@ const Notice_inquire = (id) => {
               </div>
               <div className="Notice-inquire-card-context-class">
                 <pre className="Notice-inquire-contents">
-                  {getData?.data.contents}{" "}
+                  {getData?.data.contents}
                 </pre>
               </div>
 

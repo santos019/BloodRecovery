@@ -43,9 +43,7 @@ function Bloodpocket_main(on) {
   });
 
   const [end, setend] = useState(false);
-  const [tofile,setfile]=useState();
   const [filename, getfilename] = useState("");
-
   const [carddata, setCarddata] = useState();
   //내가 가진 헌혈증 카드 조회
   const [card, setCard] = useState();
@@ -66,6 +64,7 @@ function Bloodpocket_main(on) {
       console.log("성공", profile_params.Key);
       console.log("에러", err);
       console.log("data", data);
+
     });
 
     setend(true);
@@ -83,7 +82,7 @@ function Bloodpocket_main(on) {
       .then(function (response) {
         setCard(response.data);
       });
-  }, []);
+  }, [filename]);
 
   const sendinfo = (index) => {
     if (on.onbtn === "true") {

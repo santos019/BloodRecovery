@@ -101,7 +101,7 @@ const Join_userdata = (props) => {
           //false면 가입불가능 true면 가입가능
           console.log(res.data.result);
           if (res.data.result === true) {
-            successAlert("사용가능한 아이디입니다.")
+            successAlert.successAlert("사용가능한 아이디입니다.")
             
             setBtnid(idEXP.test(join_id));
           }
@@ -127,7 +127,7 @@ const Join_userdata = (props) => {
           //false면 가입불가능 true면 가입가능
           console.log(res.data.result);
           if (res.data.result === true) {
-            successAlert("사용가능한 아이디입니다.")
+            successAlert.successAlert("사용가능한 아이디입니다.")
             setBtnNickname(nicknameEXP.test(join_nickname));
           }
           else{
@@ -154,7 +154,7 @@ const Join_userdata = (props) => {
         )
         .then(function (res) {
           if (res.data.result === true) {
-            successAlert("실명인증이 완료되었습니다.");
+            successAlert.successAlert("실명인증이 완료되었습니다.");
             setbtnregister(true);
           }
         });
@@ -216,7 +216,7 @@ const Join_userdata = (props) => {
           console.log(response);
         });
 
-        successAlert("회원가입이 완료되었습니다.");
+        successAlert.successAlert("회원가입이 완료되었습니다.");
       props.addPage("로그인");
     }
 
