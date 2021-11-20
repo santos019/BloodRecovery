@@ -4,13 +4,12 @@ import Common_Button from "../Common/Button/Common_Button";
 import axios from "axios";
 import { connect } from "react-redux";
 import { addPage } from "../../component/Modalmove/subscribers/action";
-import * as successAlert from "../Common/MakeAlert/successAlert.js"
-
+import * as successAlert from "../Common/MakeAlert/successAlert.js";
 
 const Join_userdata = (props) => {
   const [btnnickname, setBtnNickname] = useState(false);
   const [btnid, setBtnid] = useState(false);
-  const [btnregister, setbtnregister] = useState(false);
+  const [btnRegister, setBtnRegister] = useState(false);
   const [agreement, setAgreement] = useState(false);
   const [nicknameCheck, setNicknameCheck] = useState(false);
   const [idCheck, setIdCheck] = useState(false);
@@ -52,45 +51,42 @@ const Join_userdata = (props) => {
   };
   const onChange = (e) => {
     const { name, value } = e.target;
+
     const nextInputs = {
-      //스프레드 문법으로 기존의 객체를 복사한다.
       ...inputs,
       [name]: value,
     };
     //만든 변수를 seInput으로 변경해준다.
     setInputs(nextInputs);
 
-    console.log(inputs);
+    setInputs({
+      //스프레드 문법으로 기존의 객체를 복사한다.
+      ...inputs,
+      [name]: value,
+    });
+
     if (name === "join_nickname") {
-      console.log("닉네임 유효성", nicknameEXP.test(e.target.value));
       setNicknameCheck(nicknameEXP.test(e.target.value));
     } else if (name === "join_id") {
-      console.log("아이디 유효성", idEXP.test(e.target.value));
       setIdCheck(idEXP.test(e.target.value));
     } else if (name === "join_password") {
-      console.log("비밀번호 유효성", passwordEXP.test(e.target.value));
       setPasswordCheck(passwordEXP.test(e.target.value));
     } else if (name === "join_passwordconfirm") {
-      console.log("비밀번호확인 유효성", join_password);
       //RegExp라는 형식이 따로있다.
 
       // const passwordconfirmEXP =new RegExp(join_password)
-      console.log("비밀번호확인 유효성", join_password === e.target.value);
       setPasswordconfirmCheck(join_password === e.target.value);
     } else if (name === "join_name") {
-      console.log("이름 유효성", nameEXP.test(e.target.value));
       setNameCheck(nameEXP.test(e.target.value));
     } else if (name === "join_register1") {
-      console.log("주민번호1 유효성", register1EXP.test(e.target.value));
       setResister1Check(register1EXP.test(e.target.value));
     } else if (name === "join_register2") {
-      console.log("주민번호2 유효성", register2EXP.test(e.target.value));
       setResister2Check(register2EXP.test(e.target.value));
     }
   };
   const idoverlap = () => {
     if (idEXP.test(join_id) === false) {
-      successAlert.errorAlert("아이디 양식에 맞춰 입력해주세요.")
+      successAlert.errorAlert("아이디 양식에 맞춰 입력해주세요.");
     } else if (idEXP.test(join_id) === true) {
       axios
         .get(
@@ -99,19 +95,15 @@ const Join_userdata = (props) => {
         )
         .then(function (res) {
           //false면 가입불가능 true면 가입가능
-          console.log(res.data.result);
           if (res.data.result === true) {
-            successAlert.successAlert("사용가능한 아이디입니다.")
-            
+            successAlert.successAlert("사용가능한 아이디입니다.");
+
             setBtnid(idEXP.test(join_id));
-          }
-          else{
-            successAlert.errorAlert("중복된 아이디입니다.")
-           
+          } else {
+            successAlert.errorAlert("중복된 아이디입니다.");
           }
         });
     }
-    console.log("아이디 유효성", idEXP.test(join_id));
   };
 
   const nicknameoverlap = () => {
@@ -125,25 +117,20 @@ const Join_userdata = (props) => {
         )
         .then(function (res) {
           //false면 가입불가능 true면 가입가능
-          console.log(res.data.result);
           if (res.data.result === true) {
-            successAlert.successAlert("사용가능한 아이디입니다.")
+            successAlert.successAlert("사용가능한 아이디입니다.");
             setBtnNickname(nicknameEXP.test(join_nickname));
-          }
-          else{
-            successAlert.errorAlert("중복된 닉네임입니다.")
+          } else {
+            successAlert.errorAlert("중복된 닉네임입니다.");
           }
         });
     }
-
-    console.log("아이디 유효성", idEXP.test(join_nickname));
   };
 
   const registeroverlap = () => {
-    if(resister1Check === false || resister2Check === false){
-      successAlert.errorAlert("주민등록번호를 입력해주세요.")
-    } 
-    else if (resister1Check === true && resister2Check === true) {
+    if (resister1Check === false || resister2Check === false) {
+      successAlert.errorAlert("주민등록번호를 입력해주세요.");
+    } else if (resister1Check === true && resister2Check === true) {
       axios
         .post(
           "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/verify",
@@ -155,7 +142,7 @@ const Join_userdata = (props) => {
         .then(function (res) {
           if (res.data.result === true) {
             successAlert.successAlert("실명인증이 완료되었습니다.");
-            setbtnregister(true);
+            setBtnRegister(true);
           }
         });
     }
@@ -177,30 +164,29 @@ const Join_userdata = (props) => {
     // 4는 아이디 중복확인체크
     // 5는 비밀번호 확인 체크
     // 6은 성명과 주민등록번호 인증 체크
-    if (agreement !== true) {
+    if (!agreement) {
       //동의
-      successAlert.errorAlert("회원가입을 위한 개인정보 수집 및 이용안내사항을 동의해주세요.");
-    } else if (nicknameCheck !== true) {
+    } else if (!nicknameCheck) {
       successAlert.errorAlert("닉네임을 확인해주세요.");
-    } else if (idCheck !== true) {
+    } else if (!idCheck) {
       successAlert.errorAlert("아이디를 확인해주세요.");
-    } else if (passwordCheck !== true) {
+    } else if (!passwordCheck) {
       successAlert.errorAlert("비밀번호를 확인해주세요.");
-    } else if (passwordconfirmCheck !== true) {
+    } else if (!passwordconfirmCheck) {
       successAlert.errorAlert("비밀번호 확인을 확인해주세요.");
-    } else if (nameCheck !== true) {
+    } else if (!nameCheck) {
       successAlert.errorAlert("성명을 확인해주세요");
-    } else if (resister1Check !== true || resister2Check !== true) {
+    } else if (!resister1Check || !resister2Check) {
       successAlert.errorAlert("주민등록번호를 확인해주세요.");
-    } else if (btnnickname !== true) {
+    } else if (!btnnickname) {
       successAlert.errorAlert("닉네임을 중복확인해주세요.");
-    } else if (btnid !== true) {
+    } else if (!btnid) {
       successAlert.errorAlert("아이디를 중복확인해주세요.");
-    } else if (btnregister !== true) {
+    } else if (!btnRegister) {
       successAlert.errorAlert("실명 인증을 해주세요.");
     } else {
-      //alert_blank=7;
       encryption();
+
       axios
         .post(
           "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/register",
@@ -212,24 +198,9 @@ const Join_userdata = (props) => {
             personalNumber: encRegister,
           }
         )
-        .then(function (response) {
-          console.log(response);
-        });
-
-        successAlert.successAlert("회원가입이 완료되었습니다.");
+        .then((res) => successAlert.successAlert("회원가입이 완료되었습니다."));
       props.addPage("로그인");
     }
-
-    console.log(
-      agreement,
-      nicknameCheck,
-      idCheck,
-      passwordCheck,
-      passwordconfirmCheck,
-      nameCheck,
-      resister1Check,
-      resister2Check
-    );
   };
 
   return (
@@ -242,7 +213,7 @@ const Join_userdata = (props) => {
           value={join_agreement}
           className="Join-checkbox-input-class"
           id="Join-checkbox-checkbox-id"
-        ></input>
+        />
         <label
           className="Join-checkbox-text-class"
           htmlFor="Join-checkbox-checkbox-id"
@@ -262,13 +233,13 @@ const Join_userdata = (props) => {
               value={join_nickname}
               onChange={onChange}
               className="Textbox-class"
-            ></input>
+            />
           </div>
           <div
             className="Join-userdata-button-class1"
             onClick={nicknameoverlap}
           >
-            <Common_Button name={"중복확인"}></Common_Button>
+            <Common_Button name="중복확인"></Common_Button>
           </div>
         </div>
 
@@ -316,12 +287,12 @@ const Join_userdata = (props) => {
             value={join_password}
             onChange={onChange}
             className="Textbox-class"
-          ></input>
+          />
         </div>
       </div>
       <div
         className="Join-userdata-notice3-class"
-        style={passwordCheck === true ? { color: "green" } : { color: "red" }}
+        style={passwordCheck ? { color: "green" } : { color: "red" }}
       >
         <p>영문, 숫자 '~!@#$%^&*()_' 포함 8~16자 이내</p>
       </div>
@@ -341,11 +312,9 @@ const Join_userdata = (props) => {
       </div>
       <div
         className="Join-userdata-notice4-class"
-        style={
-          passwordconfirmCheck === true ? { color: "green" } : { color: "red" }
-        }
+        style={passwordconfirmCheck ? { color: "green" } : { color: "red" }}
       >
-        {passwordconfirmCheck === true ? (
+        {passwordconfirmCheck ? (
           <p>비밀번호가 일치합니다.</p>
         ) : (
           <p>비밀번호가 일치하지않습니다.</p>
@@ -367,7 +336,7 @@ const Join_userdata = (props) => {
       </div>
       <div
         className="Join-userdata-notice5-class"
-        style={nameCheck === true ? { color: "green" } : { color: "red" }}
+        style={nameCheck ? { color: "green" } : { color: "red" }}
       >
         <p>한글 포함 2~20자 이내</p>
       </div>
@@ -396,11 +365,11 @@ const Join_userdata = (props) => {
         </div>
       </div>
       <div className="Join-userdata-button-class" onClick={registeroverlap}>
-        <Common_Button name={"인증"}></Common_Button>
+        <Common_Button name="인증"></Common_Button>
       </div>
       <div className="Join-userdata-complete-btn-container-class">
         <div className="Join-userdata-complete-btn-class" onClick={valueCheck}>
-          <Common_Button name={"가입완료"}></Common_Button>
+          <Common_Button name="가입완료"></Common_Button>
         </div>
       </div>
     </div>
