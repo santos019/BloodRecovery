@@ -18,7 +18,7 @@ const Main_rank = (props) => {
       .then(function (response) {
         setimgdata(response.data);
       });
-  }, [imgdata]);
+  }, []);
   return (
     <div className="Main-rank-class">
       <div className="Main-rank-img-container">

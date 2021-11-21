@@ -56,7 +56,7 @@ const Board_inquire = (id) => {
         setGetData(response);
         
       });
-  }, [getData]);
+  }, []);
 
   const deleteData = () => {
     axios
@@ -84,7 +84,7 @@ const Board_inquire = (id) => {
         setGetDonation(response);
 
       });
-  }, [getDonation]);
+  }, []);
   //실시간 breakdown
 
   const donationlist = (donation) => {

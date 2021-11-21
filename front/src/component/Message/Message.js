@@ -19,7 +19,7 @@ const Message = (props) => {
       .then(function (response) {
         setMessages(response.data);
       });
-  }, [messageMode]);
+  }, []);
 
 
   const deleteMesssage = (mode) => {

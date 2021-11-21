@@ -6,29 +6,23 @@ import axios from "axios";
 import AWS from "aws-sdk";
 import { v4 as uuidv4 } from "uuid";
 import * as successAlert from "../Common/MakeAlert/successAlert.js"
-
+import * as S3secret from "../Common/Function/S3SecretKey.js"
 const Directed_inquire_default_data = (id) => {
   const [getData, setGetData] = useState();
   const [filename, getfilename] = useState("");
   const [rerender, setrerender] = useState(false);
-  const lysein =
-    "U2FsdGVkX18jdsJLZTbKu8q6u5ElnD61jI+BZ8ULufIazll6ygQAqjNSPTNaPC1zeWo0r1UytTb4mjW42Vb/lQ==";
-  const geinbge =
-    "U2FsdGVkX1+w8ZdQnSFY13vz6GGRARaom3sjreiL0IPwzqB2E34+HHTwIfa61vvp";
-  const fsesgs = "U2FsdGVkX194q5BrIV60z6bMqOomihEY7xSZGcnZtrg=";
-  const gnkesg = "U2FsdGVkX1/le6BQQXav/Is2yrSyZxJ/oNDzfBSEFx0=";
 
   const CryptoJS = require("crypto-js");
-  const gmbien = CryptoJS.AES.decrypt(geinbge, "longhair").toString(
+  const gmbien = CryptoJS.AES.decrypt(S3secret.geinbge, "longhair").toString(
     CryptoJS.enc.Utf8
   );
-  const nsigh = CryptoJS.AES.decrypt(lysein, "longhair").toString(
+  const nsigh = CryptoJS.AES.decrypt(S3secret.lysein, "longhair").toString(
     CryptoJS.enc.Utf8
   );
-  const qwren = CryptoJS.AES.decrypt(fsesgs, "longhair").toString(
+  const qwren = CryptoJS.AES.decrypt(S3secret.fsesgs, "longhair").toString(
     CryptoJS.enc.Utf8
   );
-  const ihtnw = CryptoJS.AES.decrypt(gnkesg, "longhair").toString(
+  const ihtnw = CryptoJS.AES.decrypt(S3secret.gnkesg, "longhair").toString(
     CryptoJS.enc.Utf8
   );
 
@@ -54,8 +48,9 @@ const Directed_inquire_default_data = (id) => {
 
       .then(function (response) {
         setGetData(response);
+        console.log(response);
       });
-  }, [getData]);
+  }, []);
 
   const uploadFile = (file1, pp) => {
     const profile_params = {

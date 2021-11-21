@@ -28,12 +28,12 @@ const Directed_inquire = (id) => {
         "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/direct/directedItem/" +
           sessionStorage.getItem("directId")
       )
-
+  
       .then(function (response) {
         setGetData(response);
-  
+       
       });
-  }, [getData]);
+  }, []);
   useEffect(() => {
     axios
       .get(
@@ -46,7 +46,7 @@ const Directed_inquire = (id) => {
         setGetApplicants(response);
         check(response.data);
       });
-  }, [getApplicants]);
+  }, []);
   const deleteData = () => {
     axios
       .delete(
