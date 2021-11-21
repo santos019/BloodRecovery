@@ -35,12 +35,10 @@ import Mypage_myboard from "../Mypage/Mypage_myboard_main";
 import Message from "../Message/Message";
 import Message_read from "../Message/Message_read";
 
-
 var text = "";
 var sendid;
-var num = 0;
+
 function Main_base(props) {
-  var tmp;
   const modal_style = {
     overlay: {
       position: "fixed",
@@ -75,27 +73,31 @@ function Main_base(props) {
     props.addPage(text);
     setModalIsOpen(true);
   };
-  const getsetValue1 = (text) => {
-    console.log(text);
-    alert("회원가입이 완료되었습니다.");
-    setmodal("로그인");
-  };
+
   const getsetValue2 = (getData) => {
-    console.log("여기로~", getData);
-    //setGetidValue(getData)
     sendid = getData;
-    console.log("입력아이디", sendid);
-    // datesent(getData)
     setmodal("지정헌혈조회");
   };
   const getsetValue3 = () => {
-    console.log("여기로~");
-
     setmodal("지정헌혈");
   };
 
+
+
   const logoutsuccess = () => {
     //로그인수정 중복된값을 넣어서 새로 렌더링이안되었던거같음
+ 
+    if((sessionStorage.getItem("last")=='"헌혈증_기부"')||(sessionStorage.getItem("last")=='"헌혈증요청조회"')||(sessionStorage.getItem("last")=='"지정헌혈"')||
+    (sessionStorage.getItem("last")=='"지정헌혈조회"')||(sessionStorage.getItem("last")=='"공지사항"')||(sessionStorage.getItem("last")=='"공지사항조회"')||
+    (sessionStorage.getItem("last")=='"공지사항조회"')||(sessionStorage.getItem("last")=='"랭킹"')){
+
+    }
+    else
+    {
+    movepage("로그인")
+      
+    }
+
     settestvalue(!testvalue);
     console.log("logout");
   };
@@ -110,12 +112,10 @@ function Main_base(props) {
   }
 
   return (
+    
     <div className="Main-base-class">
       <div className="Main-base-Header-container-class">
-        {console.log(props.index)}
-        {console.log("last", JSON.parse(window.sessionStorage.getItem("last")))}
         <div className="Main-base-Header-class">
-          {console.log("main", sessionStorage.getItem("userid"))}
           {sessionStorage.getItem("userId") === null ? (
             <Header_nav value={text} getsetValue={getsetValue}></Header_nav>
           ) : (

@@ -23,3 +23,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 /package-lock.json
+
+front/src/component/Common/Function/S3SecretKey.js

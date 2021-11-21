@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { withRouter } from "react-router";
 import Menu_left_nav from "../Common/Header/Menu_left_nav";
 import CARDDONATION from "../../Img/CARDDONATION.png";
 import GOBACKBTN from "../../Img/DirectedIMG/arrow.png";
@@ -16,16 +15,16 @@ import GOLD from "../../Img/Grade/2_gold.png";
 import VIP from "../../Img/Grade/1_vip.png";
 import axios from "axios";
 import Bloodpocket from "../Mypage/Bloodpocket";
-import { connect, ReactReduxContext } from "react-redux";
+import { connect } from "react-redux";
 import { addPage } from "../../component/Modalmove/subscribers/action";
 import "./Board_inquire.css";
+import * as successAlert from "../Common/MakeAlert/successAlert.js"
 
 const Board_inquire = (id) => {
   const [getData, setGetData] = useState();
   const [modalIsOpen, setModalIsOpen] = useState();
   //새로고침해도 모달창에서 불러온 컴포넌트가 안꺼지게 하는 함수
-  const [modal, setmodal] = useState();
-  const [signal,setsinal]=useState(true);
+
   const [getDonation, setGetDonation] = useState([]);
   const modal_style1 = {
     overlay: {
@@ -55,7 +54,7 @@ const Board_inquire = (id) => {
 
       .then(function (response) {
         setGetData(response);
-        console.log("response1", response);
+        
       });
   }, []);
 
@@ -68,9 +67,8 @@ const Board_inquire = (id) => {
       )
 
       .then(function (response) {
-        alert("게시글이 삭제되었습니다.");
+        successAlert.successAlert("게시글이 삭제되었습니다.");
         id.addPage("헌혈증_기부");
-        console.log("response", response);
       });
   };
 
@@ -84,30 +82,14 @@ const Board_inquire = (id) => {
       )
       .then(function (response) {
         setGetDonation(response);
-        // console.log("response2", response);
+
       });
-  }, [getDonation]);
+  }, []);
   //실시간 breakdown
 
   const donationlist = (donation) => {
     return <div>{donation.nickname}님이 헌혈증을 기부하셨습니다!</div>;
   };
-
-  // const writeStatue = (status) => {
-  //   if (status === false)
-  //     return {getData.getData?.donationCount}/{getData.getData?.requestCount}
-  //   else return "완료";
-  // };
-
-  // {getData.getData?.completeStatus === false ? (
-  //   <p className="Directed-card-nav-userstatus-p-class">
-  //     {getData.getData?.donationCount}/
-  //     {getData.getData?.requestCount}
-  //   </p>
-  // ) : (
-  //   <p>완료</p>
-  // )}
-  //나는 그 1/3 이런거!
 
   const dividedate = (inputdate) => {
     var redate = "";
@@ -124,18 +106,15 @@ const Board_inquire = (id) => {
     else if (level === 3) return GOLD;
     else if (level === 4) return VIP;
   };
-///기부하기//////////////////
-  const endsg=()=>{
-
-    setModalIsOpen(false)
-  }
+  ///기부하기//////////////////
+  const endsg = () => {
+    setModalIsOpen(false);
+  };
   const beDonation = () => {
-    setModalIsOpen(true)
     if (sessionStorage.getItem("userId") == null) {
-      alert("로그인 후 기부가 가능합니다!");
+      successAlert.errorAlert("로그인 후 기부가 가능합니다!");
     } else {
-  
-
+      setModalIsOpen(true);
       // id.getValue();
     }
   };
@@ -146,7 +125,14 @@ const Board_inquire = (id) => {
         style={modal_style1}
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
-      >  <Bloodpocket onbtn={"true"} number={getData?.data.userId} endsg={endsg}></Bloodpocket>  </ReactModal>
+      >
+        {" "}
+        <Bloodpocket
+          onbtn={"true"}
+          number={getData?.data.userId}
+          endsg={endsg}
+        ></Bloodpocket>{" "}
+      </ReactModal>
       <div className="Board-inquire-nav-container">
         <div className="Board-inquire-nav-class">
           <Menu_left_nav
@@ -158,7 +144,7 @@ const Board_inquire = (id) => {
         <div className="Board-inquire-nav-goback">
           <img
             className="Board-inquire-goback-bntimg-class"
-            onClick={() => id.addPage("헌혈증_기부")}
+            onClick={() => id.addPage(sessionStorage.getItem("lastbefore"))}
             src={GOBACKBTN}
           ></img>
         </div>
@@ -187,7 +173,7 @@ const Board_inquire = (id) => {
                 </div>
               </div>
               <div className="Board-inquire-card-context-class">
-                <pre>{getData?.data.contents}</pre>
+                <pre className="Board-inquire-card-context-classpre">{getData?.data.contents}</pre>
               </div>
               <div className="Board-inquire-card-context-img-class">
                 <div className="Board-inquire-card-context-margin">
@@ -243,17 +229,19 @@ const Board_inquire = (id) => {
               </div>
             ) : null}
 
-            <div className="Board-inquire-default-footer-btn-container">
-              <div
-                className="Board-inquire-default-footer-btn-class"
-                onClick={beDonation}
-              >
-                <Common_Button_IMG
-                  name={"기부하기"}
-                  imgname={Board_BUTTON_IMG}
-                ></Common_Button_IMG>
+            {getData?.data.completeStatus === false ? (
+              <div className="Board-inquire-default-footer-btn-container">
+                <div
+                  className="Board-inquire-default-footer-btn-class"
+                  onClick={beDonation}
+                >
+                  <Common_Button_IMG
+                    name={"기부하기"}
+                    imgname={Board_BUTTON_IMG}
+                  ></Common_Button_IMG>
+                </div>
               </div>
-            </div>
+            ) : null}
 
             <div className="Board-inquire-default-footer-container">
               <div className="Board-inquire-default-footer-info1-class">

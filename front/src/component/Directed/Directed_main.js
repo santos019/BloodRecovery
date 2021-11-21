@@ -1,21 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Menu_left_nav from "../Common/Header/Menu_left_nav";
 import "./Directed_main.css";
 import DIRECTEDIMG from "../../Img/DIRECTEDIMG.png";
-import SEARCHICON from "../../Img/searchicon.png";
 import WRITEICON from "../../Img/WRITE.png";
 import Directed_card from "./Directed_card";
 import Directed_main_select from "./Directed_main_select";
 import { connect } from "react-redux";
 import { addPage } from "../../component/Modalmove/subscribers/action";
 import axios from "axios";
-
+import * as successAlert from "../Common/MakeAlert/successAlert.js"
 //0관리자 1
 const Directed_main = (props) => {
-  var key1;
-  let form = new FormData();
-  var arrNumber = new Array();
   const [getSi, setGetSi] = useState("전체");
   const [getdo, setGetdo] = useState("");
   const [getData, setGetdata] = useState([]);
@@ -47,20 +42,16 @@ const Directed_main = (props) => {
   const onChange = (e) => {
     const { name, value } = e.target;
     const nextInputs = {
-      //스프레드 문법으로 기존의 객체를 복사한다.
+     
       ...inputs,
       [name]: value,
     };
-    //만든 변수를 seInput으로 변경해준다.
+   
     setInputs(nextInputs);
 
-    console.log(inputs);
   };
 
-  // const sendValue=(props)=>{
-  //     props.getsetValue2("test")
-  // }
-  //props 개념에대해 다시 알아봐야할것같다... getsetValue2 인자에 props를 메인에서 props를 읽을수없다
+
   const getsetValue2 = (getData) => {
     props.getsetValue2(getData);
   };
@@ -75,8 +66,6 @@ const Directed_main = (props) => {
           ) //status상태만붙여주고
           .then(function (response) {
             setGetdata(response.data);
-
-            console.log("1번케이스", response);
           });
       } else {
         axios
@@ -89,7 +78,6 @@ const Directed_main = (props) => {
           .then(function (response) {
             setGetdata(response.data);
 
-            console.log("2번케이스", response);
           });
       }
     } else {
@@ -104,7 +92,7 @@ const Directed_main = (props) => {
           .then(function (response) {
             setGetdata(response.data);
 
-            console.log("3번케이스", response);
+
           });
       } else {
         axios
@@ -121,7 +109,7 @@ const Directed_main = (props) => {
           .then(function (response) {
             setGetdata(response.data);
 
-            console.log("4번케이스", response);
+  
           });
       }
     }
@@ -129,11 +117,10 @@ const Directed_main = (props) => {
 
   const getValue = (text) => {
     setGetSi(text);
-    console.log("첫번째지역", text);
   };
   const getValue2 = (text) => {
     setGetdo(text);
-    console.log("두번째지역", text);
+
   };
 
   return (
@@ -168,25 +155,17 @@ const Directed_main = (props) => {
             onClick={() =>
               sessionStorage.getItem("userId") !== null
                 ? props.addPage("지정헌혈_글쓰기")
-                : alert("로그인을 해주세요")
+                : successAlert.errorAlert("로그인을 해주세요")
             }
             className="Directed-main-nav-writeicon-class"
           ></img>
         </div>
       </div>
       <div className="Directed-main-cardmain-container">
-        {/* <Directed_card getData={getData}></Directed_card> */}
-        {/* {getData.map((menu)=>(menu.requesterId))
-                } */}
+   
         {
           //워닝이뜨기떄문에 key값설정해야함
-          getData.map((menu, index) => (
-            <Directed_card
-              getData={getData[index]}
-              key={index}
-              getsetValue3={getsetValue2}
-            ></Directed_card>
-          ))
+          getData.map((menu, index) => (<Directed_card getData={getData[index]} key={index} getsetValue3={getsetValue2}></Directed_card>))
         }
       </div>
     </div>

@@ -5,12 +5,10 @@ import BRONZE from "../../Img/Grade/4_bronze.png";
 import SIVER from "../../Img/Grade/3_silver.png";
 import GOLD from "../../Img/Grade/2_gold.png";
 import VIP from "../../Img/Grade/1_vip.png";
-import Main_Button from "../Common/Button/Main_Button";
 import { addPage } from "../../component/Modalmove/subscribers/action";
 import { connect } from "react-redux";
-import Menu_nav_text from "../Common/Header/Menu_left_nav";
 import Menu_left_nav from "../Common/Header/Menu_left_nav";
-
+import BEFORELOGIN from "../../Img/MainIMG/beforelogin.png";
 import POCKETICON from "../../Img/pocket.png";
 const gradefunction = (Grade) => {
   if (Grade === 1)
@@ -32,11 +30,11 @@ function Mypage_main(props, getData) {
     axios
       .get(
         "http://bloodrecovery-lb-1423483073.us-east-2.elb.amazonaws.com:8000/user/info/" +
-          sessionStorage.getItem("userId")
+        sessionStorage.getItem("userId")
       )
       .then(function (response) {
         setUser(response.data);
-        console.log("rr", sessionStorage.getItem("userId"));
+       
       });
   }, []);
 
@@ -48,20 +46,14 @@ function Mypage_main(props, getData) {
     <div className="Mypage-main-container-class">
       <div className="Mypage-main-class">
         <div className="Mypage-main-Header-container-class">
-          {console.log(props.index)}
-          <Menu_left_nav
-            name={"마이페이지"}
-            imgname={POCKETICON}
-          ></Menu_left_nav>
+          <Menu_left_nav name={"마이페이지"}  imgname={POCKETICON}></Menu_left_nav>
         </div>
       </div>
       <div className="Mypage-main-nav-container"></div>
       <div className="Mypage-main-profile">
-        <img className="Mypage-main-profileimg" src={user?.profile}></img>
+        <img className="Mypage-main-profileimg" src={user?.profile===null?BEFORELOGIN:user?.profile}></img>
       </div>
-      <div className="Mypage-usericon-class">
-        {gradefunction(getData.getData?.requesterLevel)}
-      </div>
+      <div className="Mypage-usericon-class">{gradefunction(user?.level)}</div>
       <div className="Mypage-main-nickname">{user?.nickname}</div>
       <div className="Mypage-main-nav2"></div>
       <div className="Mypage-main-username">{user?.name}</div>

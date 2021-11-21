@@ -1,14 +1,14 @@
 .Directed-inquire-default-data-container{
     height: 100%;
-    /* background-color: yellow; */
+
 }
 .Directed-inquire-default-class{
     margin: auto;
     width: 40%;
     height: 50%;
-    /* background-color: brown; */
+
     border-radius: 15px 15px 15px 15px;
-    border: 5px dotted blue;
+    border: 5px dotted rgb(240, 59, 59);
     text-align: center;
     
 }
@@ -24,8 +24,7 @@
 .Directed-inquire-default-btn-container{
     width: 100%;
     height: 25%;
-    /* background-color: chocolate; */
-    margin-top: 1%;
+    margin-top: 2%;
     float: left;
 }
 .Directed-inquire-default-btn-class{
@@ -39,9 +38,8 @@
     margin-top: 1%;
 }
 .Directed-inqire-default-info{
-    width: 30%;
-    /* background-color: antiquewhite; */
+    width: 40%;
     margin: auto;
+    font-size: 8px;
     text-align: center;
-    font-size: 10px;
 }
