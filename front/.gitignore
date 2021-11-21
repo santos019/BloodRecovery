@@ -24,4 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 /package-lock.json
 
-front/src/component/Common/Function/S3SS3SecretKey.js
+front/src/component/Common/Function/S3SecretKey.js
