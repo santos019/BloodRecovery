@@ -1,4 +1,4 @@
-import React, { Link, Route } from "react";
+import React from "react";
 import "./Board_card.css";
 import BRONZE from "../../Img/Grade/4_bronze.png";
 import SIVER from "../../Img/Grade/3_silver.png";
